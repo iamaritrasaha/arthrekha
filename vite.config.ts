@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS === 'true' ? '/arthrekha/' : '/',
   plugins: [react()],
   resolve: {
     alias: {

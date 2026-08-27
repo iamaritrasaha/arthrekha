@@ -79,6 +79,16 @@ Further details:
 - [Architecture](docs/architecture.md)
 - [Current project status](docs/status.md)
 
+## Deployment
+
+The production site is published through GitHub Pages at [iamaritrasaha.github.io/arthrekha](https://iamaritrasaha.github.io/arthrekha/). Every successful push to `main` runs the validation suite, builds the Vite application and deploys the resulting `dist/` artifact through GitHub Actions.
+
+To create the production bundle locally:
+
+```bash
+npm run build
+```
+
 ## Current limitations
 
 - Union Government only
