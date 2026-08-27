@@ -38,7 +38,7 @@
 .metricTabActive { box-shadow: inset 2px 0 0 #b29054; }
 .sourceButton:hover, .sourceLine button:hover, .progressionHead button:hover, .deficitFigure button:hover { color: #6f512a; }
 .drawer { background: var(--surface-glass-strong); backdrop-filter: blur(var(--glass-blur)) saturate(120%); -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%); border-left: 1px solid var(--glass-highlight); box-shadow: var(--shadow-floating); }
-.evidenceTrace { margin: 28px 0; padding: 20px 0; border-top: 1px solid #d5d2c9; border-bottom: 1px solid #d5d2c9; display: grid; gap: 12px; }.evidenceTrace > div { display: grid; grid-template-columns: 24px 1fr; gap: 2px 10px; }.evidenceTrace b { grid-row: span 2; color: #b29054; font-size: 10px; }.evidenceTrace span { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }.evidenceTrace small { grid-column: 2; color: #69736d; font-size: 11px; }.evidenceTrace > i { width: 1px; height: 14px; margin-left: 11px; background: #c8c7bf; }
+.evidenceTrace { margin: 28px 0; padding: 20px 0; border-top: 1px solid #d5d2c9; border-bottom: 1px solid #d5d2c9; display: grid; gap: 0; }.evidenceStage { position: relative; display: grid; grid-template-columns: 24px 1fr; gap: 2px 10px; padding-bottom: 26px; }.evidenceStage:last-child { padding-bottom: 0; }.evidenceTrace b { grid-row: span 2; color: #b29054; font-size: 10px; }.evidenceTrace span { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }.evidenceTrace small { grid-column: 2; color: #69736d; font-size: 11px; overflow-wrap: anywhere; }.evidenceStage > i { position: absolute; left: 11px; top: 31px; width: 1px; height: 16px; background: #c8c7bf; }
 
 /* One master editorial grid: every section shares the hero's outer geometry. */
 .realitySection, .splitSection, .flowSection, .deficitSection, .explorerSection, .methodSection { display: grid; grid-template-columns: 150px minmax(0, 1fr); column-gap: 48px; align-items: start; }
@@ -49,7 +49,7 @@
 .chartStage::before { content: ''; display: block; width: 0; height: 1px; background: #b29054; transition: width var(--motion-data); }
 .chartRevealed::before { width: 100%; }
 .actualLine, .actualPoint { transition-duration: var(--motion-data); transition-timing-function: var(--ease-data); }
-.evidenceTrace { animation: evidence-in var(--motion-medium) both; }.evidenceTrace > i { transform-origin: top; animation: evidence-rule var(--motion-medium) both; }.evidenceTrace > i:nth-of-type(2) { animation-delay: 90ms; }
+.evidenceTrace { animation: evidence-in var(--motion-medium) both; }.evidenceStage > i { transform-origin: top; animation: evidence-rule var(--motion-medium) both; }.evidenceStage:nth-child(2) > i { animation-delay: 90ms; }.evidenceStage:nth-child(3) > i { animation-delay: 180ms; }
 @keyframes evidence-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes evidence-rule { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 
@@ -72,3 +72,25 @@
 @media (max-width: 800px) { .heroTrace { margin-top: 48px; }.instrumentRow { grid-template-columns: 140px 1fr; gap: 12px; }.animatedCurrency { grid-column: 2; text-align: left; margin-top: -10px; }.instrumentAxis { margin-left: 152px; margin-right: 0; }.instrument + .chartCaption { margin-left: 0; }.donut { height: 100px; }.donut div { padding: 0 14px; } }
 @media (max-width: 420px) { .traceLabel { font-size: 8px; }.instrumentRow { grid-template-columns: 112px 1fr; }.instrumentLabel { font-size: 10px; }.instrumentLabel > div > strong { white-space: normal; }.instrumentAxis { margin-left: 124px; font-size: 9px; }.progressionTrace { gap: 2px; }.progressionPoint strong { font-size: 8px; }.progressionPoint span { font-size: 8px; }.donut { height: 86px; }.donut strong { font-size: 34px; }.donut span { font-size: 9px; } }
 @media (prefers-reduced-motion: reduce) { .hero::before, .actualLine, .actualPoint, .progressionLine i { transition: none; } }
+
+/* Milestone 3 soft geometry: quantitative accuracy stays linear; interaction surfaces do not. */
+.metricPicker { border-radius: var(--radius-lg); overflow: hidden; }
+.metricTab, .metricTabActive { border-radius: var(--radius-sm); }
+.metricTabActive { box-shadow: inset 3px 0 0 #b29054, 0 5px 15px rgba(23,32,31,.06); }
+.instrument { border-radius: var(--radius-md); }
+.instrumentTrack, .planLine, .actualLine, .compareTrack, .compareTrack i, .deficitLine, .deficitLine i, .flowLine i, .flowLine i b, .progressionLine, .progressionLine i { border-radius: var(--radius-pill); }
+.sourceButton, .sourceLine button, .progressionHead button, .deficitFigure button { min-height: 38px; padding: 8px 12px; border-radius: var(--radius-pill); background: rgba(178,144,84,.1); text-decoration: none; }
+.donut { border-radius: var(--radius-lg); overflow: hidden; }
+.explorerPanel { padding: 30px; border: 1px solid #c8c7bf; border-radius: var(--radius-xl); background: rgba(255,255,255,.38); }
+.explorerSelect select { padding: 13px 14px; border: 1px solid #a6aaa2; border-radius: var(--radius-md); background: rgba(255,255,255,.65); }
+.drawerBackdrop { padding: 12px; }
+.drawer { height: calc(100% - 24px); margin: auto 0; border-radius: var(--radius-2xl) 0 0 var(--radius-2xl); }
+.closeButton { width: 42px; height: 42px; border-radius: var(--radius-pill); background: rgba(23,32,31,.055); }
+.evidenceTrace { padding: 20px; border: 1px solid #d5d2c9; border-radius: var(--radius-lg); }
+.provenanceStatus { padding: 12px 14px; border: 1px solid #d5d2c9; border-radius: var(--radius-md); }
+
+@media (max-width: 800px) {
+  .explorerPanel { padding: 22px; }
+  .drawerBackdrop { align-items: flex-end; padding: 8px; }
+  .drawer { width: 100%; height: min(88vh, 760px); margin: 0; border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
+}

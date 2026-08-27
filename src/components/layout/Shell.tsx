@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import styles from './Shell.module.css';
@@ -8,6 +9,8 @@ interface ShellProps {
 }
 
 export default function Shell({ children }: ShellProps) {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [pathname]);
   return (
     <div className={styles.shell}>
       <Header />

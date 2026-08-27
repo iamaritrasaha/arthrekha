@@ -62,6 +62,10 @@
   border-top: 1px solid var(--border-subtle);
 }
 
+.bottom nav { margin-bottom: 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.bottom nav a { padding: 7px 12px; border-radius: var(--radius-pill); color: var(--ink-secondary); background: rgba(255,255,255,.55); font-size: 11px; }
+.bottom nav a:hover { color: var(--ink-primary); text-decoration: none; background: #fff; }
+
 .copyright {
   font-size: var(--text-small);
   color: var(--ink-tertiary);

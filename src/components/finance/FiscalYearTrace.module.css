@@ -1,7 +1,8 @@
 .trace { width: 100%; color: #87958e; }
 .months { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; font-size: 9px; letter-spacing: .13em; text-align: center; }
 .complete { color: #d5c39a; }.current { color: #f5f3ee; font-weight: 800; }.future { color: #63716a; }
-.line { height: 2px; background: #405049; margin: 13px 0 12px; position: relative; }.line i { display: block; height: 100%; background: #b29054; }.line b { position: absolute; top: 50%; width: 8px; height: 8px; margin: -3px 0 0 -4px; background: #d5c39a; border: 2px solid #17201f; border-radius: 50%; box-shadow: 0 0 0 1px #d5c39a; }
+.line { height: 3px; background: #405049; margin: 13px 0 12px; position: relative; border-radius: var(--radius-pill); }.line i { display: block; height: 100%; background: #b29054; border-radius: var(--radius-pill); transition: width var(--motion-data); }.line b { position: absolute; top: 50%; width: 10px; height: 10px; margin: -4px 0 0 -5px; background: #d5c39a; border: 2px solid #17201f; border-radius: 50%; box-shadow: 0 0 0 1px #d5c39a, 0 0 16px rgba(213,195,154,.25); transition: left var(--motion-data); }
 .legend { display: flex; gap: 18px; flex-wrap: wrap; color: #7f8c85; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }.legend span { display: inline-flex; align-items: center; gap: 6px; }.legend i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }.completeKey { background: #b29054; }.currentKey { background: #f5f3ee; }.futureKey { border: 1px solid #63716a; }
 .compact .months { font-size: 8px; }.compact .line { margin: 9px 0 0; }
 @media (max-width: 520px) { .months { gap: 3px; font-size: 8px; }.legend { gap: 10px; font-size: 8px; } }
+@media (prefers-reduced-motion: reduce) { .line i, .line b { transition: none; } }

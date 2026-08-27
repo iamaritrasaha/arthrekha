@@ -124,11 +124,14 @@
   /* ============================================
      RADII
      ============================================ */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 9999px;
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 26px;
+  --radius-xl: 34px;
+  --radius-2xl: 42px;
+  --radius-pill: 999px;
+  --radius-full: var(--radius-pill);
 
   /* ============================================
      SHADOWS — Subtle depth

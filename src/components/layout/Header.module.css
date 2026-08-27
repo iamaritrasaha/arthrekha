@@ -1,125 +1,100 @@
 .header {
-  background: var(--surface-glass-strong);
-  border-bottom: 1px solid var(--glass-border);
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  backdrop-filter: blur(var(--glass-blur)) saturate(115%);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(115%);
-  box-shadow: 0 1px 0 var(--glass-highlight);
-  transition: background var(--motion-medium), box-shadow var(--motion-medium), border-color var(--motion-medium);
+  padding: 12px 16px 0;
+  pointer-events: none;
 }
 
 .container {
-  max-width: 1180px;
+  width: min(1180px, 100%);
+  min-height: 66px;
   margin: 0 auto;
-  padding: var(--space-4) var(--content-padding);
+  padding: 9px 12px 9px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-8);
-  transition: padding var(--motion-medium);
+  gap: var(--space-6);
+  pointer-events: auto;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .78), rgba(250, 249, 245, .66));
+  border: 1px solid var(--glass-02-border);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(18px) saturate(118%);
+  -webkit-backdrop-filter: blur(18px) saturate(118%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .86), inset 0 -1px 0 rgba(23, 32, 31, .04), 0 10px 34px rgba(23, 32, 31, .1);
+  transition: min-height var(--motion-medium), padding var(--motion-medium), background var(--motion-medium), box-shadow var(--motion-medium);
 }
 
 .logo {
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  text-decoration: none;
+  gap: 1px;
   color: var(--ink-primary);
-  transition: opacity var(--transition-fast);
-}
-
-.wordmark { display: inline-flex; align-items: center; gap: 8px; }
-.rupeeMark { color: #b29054; }
-
-.logo:hover {
-  opacity: 0.8;
   text-decoration: none;
 }
 
-.logoText {
-  font-size: 1rem;
-  font-weight: 800;
-  font-family: var(--font-display);
-  letter-spacing: 0.13em;
-}
-
-.tagline {
-  font-size: var(--text-small);
-  color: var(--ink-secondary);
-  font-weight: var(--weight-regular);
-  transition: opacity var(--motion-medium), max-height var(--motion-medium), transform var(--motion-medium);
-}
-
-.scrolled { background: var(--glass-02-background); box-shadow: var(--shadow-floating); }
-.scrolled .container { padding-top: 10px; padding-bottom: 10px; }
-.scrolled .tagline { opacity: 0; max-height: 0; transform: translateY(-4px); overflow: hidden; }
+.logo:hover { color: var(--ink-primary); text-decoration: none; }
+.wordmark { display: inline-flex; align-items: center; gap: 8px; }
+.rupeeMark { color: #a87f44; transition: transform var(--motion-fast); }
+.logo:hover .rupeeMark { transform: translateX(1px); }
+.logoText { font: 800 .92rem/1 var(--font-display); letter-spacing: .14em; }
+.tagline { max-height: 20px; overflow: hidden; color: var(--ink-secondary); font-size: 10px; letter-spacing: .02em; white-space: nowrap; transition: opacity var(--motion-medium), max-height var(--motion-medium), transform var(--motion-medium); }
 
 .nav {
   display: flex;
-  gap: var(--space-6);
   align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background: rgba(23, 32, 31, .035);
 }
 
 .navLink {
-  font-size: var(--text-body);
-  color: var(--ink-secondary);
-  text-decoration: none;
-  font-weight: var(--weight-medium);
-  transition: color var(--transition-fast);
-  padding: var(--space-2) 0;
   position: relative;
-  padding: 8px 12px;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-}
-
-.navLink:hover {
-  color: var(--ink-primary);
+  min-height: 38px;
+  padding: 9px 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  color: var(--ink-secondary);
+  font-size: 12px;
+  font-weight: 650;
   text-decoration: none;
-  background: var(--surface-glass);
-  border-color: var(--glass-border);
+  transition: color var(--motion-fast), background var(--motion-fast), box-shadow var(--motion-fast), transform var(--motion-fast);
 }
 
-.navLink:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 4px;
-  border-radius: var(--radius-sm);
+.navLink:hover { color: var(--ink-primary); text-decoration: none; background: rgba(255, 255, 255, .48); }
+.navLink:active { transform: scale(.98); }
+.navLinkActive { color: var(--ink-primary); background: rgba(255, 255, 255, .76); box-shadow: 0 1px 0 rgba(255, 255, 255, .82), 0 4px 14px rgba(23, 32, 31, .08); }
+.navLinkActive::after { content: ''; position: absolute; left: 50%; bottom: 5px; width: 12px; height: 2px; transform: translateX(-50%); border-radius: var(--radius-pill); background: #a87f44; }
+.navLink:focus-visible { outline: 2px solid #a87f44; outline-offset: 2px; }
+
+.scrolled { padding-top: 8px; }
+.scrolled .container { min-height: 56px; padding-top: 6px; padding-bottom: 6px; background: var(--glass-02-background); box-shadow: inset 0 1px 0 var(--glass-highlight), var(--shadow-floating); }
+.scrolled .tagline { opacity: 0; max-height: 0; transform: translateY(-3px); }
+
+@supports not (backdrop-filter: blur(1px)) {
+  .container { background: rgba(250, 249, 245, .97); }
 }
 
-/* Active link indicator */
-.navLink[aria-current="page"] {
-  color: var(--ink-primary);
+@media (max-width: 720px) {
+  .header { padding: 8px 8px 0; }
+  .container { min-height: 54px; padding: 6px 7px 6px 12px; gap: 6px; }
+  .tagline { display: none; }
+  .logoText { font-size: .75rem; letter-spacing: .1em; }
+  .rupeeMark { width: 20px; height: 20px; }
+  .nav { gap: 0; padding: 2px; }
+  .navLink { min-height: 36px; padding: 8px 9px; font-size: 10px; }
 }
 
-.navLink[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--accent-primary);
+@media (max-width: 390px) {
+  .wordmark { gap: 5px; }
+  .logoText { font-size: .68rem; }
+  .navLink { padding-inline: 7px; }
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .nav {
-    width: auto;
-    gap: 4px;
-    margin-left: auto;
-  }
-
-  .tagline {
-    display: none;
-  }
-
-  .logoText { font-size: .82rem; }
-  .navLink { font-size: 11px; padding: 7px 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .container, .tagline, .navLink, .rupeeMark { transition: none; }
 }

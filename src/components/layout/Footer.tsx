@@ -1,5 +1,6 @@
 import styles from './Footer.module.css';
 import ArthrekhaMark from '@/components/brand/ArthrekhaMark';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -26,6 +27,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
+          <nav aria-label="Footer navigation"><Link to="/explore">Explore</Link><Link to="/learn">Learn</Link><Link to="/sources">Sources & methodology</Link></nav>
           <p className={styles.copyright}>
             © 2026 Aritra Saha · Foresight Labs. All rights reserved. Financial data remains attributed to its official Government of India sources.
           </p>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import ArthrekhaMark from '@/components/brand/ArthrekhaMark';
 import styles from './Header.module.css';
 
@@ -22,12 +22,9 @@ export default function Header() {
         </Link>
 
         <nav className={styles.nav} aria-label="Main navigation">
-          <a href="#reality-title" className={styles.navLink}>Explore</a>
-          <a href="#method-title" className={styles.navLink}>Methodology</a>
-          {/* Future navigation */}
-          {/* <Link to="/india" className={styles.navLink}>Union Budget</Link> */}
-          {/* <Link to="/learn" className={styles.navLink}>Learn</Link> */}
-          {/* <Link to="/sources" className={styles.navLink}>Sources</Link> */}
+          <NavLink to="/explore" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}>Explore</NavLink>
+          <NavLink to="/learn" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}>Learn</NavLink>
+          <NavLink to="/sources" className={({ isActive }) => `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}>Sources</NavLink>
         </nav>
       </div>
     </header>
