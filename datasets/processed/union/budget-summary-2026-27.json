@@ -1,0 +1,241 @@
+{
+  "financialYear": "2026-27",
+  "asOfDate": "2026-08-27",
+  "observations": [
+    {
+      "id": "1a2b3c4d5e6f7890",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "revenue_receipts",
+      "amount": 3003992,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/",
+        "table": "Budget at a Glance",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "final",
+        "notes": "Budget Estimates as presented to Parliament on February 1, 2026"
+      }
+    },
+    {
+      "id": "2b3c4d5e6f789012",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "tax_revenue_net",
+      "amount": 2516293,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/",
+        "table": "Budget at a Glance",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "final",
+        "notes": "Budget Estimates as presented to Parliament on February 1, 2026"
+      }
+    },
+    {
+      "id": "3c4d5e6f78901234",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "non_tax_revenue",
+      "amount": 487699,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/",
+        "table": "Budget at a Glance",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "final",
+        "notes": "Budget Estimates as presented to Parliament on February 1, 2026"
+      }
+    },
+    {
+      "id": "4d5e6f7890123456",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "total_receipts",
+      "amount": 3113566,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/",
+        "table": "Budget at a Glance",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "final",
+        "notes": "Budget Estimates as presented to Parliament on February 1, 2026"
+      }
+    },
+    {
+      "id": "5e6f789012345678",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "total_expenditure",
+      "amount": 5020579,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/",
+        "table": "Budget at a Glance",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "final",
+        "notes": "Budget Estimates as presented to Parliament on February 1, 2026"
+      }
+    },
+    {
+      "id": "6f78901234567890",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "fiscal_deficit",
+      "amount": 1907013,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/",
+        "table": "Budget at a Glance",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "final",
+        "notes": "Budget Estimates as presented to Parliament on February 1, 2026"
+      }
+    },
+    {
+      "id": "7890123456789abc",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "period": "apr-jun",
+      "periodType": "cumulative",
+      "metric": "revenue_receipts",
+      "amount": 645890,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Accounts at a Glance - APR-JUN FY 2026-27",
+        "url": "https://cga.nic.in/",
+        "table": "Monthly Accounts Statement",
+        "publishedAt": "2026-07-31",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "provisional",
+        "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures."
+      }
+    },
+    {
+      "id": "89abcdef01234567",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "period": "apr-jun",
+      "periodType": "cumulative",
+      "metric": "total_expenditure",
+      "amount": 1201579,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Accounts at a Glance - APR-JUN FY 2026-27",
+        "url": "https://cga.nic.in/",
+        "table": "Monthly Accounts Statement",
+        "publishedAt": "2026-07-31",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "provisional",
+        "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures."
+      }
+    },
+    {
+      "id": "9abcdef012345678",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "period": "apr-jun",
+      "periodType": "cumulative",
+      "metric": "fiscal_deficit",
+      "amount": 536924,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Accounts at a Glance - APR-JUN FY 2026-27",
+        "url": "https://cga.nic.in/",
+        "table": "Monthly Accounts Statement",
+        "publishedAt": "2026-07-31",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "provisional",
+        "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures."
+      }
+    }
+  ],
+  "derivedMetrics": [
+    {
+      "metric": "revenue_receipts_execution_rate",
+      "formula": "actual_ytd / budget_estimate × 100",
+      "inputs": ["1a2b3c4d5e6f7890", "7890123456789abc"],
+      "value": 21.5,
+      "unit": "percentage",
+      "description": "Execution rate for revenue_receipts as of June 2026"
+    },
+    {
+      "metric": "total_expenditure_execution_rate",
+      "formula": "actual_ytd / budget_estimate × 100",
+      "inputs": ["5e6f789012345678", "89abcdef01234567"],
+      "value": 23.9,
+      "unit": "percentage",
+      "description": "Execution rate for total_expenditure as of June 2026"
+    },
+    {
+      "metric": "fiscal_deficit_execution_rate",
+      "formula": "actual_ytd / budget_estimate × 100",
+      "inputs": ["6f78901234567890", "9abcdef012345678"],
+      "value": 28.1,
+      "unit": "percentage",
+      "description": "Execution rate for fiscal_deficit as of June 2026"
+    }
+  ],
+  "metadata": {
+    "generated": "2026-08-27",
+    "totalObservations": 9,
+    "sources": ["Union Budget 2026-27 BE", "CGA Apr-Jun 2026"],
+    "latestPeriod": "apr-jun",
+    "dataStatus": "Sample data for pipeline development",
+    "warning": "This dataset uses SAMPLE DATA. Replace with actual official data from indiabudget.gov.in and cga.nic.in"
+  }
+}

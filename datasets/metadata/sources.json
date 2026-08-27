@@ -1,0 +1,60 @@
+[
+  {
+    "source_id": "union-budget-2026-27-be",
+    "source_organization": "Ministry of Finance, Government of India",
+    "document_name": "Union Budget 2026-27 - Budget at a Glance",
+    "canonical_url": "https://www.indiabudget.gov.in/",
+    "financial_year": "2026-27",
+    "reporting_period": null,
+    "publication_date": "2026-02-01",
+    "retrieval_date": "2026-08-27",
+    "source_format": "pdf",
+    "estimate_type": "BE",
+    "data_status": "final",
+    "parser_used": "pipeline.parsers.budget_parser",
+    "raw_file_path": "datasets/raw/sample_budget_2026-27_be.md",
+    "authoritative_status": "primary",
+    "notes": "Sample data for pipeline development",
+    "metrics_available": [
+      "revenue_receipts",
+      "tax_revenue_net",
+      "non_tax_revenue",
+      "non_debt_capital_receipts",
+      "total_receipts",
+      "revenue_expenditure",
+      "capital_expenditure",
+      "total_expenditure",
+      "interest_payments",
+      "fiscal_deficit"
+    ]
+  },
+  {
+    "source_id": "cga-2026-27-apr-jun",
+    "source_organization": "Controller General of Accounts",
+    "document_name": "Accounts at a Glance - Apr-Jun 2026",
+    "canonical_url": "https://cga.nic.in/",
+    "financial_year": "2026-27",
+    "reporting_period": "apr-jun",
+    "publication_date": "2026-07-31",
+    "retrieval_date": "2026-08-27",
+    "source_format": "pdf",
+    "estimate_type": "provisional",
+    "data_status": "provisional",
+    "parser_used": "pipeline.parsers.cga_parser",
+    "raw_file_path": "datasets/raw/sample_cga_2026-27_apr-jun.md",
+    "authoritative_status": "primary",
+    "notes": "Sample data for pipeline development. Provisional actuals, cumulative YTD.",
+    "metrics_available": [
+      "revenue_receipts",
+      "tax_revenue_net",
+      "non_tax_revenue",
+      "non_debt_capital_receipts",
+      "total_receipts",
+      "revenue_expenditure",
+      "capital_expenditure",
+      "total_expenditure",
+      "interest_payments",
+      "fiscal_deficit"
+    ]
+  }
+]
