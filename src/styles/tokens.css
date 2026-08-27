@@ -1,0 +1,177 @@
+/**
+ * Arthrekha Design System
+ *
+ * Editorial + analytical + calm + premium
+ * Indian without being clichéd
+ */
+
+:root {
+  /* ============================================
+     SURFACE — Warm neutrals, paper-inspired
+     ============================================ */
+  --surface-primary: #FAFAF8;
+  --surface-secondary: #F2F0EC;
+  --surface-elevated: #FFFFFF;
+  --surface-overlay: rgba(26, 26, 24, 0.6);
+
+  /* ============================================
+     INK — High contrast text colors
+     ============================================ */
+  --ink-primary: #1A1A18;
+  --ink-secondary: #5C5C58;
+  --ink-tertiary: #8A8A85;
+  --ink-inverse: #FAFAF8;
+  --ink-muted: #B8B8B3;
+
+  /* ============================================
+     ACCENT — Trust blue, used sparingly
+     ============================================ */
+  --accent-primary: #2563EB;
+  --accent-primary-hover: #1D4ED8;
+  --accent-secondary: #7C3AED;
+
+  /* ============================================
+     SEMANTIC — Financial states
+     ============================================ */
+  --positive: #16A34A;
+  --positive-light: #DCFCE7;
+  --negative: #DC2626;
+  --negative-light: #FEE2E2;
+  --neutral: #8A8A85;
+  --neutral-light: #F5F5F4;
+  --provisional: #D97706;
+  --provisional-light: #FEF3C7;
+
+  /* ============================================
+     CHART PALETTE — 8 distinguishable colors
+     Tested for accessibility and distinction
+     ============================================ */
+  --chart-1: #2563EB;
+  --chart-2: #7C3AED;
+  --chart-3: #0891B2;
+  --chart-4: #059669;
+  --chart-5: #D97706;
+  --chart-6: #DC2626;
+  --chart-7: #A855F7;
+  --chart-8: #0D9488;
+
+  /* ============================================
+     BORDERS & RULES
+     ============================================ */
+  --border-subtle: #E5E5E0;
+  --border-default: #D4D4CC;
+  --border-emphasis: #A3A39E;
+
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* Font sizes */
+  --text-display: 3rem;        /* 48px */
+  --text-h1: 2rem;             /* 32px */
+  --text-h2: 1.5rem;           /* 24px */
+  --text-h3: 1.25rem;          /* 20px */
+  --text-body: 1rem;           /* 16px */
+  --text-small: 0.875rem;      /* 14px */
+  --text-caption: 0.75rem;     /* 12px */
+
+  /* Font weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Line heights */
+  --leading-display: 1.1;
+  --leading-heading: 1.3;
+  --leading-body: 1.6;
+  --leading-tight: 1.4;
+
+  /* ============================================
+     SPACING — 4px base unit
+     ============================================ */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ============================================
+     RADII
+     ============================================ */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ============================================
+     SHADOWS — Subtle depth
+     ============================================ */
+  --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.05);
+  --shadow-md: 0 2px 8px rgba(26, 26, 24, 0.08);
+  --shadow-lg: 0 4px 16px rgba(26, 26, 24, 0.1);
+  --shadow-xl: 0 8px 32px rgba(26, 26, 24, 0.12);
+
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ============================================
+     Z-INDEX SCALE
+     ============================================ */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* ============================================
+     LAYOUT
+     ============================================ */
+  --content-max-width: 1280px;
+  --content-narrow-width: 720px;
+  --content-padding: var(--space-6);
+
+  /* ============================================
+     CHART DEFAULTS
+     ============================================ */
+  --chart-grid-color: var(--border-subtle);
+  --chart-axis-color: var(--ink-tertiary);
+  --chart-tooltip-bg: var(--surface-elevated);
+  --chart-tooltip-border: var(--border-default);
+}
+
+/* ============================================
+   DARK MODE (future enhancement)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Will be implemented when design system matures */
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

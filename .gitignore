@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+.pytest_cache/
+
+# Temporary
+.tmp/
+temp/
+*.tmp
+
+# Data
+datasets/raw/*.pdf
+datasets/raw/*.xlsx
+datasets/raw/*.xls
+!datasets/raw/.gitkeep
+
+# API keys (safety)
+**/secrets/
+*.key
+*.pem
