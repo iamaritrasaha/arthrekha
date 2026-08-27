@@ -1,27 +1,28 @@
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  inset: 0 0 auto;
   z-index: var(--z-sticky);
   padding: 12px 16px 0;
   pointer-events: none;
+  transition: padding var(--motion-medium);
 }
 
 .container {
   width: min(1180px, 100%);
-  min-height: 66px;
+  min-height: 60px;
   margin: 0 auto;
-  padding: 9px 12px 9px 18px;
+  padding: 7px 10px 7px 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-6);
   pointer-events: auto;
-  background: linear-gradient(145deg, rgba(255, 255, 255, .78), rgba(250, 249, 245, .66));
-  border: 1px solid var(--glass-02-border);
+  background: var(--nav-glass-background);
+  border: 1px solid var(--nav-glass-border);
   border-radius: var(--radius-pill);
-  backdrop-filter: blur(18px) saturate(118%);
-  -webkit-backdrop-filter: blur(18px) saturate(118%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .86), inset 0 -1px 0 rgba(23, 32, 31, .04), 0 10px 34px rgba(23, 32, 31, .1);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  box-shadow: inset 0 1px 0 var(--nav-glass-highlight), inset 0 -1px 0 var(--nav-glass-lower-edge), 0 12px 34px rgba(12, 17, 16, .12);
   transition: min-height var(--motion-medium), padding var(--motion-medium), background var(--motion-medium), box-shadow var(--motion-medium);
 }
 
@@ -39,7 +40,7 @@
 .rupeeMark { color: #a87f44; transition: transform var(--motion-fast); }
 .logo:hover .rupeeMark { transform: translateX(1px); }
 .logoText { font: 800 .92rem/1 var(--font-display); letter-spacing: .14em; }
-.tagline { max-height: 20px; overflow: hidden; color: var(--ink-secondary); font-size: 10px; letter-spacing: .02em; white-space: nowrap; transition: opacity var(--motion-medium), max-height var(--motion-medium), transform var(--motion-medium); }
+.tagline { max-height: 16px; overflow: hidden; color: var(--ink-secondary); font-size: 9px; letter-spacing: .02em; white-space: nowrap; transition: opacity var(--motion-medium), max-height var(--motion-medium), transform var(--motion-medium); }
 
 .nav {
   display: flex;
@@ -72,11 +73,11 @@
 .navLink:focus-visible { outline: 2px solid #a87f44; outline-offset: 2px; }
 
 .scrolled { padding-top: 8px; }
-.scrolled .container { min-height: 56px; padding-top: 6px; padding-bottom: 6px; background: var(--glass-02-background); box-shadow: inset 0 1px 0 var(--glass-highlight), var(--shadow-floating); }
+.scrolled .container { min-height: 54px; padding-top: 5px; padding-bottom: 5px; background: var(--nav-glass-background-scrolled); box-shadow: inset 0 1px 0 var(--nav-glass-highlight), inset 0 -1px 0 var(--nav-glass-lower-edge), var(--shadow-floating); }
 .scrolled .tagline { opacity: 0; max-height: 0; transform: translateY(-3px); }
 
 @supports not (backdrop-filter: blur(1px)) {
-  .container { background: rgba(250, 249, 245, .97); }
+  .container { background: var(--surface-glass-strong); }
 }
 
 @media (max-width: 720px) {
@@ -96,5 +97,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .container, .tagline, .navLink, .rupeeMark { transition: none; }
+  .header, .container, .tagline, .navLink, .rupeeMark { transition: none; }
 }

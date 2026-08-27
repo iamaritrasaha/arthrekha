@@ -25,6 +25,8 @@ build/
 .env
 .env.local
 .env.*.local
+.env.*
+!.env.example
 
 # OS
 .DS_Store
@@ -40,11 +42,19 @@ yarn-error.log*
 coverage/
 .nyc_output/
 .pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
 
 # Temporary
 .tmp/
+tmp/
 temp/
 *.tmp
+screenshots/
+*.tsbuildinfo
+.cache/
 
 # Data
 datasets/raw/*.pdf

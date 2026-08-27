@@ -29,6 +29,13 @@
   --glass-03-background: rgba(250, 249, 245, 0.94);
   --glass-03-border: rgba(23, 32, 31, 0.2);
 
+  /* Floating navigation: warm glass over both ink and paper canvases. */
+  --nav-glass-background: rgba(247, 244, 237, 0.76);
+  --nav-glass-background-scrolled: rgba(247, 244, 237, 0.9);
+  --nav-glass-border: rgba(255, 255, 255, 0.5);
+  --nav-glass-highlight: rgba(255, 255, 255, 0.74);
+  --nav-glass-lower-edge: rgba(23, 32, 31, 0.07);
+
   /* ============================================
      INK — High contrast text colors
      ============================================ */

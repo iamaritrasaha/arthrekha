@@ -486,7 +486,6 @@ As specified in milestone requirements:
 ❌ No RBI debt tracking  
 ❌ No CAG audit reports  
 ❌ No historical multi-year datasets  
-❌ No AI features  
 ❌ No India map visualization  
 ❌ No dashboard expansions  
 ❌ No homepage redesign  
