@@ -1,0 +1,4 @@
+.header { display: flex; flex-direction: column; gap: 8px; min-width: 0; color: #8d9892; text-transform: uppercase; letter-spacing: .14em; font-size: 10px; font-weight: 700; }
+.index { color: #b29054; font-variant-numeric: tabular-nums; }
+.title { line-height: 1.35; }
+.meta { color: #b29054; margin-top: 10px; line-height: 1.4; }
