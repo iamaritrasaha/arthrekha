@@ -9,21 +9,24 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "revenue_receipts",
-      "amount": 3150000.0,
+      "amount": 3533150.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 1",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Revenue receipts of the Union Government."
+      },
+      "definitionId": "revenue_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "00fcbe99c056b3c1",
@@ -32,21 +35,25 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "tax_revenue_net",
-      "amount": 2625000.0,
+      "amount": 2866922.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 2",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Tax revenue net to Centre after the States' share and specified transfers."
+      },
+      "definitionId": "tax_revenue_net",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
     },
     {
       "id": "88361a3c2e24b238",
@@ -55,21 +62,105 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "non_tax_revenue",
-      "amount": 525000.0,
+      "amount": 666228.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 3",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Non-tax revenue receipts of the Union Government."
+      },
+      "definitionId": "non_tax_revenue",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
+    },
+    {
+      "id": "6bdc04bcb5cfe63e",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "capital_receipts",
+      "amount": 1814165.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 4",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Capital receipts including non-debt receipts, borrowings and other liabilities."
+      },
+      "definitionId": "capital_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
+    },
+    {
+      "id": "99550506b4dde344",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "recovery_of_loans",
+      "amount": 38397.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 5",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Recovery of loans recorded as a capital receipt."
+      },
+      "definitionId": "recovery_of_loans",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "non_debt_capital_receipts"
+    },
+    {
+      "id": "132d37eb105a7339",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "other_capital_receipts",
+      "amount": 80000.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 6",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Other capital receipts in the Budget at a Glance classification."
+      },
+      "definitionId": "other_capital_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "non_debt_capital_receipts"
     },
     {
       "id": "1dd03240d8a72afc",
@@ -78,21 +169,78 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "non_debt_capital_receipts",
-      "amount": 112000.0,
+      "amount": 118397.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, row 3A",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Non-debt capital receipts, comprising recoveries of loans and other receipts in this summary."
+      },
+      "definitionId": "non_debt_capital_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "capital_receipts"
+    },
+    {
+      "id": "93491c0de1e6732c",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "borrowings_and_other_liabilities",
+      "amount": 1695768.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 7",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Borrowings and other liabilities; includes drawdown of cash balance."
+      },
+      "definitionId": "borrowings_and_other_liabilities",
+      "coverage": "Union Government of India",
+      "classificationType": "debt",
+      "parentMetric": "capital_receipts"
+    },
+    {
+      "id": "045fef9e4b382328",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "non_borrowed_receipts",
+      "amount": 3651547.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Arthrekha derivation from Budget at a Glance, page 1",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "derived",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Revenue receipts plus non-debt capital receipts."
+      },
+      "definitionId": "non_borrowed_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "0069a26811552472",
@@ -101,21 +249,24 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "total_receipts",
-      "amount": 3262000.0,
+      "amount": 5347315.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 8",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Total receipts including capital receipts and borrowing."
+      },
+      "definitionId": "total_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "5392b6352c716a88",
@@ -124,21 +275,25 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "revenue_expenditure",
-      "amount": 4087000.0,
+      "amount": 4125494.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 10",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Expenditure on revenue account."
+      },
+      "definitionId": "revenue_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "ee88f4018fcc6e9e",
@@ -147,21 +302,25 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "capital_expenditure",
-      "amount": 1160000.0,
+      "amount": 1221821.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 13",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Expenditure on capital account."
+      },
+      "definitionId": "capital_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "d0eb4e3dcb4e4ea0",
@@ -170,21 +329,24 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "total_expenditure",
-      "amount": 5247000.0,
+      "amount": 5347315.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 9",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Total Union Government expenditure on revenue and capital accounts."
+      },
+      "definitionId": "total_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure"
     },
     {
       "id": "601edcd95d7a40aa",
@@ -193,21 +355,132 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "interest_payments",
-      "amount": 1243000.0,
+      "amount": 1403972.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 11",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Interest payments included in revenue expenditure."
+      },
+      "definitionId": "interest_payments",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
+    },
+    {
+      "id": "06f8d82e4462a6de",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "grants_for_capital_assets",
+      "amount": 492702.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 12",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Grants in aid for creation of capital assets."
+      },
+      "definitionId": "grants_for_capital_assets",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "effective_capital_expenditure"
+    },
+    {
+      "id": "abed6c78c4586ca8",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "effective_capital_expenditure",
+      "amount": 1714523.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 14",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Capital expenditure plus grants in aid for creation of capital assets."
+      },
+      "definitionId": "effective_capital_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
+    },
+    {
+      "id": "a50633344d2e907a",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "revenue_deficit",
+      "amount": 592344.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 15",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Revenue expenditure minus revenue receipts."
+      },
+      "definitionId": "revenue_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit"
+    },
+    {
+      "id": "45543ea86f688e41",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "effective_revenue_deficit",
+      "amount": 99642.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 16",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Revenue deficit minus grants in aid for creation of capital assets."
+      },
+      "definitionId": "effective_revenue_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit",
+      "parentMetric": "revenue_deficit"
     },
     {
       "id": "38cf7dc914074fc2",
@@ -216,21 +489,699 @@
       "financialYear": "2026-27",
       "periodType": "annual",
       "metric": "fiscal_deficit",
-      "amount": 1985000.0,
+      "amount": 1695768.0,
       "unit": "crore",
       "currency": "INR",
       "estimateType": "BE",
       "source": {
         "organization": "Ministry of Finance, Government of India",
         "document": "Union Budget 2026-27 - Budget at a Glance",
-        "url": "https://www.indiabudget.gov.in/",
-        "table": "Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 17",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
         "dataStatus": "BE",
-        "notes": "Budget Estimates as presented to Parliament on February 1, 2026",
-        "definition": null
-      }
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Total expenditure minus revenue receipts, recovery of loans and other non-debt receipts."
+      },
+      "definitionId": "fiscal_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit"
+    },
+    {
+      "id": "a973a61fa6dd67be",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "primary_deficit",
+      "amount": 291796.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, row 18",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Fiscal deficit minus interest payments."
+      },
+      "definitionId": "primary_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit",
+      "parentMetric": "fiscal_deficit"
+    },
+    {
+      "id": "09329a2a8e18b580",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "gross_tax_revenue",
+      "amount": 4404086.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, Tax Revenue",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Gross Union tax revenue before deductions and the States' share."
+      },
+      "definitionId": "gross_tax_revenue",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
+    },
+    {
+      "id": "7276b9d5835aeb8a",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "corporation_tax",
+      "amount": 1231000.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, row 1a",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Corporation tax included in gross tax revenue."
+      },
+      "definitionId": "corporation_tax",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "gross_tax_revenue"
+    },
+    {
+      "id": "e584f6114a3ebbc7",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "income_tax",
+      "amount": 1466000.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, row 1b",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Taxes on income included in gross tax revenue."
+      },
+      "definitionId": "income_tax",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "gross_tax_revenue"
+    },
+    {
+      "id": "c5700d74d83dc03a",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "customs",
+      "amount": 271200.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, row 1c",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Customs duties included in gross tax revenue."
+      },
+      "definitionId": "customs",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "gross_tax_revenue"
+    },
+    {
+      "id": "bcacbfef96fab733",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "union_excise_duties",
+      "amount": 388910.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, row 1d",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Union excise duties included in gross tax revenue."
+      },
+      "definitionId": "union_excise_duties",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "gross_tax_revenue"
+    },
+    {
+      "id": "565d9a8c107bb873",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "gst",
+      "amount": 1019020.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, row 1e",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Goods and Services Tax included in gross tax revenue."
+      },
+      "definitionId": "gst",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "gross_tax_revenue"
+    },
+    {
+      "id": "eab0586dff3eb54c",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "state_share_of_taxes",
+      "amount": 1526255.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Receipts, page 6, deduction from gross tax revenue",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "States' share deducted from gross tax revenue to arrive at tax revenue net to Centre."
+      },
+      "definitionId": "state_share_of_taxes",
+      "coverage": "Union Government of India",
+      "classificationType": "federal",
+      "parentMetric": "gross_tax_revenue"
+    },
+    {
+      "id": "7be91a1f0c713bc7",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "pensions",
+      "amount": 296214.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Major Items, page 11",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Pension expenditure in the Budget at a Glance major-items presentation."
+      },
+      "definitionId": "pensions",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
+    },
+    {
+      "id": "10e59765b0cbb321",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "defence_expenditure",
+      "amount": 594585.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Major Items, page 11",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Defence expenditure in the Budget at a Glance major-items presentation."
+      },
+      "definitionId": "defence_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
+    },
+    {
+      "id": "9780c06b18da1e57",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "fertiliser_subsidy",
+      "amount": 170781.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Major Items, page 11",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Fertiliser subsidy expenditure."
+      },
+      "definitionId": "fertiliser_subsidy",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
+    },
+    {
+      "id": "978226504aaffa4c",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "food_subsidy",
+      "amount": 227629.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Major Items, page 11",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Food subsidy expenditure."
+      },
+      "definitionId": "food_subsidy",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
+    },
+    {
+      "id": "a85b87036f0aef12",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "petroleum_subsidy",
+      "amount": 12085.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Major Items, page 11",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Petroleum subsidy expenditure."
+      },
+      "definitionId": "petroleum_subsidy",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
+    },
+    {
+      "id": "845a4fd406444541",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "central_sector_schemes",
+      "amount": 1771928.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Government of India, page 8",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Expenditure on Central Sector schemes and projects."
+      },
+      "definitionId": "central_sector_schemes",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
+    },
+    {
+      "id": "385ae565cfcacedb",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "centrally_sponsored_schemes",
+      "amount": 548798.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Government of India, page 8",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Transfers for Centrally Sponsored Schemes."
+      },
+      "definitionId": "centrally_sponsored_schemes",
+      "coverage": "Union Government of India",
+      "classificationType": "federal",
+      "parentMetric": "total_expenditure"
+    },
+    {
+      "id": "aa90f56561d7036c",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "finance_commission_grants",
+      "amount": 129397.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Transfer of Resources to States and UTs, page 12",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Grants provided under Finance Commission recommendations."
+      },
+      "definitionId": "finance_commission_grants",
+      "coverage": "Union Government of India",
+      "classificationType": "federal"
+    },
+    {
+      "id": "ca54edbb8fbb6a12",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "other_grants_loans_transfers",
+      "amount": 311691.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Expenditure of Government of India, page 8",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Other grants, loans and transfers in the broad expenditure classification."
+      },
+      "definitionId": "other_grants_loans_transfers",
+      "coverage": "Union Government of India",
+      "classificationType": "federal"
+    },
+    {
+      "id": "6401ed2ceaa4134a",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "tax_devolution_states",
+      "amount": 1526255.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Transfer of Resources to States and UTs, page 12",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Devolution of States' share in Union taxes."
+      },
+      "definitionId": "tax_devolution_states",
+      "coverage": "Union Government of India",
+      "classificationType": "federal"
+    },
+    {
+      "id": "6dfd60df397cc339",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "total_transfers_states_uts",
+      "amount": 2620769.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Transfer of Resources to States and UTs, page 12",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Total transfers to States and Union Territories with legislature."
+      },
+      "definitionId": "total_transfers_states_uts",
+      "coverage": "Union Government of India",
+      "classificationType": "federal"
+    },
+    {
+      "id": "7be6e5463e4f686e",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "debt_receipts_net",
+      "amount": 1663066.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Sources of Financing Fiscal Deficit, page 4",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Net debt receipts used in financing the fiscal deficit."
+      },
+      "definitionId": "debt_receipts_net",
+      "coverage": "Union Government of India",
+      "classificationType": "debt",
+      "debtCategory": "net-debt-receipt-flow"
+    },
+    {
+      "id": "99fc623acdf2e0b1",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "market_borrowings_net",
+      "amount": 1173210.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Sources of Financing Fiscal Deficit, page 4",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Net market borrowings through government securities, after buyback and switching operations."
+      },
+      "definitionId": "market_borrowings_net",
+      "coverage": "Union Government of India",
+      "classificationType": "debt",
+      "parentMetric": "debt_receipts_net",
+      "debtCategory": "internal-market-borrowing-flow"
+    },
+    {
+      "id": "dc62a3a4260167b7",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "short_term_borrowing",
+      "amount": 130000.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Sources of Financing Fiscal Deficit, page 4",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Short-term borrowing including Treasury Bills."
+      },
+      "definitionId": "short_term_borrowing",
+      "coverage": "Union Government of India",
+      "classificationType": "debt",
+      "parentMetric": "debt_receipts_net",
+      "debtCategory": "internal-short-term-borrowing-flow"
+    },
+    {
+      "id": "3c338eb38816fb84",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "securities_against_small_savings",
+      "amount": 386772.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Sources of Financing Fiscal Deficit, page 4",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Securities issued against small savings."
+      },
+      "definitionId": "securities_against_small_savings",
+      "coverage": "Union Government of India",
+      "classificationType": "debt",
+      "parentMetric": "debt_receipts_net",
+      "debtCategory": "internal-small-savings-financing-flow"
+    },
+    {
+      "id": "f6c70ce0c84cf17a",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "external_debt_net",
+      "amount": 15385.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Sources of Financing Fiscal Deficit, page 4",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Net external debt receipts used in deficit financing."
+      },
+      "definitionId": "external_debt_net",
+      "coverage": "Union Government of India",
+      "classificationType": "debt",
+      "parentMetric": "debt_receipts_net",
+      "debtCategory": "external-debt-receipt-flow"
+    },
+    {
+      "id": "b7d23424de048a2e",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "annual",
+      "metric": "nominal_gdp",
+      "amount": 39300393.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "BE",
+      "source": {
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Union Budget 2026-27 - Budget at a Glance",
+        "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+        "table": "Budget at a Glance, page 1, note (i)",
+        "publishedAt": "2026-02-01",
+        "retrievedAt": "2026-08-27",
+        "dataStatus": "BE",
+        "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
+        "definition": "Nominal GDP estimate for FY 2026-27 cited from NSO and used as the denominator for published deficit ratios."
+      },
+      "definitionId": "nominal_gdp",
+      "coverage": "Union Government of India",
+      "classificationType": "accounts",
+      "ratioDenominator": "nominal-gdp-current-prices-fy-2026-27"
     },
     {
       "id": "5bc173cfd8232a30",
@@ -254,7 +1205,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "revenue_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "34987e36d4df816e",
@@ -278,7 +1232,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "tax_revenue_net",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
     },
     {
       "id": "22f774a4b3e60edd",
@@ -302,7 +1260,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "non_tax_revenue",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
     },
     {
       "id": "c1e55bbb42064ba8",
@@ -326,15 +1288,19 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "non_debt_capital_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "capital_receipts"
     },
     {
-      "id": "20ea1f527efb91a5",
+      "id": "b6131fbca6d62088",
       "jurisdiction": "india",
       "jurisdictionType": "union",
       "financialYear": "2026-27",
       "periodType": "cumulative",
-      "metric": "total_receipts",
+      "metric": "non_borrowed_receipts",
       "amount": 205750.0,
       "unit": "crore",
       "currency": "INR",
@@ -350,7 +1316,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "non_borrowed_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "97cb3d405b9e04f5",
@@ -374,7 +1343,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "revenue_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "ee86c08837bcf19a",
@@ -398,7 +1371,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "capital_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "5119e5f559c89817",
@@ -422,7 +1399,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "total_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure"
     },
     {
       "id": "14e05f435d13cb5b",
@@ -446,7 +1426,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "interest_payments",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
     },
     {
       "id": "6733ea9477b2f866",
@@ -470,7 +1454,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "fiscal_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit"
     },
     {
       "id": "247ea0a8b69782a1",
@@ -494,7 +1481,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "revenue_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "fcbce5ff805dc99f",
@@ -518,7 +1508,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "tax_revenue_net",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
     },
     {
       "id": "5f9a649c926a17bc",
@@ -542,7 +1536,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "non_tax_revenue",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
     },
     {
       "id": "6d03b62e9c96c6e5",
@@ -566,15 +1564,19 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "non_debt_capital_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "capital_receipts"
     },
     {
-      "id": "b1a7e72c4302f0a8",
+      "id": "b9036883fcae7440",
       "jurisdiction": "india",
       "jurisdictionType": "union",
       "financialYear": "2026-27",
       "periodType": "cumulative",
-      "metric": "total_receipts",
+      "metric": "non_borrowed_receipts",
       "amount": 439810.0,
       "unit": "crore",
       "currency": "INR",
@@ -590,7 +1592,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "non_borrowed_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "f302dbdf5cb28ce3",
@@ -614,7 +1619,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "revenue_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "daf8dc020c6d1a40",
@@ -638,7 +1647,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "capital_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "e30d8651b3437e7d",
@@ -662,7 +1675,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "total_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure"
     },
     {
       "id": "6a1b1d540c0dadc3",
@@ -686,7 +1702,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "interest_payments",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
     },
     {
       "id": "110b29c794346584",
@@ -710,7 +1730,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures.",
         "definition": null
-      }
+      },
+      "definitionId": "fiscal_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit"
     },
     {
       "id": "fe371dd1111a6109",
@@ -734,7 +1757,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "revenue_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "3d81dea3220783b8",
@@ -758,7 +1784,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "tax_revenue_net",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
     },
     {
       "id": "e40a6e8c97879837",
@@ -782,7 +1812,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "non_tax_revenue",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
     },
     {
       "id": "1387a950c5646987",
@@ -806,15 +1840,19 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "non_debt_capital_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "capital_receipts"
     },
     {
-      "id": "70ef2561498ea25f",
+      "id": "77e0e57282a38fa2",
       "jurisdiction": "india",
       "jurisdictionType": "union",
       "financialYear": "2026-27",
       "periodType": "cumulative",
-      "metric": "total_receipts",
+      "metric": "non_borrowed_receipts",
       "amount": 683450.0,
       "unit": "crore",
       "currency": "INR",
@@ -830,7 +1868,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "non_borrowed_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
     },
     {
       "id": "2879c14def06d69e",
@@ -854,7 +1895,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "revenue_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "4d6bc9cf78edaab9",
@@ -878,7 +1923,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "capital_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
     },
     {
       "id": "324cfc05ef77afb9",
@@ -902,7 +1951,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "total_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure"
     },
     {
       "id": "db790839e1c2d2af",
@@ -926,7 +1978,11 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "interest_payments",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
     },
     {
       "id": "20d3e4ec3c7e1d8b",
@@ -950,7 +2006,10 @@
         "dataStatus": "provisional",
         "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27).",
         "definition": null
-      }
+      },
+      "definitionId": "fiscal_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit"
     }
   ],
   "derivedMetrics": [
@@ -961,7 +2020,7 @@
         "3342d72dd7ed95e5",
         "fe371dd1111a6109"
       ],
-      "value": 20.985714285714284,
+      "value": 18.70993306256457,
       "unit": "percentage",
       "description": "Execution rate for revenue_receipts as of June 2026"
     },
@@ -972,7 +2031,7 @@
         "00fcbe99c056b3c1",
         "3d81dea3220783b8"
       ],
-      "value": 20.82499047619048,
+      "value": 19.067696993500345,
       "unit": "percentage",
       "description": "Execution rate for tax_revenue_net as of June 2026"
     },
@@ -983,7 +2042,7 @@
         "88361a3c2e24b238",
         "e40a6e8c97879837"
       ],
-      "value": 21.78933333333333,
+      "value": 17.170398121964254,
       "unit": "percentage",
       "description": "Execution rate for non_tax_revenue as of June 2026"
     },
@@ -994,20 +2053,20 @@
         "1dd03240d8a72afc",
         "1387a950c5646987"
       ],
-      "value": 20.0,
+      "value": 18.91939829556492,
       "unit": "percentage",
       "description": "Execution rate for non_debt_capital_receipts as of June 2026"
     },
     {
-      "metric": "total_receipts_execution_rate",
+      "metric": "non_borrowed_receipts_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
-        "0069a26811552472",
-        "70ef2561498ea25f"
+        "045fef9e4b382328",
+        "77e0e57282a38fa2"
       ],
-      "value": 20.951870018393624,
+      "value": 18.7167247196873,
       "unit": "percentage",
-      "description": "Execution rate for total_receipts as of June 2026"
+      "description": "Execution rate for non_borrowed_receipts as of June 2026"
     },
     {
       "metric": "revenue_expenditure_execution_rate",
@@ -1016,7 +2075,7 @@
         "5392b6352c716a88",
         "2879c14def06d69e"
       ],
-      "value": 25.0,
+      "value": 24.766730966037038,
       "unit": "percentage",
       "description": "Execution rate for revenue_expenditure as of June 2026"
     },
@@ -1027,7 +2086,7 @@
         "ee88f4018fcc6e9e",
         "4d6bc9cf78edaab9"
       ],
-      "value": 17.5,
+      "value": 16.614545011094094,
       "unit": "percentage",
       "description": "Execution rate for capital_expenditure as of June 2026"
     },
@@ -1038,7 +2097,7 @@
         "d0eb4e3dcb4e4ea0",
         "324cfc05ef77afb9"
       ],
-      "value": 23.341909662664378,
+      "value": 22.904018184827336,
       "unit": "percentage",
       "description": "Execution rate for total_expenditure as of June 2026"
     },
@@ -1049,7 +2108,7 @@
         "601edcd95d7a40aa",
         "db790839e1c2d2af"
       ],
-      "value": 25.0,
+      "value": 22.133632294661147,
       "unit": "percentage",
       "description": "Execution rate for interest_payments as of June 2026"
     },
@@ -1060,14 +2119,91 @@
         "38cf7dc914074fc2",
         "20d3e4ec3c7e1d8b"
       ],
-      "value": 27.269521410579344,
+      "value": 31.92064008755915,
       "unit": "percentage",
       "description": "Execution rate for fiscal_deficit as of June 2026"
+    },
+    {
+      "metric": "fiscal_deficit_gdp_ratio",
+      "formula": "Fiscal deficit \u00f7 nominal GDP \u00d7 100",
+      "inputs": [
+        "38cf7dc914074fc2",
+        "b7d23424de048a2e"
+      ],
+      "value": 4.314888148828435,
+      "unit": "percentage",
+      "description": "Arthrekha-derived ratio for fiscal_deficit using compatible FY 2026-27 Budget Estimate inputs"
+    },
+    {
+      "metric": "revenue_deficit_gdp_ratio",
+      "formula": "Revenue deficit \u00f7 nominal GDP \u00d7 100",
+      "inputs": [
+        "a50633344d2e907a",
+        "b7d23424de048a2e"
+      ],
+      "value": 1.507221569005684,
+      "unit": "percentage",
+      "description": "Arthrekha-derived ratio for revenue_deficit using compatible FY 2026-27 Budget Estimate inputs"
+    },
+    {
+      "metric": "effective_revenue_deficit_gdp_ratio",
+      "formula": "Effective revenue deficit \u00f7 nominal GDP \u00d7 100",
+      "inputs": [
+        "45543ea86f688e41",
+        "b7d23424de048a2e"
+      ],
+      "value": 0.25353944933833106,
+      "unit": "percentage",
+      "description": "Arthrekha-derived ratio for effective_revenue_deficit using compatible FY 2026-27 Budget Estimate inputs"
+    },
+    {
+      "metric": "primary_deficit_gdp_ratio",
+      "formula": "Primary deficit \u00f7 nominal GDP \u00d7 100",
+      "inputs": [
+        "a973a61fa6dd67be",
+        "b7d23424de048a2e"
+      ],
+      "value": 0.7424760357994384,
+      "unit": "percentage",
+      "description": "Arthrekha-derived ratio for primary_deficit using compatible FY 2026-27 Budget Estimate inputs"
+    },
+    {
+      "metric": "capital_expenditure_share",
+      "formula": "Capital expenditure \u00f7 total expenditure \u00d7 100",
+      "inputs": [
+        "ee88f4018fcc6e9e",
+        "d0eb4e3dcb4e4ea0"
+      ],
+      "value": 22.849243031315716,
+      "unit": "percentage",
+      "description": "Arthrekha-derived ratio for capital_expenditure using compatible FY 2026-27 Budget Estimate inputs"
+    },
+    {
+      "metric": "effective_capital_expenditure_share",
+      "formula": "Effective capital expenditure \u00f7 total expenditure \u00d7 100",
+      "inputs": [
+        "abed6c78c4586ca8",
+        "d0eb4e3dcb4e4ea0"
+      ],
+      "value": 32.063250435031414,
+      "unit": "percentage",
+      "description": "Arthrekha-derived ratio for effective_capital_expenditure using compatible FY 2026-27 Budget Estimate inputs"
+    },
+    {
+      "metric": "interest_revenue_receipts_ratio",
+      "formula": "Interest payments \u00f7 revenue receipts \u00d7 100",
+      "inputs": [
+        "601edcd95d7a40aa",
+        "3342d72dd7ed95e5"
+      ],
+      "value": 39.737118435390514,
+      "unit": "percentage",
+      "description": "Arthrekha-derived ratio for interest_payments using compatible FY 2026-27 Budget Estimate inputs"
     }
   ],
   "metadata": {
     "generated": "2026-08-27",
-    "totalObservations": 40,
+    "totalObservations": 74,
     "sources": [
       "Union Budget 2026-27 BE",
       "CGA Apr-Jun 2026"

@@ -18,7 +18,7 @@
     "tax_revenue_net": 546656,
     "non_tax_revenue": 114394,
     "non_debt_capital_receipts": 22400,
-    "total_receipts": 683450,
+    "non_borrowed_receipts": 683450,
     "revenue_expenditure": 1021750,
     "capital_expenditure": 203000,
     "total_expenditure": 1224750,

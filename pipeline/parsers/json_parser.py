@@ -8,7 +8,7 @@ official government financial data.
 import json
 from pathlib import Path
 from pipeline.models import FinancialObservation, DataSource
-from pipeline.metrics import validate_metric_id
+from pipeline.metrics import get_metric, validate_metric_id
 
 
 def parse_json_source(file_path: str) -> list[FinancialObservation]:
@@ -28,22 +28,27 @@ def parse_json_source(file_path: str) -> list[FinancialObservation]:
 
     # Extract source metadata
     source_meta = raw['source']
-    source = DataSource(
-        organization=source_meta['organization'],
-        document=source_meta['document'],
-        url=source_meta.get('url'),
-        table=source_meta.get('table'),
-        published_at=source_meta.get('publication_date'),
-        retrieved_at=source_meta['retrieval_date'],
-        data_status=raw.get('estimate_type', 'provisional'),
-        notes=source_meta.get('notes'),
-    )
+    metric_metadata = raw.get('metric_metadata', {})
 
     # Parse each metric
     for metric_id, amount in raw['data'].items():
         # Validate metric ID
         if not validate_metric_id(metric_id):
             raise ValueError(f"Unknown metric ID in {file_path}: {metric_id}")
+
+        metric_meta = metric_metadata.get(metric_id, {})
+        registry_definition = get_metric(metric_id)
+        source = DataSource(
+            organization=source_meta['organization'],
+            document=source_meta['document'],
+            url=source_meta.get('url'),
+            table=metric_meta.get('table', source_meta.get('table')),
+            published_at=source_meta.get('publication_date'),
+            retrieved_at=source_meta['retrieval_date'],
+            data_status=metric_meta.get('data_status', raw.get('estimate_type', 'provisional')),
+            notes=source_meta.get('notes'),
+            definition=metric_meta.get('definition'),
+        )
 
         # Handle period for actuals vs budget estimates
         period = raw.get('reporting_period')
@@ -61,6 +66,12 @@ def parse_json_source(file_path: str) -> list[FinancialObservation]:
             currency=raw.get('currency', 'INR'),
             estimate_type=raw['estimate_type'],
             source=source,
+            definition_id=metric_id,
+            coverage="Union Government of India",
+            classification_type=(registry_definition or {}).get("domain"),
+            parent_metric=(registry_definition or {}).get("parent_metric"),
+            debt_category=metric_meta.get('debt_category'),
+            ratio_denominator=metric_meta.get('ratio_denominator'),
         )
 
         observations.append(obs)

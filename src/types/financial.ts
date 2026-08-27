@@ -12,10 +12,10 @@ export type JurisdictionType = "union" | "state" | "ut";
 export type PeriodType = "annual" | "quarterly" | "monthly" | "cumulative" | "ytd";
 
 // Estimate types - critical for budget analysis
-export type EstimateType = "BE" | "RE" | "actual" | "provisional";
+export type EstimateType = "BE" | "RE" | "actual" | "provisional" | "audited_actual";
 
 // Data quality status
-export type DataStatus = "final" | "provisional" | "estimated" | "derived";
+export type DataStatus = "final" | "provisional" | "estimated" | "derived" | "audited";
 
 /**
  * DataSource - Provenance information for every observation
@@ -64,6 +64,14 @@ export interface FinancialObservation {
 
   // Estimate type
   estimateType: EstimateType;
+
+  // Definition safety for deeper fiscal and debt series
+  definitionId?: string;
+  coverage?: string;
+  classificationType?: string;
+  parentMetric?: string;
+  debtCategory?: string;
+  ratioDenominator?: string;
 
   // Provenance
   source: DataSource;

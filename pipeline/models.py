@@ -13,8 +13,8 @@ import json
 
 JurisdictionType = Literal["union", "state", "ut"]
 PeriodType = Literal["annual", "quarterly", "monthly", "cumulative", "ytd"]
-EstimateType = Literal["BE", "RE", "actual", "provisional"]
-DataStatus = Literal["final", "provisional", "estimated", "derived"]
+EstimateType = Literal["BE", "RE", "actual", "provisional", "audited_actual"]
+DataStatus = Literal["final", "provisional", "estimated", "derived", "audited"]
 
 
 @dataclass
@@ -63,6 +63,12 @@ class FinancialObservation:
     currency: str = "INR"
     estimate_type: EstimateType = "actual"
     source: DataSource | None = None
+    definition_id: str | None = None
+    coverage: str | None = None
+    classification_type: str | None = None
+    parent_metric: str | None = None
+    debt_category: str | None = None
+    ratio_denominator: str | None = None
     id: str | None = None
 
     def __post_init__(self):
@@ -126,6 +132,16 @@ class FinancialObservation:
                 "notes": self.source.notes,
                 "definition": self.source.definition,
             }
+
+        optional_metadata = {
+            "definitionId": self.definition_id,
+            "coverage": self.coverage,
+            "classificationType": self.classification_type,
+            "parentMetric": self.parent_metric,
+            "debtCategory": self.debt_category,
+            "ratioDenominator": self.ratio_denominator,
+        }
+        result.update({key: value for key, value in optional_metadata.items() if value is not None})
 
         return result
 

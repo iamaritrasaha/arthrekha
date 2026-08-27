@@ -7,20 +7,10 @@
 
 import type { FinancialObservation, EstimateType, DerivedMetric } from '@/types/financial';
 import { loadBudgetDataset, getDatasetMetadata } from './budgetData';
+import { getMetricDefinition, type FinancialDomain, type MetricId } from './metricDefinitions';
 
 export { getDatasetMetadata };
-
-export type MetricId =
-  | 'revenue_receipts'
-  | 'tax_revenue_net'
-  | 'non_tax_revenue'
-  | 'non_debt_capital_receipts'
-  | 'total_receipts'
-  | 'revenue_expenditure'
-  | 'capital_expenditure'
-  | 'total_expenditure'
-  | 'interest_payments'
-  | 'fiscal_deficit';
+export type { MetricId } from './metricDefinitions';
 
 /**
  * Get all observations from the dataset
@@ -120,6 +110,20 @@ export function getExecutionRate(metricId: string): DerivedMetric | null {
   const derived = getAllDerivedMetrics();
   const rateMetric = `${metricId}_execution_rate`;
   return derived.find(d => d.metric === rateMetric) ?? null;
+}
+
+export function getDerivedMetric(metricId: string): DerivedMetric | null {
+  return getAllDerivedMetrics().find(derivedMetric => derivedMetric.metric === metricId) ?? null;
+}
+
+export function getMetricRatio(metricId: string, ratioId: string): DerivedMetric | null {
+  const definition = getMetricDefinition(metricId);
+  if (!definition?.compatibleRatios.includes(ratioId)) return null;
+  return getDerivedMetric(ratioId);
+}
+
+export function getMetricsForDomain(domain: FinancialDomain): MetricId[] {
+  return getAvailableMetrics().filter(metricId => getMetricDefinition(metricId)?.domain === domain) as MetricId[];
 }
 
 export function getMetricProvenance(observation: FinancialObservation | null) {

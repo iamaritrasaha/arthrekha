@@ -63,17 +63,17 @@ def run_ingestion():
     # Step 3: Validate reconciliation
     print("Step 3: Validating reconciliation...")
 
-    # Total receipts should equal revenue + non-debt capital receipts
+    # Non-borrowed receipts should equal revenue + non-debt capital receipts.
     receipts_reconciliation = validate_reconciliation(
         all_observations,
-        "total_receipts",
+        "non_borrowed_receipts",
         ["revenue_receipts", "non_debt_capital_receipts"],
     )
 
     if receipts_reconciliation["all_reconcile"]:
-        print("  ✓ Total receipts reconcile")
+        print("  ✓ Non-borrowed receipts reconcile")
     else:
-        print("  ✗ Total receipts reconciliation failed")
+        print("  ✗ Non-borrowed receipts reconciliation failed")
         for check in receipts_reconciliation["checks"]:
             if not check["reconciles"]:
                 print(f"    Expected: {check['expected']}, Got: {check['calculated']}")
@@ -101,6 +101,17 @@ def run_ingestion():
         print("  ✓ Total expenditure reconciles")
     else:
         print("  ✗ Total expenditure reconciliation failed")
+
+    # Budget total receipts include both revenue and capital receipts.
+    total_receipts_reconciliation = validate_reconciliation(
+        all_observations,
+        "total_receipts",
+        ["revenue_receipts", "capital_receipts"],
+    )
+    if total_receipts_reconciliation["all_reconcile"]:
+        print("  ✓ Total receipts including borrowing reconcile")
+    else:
+        print("  ✗ Total receipts including borrowing reconciliation failed")
 
     print()
 
@@ -136,7 +147,31 @@ def run_ingestion():
 
             derived_metrics.append(derived)
 
-    print(f"  ✓ Calculated {len(derived_metrics)} execution rates")
+    ratio_specs = [
+        ("fiscal_deficit_gdp_ratio", "fiscal_deficit", "nominal_gdp", "Fiscal deficit ÷ nominal GDP × 100"),
+        ("revenue_deficit_gdp_ratio", "revenue_deficit", "nominal_gdp", "Revenue deficit ÷ nominal GDP × 100"),
+        ("effective_revenue_deficit_gdp_ratio", "effective_revenue_deficit", "nominal_gdp", "Effective revenue deficit ÷ nominal GDP × 100"),
+        ("primary_deficit_gdp_ratio", "primary_deficit", "nominal_gdp", "Primary deficit ÷ nominal GDP × 100"),
+        ("capital_expenditure_share", "capital_expenditure", "total_expenditure", "Capital expenditure ÷ total expenditure × 100"),
+        ("effective_capital_expenditure_share", "effective_capital_expenditure", "total_expenditure", "Effective capital expenditure ÷ total expenditure × 100"),
+        ("interest_revenue_receipts_ratio", "interest_payments", "revenue_receipts", "Interest payments ÷ revenue receipts × 100"),
+    ]
+
+    for ratio_id, numerator_id, denominator_id, formula in ratio_specs:
+        numerator = be_by_metric.get(numerator_id)
+        denominator = be_by_metric.get(denominator_id)
+        if not numerator or not denominator or denominator.amount == 0:
+            continue
+        derived_metrics.append(DerivedMetric(
+            metric=ratio_id,
+            formula=formula,
+            inputs=[numerator.id or "", denominator.id or ""],
+            value=numerator.amount / denominator.amount * 100,
+            unit="percentage",
+            description=f"Arthrekha-derived ratio for {numerator_id} using compatible FY 2026-27 Budget Estimate inputs",
+        ))
+
+    print(f"  ✓ Calculated {len(derived_metrics)} execution rates and analytical ratios")
     print()
 
     # Step 5: Generate output
@@ -175,14 +210,15 @@ def run_ingestion():
             source_id="union-budget-2026-27-be",
             organization="Ministry of Finance, Government of India",
             document_name="Union Budget 2026-27 - Budget at a Glance",
-            url="https://www.indiabudget.gov.in/",
+            url="https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
             financial_year="2026-27",
             estimate_type="BE",
             source_format="pdf",
             parser_used="pipeline.parsers.budget_parser",
             metrics=list(be_by_metric.keys()),
             publication_date="2026-02-01",
-            notes="Budget Estimates as presented to Parliament",
+            raw_file_path="datasets/raw/union_budget_2026-27_budget_at_a_glance.pdf",
+            notes="Budget Estimates transcribed from the official Budget at a Glance PDF; page and table references are retained on each observation",
         ),
         create_source_manifest(
             source_id="cga-2026-27-apr-jun",

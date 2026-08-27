@@ -12,6 +12,9 @@ import {
   getMonthlyProgression,
   getMetricProvenance,
   getAvailableMetrics,
+  getDerivedMetric,
+  getMetricRatio,
+  getMetricsForDomain,
 } from '@/data/selectors';
 
 describe('Budget Data Loader', () => {
@@ -27,13 +30,13 @@ describe('Budget Data Loader', () => {
     const metadata = getDatasetMetadata();
     expect(metadata.financialYear).toBe('2026-27');
     expect(metadata.latestPeriod).toBe('apr-jun');
-    expect(metadata.totalObservations).toBe(40);
+    expect(metadata.totalObservations).toBe(74);
   });
 });
 
 describe('Data Selectors', () => {
   it('looks up a metric without exposing source-format details', () => {
-    expect(getMetric('capital_expenditure')?.amount).toBe(1160000);
+    expect(getMetric('capital_expenditure')?.amount).toBe(1221821);
     expect(getMetric('not_a_metric')).toBeNull();
   });
 
@@ -74,7 +77,9 @@ describe('Data Selectors', () => {
     expect(metrics).toContain('total_expenditure');
     expect(metrics).toContain('revenue_receipts');
     expect(metrics).toContain('fiscal_deficit');
-    expect(metrics.length).toBe(10);
+    expect(metrics).toContain('primary_deficit');
+    expect(metrics).toContain('market_borrowings_net');
+    expect(metrics.length).toBe(44);
   });
 
   it('returns null for non-existent metric', () => {
@@ -89,5 +94,24 @@ describe('Data Selectors', () => {
     expect(provenance?.source.organization).toContain('Controller General');
     expect(provenance?.estimateType).toBe('provisional');
     expect(getMetricProvenance(null)).toBeNull();
+  });
+
+  it('keeps total receipts distinct from non-borrowed receipts', () => {
+    expect(getBudgetEstimate('total_receipts')?.amount).toBe(5347315);
+    expect(getBudgetEstimate('non_borrowed_receipts')?.amount).toBe(3651547);
+    expect(getBudgetEstimate('non_borrowed_receipts')?.source.dataStatus).toBe('derived');
+  });
+
+  it('retrieves only registered compatible ratios', () => {
+    const ratio = getMetricRatio('fiscal_deficit', 'fiscal_deficit_gdp_ratio');
+    expect(ratio?.value).toBeGreaterThan(4.3);
+    expect(ratio?.value).toBeLessThan(4.4);
+    expect(getMetricRatio('fiscal_deficit', 'interest_revenue_receipts_ratio')).toBeNull();
+    expect(getDerivedMetric('interest_revenue_receipts_ratio')?.unit).toBe('percentage');
+  });
+
+  it('groups available observations by explicit financial domain', () => {
+    expect(getMetricsForDomain('deficit')).toEqual(expect.arrayContaining(['fiscal_deficit', 'revenue_deficit', 'primary_deficit']));
+    expect(getMetricsForDomain('federal')).toContain('total_transfers_states_uts');
   });
 });
