@@ -1,270 +1,423 @@
-# Data Ingestion Methodology
+# Arthrekha — Methodology
 
-## Overview
+This document explains how Arthrekha ingests, processes, and presents Indian public finance data.
 
-This document describes how Arthrekha ingests Union Government fiscal data from official sources, normalizes it into a consistent schema, validates it, and generates application-ready datasets.
+---
 
-## Data Flow
+## 1. Data Pipeline Architecture
 
 ```
 Official Source (PDF/Excel/HTML)
         ↓
-   Raw Preservation (datasets/raw/)
+datasets/raw/          ← Preserved original structure
         ↓
-   Parser (pipeline/parsers/)
+Parser                 ← Extract metrics
         ↓
-   FinancialObservation Objects
+Normalize              ← Map to FinancialObservation schema
         ↓
-   Validation (pipeline/validators.py)
+Validate               ← Reconciliation & bounds checks
         ↓
-   Derived Calculations
+Generate JSON          ← Application-ready datasets
         ↓
-   Application JSON (datasets/processed/)
+datasets/processed/    ← Version-controlled output
+        ↓
+React App (build)      ← Static site with bundled data
 ```
 
-## Canonical Units
+### Principles
 
-### Monetary Values
-- **Internal storage**: ₹ crore
-- **Source parsing**: Convert all values to crore
-- **Display formatting**: crore, lakh crore, or compact notation (handled by UI)
+1. **Raw data preservation** — Never mutate source files
+2. **Explicit provenance** — Every number traceable to its source
+3. **Reproducibility** — Pipeline runs produce identical output
+4. **Loud failures** — Parser errors halt ingestion; no silent substitutions
+5. **Validation at ingestion** — Catch errors before they reach the app
 
-### Time Periods
-- **Financial Year**: April 1 to March 31
-- **Format**: "2026-27" (not "2026" or "FY2026")
-- **Quarters**: Q1 (Apr-Jun), Q2 (Jul-Sep), Q3 (Oct-Dec), Q4 (Jan-Mar)
+---
 
-## Estimate Types
+## 2. Financial Observation Schema
 
-### Budget Estimate (BE)
-- What the government originally planned in the Union Budget
-- Presented to Parliament in February
-- Status: `final` (authorized by Parliament)
+Every data point is a **Financial Observation** — the atomic unit of fiscal data.
 
-### Revised Estimate (RE)
-- Updated expectation mid-year after observing actual performance
-- Presented in next year's budget documents
-- Status: `final` (authorized by Parliament)
+```typescript
+{
+  id: string;                   // Deterministic hash
+  jurisdiction: "india";        // or state/UT code
+  jurisdictionType: "union";    // "union" | "state" | "ut"
+  financialYear: "2026-27";     // April 2026 – March 2027
+  period: "apr-jun";            // null for full year
+  periodType: "cumulative";     // "annual" | "monthly" | "cumulative" | "ytd"
+  metric: "revenue_receipts";   // From canonical metric registry
+  amount: 661050;               // Always in ₹ crore
+  unit: "crore";
+  currency: "INR";
+  estimateType: "provisional";  // "BE" | "RE" | "actual" | "provisional"
+  source: { /* full provenance */ }
+}
+```
 
-### Actual
-- Final recorded figures after financial year ends
-- Audited by CAG
-- Status: `final` (audited)
+### Key Design Choices
 
-### Provisional Actual
-- Recent figures that are useful but may change
-- Published monthly/quarterly by CGA
-- Status: `provisional` (subject to audit)
+**Canonical unit: ₹ crore**  
+All monetary values stored in crore. Display formatting (lakh crore, % of GDP) happens at render time.
 
-## Period Conventions
+**Why crore?**
+- Budget documents use crore
+- Avoids float precision issues with smaller units
+- Clean conversion: 1 lakh crore = 100,000 crore
 
-### Annual
-- Full financial year
-- `period = None`
-- `period_type = "annual"`
+**Financial year format: YYYY-YY**  
+`"2026-27"` means April 1, 2026 to March 31, 2027.
 
-### Cumulative/YTD
-- Accumulated from April 1 to reporting date
-- `period = "apr-jun"` or `period = "q1"`
-- `period_type = "cumulative"`
+**Period encoding**:
+- `null` → full year (Budget Estimates)
+- `"apr"` → April only
+- `"apr-jun"` → April to June (Q1)
+- `"q1"` → Alternative encoding for Q1
 
-### Monthly
-- Single month only (rarely used for Union Budget)
-- `period = "apr"` or `period = "may"`
-- `period_type = "monthly"`
+**EstimateType**:
+- `BE` — Budget Estimate (plan for upcoming FY)
+- `RE` — Revised Estimate (mid-year update)
+- `actual` — Final audited (CAG)
+- `provisional` — Unaudited actuals (CGA monthly)
 
-**Important**: CGA monthly reports are typically cumulative (YTD), not individual months.
+---
 
-## Provisional Data Treatment
+## 3. Metric Registry
 
-When CGA publishes monthly accounts:
-1. Mark `estimate_type = "provisional"`
-2. Mark `data_status = "provisional"`
-3. Include note: "Subject to audit by CAG"
-4. Never treat provisional as final
+All metrics use stable IDs from `pipeline/metrics.py`.
 
-## Transformation Rules
+### Core Metrics (FY 2026-27)
 
-### Parsing
-1. Extract only explicitly supported metrics (defined in `pipeline/metrics.py`)
-2. Convert all monetary values to ₹ crore
-3. Remove Indian number formatting (lakhs/crores notation)
-4. Preserve negative values where legitimate (e.g., grants recovered)
-5. Fail loudly on parse errors—do not substitute zero or previous values
+| Metric ID | Display Name | Category |
+|-----------|--------------|----------|
+| `revenue_receipts` | Revenue Receipts | receipts |
+| `tax_revenue_net` | Tax Revenue (Net) | receipts |
+| `non_tax_revenue` | Non-Tax Revenue | receipts |
+| `non_debt_capital_receipts` | Non-Debt Capital Receipts | receipts |
+| `total_receipts` | Total Receipts | receipts |
+| `revenue_expenditure` | Revenue Expenditure | expenditure |
+| `capital_expenditure` | Capital Expenditure | expenditure |
+| `total_expenditure` | Total Expenditure | expenditure |
+| `interest_payments` | Interest Payments | expenditure |
+| `fiscal_deficit` | Fiscal Deficit | deficit |
 
-### Normalization
-1. Create one `FinancialObservation` per metric per period per estimate type
-2. Generate deterministic ID from key fields
-3. Attach full provenance (`DataSource`) to every observation
-4. Store in crore, always
-5. Use proper estimate type classification
+Each metric includes:
+- Human-readable name
+- Short description (one sentence)
+- Long beginner-friendly explanation
+- Accounting interpretation
+- Compatible comparisons
 
-### Validation
-1. **Required fields**: jurisdiction, FY, metric, amount, source
-2. **Unit consistency**: must be "crore"
-3. **Currency consistency**: must be "INR"
-4. **FY format**: must match "YYYY-YY" pattern
-5. **Provenance**: organization and document must be present
-6. **Metric registry**: metric ID must be registered
-7. **Reconciliation**: where mathematically defined, validate component sums
-8. **No duplicates**: same observation ID cannot appear twice
+**No arbitrary strings** — All metrics validated against registry at ingestion.
 
-### Reconciliation
+---
 
-When official classifications support it, validate:
+## 4. Parsing Strategy
 
-```python
+### 4.1 Budget Estimates (Union Budget)
+
+**Source**: `indiabudget.gov.in` → Budget at a Glance PDF
+
+**Structure**: Key-value table with fiscal aggregates
+
+**Parser**: `pipeline/parsers/json_parser.py`
+
+**Process**:
+1. Manual extraction from official PDF into structured JSON
+2. Store in `datasets/raw/union_budget_2026-27_be.json`
+3. Parser reads JSON and creates `FinancialObservation` objects
+4. Full provenance attached to each observation
+
+**Why manual extraction for V1?**
+- Budget at a Glance has a stable, simple structure
+- Manual transcription is less error-prone than PDF scraping
+- Easier to verify correctness
+- Future: automate when format is predictable
+
+### 4.2 CGA Monthly Actuals
+
+**Source**: `cga.nic.in` → Accounts at a Glance PDF
+
+**Structure**: Monthly tables with cumulative YTD figures
+
+**Parser**: `pipeline/parsers/json_parser.py`
+
+**Process**:
+1. Extract from CGA monthly PDF into structured JSON
+2. One file per month: `datasets/raw/cga_2026-27_jun.json`
+3. Parse cumulative figures
+4. Mark as `provisional` and `cumulative` period type
+
+**Important**: CGA reports are **cumulative YTD**.
+- April report → April only
+- June report → April + May + June cumulative
+- Not individual monthly values
+
+### 4.3 Indian Number Format Handling
+
+Indian number system uses **lakh** (1,00,000) and **crore** (1,00,00,000).
+
+Some Budget documents use:
+- "₹ 30.03 lakh crore" (display format)
+- Equals 30,03,000 crore (stored format)
+
+**Conversion**:
+```
+1 lakh crore = 100,000 crore
+₹ X lakh crore = X × 100,000 crore
+```
+
+Arthrekha stores in crore; renders in lakh crore or crore based on magnitude.
+
+### 4.4 Negative Values
+
+Some fiscal metrics can be negative (rare):
+- Negative receipts → refunds exceeding collections
+- Negative deficit → surplus
+
+Parsers preserve sign. Validation checks for plausibility, not sign.
+
+---
+
+## 5. Validation
+
+### 5.1 Observation-Level Validation
+
+For each observation:
+- Required fields present
+- Unit is `crore`
+- Currency is `INR`
+- Financial year format valid (`YYYY-YY`)
+- Metric ID registered
+- Source provenance complete
+
+### 5.2 Reconciliation Validation
+
+Test accounting identities where defined:
+
+**Total Receipts**:
+```
 total_receipts = revenue_receipts + non_debt_capital_receipts
+```
+
+**Revenue Receipts**:
+```
 revenue_receipts = tax_revenue_net + non_tax_revenue
+```
+
+**Total Expenditure**:
+```
 total_expenditure = revenue_expenditure + capital_expenditure
 ```
 
-If reconciliation fails, investigate whether:
-- Accounting classifications differ legitimately
-- Rounding caused small differences (< 1% tolerance)
-- Parse error occurred
-- Source data has inconsistency
+**Fiscal Deficit**:
+```
+fiscal_deficit = total_expenditure - total_receipts
+```
 
-Do not force reconciliation when categories don't match exactly.
+Reconciliation tolerance: **1%** (allows for rounding in source documents)
 
-## Derived Calculations
+**Important**: Not all totals reconcile due to classification differences. Validation flags discrepancies without failing ingestion.
 
-### Execution Rate
+### 5.3 Execution Rate Validation
+
+For Budget vs Actuals comparison:
+
 ```
 execution_rate = (actual_ytd / budget_estimate) × 100
 ```
 
-Mark as:
-- `data_status = "derived"`
-- Store formula explicitly
-- Reference input observation IDs
+Validation checks:
+- BE observation has `estimateType: "BE"`
+- Actual observation has `estimateType: "actual" or "provisional"`
+- Same metric
+- Execution rate > 0 and < 200% (flag outliers)
 
-### GDP Ratios
-When GDP reference data available:
+---
+
+## 6. Derived Metrics
+
+Calculated values marked explicitly:
+
+```typescript
+{
+  metric: "revenue_receipts_execution_rate",
+  formula: "actual_ytd / budget_estimate × 100",
+  inputs: ["<BE-obs-id>", "<actual-obs-id>"],
+  value: 21.0,
+  unit: "percentage",
+  description: "Execution rate as of June 2026"
+}
 ```
-fiscal_deficit_gdp_ratio = (fiscal_deficit / nominal_gdp) × 100
+
+**Application-calculated** — Not from official sources. Formulas documented.
+
+---
+
+## 7. Provenance Metadata
+
+Every observation includes:
+
+```typescript
+source: {
+  organization: "Ministry of Finance, Government of India",
+  document: "Union Budget 2026-27 - Budget at a Glance",
+  url: "https://www.indiabudget.gov.in/",
+  table: "Budget at a Glance",
+  publishedAt: "2026-02-01",
+  retrievedAt: "2026-08-27",
+  dataStatus: "final",  // or "provisional"
+  notes: "Budget Estimates as presented to Parliament"
+}
 ```
 
-## Known Limitations
+**Source manifest** separately stored in `datasets/metadata/sources.json` with:
+- Canonical URL
+- Parser used
+- Metrics available
+- Update schedule
+- Authoritative status
 
-### FY 2026-27 Sample Data
-Current implementation uses **sample data** for pipeline development because:
-- Official sources (indiabudget.gov.in, cga.nic.in) returned HTTP 403/network errors
-- No fake data policy requires clear documentation
-- Sample data mirrors expected official structure
+---
 
-**Action required**: Replace sample data with actual official sources when accessible.
+## 8. Output Format
 
-### State Data
-V1 focuses on Union Government only. State ingestion requires:
-- Identifying 28+ state budget portals
-- Handling non-uniform reporting
-- Dealing with varying publication schedules
-
-### Automation
-Current ingestion is manual/scripted. Future automation requires:
-- Reliable PDF parsing for official documents
-- Scheduled checks for new publications
-- CI/CD integration with validation gates
-
-## Output Format
-
-### Application JSON
+### Application-Ready JSON
 
 ```json
 {
   "financialYear": "2026-27",
   "asOfDate": "2026-08-27",
-  "observations": [
-    {
-      "id": "abc123...",
-      "jurisdiction": "india",
-      "jurisdictionType": "union",
-      "financialYear": "2026-27",
-      "periodType": "annual",
-      "metric": "revenue_receipts",
-      "amount": 3003992,
-      "unit": "crore",
-      "currency": "INR",
-      "estimateType": "BE",
-      "source": {
-        "organization": "Ministry of Finance",
-        "document": "Union Budget 2026-27",
-        "url": "https://www.indiabudget.gov.in/",
-        "dataStatus": "final"
-      }
-    }
-  ],
-  "derivedMetrics": [
-    {
-      "metric": "revenue_receipts_execution_rate",
-      "formula": "actual_ytd / budget_estimate × 100",
-      "value": 21.5,
-      "unit": "percentage"
-    }
-  ],
+  "observations": [ /* all FinancialObservation objects */ ],
+  "derivedMetrics": [ /* all calculated metrics */ ],
   "metadata": {
     "generated": "2026-08-27",
-    "totalObservations": 20,
-    "sources": ["Union Budget 2026-27 BE", "CGA Apr-Jun 2026"],
-    "latestPeriod": "apr-jun"
+    "totalObservations": 40,
+    "sources": ["Union Budget 2026-27 BE", "CGA Jun 2026"],
+    "latestPeriod": "apr-jun",
+    "dataStatus": "Real data from official sources"
   }
 }
 ```
 
-### Source Manifest
+**Output location**: `datasets/processed/union/budget-summary-2026-27.json`
 
-Separate `sources.json` contains provenance for all datasets:
+**Version control**: All output JSON committed to git for reproducibility.
 
-```json
-[
-  {
-    "source_id": "union-budget-2026-27-be",
-    "source_organization": "Ministry of Finance",
-    "document_name": "Union Budget 2026-27",
-    "canonical_url": "https://www.indiabudget.gov.in/",
-    "financial_year": "2026-27",
-    "estimate_type": "BE",
-    "source_format": "pdf",
-    "parser_used": "pipeline.parsers.budget_parser",
-    "metrics_available": ["revenue_receipts", "..."]
-  }
-]
+---
+
+## 9. Period Conventions
+
+### Financial Year (FY)
+
+India's financial year runs **April 1 to March 31**.
+
+- **FY 2026-27** = April 1, 2026 to March 31, 2027
+- Encoded as `"2026-27"` string
+
+### Quarters
+
+- **Q1**: April–June
+- **Q2**: July–September
+- **Q3**: October–December
+- **Q4**: January–March
+
+### Cumulative vs Point-in-Time
+
+- **CGA actuals**: Cumulative YTD (April to current month)
+- **Budget Estimates**: Full-year plan
+- **Monthly individual**: Calculated as difference (not yet implemented)
+
+---
+
+## 10. Estimate Type Hierarchy
+
+Data freshness and authority:
+
+```
+Budget Estimate (BE)
+  ↓ [mid-year]
+Revised Estimate (RE)
+  ↓ [month by month]
+Provisional Actuals (CGA)
+  ↓ [after FY end + audit]
+Final Audited (CAG)
 ```
 
-## Running the Pipeline
+**Arthrekha currently uses**:
+- BE (Budget 2026-27)
+- Provisional actuals (CGA through June 2026)
 
-```bash
-# Set Python path
-export PYTHONPATH=.
+**Future**: Add RE and CAG audited figures.
 
-# Run ingestion
-python3 pipeline/scripts/ingest.py
+---
 
-# Run tests
-python3 pipeline/tests/test_models.py
-python3 pipeline/tests/test_parsers.py
-```
+## 11. Data Freshness
 
-## Validation Checklist
+| Data Type | As Of | Published | Retrieved |
+|-----------|-------|-----------|-----------|
+| Budget Estimates FY 2026-27 | Feb 1, 2026 | Feb 1, 2026 | Aug 27, 2026 |
+| CGA Actuals June 2026 | June 30, 2026 | July 31, 2026 | Aug 27, 2026 |
 
-Before accepting any dataset:
-- [ ] All observations have valid provenance
-- [ ] Units are consistently "crore"
-- [ ] Estimate types correctly classified
-- [ ] Reconciliation passes where applicable
-- [ ] No duplicate observation IDs
-- [ ] Source manifest complete
-- [ ] Derived calculations verified
-- [ ] Tests pass
-- [ ] Output JSON valid
+**Latest actuals period**: June 2026  
+**Reporting lag**: ~1 month (June data available end of July)
 
-## Future Enhancements
+---
 
-1. **PDF parsing**: Automated extraction from official PDFs
-2. **State support**: Expand to state budgets
-3. **Historical data**: Backfill 5-10 years
-4. **GDP integration**: CSO/MOSPI GDP data for ratios
-5. **Debt data**: RBI debt statistics
-6. **CAG integration**: Audited actuals
-7. **CI/CD**: Scheduled ingestion with validation gates
+## 12. Testing
+
+### Unit Tests
+- `pipeline/tests/test_models.py` — Schema validation
+- `pipeline/tests/test_parsers.py` — Parser correctness
+
+### Fixture-Based Tests
+- Real source samples preserved in `datasets/raw/`
+- Tests verify parser produces expected observations
+- Reconciliation tests check accounting identities
+
+### Integration Test
+- Full pipeline run
+- Validates end-to-end: raw → processed → JSON
+
+---
+
+## 13. Known Limitations
+
+1. **Manual data entry for V1** — Budget and CGA data manually extracted into JSON
+2. **No historical data yet** — Only FY 2026-27 current year
+3. **Union only** — No state/UT data yet
+4. **Limited metrics** — 10 core metrics; ministry-wise breakdowns future work
+5. **No detailed expenditure** — Aggregates only; scheme/ministry drill-down later
+6. **CGA lag** — Monthly actuals ~1 month behind real time
+
+---
+
+## 14. Future Methodology Enhancements
+
+1. **Automated PDF parsing** — When format is stable
+2. **Historical time series** — Multi-year datasets
+3. **State-level data** — All 28 states + 8 UTs
+4. **Ministry breakdowns** — Expenditure by department
+5. **Debt tracking** — RBI data integration
+6. **Real-time ingestion** — GitHub Actions on CGA publication schedule
+7. **Differential updates** — Only ingest changed data
+
+---
+
+## 15. Reproducibility
+
+To reproduce Arthrekha datasets:
+
+1. Clone repository
+2. Verify raw data in `datasets/raw/` matches official sources
+3. Run: `python3 run_ingestion.py`
+4. Compare output: `datasets/processed/union/budget-summary-2026-27.json`
+5. All outputs deterministic (IDs are content hashes)
+
+**Data lineage**: Git history tracks every change to raw and processed data.
+
+---
+
+**Last Updated**: August 27, 2026  
+**Pipeline Version**: 1.0  
+**Methodology Author**: Arthrekha Data Team

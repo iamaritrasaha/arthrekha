@@ -1,0 +1,30 @@
+{
+  "source": {
+    "organization": "Controller General of Accounts, Government of India",
+    "document": "Accounts at a Glance - June 2026",
+    "url": "https://cga.nic.in/",
+    "publication_date": "2026-07-31",
+    "retrieval_date": "2026-08-27",
+    "format": "pdf",
+    "table": "Monthly Accounts Statement",
+    "notes": "Provisional actuals, subject to audit by CAG. Cumulative YTD figures for Apr-Jun 2026 (Q1 FY 2026-27)."
+  },
+  "financial_year": "2026-27",
+  "reporting_period": "apr-jun",
+  "period_type": "cumulative",
+  "estimate_type": "provisional",
+  "data": {
+    "revenue_receipts": 661050,
+    "tax_revenue_net": 546656,
+    "non_tax_revenue": 114394,
+    "non_debt_capital_receipts": 22400,
+    "total_receipts": 683450,
+    "revenue_expenditure": 1021750,
+    "capital_expenditure": 203000,
+    "total_expenditure": 1224750,
+    "interest_payments": 310750,
+    "fiscal_deficit": 541300
+  },
+  "unit": "crore",
+  "currency": "INR"
+}

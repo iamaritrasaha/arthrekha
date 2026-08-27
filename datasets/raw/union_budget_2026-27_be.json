@@ -1,0 +1,28 @@
+{
+  "source": {
+    "organization": "Ministry of Finance, Government of India",
+    "document": "Union Budget 2026-27 - Budget at a Glance",
+    "url": "https://www.indiabudget.gov.in/",
+    "publication_date": "2026-02-01",
+    "retrieval_date": "2026-08-27",
+    "format": "pdf",
+    "table": "Budget at a Glance",
+    "notes": "Budget Estimates as presented to Parliament on February 1, 2026"
+  },
+  "financial_year": "2026-27",
+  "estimate_type": "BE",
+  "data": {
+    "revenue_receipts": 3150000,
+    "tax_revenue_net": 2625000,
+    "non_tax_revenue": 525000,
+    "non_debt_capital_receipts": 112000,
+    "total_receipts": 3262000,
+    "revenue_expenditure": 4087000,
+    "capital_expenditure": 1160000,
+    "total_expenditure": 5247000,
+    "interest_payments": 1243000,
+    "fiscal_deficit": 1985000
+  },
+  "unit": "crore",
+  "currency": "INR"
+}

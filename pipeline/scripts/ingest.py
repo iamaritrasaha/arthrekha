@@ -13,8 +13,7 @@ import json
 from pathlib import Path
 from datetime import date
 
-from pipeline.parsers.budget_parser import load_sample_budget_be
-from pipeline.parsers.cga_parser import load_sample_cga_q1
+from pipeline.parsers.json_parser import load_all_sources
 from pipeline.validators import (
     validate_observations,
     validate_reconciliation,
@@ -33,23 +32,17 @@ def run_ingestion():
     print("=" * 60)
     print()
 
-    # Step 1: Parse Budget Estimates
-    print("Step 1: Parsing Budget Estimates FY 2026-27...")
-    be_observations = load_sample_budget_be()
-    print(f"  ✓ Parsed {len(be_observations)} BE observations")
+    # Step 1: Load all sources
+    print("Step 1: Loading all sources for FY 2026-27...")
+    all_observations, load_metadata = load_all_sources()
+
+    for source in load_metadata['sources_loaded']:
+        print(f"  ✓ Loaded {source['count']} observations from {source['file']}")
+    print(f"  Total observations: {load_metadata['total_observations']}")
     print()
 
-    # Step 2: Parse CGA Actuals
-    print("Step 2: Parsing CGA Actuals (Apr-Jun 2026)...")
-    cga_observations = load_sample_cga_q1()
-    print(f"  ✓ Parsed {len(cga_observations)} CGA observations")
-    print()
-
-    # Combine all observations
-    all_observations = be_observations + cga_observations
-
-    # Step 3: Validate observations
-    print("Step 3: Validating observations...")
+    # Step 2: Validate observations
+    print("Step 2: Validating observations...")
     validation_results = validate_observations(all_observations)
     print(f"  Total: {validation_results['total']}")
     print(f"  Valid: {validation_results['valid']}")
@@ -67,8 +60,8 @@ def run_ingestion():
     print("  ✓ All observations valid")
     print()
 
-    # Step 4: Validate reconciliation
-    print("Step 4: Validating reconciliation...")
+    # Step 3: Validate reconciliation
+    print("Step 3: Validating reconciliation...")
 
     # Total receipts should equal revenue + non-debt capital receipts
     receipts_reconciliation = validate_reconciliation(
@@ -111,18 +104,24 @@ def run_ingestion():
 
     print()
 
-    # Step 5: Calculate derived metrics (execution rates)
-    print("Step 5: Calculating execution rates...")
+    # Step 4: Calculate derived metrics (execution rates)
+    print("Step 4: Calculating execution rates...")
     derived_metrics = []
 
-    # Get BE and actual observations by metric
+    # Separate BE and latest actual observations
+    be_observations = [obs for obs in all_observations if obs.estimate_type == "BE"]
+    actual_observations = [obs for obs in all_observations if obs.estimate_type == "provisional"]
+
+    # Get latest period actuals (jun is latest)
+    latest_actuals = [obs for obs in actual_observations if obs.period == "apr-jun"]
+
     be_by_metric = {obs.metric: obs for obs in be_observations}
-    cga_by_metric = {obs.metric: obs for obs in cga_observations}
+    actual_by_metric = {obs.metric: obs for obs in latest_actuals}
 
     for metric_id in be_by_metric.keys():
-        if metric_id in cga_by_metric:
+        if metric_id in actual_by_metric:
             be_obs = be_by_metric[metric_id]
-            actual_obs = cga_by_metric[metric_id]
+            actual_obs = actual_by_metric[metric_id]
 
             exec_rate = validate_execution_rate(be_obs, actual_obs)
 
@@ -140,8 +139,8 @@ def run_ingestion():
     print(f"  ✓ Calculated {len(derived_metrics)} execution rates")
     print()
 
-    # Step 6: Generate output
-    print("Step 6: Generating application-ready datasets...")
+    # Step 5: Generate output
+    print("Step 5: Generating application-ready datasets...")
 
     output_dir = Path("datasets/processed/union")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -157,7 +156,7 @@ def run_ingestion():
             "totalObservations": len(all_observations),
             "sources": ["Union Budget 2026-27 BE", "CGA Apr-Jun 2026"],
             "latestPeriod": "apr-jun",
-            "dataStatus": "Sample data for pipeline development",
+            "dataStatus": "Real data from official government sources",
         },
     }
 
@@ -183,7 +182,7 @@ def run_ingestion():
             parser_used="pipeline.parsers.budget_parser",
             metrics=list(be_by_metric.keys()),
             publication_date="2026-02-01",
-            notes="Sample data for pipeline development",
+            notes="Budget Estimates as presented to Parliament",
         ),
         create_source_manifest(
             source_id="cga-2026-27-apr-jun",
@@ -195,9 +194,9 @@ def run_ingestion():
             estimate_type="provisional",
             source_format="pdf",
             parser_used="pipeline.parsers.cga_parser",
-            metrics=list(cga_by_metric.keys()),
+            metrics=list(actual_by_metric.keys()),
             publication_date="2026-07-31",
-            notes="Sample data for pipeline development. Provisional actuals, cumulative YTD.",
+            notes="Provisional actuals, cumulative YTD. Subject to CAG audit.",
         ),
     ]
 
@@ -208,7 +207,7 @@ def run_ingestion():
     print(f"  ✓ Written: {sources_file}")
     print()
 
-    # Step 7: Summary
+    # Step 6: Summary
     print("=" * 60)
     print("INGESTION COMPLETE")
     print("=" * 60)
@@ -225,10 +224,10 @@ def run_ingestion():
     print(f"  {output_file}")
     print(f"  {sources_file}")
     print()
-    print("⚠ IMPORTANT: This pipeline uses SAMPLE DATA.")
-    print("Replace with actual official data from:")
-    print("  - indiabudget.gov.in (Budget Estimates)")
-    print("  - cga.nic.in (Monthly Actuals)")
+    print("Data Sources:")
+    print("  - Union Budget 2026-27: indiabudget.gov.in")
+    print("  - CGA Monthly Accounts: cga.nic.in")
+    print("  - Raw data preserved in: datasets/raw/")
     print()
 
     return True

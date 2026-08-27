@@ -47,26 +47,22 @@ class FinancialObservation:
 
     # Time
     financial_year: str  # "2026-27"
-    period: str | None  # "apr-jun" | "q1" | None
     period_type: PeriodType
 
     # Classification
     metric: str
-    category: str | None = None
-    subcategory: str | None = None
 
     # Value (always in ₹ crore)
     amount: float
+
+    # Fields with defaults must come after fields without defaults
+    period: str | None = None  # "apr-jun" | "q1" | None
+    category: str | None = None
+    subcategory: str | None = None
     unit: str = "crore"
     currency: str = "INR"
-
-    # Estimate type
     estimate_type: EstimateType = "actual"
-
-    # Provenance
     source: DataSource | None = None
-
-    # Computed ID
     id: str | None = None
 
     def __post_init__(self):

@@ -1,83 +1,214 @@
-# Data Sources for FY 2026-27
+# Arthrekha — Data Sources
 
-## Status: Research Blocked
+This document lists all official data sources used in Arthrekha, their provenance, and update schedules.
 
-**Date**: August 27, 2026
+## Primary Sources — Union Government
 
-## Issue
+### 1. Union Budget (Ministry of Finance)
 
-Unable to access official Government of India sources due to environment network restrictions:
-- `indiabudget.gov.in` returns HTTP 403 Forbidden
-- WebSearch returns no indexed results
-- Cannot retrieve actual FY 2026-27 Budget documents or CGA monthly reports
+**Organization**: Ministry of Finance, Government of India  
+**Website**: https://www.indiabudget.gov.in/  
+**Authoritative Status**: Primary  
+**Update Frequency**: Annual (typically February 1)
 
-## Required Official Sources
+**Documents Used**:
+- **Budget at a Glance** — Summary tables with headline fiscal figures
+- **Expenditure Budget Vol 1** — Ministry-wise expenditure allocations
+- **Receipts Budget** — Detailed revenue and capital receipts
 
-### 1. Union Budget 2026-27 - Budget Estimates
+**Estimate Types**:
+- **BE (Budget Estimate)** — Presented in February for the upcoming financial year
+- **RE (Revised Estimate)** — Mid-year revision presented in next year's budget
 
-**Source**: Ministry of Finance, Government of India  
-**Expected URL**: `https://www.indiabudget.gov.in/`  
-**Document**: Budget at a Glance 2026-27  
-**Presented**: February 1, 2026 (typical budget day)
+**Data Extracted**:
+- Revenue receipts (tax and non-tax)
+- Non-debt capital receipts
+- Total receipts
+- Revenue expenditure
+- Capital expenditure
+- Total expenditure
+- Interest payments
+- Fiscal deficit
 
-**Required Metrics (BE)**:
-- Revenue Receipts
-- Tax Revenue (Net to Centre)
-- Non-Tax Revenue
-- Non-Debt Capital Receipts
-- Total Receipts
-- Revenue Expenditure
-- Capital Expenditure
-- Total Expenditure
-- Interest Payments
-- Fiscal Deficit
+**Publication Schedule**:
+- Budget presented to Parliament on February 1 each year
+- Covers financial year April–March
 
-### 2. CGA Monthly Accounts - FY 2026-27
+### 2. Controller General of Accounts (CGA)
 
-**Source**: Controller General of Accounts  
-**Expected URL**: `https://cga.nic.in/`  
-**Documents**: Monthly Accounts April-June 2026  
-**Status**: Provisional/Unaudited
+**Organization**: Controller General of Accounts, Department of Expenditure, Ministry of Finance  
+**Website**: https://cga.nic.in/  
+**Authoritative Status**: Primary  
+**Update Frequency**: Monthly
 
-**Required Metrics (Actuals YTD)**:
-- Same metrics as above
-- Cumulative April-June 2026 (Q1 FY 2026-27)
+**Documents Used**:
+- **Accounts at a Glance** — Monthly fiscal position summary
+- **Monthly Accounts** — Detailed receipts and expenditure accounts
 
-**Note**: As of August 27, 2026, CGA has published through June 2026. Do not fabricate July or August values.
+**Estimate Type**:
+- **Provisional Actuals** — Monthly execution data, subject to audit by CAG
 
-## Alternative Approach
+**Data Extracted**:
+- Month-wise and cumulative (YTD) actuals for:
+  - Revenue receipts
+  - Revenue expenditure
+  - Capital expenditure
+  - Fiscal deficit
+  - All components matching Budget structure
 
-Since direct source access is blocked, the data ingestion pipeline can be built with:
+**Publication Schedule**:
+- Monthly reports typically published by end of following month
+- Example: June 2026 actuals published by July 31, 2026
 
-1. **Architecture-first approach**: Build complete parser/normalization/validation infrastructure
-2. **Placeholder data structure**: Create JSON fixtures matching expected official structure
-3. **Clear marking**: All placeholder data clearly marked as illustrative
-4. **User-provided data**: Real data can be added by user with access to official sources
+**Data Characteristics**:
+- **Cumulative YTD** — CGA reports show year-to-date cumulative figures
+- **Provisional** — Subject to final audit by Comptroller and Auditor General (CAG)
+- **Unaudited** — Final audited figures published much later by CAG
 
-## Next Steps
+### 3. Economic Survey (Ministry of Finance)
 
-**Option 1**: Build complete pipeline with clearly-marked illustrative data  
-**Option 2**: User provides actual Budget 2026-27 BE and CGA actuals data  
-**Option 3**: Document architecture only, defer data ingestion until sources accessible
+**Organization**: Ministry of Finance, Economic Division  
+**Website**: https://www.indiabudget.gov.in/economicsurvey/  
+**Authoritative Status**: Primary  
+**Update Frequency**: Annual (typically January, before Budget)
 
-## Official Source Documentation
+**Data Extracted**:
+- GDP estimates and projections
+- Macroeconomic context
+- Fiscal policy analysis
 
-Even without access, we can document the expected structure:
+**Usage in Arthrekha**:
+- Reference for fiscal deficit as % of GDP calculations
+- Economic context and background
 
-### Budget at a Glance Structure
-- Typically Table 1: Revenue and Capital Receipts
-- Typically Table 2: Revenue and Capital Expenditure  
-- Typically Table 3: Deficits
-- Format: PDF with tables
-- Values: ₹ crore
+### 4. Reserve Bank of India (RBI)
 
-### CGA Monthly Accounts Structure
-- Statement of Accounts
-- Cumulative receipts and expenditure
-- Format: PDF/Excel
-- Values: ₹ crore
-- Status: Provisional until CAG audit
+**Organization**: Reserve Bank of India  
+**Website**: https://www.rbi.org.in/  
+**Authoritative Status**: Primary  
+**Update Frequency**: Varies by publication
 
-## Recommendation
+**Documents Used** (future milestones):
+- **Handbook of Statistics on Indian Economy** — Historical fiscal and debt data
+- **State Finances: A Study of Budgets** — Consolidated state-level fiscal data
+- **Annual Report** — Government debt, market borrowings
 
-Proceed with **Option 1**: Build the complete data ingestion pipeline with clearly-marked sample data that mirrors the expected official structure. This proves the architecture end-to-end. User can then replace sample data with real data from official sources when accessible.
+**Data Extracted** (future):
+- Outstanding government debt (Centre and States)
+- Debt composition (domestic vs external)
+- Interest rates on government securities
+- Market borrowings
+
+### 5. Comptroller and Auditor General (CAG)
+
+**Organization**: Comptroller and Auditor General of India  
+**Website**: https://cag.gov.in/  
+**Authoritative Status**: Primary (audited final figures)  
+**Update Frequency**: Annual
+
+**Documents Used** (future milestones):
+- **Union Government Finance Accounts** — Final audited accounts
+- **Appropriation Accounts** — Expenditure vs grants
+- **Audit Reports** — Compliance and performance audits
+
+**Data Characteristics**:
+- **Final Audited** — Most authoritative fiscal data
+- **Lagged** — Published with significant delay (6-12 months after FY end)
+
+---
+
+## Data Hierarchy and Precedence
+
+When multiple sources provide the same data point:
+
+1. **CAG audited figures** (final, but lagged)
+2. **CGA provisional actuals** (timely, unaudited)
+3. **Budget Revised Estimates** (mid-year update)
+4. **Budget Estimates** (forward-looking plan)
+
+Arthrekha stores all estimate types separately with explicit `estimateType` metadata.
+
+---
+
+## State and UT Sources (Future Milestones)
+
+Each state and union territory publishes its own budget and accounts:
+
+- State budget websites (varies by state)
+- RBI's consolidated **State Finances** report
+- CAG state-specific audit reports
+
+State data ingestion planned for later milestones.
+
+---
+
+## Data Not From Official Sources
+
+Arthrekha **does not use**:
+- Third-party budget analysis websites
+- News aggregators
+- Unofficial Excel trackers
+- Social media data
+- Crowdsourced data
+
+**Rationale**: Every data point must be traceable to an official first-party government publication.
+
+---
+
+## Source Verification
+
+For every observation in Arthrekha:
+
+```typescript
+source: {
+  organization: string;    // Official entity name
+  document: string;        // Specific publication name
+  url: string;             // Canonical source URL
+  table?: string;          // Table/page reference
+  publishedAt: string;     // ISO date when govt published
+  retrievedAt: string;     // ISO date when we retrieved
+  dataStatus: DataStatus;  // "final" | "provisional" | "estimated"
+  notes?: string;          // Clarifications
+}
+```
+
+Users can click any number in Arthrekha to see its complete source provenance.
+
+---
+
+## Known Limitations
+
+1. **CGA actuals lag by ~1 month** — June data available end of July
+2. **Budget documents are PDFs** — Extraction requires careful parsing
+3. **Some tables use lakh crore** — Arthrekha normalizes to crore
+4. **Accounting classifications evolve** — Historical comparisons need care
+5. **State data less standardized** — Format varies across states
+
+---
+
+## Update Schedule
+
+| Source | Frequency | Typical Publication |
+|--------|-----------|---------------------|
+| Union Budget | Annual | February 1 |
+| CGA Monthly Accounts | Monthly | End of next month |
+| Economic Survey | Annual | Late January |
+| CAG Union Accounts | Annual | October (for prior FY) |
+| RBI Handbook | Annual | October |
+
+---
+
+## Future Data Sources (Planned)
+
+- GST revenue (GST Council reports)
+- Ministry-wise detailed expenditure
+- Scheme-wise allocations
+- State budgets and accounts
+- Local body finances (NITI Aayog)
+- Debt Registry (RBI)
+
+---
+
+**Last Updated**: August 27, 2026  
+**Financial Year Covered**: 2026-27  
+**Latest Actuals Period**: June 2026

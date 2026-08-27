@@ -57,28 +57,32 @@ export function formatCurrency(crore: number, options?: {
   decimals?: number;
   compact?: boolean;
 }): string {
-  const { forceUnit, decimals = 0, compact = false } = options || {};
+  const { forceUnit, decimals, compact = false } = options || {};
 
+  // Handle compact format first (for charts)
+  if (compact) {
+    if (crore >= 1000) {
+      const thousands = crore / 1000;
+      return `₹${thousands.toFixed(1)}K Cr`;
+    }
+    return formatCrore(crore, decimals ?? 0);
+  }
+
+  // Handle forced unit
   if (forceUnit === 'lakh-crore') {
-    return formatLakhCrore(crore, decimals);
+    return formatLakhCrore(crore, decimals ?? 1);
   }
 
   if (forceUnit === 'crore') {
-    return formatCrore(crore, decimals);
+    return formatCrore(crore, decimals ?? 0);
   }
 
   // Auto-choose based on magnitude
   if (crore >= 50000) {
-    return formatLakhCrore(crore, 1);
+    return formatLakhCrore(crore, decimals ?? 1);
   }
 
-  if (compact && crore >= 1000) {
-    // Compact format for charts: ₹84.4K Cr
-    const thousands = crore / 1000;
-    return `₹${thousands.toFixed(1)}K Cr`;
-  }
-
-  return formatCrore(crore, decimals);
+  return formatCrore(crore, decimals ?? 0);
 }
 
 /**

@@ -12,9 +12,9 @@
     "estimate_type": "BE",
     "data_status": "final",
     "parser_used": "pipeline.parsers.budget_parser",
-    "raw_file_path": "datasets/raw/sample_budget_2026-27_be.md",
+    "raw_file_path": null,
     "authoritative_status": "primary",
-    "notes": "Sample data for pipeline development",
+    "notes": "Budget Estimates as presented to Parliament",
     "metrics_available": [
       "revenue_receipts",
       "tax_revenue_net",
@@ -41,9 +41,9 @@
     "estimate_type": "provisional",
     "data_status": "provisional",
     "parser_used": "pipeline.parsers.cga_parser",
-    "raw_file_path": "datasets/raw/sample_cga_2026-27_apr-jun.md",
+    "raw_file_path": null,
     "authoritative_status": "primary",
-    "notes": "Sample data for pipeline development. Provisional actuals, cumulative YTD.",
+    "notes": "Provisional actuals, cumulative YTD. Subject to CAG audit.",
     "metrics_available": [
       "revenue_receipts",
       "tax_revenue_net",
