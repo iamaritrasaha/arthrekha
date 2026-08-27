@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ArthrekhaMark from '@/components/brand/ArthrekhaMark';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -6,7 +7,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link to="/" className={styles.logo} aria-label="Arthrekha home">
-          <span className={styles.wordmark}><span className={styles.rupeeMark}>₹</span><span className={styles.logoText}>ARTHREKHA</span></span>
+          <span className={styles.wordmark}><ArthrekhaMark size={25} className={styles.rupeeMark} /><span className={styles.logoText}>ARTHREKHA</span></span>
           <span className={styles.tagline}>India's public finances, made visible</span>
         </Link>
 

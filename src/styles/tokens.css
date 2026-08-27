@@ -21,6 +21,14 @@
   --glass-highlight: rgba(255, 255, 255, 0.72);
   --glass-blur: 14px;
 
+  /* Three intentional elevations: controls, floating UI, evidence. */
+  --glass-01-background: rgba(255, 255, 255, 0.58);
+  --glass-01-border: rgba(23, 32, 31, 0.12);
+  --glass-02-background: rgba(250, 249, 245, 0.84);
+  --glass-02-border: rgba(23, 32, 31, 0.15);
+  --glass-03-background: rgba(250, 249, 245, 0.94);
+  --glass-03-border: rgba(23, 32, 31, 0.2);
+
   /* ============================================
      INK — High contrast text colors
      ============================================ */

@@ -29,7 +29,8 @@
   color: var(--ink-primary);
   margin: 0;
 }
-.brandName span { color: #b29054; font-family: Georgia, serif; font-weight: 500; }
+.brandName { display: inline-flex; align-items: center; gap: 8px; }
+.footerMark { color: #b29054; }
 
 .brandTagline {
   font-size: var(--text-small);

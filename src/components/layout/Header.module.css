@@ -28,8 +28,8 @@
   transition: opacity var(--transition-fast);
 }
 
-.wordmark { display: inline-flex; align-items: baseline; gap: 8px; }
-.rupeeMark { color: #b29054; font: 500 1.2em/1 Georgia, serif; transform: translateY(1px); }
+.wordmark { display: inline-flex; align-items: center; gap: 8px; }
+.rupeeMark { color: #b29054; }
 
 .logo:hover {
   opacity: 0.8;

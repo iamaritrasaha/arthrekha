@@ -1,4 +1,5 @@
 import styles from './Footer.module.css';
+import ArthrekhaMark from '@/components/brand/ArthrekhaMark';
 
 export default function Footer() {
   return (
@@ -6,7 +7,7 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.brand}>
-            <h3 className={styles.brandName}><span>₹</span> ARTHREKHA</h3>
+            <h3 className={styles.brandName}><ArthrekhaMark size={26} className={styles.footerMark} /> ARTHREKHA</h3>
             <p className={styles.brandTagline}>
               India's public finances, made visible
             </p>
