@@ -1,237 +1,98 @@
 # Arthrekha — Architecture
 
-## 1. System Overview
+## System shape
 
-Arthrekha is composed of two primary subsystems:
+Arthrekha is a static React application backed by a reproducible Python data pipeline. There is no runtime financial-data API and no backend database.
 
-1. **Data Pipeline** (Python) — acquires, parses, normalizes, validates, and outputs application-ready JSON datasets from official Indian government sources.
-2. **Web Application** (React + TypeScript + Vite) — renders those datasets as interactive, educational visualizations with full provenance.
-
-```
-Official Sources (PDFs, CSVs, APIs)
-        │
-        ▼
-  ┌─────────────┐
-  │  Pipeline    │  Python
-  │  (offline)   │
-  └──────┬──────┘
-         │ JSON files
-         ▼
-  ┌─────────────┐
-  │  datasets/   │  Version-controlled processed data
-  │  processed/  │
-  └──────┬──────┘
-         │ imported at build time
-         ▼
-  ┌─────────────┐
-  │  Web App     │  React + TypeScript + Vite
-  │  (static)    │
-  └─────────────┘
+```text
+Official Government of India publications
+        ↓
+preserved source files + structured raw records
+        ↓
+Python parse → normalize → validate → derive
+        ↓
+datasets/processed/union/budget-summary-2026-27.json
+        ↓
+typed selectors + metric registry
+        ↓
+React editorial stories, analysis and provenance
 ```
 
-No runtime server. The web app is fully static — imports pre-processed JSON at build time.
+All monetary observations are stored in ₹ crore. Formatting into crore or lakh crore happens only in the presentation layer.
 
-- No API keys or backend at runtime
-- Excellent performance (data bundled or lazy-loaded)
-- Verifiable: users can inspect the exact data powering each chart
-- Deployable anywhere (Vercel, Netlify, GitHub Pages, Cloudflare Pages)
+## Truth layer
 
----
+`FinancialObservation` is the atomic record. Besides amount, period and estimate type, each record may carry semantic safety metadata:
 
-## 2. Data Model
+- `definitionId`
+- `coverage`
+- `classificationType`
+- `parentMetric`
+- `debtCategory`
+- `ratioDenominator`
 
-### 2.1 Core Financial Observation
+The metadata prevents the interface from treating an aggregate, component, deduction, transfer, financing source or denominator as though they were interchangeable.
 
-Every data point is a **Financial Observation** — a single measurement of a fiscal metric at a specific time, for a specific jurisdiction, from a specific source.
+The source object stores the official organization and document, URL, table/page reference, publication and retrieval dates, definition, status and notes. Source values and Arthrekha-derived observations are explicitly distinguished.
 
-All amounts stored internally in **₹ crore**. Display formatting (lakh crore, % of GDP, etc.) happens at render time.
+## Metric registry
 
-```typescript
-interface FinancialObservation {
-  id: string;                          // Deterministic hash
-  jurisdiction: string;                // "india" | "west-bengal"
-  jurisdictionType: JurisdictionType;  // "union" | "state" | "ut"
-  financialYear: string;               // "2025-26"
-  period?: string;                     // "apr-jul" | "q1" | "full-year"
-  periodType: PeriodType;
-  metric: string;                      // "total-expenditure"
-  category?: string;                   // "ministry-of-defence"
-  subcategory?: string;
-  amount: number;                      // Always in ₹ crore
-  unit: "crore";
-  currency: "INR";
-  estimateType: EstimateType;          // "BE" | "RE" | "actual" | "provisional"
-  source: DataSource;
-}
+The registry is implemented in both `pipeline/metrics.py` and `src/data/metricDefinitions.ts`. It currently defines 44 Union fiscal metrics across six domains:
+
+1. receipts
+2. expenditure
+3. deficit
+4. debt and borrowing
+5. federal finance
+6. government accounts
+
+Each frontend definition provides stable identity, hierarchy, accounting classification, compatible ratios, related metrics, caveats and four explanation levels: short, simple, why it matters and technical.
+
+## Frontend data flow
+
+```text
+processed JSON
+  → src/data/datasets.ts
+  → src/data/selectors.ts
+  → src/data/metricDefinitions.ts + src/data/domains.ts
+  → visual and educational primitives
 ```
 
-### 2.2 Key Types
+JSX does not parse official source formats. Reusable selectors resolve Budget Estimates, latest provisional actuals, monthly/YTD progression, execution rates, ratios, domains and provenance. Missing observations stay `null`; they never become plausible-looking zeroes.
 
-```typescript
-type JurisdictionType = "union" | "state" | "ut";
-type PeriodType = "annual" | "quarterly" | "monthly" | "cumulative" | "ytd";
-type EstimateType = "BE" | "RE" | "actual" | "provisional";
-type DataStatus = "final" | "provisional" | "estimated" | "derived";
-```
+## Information architecture
 
-### 2.3 Provenance
+| Route | Role |
+| --- | --- |
+| `/` | Current-year editorial Budget → Reality story |
+| `/explore` | Deep fiscal explorer with Understand and Analyse modes |
+| `/learn` | Progressive public-finance explanations and account concepts |
+| `/sources` | Source catalogue, methodology and evidence pipeline |
 
-```typescript
-interface DataSource {
-  organization: string;        // "Ministry of Finance"
-  document: string;            // "Union Budget 2025-26"
-  url?: string;
-  table?: string;              // "Statement 1" or page number
-  publishedAt?: string;        // ISO date
-  retrievedAt: string;         // ISO date
-  dataStatus: DataStatus;
-  notes?: string;
-  definition?: string;         // What this metric means per the source
-}
-```
+The deeper routes are lazy-loaded. Understand and Analyse share one selected metric and data context; the mode changes density, not truth.
 
----
+## Reusable visual system
 
-## 3. Data Pipeline
+The interface uses CSS Modules and design tokens for soft geometry, optical glass elevations, calm ink/mineral surfaces, analytical micro-labels and data motion. Reusable primitives include:
 
-```
-pipeline/
-├── sources/          # Source registry: URLs, formats, update frequency
-├── parsers/          # Format-specific: PDF tables, CSV, Excel
-├── normalizers/      # Raw fields → FinancialObservation schema
-├── validators/       # Reconciliation, bounds, completeness
-└── scripts/          # Orchestration
-```
+- fiscal flow relationship map
+- metric table
+- mode switch
+- fiscal-year trace
+- editorial section header
+- progressive explanation disclosure
+- evidence/source trace
+- Indian financial-number formatting
 
-### Output Structure
+Motion uses CSS and `requestAnimationFrame` rather than a new animation dependency. Reduced-motion users receive immediate final states.
 
-```
-datasets/processed/
-├── union/
-│   ├── budget-summary.json
-│   ├── expenditure-by-ministry.json
-│   ├── receipts-composition.json
-│   └── deficit-history.json
-└── metadata/
-    ├── sources.json
-    ├── gdp.json
-    └── glossary.json
-```
+## Testing and delivery
 
----
+- TypeScript strict typecheck
+- Vitest and Testing Library for selectors, registry and UI state
+- pytest for parsing, validation, registry and official values
+- ESLint with zero warnings
+- Vite production build
+- browser inspection at desktop, tablet and mobile widths
 
-## 4. Frontend Architecture
-
-### 4.1 Stack
-
-| Layer | Choice | Rationale |
-|-------|--------|-----------|
-| Framework | React 18+ | Component model, ecosystem |
-| Language | TypeScript (strict) | Type safety for financial data |
-| Build | Vite | Fast dev, optimized builds |
-| Routing | React Router | Lazy loading |
-| Styling | CSS Modules + CSS Custom Properties | Scoped styles, design tokens |
-| Charts | Recharts + custom SVG | Standard + specialized |
-| Testing | Vitest + Testing Library | Vite-native |
-
-### 4.2 Routes
-
-```
-/                        Homepage — editorial story
-/india                   Union overview
-/india/budget            Budget allocation
-/india/spending          Expenditure analysis
-/india/revenue           Receipts
-/india/debt              Debt experience
-/india/deficit           Deficit explanation
-/india/history           Multi-year trends
-/learn                   Glossary + concepts
-/sources                 Provenance + methodology
-```
-
-### 4.3 Key Components
-
-- `NumberDisplay` — ₹ crore / lakh crore formatting
-- `ExplainTerm` — Contextual term education (tooltip + expandable)
-- `ProvenanceCard` — Source attribution
-- `EstimateTypeBadge` — BE/RE/Actual/Provisional indicator
-- `ChartExplainer` — Three-level chart explanation
-- `HundredRupeeChart` — ₹100 mode visualization
-
-### 4.4 Data Flow
-
-```
-datasets/processed/*.json
-   → data/datasets.ts (loads + validates typed data)
-   → data/derived.ts (computes rates, ratios, comparisons)
-   → features/*/hooks.ts (feature-specific transforms)
-   → charts/*.tsx (render with formatting + a11y)
-   → ProvenanceCard (source attribution)
-```
-
----
-
-## 5. Design System
-
-### 5.1 Principles
-
-- **Editorial, not dashboard** — Pages tell stories
-- **Typography-first** — Beautiful numbers, clear hierarchy
-- **Restrained palette** — Calm, professional
-- **Indian without cliché** — No saffron/green themes
-- **Progressive disclosure** — Not overwhelm
-
-### 5.2 Design Tokens
-
-Warm neutrals for surfaces, trust-blue accent, semantic colors for estimate types. Inter typeface with tabular numerals. Full CSS custom property token system.
-
-### 5.3 Typography Scale
-
-Display (48px, 700) → H1 (32px, 700) → H2 (24px, 600) → H3 (20px, 600) → Body (16px, 400) → Small (14px, 400) → Caption (12px, 500)
-
----
-
-## 6. V1 Data Sources
-
-| Source | Data | Phase |
-|--------|------|-------|
-| Budget at a Glance (MoF) | Summary receipts, expenditure, deficit | M1 |
-| Expenditure Budget Vol 1 | Ministry allocations | M3 |
-| CGA Monthly Accounts | Execution tracking | M4 |
-| RBI Handbook on Statistics | Debt, interest | M5 |
-| CSO/MOSPI | GDP reference values | M1 |
-
-### Data Entry Strategy
-
-For V1: manually transcribe data from official Budget at a Glance tables with full provenance, validated by reconciliation checks. This is more trustworthy than fragile PDF scraping. Parser infrastructure built for future automation.
-
----
-
-## 7. Performance
-
-- Static data at build time
-- Route-level code splitting
-- Chart lazy loading
-- Memoized derived computations
-- Vite optimization (minification, tree-shaking)
-
----
-
-## 8. Testing
-
-| Layer | Tool |
-|-------|------|
-| Data pipeline | pytest |
-| Financial calcs | Vitest |
-| Components | Vitest + RTL |
-| Types | TypeScript strict |
-| Build | Vite build |
-| Lint | ESLint |
-
----
-
-## 9. Deployment
-
-Static site → Vercel / Cloudflare Pages.
-
-CI: TypeScript + ESLint + Vitest + dataset validation + build.
+Processed datasets and source metadata are version-controlled so any displayed value can be tied to the exact source record and code revision.

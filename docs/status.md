@@ -1,122 +1,58 @@
 # Arthrekha — Project Status
 
-**Last updated:** August 27, 2026
+**Last updated:** 27 August 2026
 
-## ✅ Milestone 0 — Foundation (COMPLETE)
+## Milestones
 
-### Completed
+- Milestone 0 — foundation: complete
+- Milestone 1 — validated current-year data pipeline: complete
+- Milestone 2 — Budget → Reality editorial experience: complete
+- Milestone 2.5 — brand and glass polish: complete
+- Milestone 2.6 / 2.6.1 — signature visuals, motion and alignment: complete
+- Milestone 3 — Deep Finance, Soft Geometry & Living Data: complete
 
-- [x] Git repository initialized
-- [x] React + TypeScript + Vite project structure
-- [x] Architecture documentation (`docs/architecture.md`)
-- [x] TypeScript strict mode configuration
-- [x] ESLint + Prettier setup
-- [x] Vitest test infrastructure
-- [x] Design system with CSS custom properties
-  - Indian-inspired color palette (warm neutrals, trust blue)
-  - Typography scale with tabular numerals for financial figures
-  - Spacing system (4px base unit)
-  - Semantic colors for estimate types (BE/RE/Actual/Provisional)
-- [x] Financial data type definitions
-  - `FinancialObservation` — core data model
-  - `DataSource` — provenance tracking
-  - `EstimateType`, `JurisdictionType`, `PeriodType`
-  - Support for Union + future state expansion
-- [x] Core utility libraries
-  - Indian number formatting (crore, lakh crore, ₹100 mode)
-  - Fiscal year utilities (Apr-Mar, Q1-Q4)
-  - Comprehensive test coverage
-- [x] Basic app shell
-  - Header with navigation
-  - Footer with attribution
-  - Homepage with project overview
-- [x] Build verification
-  - TypeScript compilation: ✅ No errors
-  - Production build: ✅ 168KB (gzipped: 55KB)
+## Milestone 3 result
 
-## 📋 Next: Milestone 1 — Data
+- 44-metric FY 2026–27 Union Budget registry, up from 10 core metrics
+- 74 normalized observations and 17 explicit derived metrics
+- official Budget-at-a-Glance PDF preserved in the truth layer
+- corrected official Budget Estimate values and clarified total receipts vs non-borrowed receipts
+- six fiscal domains with explicit hierarchy and classification safety
+- progressive four-level explanations for every metric
+- reusable Understand / Analyse state
+- meaningful `/explore`, `/learn` and `/sources` routes
+- receipts-to-deficit-to-borrowing relationship visualization
+- professional exact-value analytical table
+- evidence trace from official publication to displayed value
+- floating soft-glass navigation and rounded visual language
+- route-level code splitting and reduced-motion support
 
-### Objectives
+## Current coverage
 
-1. Identify authoritative Union Budget data source
-2. Create first real dataset (Budget at a Glance recommended)
-3. Implement manual data transcription with provenance
-4. Build validation pipeline
-5. Create data loading utilities
-6. Write data transformation tests
+- Jurisdiction: Union Government of India
+- Financial year: FY 2026–27
+- Annual plan: Ministry of Finance Budget Estimates
+- Latest execution: CGA provisional actuals through June 2026
+- Historical data: not yet included
+- State data: not yet included
 
-### Key Deliverables
+## Trust constraints
 
-- `datasets/raw/` — Source documents + metadata
-- `datasets/processed/union/budget-summary.json` — Normalized data
-- `datasets/metadata/sources.json` — Provenance records
-- `src/data/datasets.ts` — Data loading layer
-- `src/data/derived.ts` — Computed metrics
-- Validation that totals reconcile
+- No fake fiscal values
+- Missing data is never displayed as ₹0
+- Budget Estimates and provisional actuals remain different observation types
+- CGA progression is cumulative YTD; monthly flows are not inferred
+- Source and derived values are visibly distinguished
+- Political judgments and speculative forecasts remain out of scope
 
-### Data Strategy
-
-For Milestone 1, we will:
-
-1. Manually transcribe data from **Budget at a Glance** (Ministry of Finance)
-2. Store full provenance for every observation
-3. Validate reconciliation (parts sum to whole)
-4. Build the pipeline for one complete FY (recommend FY 2025-26)
-5. Include historical comparison (FY 2024-25, FY 2023-24)
-
-This proves the architecture end-to-end before scaling.
-
-## 🎯 Subsequent Milestones
-
-- **M2: Core UI** — NumberDisplay, ExplainTerm, ProvenanceCard components
-- **M3: Union Overview** — Expenditure, receipts, deficit visualization
-- **M4: Execution** — Budget vs reality tracking
-- **M5: Debt** — Debt data + quarterly trends
-- **M6: History** — Multi-year trend explorer
-- **M7: Hardening** — Accessibility, responsive, performance, CI/CD
-
-## 🧪 Test Status
-
-- Utility tests: Written (formatting, fiscal year math)
-- TypeScript: Strict mode, all files type-safe
-- Build: Production-ready
-
-Run tests: `npm test`
-Run typecheck: `npm run typecheck`
-Run build: `npm run build`
-Run dev: `npm run dev`
-
-## 📚 Documentation
-
-- `README.md` — Project overview
-- `docs/architecture.md` — Technical architecture
-- `docs/status.md` — This file
-
-## 🔗 Official Data Sources (Planned)
-
-1. Ministry of Finance — Union Budget documents
-2. Controller General of Accounts — Monthly execution data
-3. Reserve Bank of India — Debt statistics
-4. CSO/MOSPI — GDP reference values
-
-## 🚀 Development Commands
+## Validation commands
 
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start development server
-npm run build        # Production build
-npm run preview      # Preview production build
-npm run typecheck    # TypeScript validation
-npm run test         # Run test suite
-npm run lint         # ESLint check
+npm run typecheck
+npm test -- --run
+PYTHONPATH=. pytest -q
+npm run lint
+npm run build
 ```
 
-## 📝 Notes
-
-- All amounts stored internally in **₹ crore**
-- Financial year: **April 1 to March 31**
-- Strict TypeScript enforced throughout
-- No fake data policy: every number must be traceable
-- Design system: editorial + analytical + calm
-- Mobile-first responsive design
-- WCAG accessibility conscious
+Exact counts and browser verification are recorded in `docs/milestone-3-report.md`.
