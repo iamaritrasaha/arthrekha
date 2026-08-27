@@ -20,8 +20,8 @@ export default function Footer() {
               interactive visualizations backed by official sources.
             </p>
             <p className={styles.meta}>
-              Built with data from the Ministry of Finance, Controller General of
-              Accounts, and Reserve Bank of India.
+              Built with data from the Ministry of Finance and Controller General
+              of Accounts.
             </p>
           </div>
         </div>
