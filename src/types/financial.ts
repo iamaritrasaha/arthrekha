@@ -24,13 +24,13 @@ export type DataStatus = "final" | "provisional" | "estimated" | "derived";
 export interface DataSource {
   organization: string;        // "Ministry of Finance"
   document: string;            // "Union Budget 2025-26 — Expenditure Budget"
-  url?: string;                // Direct link to source document
-  table?: string;              // "Statement 1" or page reference
-  publishedAt?: string;        // ISO date when source published
+  url?: string | null;         // Direct link to source document
+  table?: string | null;       // "Statement 1" or page reference
+  publishedAt?: string | null; // ISO date when source published
   retrievedAt: string;         // ISO date when we retrieved/transcribed
   dataStatus: DataStatus;      // Quality indicator
-  notes?: string;              // Any clarifications
-  definition?: string;         // What this metric means per the source
+  notes?: string | null;       // Any clarifications
+  definition?: string | null;  // What this metric means per the source
 }
 
 /**

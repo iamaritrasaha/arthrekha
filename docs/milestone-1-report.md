@@ -260,12 +260,15 @@ Build time: 841ms
 npm run test
 ```
 
-**Result**: 23/25 tests passed
+**Result**: 33 passed, 0 skipped, 0 failed
 
-- ✅ All fiscal year tests passed (10/10)
-- ⚠️ 2 formatting tests failed (pre-existing, unrelated to data ingestion)
-  - Minor display formatting edge cases
-  - Does not affect data pipeline or core functionality
+- ✅ Fiscal year tests passed (10/10)
+- ✅ Formatting tests passed (15/15)
+- ✅ Data selector tests passed (8/8)
+
+The earlier `23/25` entry was stale documentation from before the formatting
+edge cases were corrected. The current suite contains 33 tests and has no
+intentional skips.
 
 ### 6.6 Integration Test
 
@@ -467,7 +470,7 @@ Files:
 ✅ **Provenance** — Every observation includes complete source metadata  
 ✅ **Validation** — 40/40 observations valid, reconciliation passed  
 ✅ **Derived calculations** — 10 execution rates calculated with explicit formulas  
-✅ **Tests** — Python and TypeScript tests passing  
+✅ **Tests** — Python (8/8) and TypeScript (33/33) tests passing  
 ✅ **Application-ready output** — JSON dataset generated and validated  
 ✅ **Production build** — Frontend builds successfully  
 ✅ **Documentation** — Methodology and data sources fully documented  
