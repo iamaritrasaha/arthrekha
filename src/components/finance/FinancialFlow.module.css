@@ -1,0 +1,12 @@
+.figure { margin: 0; padding: 30px; border: 1px solid rgba(23,32,31,.1); border-radius: var(--radius-xl); background: linear-gradient(145deg, rgba(255,255,255,.76), rgba(238,235,226,.6)); box-shadow: inset 0 1px 0 rgba(255,255,255,.88); overflow: hidden; }
+.figure figcaption { display: flex; justify-content: space-between; gap: 24px; color: var(--ink-secondary); font-size: 12px; }.figure figcaption span { color: #9a723b; font-size: 10px; font-weight: 750; letter-spacing: .14em; }
+.flow { margin-top: 34px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); align-items: stretch; }
+.stage { display: flex; align-items: center; min-width: 0; }
+.node { width: 100%; min-height: 190px; padding: 22px; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(23,32,31,.1); border-radius: var(--radius-lg); background: rgba(250,249,245,.75); box-shadow: 0 10px 30px rgba(23,32,31,.06), inset 0 1px 0 #fff; transition: transform var(--motion-medium), border-color var(--motion-medium); }
+.node:hover { transform: translateY(-2px); border-color: rgba(168,127,68,.38); }
+.node small { color: #9a723b; font-size: 9px; font-weight: 750; letter-spacing: .14em; }.node strong { margin-top: 12px; font-size: 18px; line-height: 1.15; }.node b { margin-top: 22px; color: #25312d; font-size: 22px; font-variant-numeric: tabular-nums; }.node span { margin-top: 8px; color: var(--ink-tertiary); font-size: 10px; line-height: 1.35; }
+.connector { width: 28px; height: 10px; flex: 0 0 28px; background: linear-gradient(90deg, rgba(168,127,68,.3), rgba(168,127,68,.8)); clip-path: polygon(0 35%, 72% 35%, 72% 0, 100% 50%, 72% 100%, 72% 65%, 0 65%); }
+.note { margin: 22px 0 0; color: var(--ink-tertiary); font-size: 11px; }
+@media (max-width: 900px) { .flow { grid-template-columns: 1fr 1fr; gap: 16px; }.connector { display: none; } }
+@media (max-width: 560px) { .figure { padding: 20px; border-radius: var(--radius-lg); }.figure figcaption { display: block; }.figure figcaption span { display: block; margin-bottom: 8px; }.flow { grid-template-columns: 1fr; }.node { min-height: 145px; } }
+@media (prefers-reduced-motion: reduce) { .node { transition: none; } }
