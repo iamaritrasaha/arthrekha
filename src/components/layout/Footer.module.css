@@ -29,6 +29,7 @@
   color: var(--ink-primary);
   margin: 0;
 }
+.brandName span { color: #b29054; font-family: Georgia, serif; font-weight: 500; }
 
 .brandTagline {
   font-size: var(--text-small);

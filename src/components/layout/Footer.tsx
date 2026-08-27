@@ -1,14 +1,12 @@
 import styles from './Footer.module.css';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.brand}>
-            <h3 className={styles.brandName}>Arthrekha</h3>
+            <h3 className={styles.brandName}><span>₹</span> ARTHREKHA</h3>
             <p className={styles.brandTagline}>
               India's public finances, made visible
             </p>
@@ -28,7 +26,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {currentYear} Arthrekha. All data sourced from official Government of India publications.
+            © 2026 Aritra Saha · Foresight Labs. All rights reserved. Financial data remains attributed to its official Government of India sources.
           </p>
         </div>
       </div>

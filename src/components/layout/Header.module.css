@@ -1,11 +1,12 @@
 .header {
-  background: var(--surface-elevated);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-glass-strong);
+  border-bottom: 1px solid var(--glass-border);
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(var(--glass-blur)) saturate(115%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(115%);
+  box-shadow: 0 1px 0 var(--glass-highlight);
 }
 
 .container {
@@ -27,16 +28,19 @@
   transition: opacity var(--transition-fast);
 }
 
+.wordmark { display: inline-flex; align-items: baseline; gap: 8px; }
+.rupeeMark { color: #b29054; font: 500 1.2em/1 Georgia, serif; transform: translateY(1px); }
+
 .logo:hover {
   opacity: 0.8;
   text-decoration: none;
 }
 
 .logoText {
-  font-size: var(--text-h3);
-  font-weight: var(--weight-bold);
+  font-size: 1rem;
+  font-weight: 800;
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.13em;
 }
 
 .tagline {
@@ -59,11 +63,16 @@
   transition: color var(--transition-fast);
   padding: var(--space-2) 0;
   position: relative;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
 }
 
 .navLink:hover {
   color: var(--ink-primary);
   text-decoration: none;
+  background: var(--surface-glass);
+  border-color: var(--glass-border);
 }
 
 .navLink:focus-visible {
@@ -102,4 +111,6 @@
   .tagline {
     display: none;
   }
+
+  .logoText { font-size: .9rem; }
 }
