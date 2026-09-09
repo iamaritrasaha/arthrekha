@@ -1,0 +1,42 @@
+{
+  "source": {
+    "organization": "Controller General of Accounts, Government of India",
+    "document": "Union Government Accounts at a Glance - July 2026",
+    "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+    "publication_date": null,
+    "retrieval_date": "2026-09-09",
+    "format": "html",
+    "table": "Union Government Accounts at a Glance, core fiscal parameters",
+    "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+    "source_labels": {
+      "revenue_receipts": "Revenue Receipts",
+      "tax_revenue_net": "Tax Revenue (Net)",
+      "non_tax_revenue": "Non-Tax Revenue",
+      "non_debt_capital_receipts": "Non-Debt Capital Receipts",
+      "non_borrowed_receipts": "Total Receipts (1+4)",
+      "revenue_expenditure": "Revenue Expenditure",
+      "interest_payments": "of which Interest Payments",
+      "capital_expenditure": "Capital Expenditure",
+      "total_expenditure": "Total Expenditure (8+10)",
+      "fiscal_deficit": "Fiscal Deficit (12-7)"
+    }
+  },
+  "financial_year": "2026-27",
+  "reporting_period": "apr-jul",
+  "period_type": "cumulative",
+  "estimate_type": "provisional",
+  "data": {
+    "revenue_receipts": 1267573,
+    "tax_revenue_net": 844560,
+    "non_tax_revenue": 423013,
+    "non_debt_capital_receipts": 39136,
+    "non_borrowed_receipts": 1306709,
+    "revenue_expenditure": 1311218,
+    "interest_payments": 426566,
+    "capital_expenditure": 450635,
+    "total_expenditure": 1761853,
+    "fiscal_deficit": 455144
+  },
+  "unit": "crore",
+  "currency": "INR"
+}

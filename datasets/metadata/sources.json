@@ -7,7 +7,7 @@
     "financial_year": "2026-27",
     "reporting_period": null,
     "publication_date": "2026-02-01",
-    "retrieval_date": "2026-08-27",
+    "retrieval_date": "2026-09-09",
     "source_format": "pdf",
     "estimate_type": "BE",
     "data_status": "final",
@@ -63,19 +63,19 @@
     ]
   },
   {
-    "source_id": "cga-2026-27-apr-jun",
+    "source_id": "cga-2026-27-apr-jul",
     "source_organization": "Controller General of Accounts",
-    "document_name": "Accounts at a Glance - Apr-Jun 2026",
-    "canonical_url": "https://cga.nic.in/",
+    "document_name": "Union Government Accounts at a Glance - July 2026",
+    "canonical_url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
     "financial_year": "2026-27",
-    "reporting_period": "apr-jun",
-    "publication_date": "2026-07-31",
-    "retrieval_date": "2026-08-27",
-    "source_format": "pdf",
+    "reporting_period": "apr-jul",
+    "publication_date": null,
+    "retrieval_date": "2026-09-09",
+    "source_format": "html",
     "estimate_type": "provisional",
     "data_status": "provisional",
-    "parser_used": "pipeline.parsers.cga_parser",
-    "raw_file_path": null,
+    "parser_used": "pipeline.parsers.cga_html",
+    "raw_file_path": "datasets/raw/cga_2026-27_jul.json",
     "authoritative_status": "primary",
     "notes": "Provisional actuals, cumulative YTD. Subject to CAG audit.",
     "metrics_available": [
@@ -85,9 +85,9 @@
       "non_debt_capital_receipts",
       "non_borrowed_receipts",
       "revenue_expenditure",
+      "interest_payments",
       "capital_expenditure",
       "total_expenditure",
-      "interest_payments",
       "fiscal_deficit"
     ]
   }

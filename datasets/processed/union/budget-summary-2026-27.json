@@ -1,6 +1,6 @@
 {
   "financialYear": "2026-27",
-  "asOfDate": "2026-08-27",
+  "asOfDate": "2026-09-09",
   "observations": [
     {
       "id": "3342d72dd7ed95e5",
@@ -2010,6 +2010,282 @@
       "definitionId": "fiscal_deficit",
       "coverage": "Union Government of India",
       "classificationType": "deficit"
+    },
+    {
+      "id": "a9099e9f140731f8",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "revenue_receipts",
+      "amount": 1267573.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "revenue_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
+    },
+    {
+      "id": "cdc2e837a8431d7b",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "tax_revenue_net",
+      "amount": 844560.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "tax_revenue_net",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
+    },
+    {
+      "id": "880d03d55c84521c",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "non_tax_revenue",
+      "amount": 423013.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "non_tax_revenue",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "revenue_receipts"
+    },
+    {
+      "id": "a7702888d8449fa9",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "non_debt_capital_receipts",
+      "amount": 39136.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "non_debt_capital_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts",
+      "parentMetric": "capital_receipts"
+    },
+    {
+      "id": "36e4c7fece7a2756",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "non_borrowed_receipts",
+      "amount": 1306709.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "non_borrowed_receipts",
+      "coverage": "Union Government of India",
+      "classificationType": "receipts"
+    },
+    {
+      "id": "db5db6c97e8540a2",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "revenue_expenditure",
+      "amount": 1311218.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "revenue_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
+    },
+    {
+      "id": "64091d1372d26263",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "interest_payments",
+      "amount": 426566.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "interest_payments",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "revenue_expenditure"
+    },
+    {
+      "id": "77a7cffd8742640a",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "capital_expenditure",
+      "amount": 450635.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "capital_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure",
+      "parentMetric": "total_expenditure"
+    },
+    {
+      "id": "84fbe4415a8eaa01",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "total_expenditure",
+      "amount": 1761853.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "total_expenditure",
+      "coverage": "Union Government of India",
+      "classificationType": "expenditure"
+    },
+    {
+      "id": "b4df13de82054616",
+      "jurisdiction": "india",
+      "jurisdictionType": "union",
+      "financialYear": "2026-27",
+      "periodType": "cumulative",
+      "metric": "fiscal_deficit",
+      "amount": 455144.0,
+      "unit": "crore",
+      "currency": "INR",
+      "estimateType": "provisional",
+      "period": "apr-jul",
+      "source": {
+        "organization": "Controller General of Accounts, Government of India",
+        "document": "Union Government Accounts at a Glance - July 2026",
+        "url": "https://cga.nic.in/MonthlyReport/Published/7/2026-2027.aspx",
+        "table": "Union Government Accounts at a Glance, core fiscal parameters",
+        "publishedAt": null,
+        "retrievedAt": "2026-09-09",
+        "dataStatus": "provisional",
+        "notes": "Actuals are unaudited provisional figures. The source's Total Receipts (1+4) row is normalized as non_borrowed_receipts.",
+        "definition": null
+      },
+      "definitionId": "fiscal_deficit",
+      "coverage": "Union Government of India",
+      "classificationType": "deficit"
     }
   ],
   "derivedMetrics": [
@@ -2018,110 +2294,110 @@
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "3342d72dd7ed95e5",
-        "fe371dd1111a6109"
+        "a9099e9f140731f8"
       ],
-      "value": 18.70993306256457,
+      "value": 35.87656906726293,
       "unit": "percentage",
-      "description": "Execution rate for revenue_receipts as of June 2026"
+      "description": "Execution rate for revenue_receipts as of July 2026"
     },
     {
       "metric": "tax_revenue_net_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "00fcbe99c056b3c1",
-        "3d81dea3220783b8"
+        "cdc2e837a8431d7b"
       ],
-      "value": 19.067696993500345,
+      "value": 29.458771462913884,
       "unit": "percentage",
-      "description": "Execution rate for tax_revenue_net as of June 2026"
+      "description": "Execution rate for tax_revenue_net as of July 2026"
     },
     {
       "metric": "non_tax_revenue_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "88361a3c2e24b238",
-        "e40a6e8c97879837"
+        "880d03d55c84521c"
       ],
-      "value": 17.170398121964254,
+      "value": 63.49372887359883,
       "unit": "percentage",
-      "description": "Execution rate for non_tax_revenue as of June 2026"
+      "description": "Execution rate for non_tax_revenue as of July 2026"
     },
     {
       "metric": "non_debt_capital_receipts_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "1dd03240d8a72afc",
-        "1387a950c5646987"
+        "a7702888d8449fa9"
       ],
-      "value": 18.91939829556492,
+      "value": 33.054891593537,
       "unit": "percentage",
-      "description": "Execution rate for non_debt_capital_receipts as of June 2026"
+      "description": "Execution rate for non_debt_capital_receipts as of July 2026"
     },
     {
       "metric": "non_borrowed_receipts_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "045fef9e4b382328",
-        "77e0e57282a38fa2"
+        "36e4c7fece7a2756"
       ],
-      "value": 18.7167247196873,
+      "value": 35.78507958407765,
       "unit": "percentage",
-      "description": "Execution rate for non_borrowed_receipts as of June 2026"
+      "description": "Execution rate for non_borrowed_receipts as of July 2026"
     },
     {
       "metric": "revenue_expenditure_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "5392b6352c716a88",
-        "2879c14def06d69e"
+        "db5db6c97e8540a2"
       ],
-      "value": 24.766730966037038,
+      "value": 31.783296739735896,
       "unit": "percentage",
-      "description": "Execution rate for revenue_expenditure as of June 2026"
+      "description": "Execution rate for revenue_expenditure as of July 2026"
     },
     {
       "metric": "capital_expenditure_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "ee88f4018fcc6e9e",
-        "4d6bc9cf78edaab9"
+        "77a7cffd8742640a"
       ],
-      "value": 16.614545011094094,
+      "value": 36.882243798396004,
       "unit": "percentage",
-      "description": "Execution rate for capital_expenditure as of June 2026"
+      "description": "Execution rate for capital_expenditure as of July 2026"
     },
     {
       "metric": "total_expenditure_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "d0eb4e3dcb4e4ea0",
-        "324cfc05ef77afb9"
+        "84fbe4415a8eaa01"
       ],
-      "value": 22.904018184827336,
+      "value": 32.94836754520727,
       "unit": "percentage",
-      "description": "Execution rate for total_expenditure as of June 2026"
+      "description": "Execution rate for total_expenditure as of July 2026"
     },
     {
       "metric": "interest_payments_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "601edcd95d7a40aa",
-        "db790839e1c2d2af"
+        "64091d1372d26263"
       ],
-      "value": 22.133632294661147,
+      "value": 30.382799656973212,
       "unit": "percentage",
-      "description": "Execution rate for interest_payments as of June 2026"
+      "description": "Execution rate for interest_payments as of July 2026"
     },
     {
       "metric": "fiscal_deficit_execution_rate",
       "formula": "actual_ytd / budget_estimate \u00d7 100",
       "inputs": [
         "38cf7dc914074fc2",
-        "20d3e4ec3c7e1d8b"
+        "b4df13de82054616"
       ],
-      "value": 31.92064008755915,
+      "value": 26.839992263092594,
       "unit": "percentage",
-      "description": "Execution rate for fiscal_deficit as of June 2026"
+      "description": "Execution rate for fiscal_deficit as of July 2026"
     },
     {
       "metric": "fiscal_deficit_gdp_ratio",
@@ -2202,13 +2478,13 @@
     }
   ],
   "metadata": {
-    "generated": "2026-08-27",
-    "totalObservations": 74,
+    "generated": "2026-09-09",
+    "totalObservations": 84,
     "sources": [
       "Union Budget 2026-27 BE",
-      "CGA Apr-Jun 2026"
+      "CGA apr-jul"
     ],
-    "latestPeriod": "apr-jun",
+    "latestPeriod": "apr-jul",
     "dataStatus": "Real data from official government sources"
   }
 }
