@@ -7,6 +7,7 @@ official government financial data.
 
 import json
 from pathlib import Path
+import re
 from pipeline.models import FinancialObservation, DataSource
 from pipeline.metrics import get_metric, validate_metric_id
 
@@ -94,17 +95,15 @@ def load_cga_actuals_2026_27(period: str) -> list[FinancialObservation]:
     Args:
         period: "apr", "apr-may", "apr-jun", etc.
     """
-    # Map period to filename
-    period_map = {
-        "apr": "cga_2026-27_apr.json",
-        "apr-may": "cga_2026-27_may.json",
-        "apr-jun": "cga_2026-27_jun.json",
-    }
-
-    if period not in period_map:
+    period_end = period.split("-")[-1]
+    if period == "apr":
+        suffix = "apr"
+    elif re.fullmatch(r"[a-z]{3}", period_end):
+        suffix = period_end
+    else:
         raise ValueError(f"No data available for period: {period}")
 
-    file_path = f"datasets/raw/{period_map[period]}"
+    file_path = f"datasets/raw/cga_2026-27_{suffix}.json"
     return parse_json_source(file_path)
 
 
@@ -127,18 +126,26 @@ def load_all_sources() -> tuple[list[FinancialObservation], dict[str, any]]:
         "file": "union_budget_2026-27_be.json"
     })
 
-    # Load all available CGA actuals
-    for period in ["apr", "apr-may", "apr-jun"]:
-        try:
-            cga_obs = load_cga_actuals_2026_27(period)
-            observations.extend(cga_obs)
-            sources_loaded.append({
-                "type": f"CGA Actuals {period}",
-                "count": len(cga_obs),
-                "file": f"cga_2026-27_{period.split('-')[-1]}.json"
-            })
-        except (FileNotFoundError, ValueError):
-            pass  # Period not available yet
+    # Load all available CGA actuals in fiscal-year order.
+    actual_files = sorted(
+        Path("datasets/raw").glob("cga_2026-27_*.json"),
+        key=lambda path: {"apr": 0, "may": 1, "jun": 2, "jul": 3, "aug": 4, "sep": 5,
+                          "oct": 6, "nov": 7, "dec": 8, "jan": 9, "feb": 10, "mar": 11}.get(
+                              path.stem.rsplit("_", 1)[-1], 99
+                          ),
+    )
+    for file_path in actual_files:
+        raw = json.loads(file_path.read_text())
+        period = raw.get("reporting_period")
+        if not period:
+            continue
+        cga_obs = parse_json_source(str(file_path))
+        observations.extend(cga_obs)
+        sources_loaded.append({
+            "type": f"CGA Actuals {period}",
+            "count": len(cga_obs),
+            "file": file_path.name,
+        })
 
     metadata = {
         "sources_loaded": sources_loaded,

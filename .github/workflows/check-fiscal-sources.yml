@@ -1,0 +1,108 @@
+name: Check official fiscal sources
+
+on:
+  schedule:
+    - cron: '20 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: fiscal-source-check
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check the official CGA release index
+        id: source-check
+        run: |
+          PYTHONPATH=. python -m pipeline.scripts.check_updates --report-path source-update-report.json
+
+      - name: Add source status to the run summary
+        if: always()
+        run: |
+          if [ -f source-update-report.json ]; then
+            {
+              echo '### Official source status'
+              echo
+              echo '```json'
+              cat source-update-report.json
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve the source report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fiscal-source-report
+          path: source-update-report.json
+          if-no-files-found: error
+
+      - name: Fetch and normalize a newer CGA report
+        if: steps.source-check.outputs.status == 'new_release'
+        env:
+          REPORTING_PERIOD: ${{ steps.source-check.outputs.reporting_period }}
+          REPORT_URL: ${{ steps.source-check.outputs.report_url }}
+        run: |
+          report_end="${REPORTING_PERIOD##*-}"
+          PYTHONPATH=. python -m pipeline.scripts.refresh_cga \
+            --report-url "$REPORT_URL" \
+            --output "datasets/raw/cga_2026-27_${report_end}.json"
+
+      - name: Install Python validation dependencies
+        if: steps.source-check.outputs.status == 'new_release'
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Install frontend dependencies for candidate validation
+        if: steps.source-check.outputs.status == 'new_release'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install frontend packages
+        if: steps.source-check.outputs.status == 'new_release'
+        run: npm ci
+
+      - name: Regenerate and validate the candidate dataset
+        if: steps.source-check.outputs.status == 'new_release'
+        run: |
+          PYTHONPATH=. python -m pipeline.scripts.ingest
+          PYTHONPATH=. python -m pytest -q
+          python3 run_tests.py
+          npm test -- --run
+          npm run typecheck
+          npm run lint
+          npm run build
+
+      - name: Create or update the reviewable refresh pull request
+        if: steps.source-check.outputs.status == 'new_release'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: data-refresh/${{ steps.source-check.outputs.reporting_period }}
+          delete-branch: true
+          commit-message: Refresh CGA actuals through ${{ steps.source-check.outputs.reporting_period }}
+          title: Refresh CGA actuals through ${{ steps.source-check.outputs.reporting_period }}
+          body: |
+            This review request was generated from the official Controller General of Accounts monthly report.
+
+            Reporting period: `${{ steps.source-check.outputs.reporting_period }}`
+            Release notice: ${{ steps.source-check.outputs.source_url }}
+            Monthly report: ${{ steps.source-check.outputs.report_url }}
+
+            The candidate raw source, normalized dataset, provenance manifest, reconciliation checks, frontend tests, typecheck, lint, and production build all passed in the workflow before this request was created.
+          base: main

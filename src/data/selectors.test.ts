@@ -29,7 +29,7 @@ describe('Budget Data Loader', () => {
   it('provides correct metadata', () => {
     const metadata = getDatasetMetadata();
     expect(metadata.financialYear).toBe('2026-27');
-    expect(metadata.latestPeriod).toBe('apr-jun');
+    expect(metadata.latestPeriod).toMatch(/^apr(?:-[a-z]{3})?$/);
     expect(metadata.totalObservations).toBe(74);
   });
 });
@@ -52,7 +52,7 @@ describe('Data Selectors', () => {
     const actual = getLatestActual('total_expenditure');
     expect(actual).toBeDefined();
     expect(actual?.estimateType).toBe('provisional');
-    expect(actual?.period).toBe('apr-jun');
+    expect(actual?.period).toBe(getDatasetMetadata().latestPeriod);
     expect(actual?.amount).toBeGreaterThan(0);
   });
 
@@ -67,9 +67,9 @@ describe('Data Selectors', () => {
   it('retrieves monthly progression', () => {
     const monthly = getMonthlyProgression('revenue_receipts');
     expect(monthly).toBeInstanceOf(Array);
-    expect(monthly.length).toBe(3); // Apr, May, Jun
+    expect(monthly.length).toBeGreaterThanOrEqual(1);
     expect(monthly[0]?.period).toBe('apr');
-    expect(monthly[2]?.period).toBe('apr-jun');
+    expect(monthly[monthly.length - 1]?.period).toBe(getDatasetMetadata().latestPeriod);
   });
 
   it('lists all available metrics', () => {

@@ -9,6 +9,7 @@ import { getBudgetEstimate, getExecutionRate, getLatestActual, getMetricRatio, g
 import { formatCurrency, formatPercentage } from '@/lib/formatting';
 import styles from './ExplorePage.module.css';
 import { useTranslation } from '@/i18n';
+import { currentPeriodText } from '@/lib/fiscalPeriods';
 
 const DEFAULT_METRIC: MetricId = 'revenue_receipts';
 
@@ -74,7 +75,7 @@ export default function ExplorePage() {
 
         <div className={styles.valueStrip}>
           <div><small>{t('EXACT BE')}</small><strong>{be ? localizeFormattedValue(formatCurrency(be.amount, { forceUnit: 'crore' })) : t('Data unavailable')}</strong></div>
-          <div><small>{t('PROVISIONAL ACTUAL')}</small><strong>{actual ? localizeFormattedValue(formatCurrency(actual.amount, { forceUnit: 'crore' })) : t('Data unavailable')}</strong><span>{t(actual ? 'Through June 2026' : 'No compatible CGA observation')}</span></div>
+          <div><small>{t('PROVISIONAL ACTUAL')}</small><strong>{actual ? localizeFormattedValue(formatCurrency(actual.amount, { forceUnit: 'crore' })) : t('Data unavailable')}</strong><span>{actual ? currentPeriodText('Through {period} {year}', actual.period, actual.financialYear, t) : t('No compatible CGA observation')}</span></div>
           <div><small>{t('EXECUTION')}</small><strong>{execution ? localizeFormattedValue(formatPercentage(execution.value)) : t('Not available')}</strong><span>{t(execution ? 'Actual YTD ÷ annual BE' : 'Requires compatible periods')}</span></div>
           {ratios.map(ratio => <div key={ratio.metric}><small>{t(ratio.metric.replace(/_/g, ' '))}</small><strong>{localizeFormattedValue(formatPercentage(ratio.value))}</strong><span>{t('Calculated by Arthrekha')}</span></div>)}
         </div>

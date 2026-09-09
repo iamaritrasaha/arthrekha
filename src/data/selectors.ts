@@ -8,6 +8,7 @@
 import type { FinancialObservation, EstimateType, DerivedMetric } from '@/types/financial';
 import { loadBudgetDataset, getDatasetMetadata } from './budgetData';
 import { getMetricDefinition, type FinancialDomain, type MetricId } from './metricDefinitions';
+import { periodOrder } from '@/lib/fiscalPeriods';
 
 export { getDatasetMetadata };
 export type { MetricId } from './metricDefinitions';
@@ -44,7 +45,7 @@ export function getBudgetEstimate(metricId: string): FinancialObservation | null
 
 /**
  * Get latest actual/provisional observation for a metric
- * Returns the most recent period (apr-jun in current dataset)
+ * Returns the most recent period available in the dataset.
  */
 export function getLatestActual(metricId: string): FinancialObservation | null {
   const observations = getAllObservations();
@@ -57,8 +58,7 @@ export function getLatestActual(metricId: string): FinancialObservation | null {
 
   if (actuals.length === 0) return null;
 
-  const periodOrder = ['apr', 'apr-may', 'apr-jun'];
-  return [...actuals].sort((a, b) => periodOrder.indexOf(b.period ?? '') - periodOrder.indexOf(a.period ?? ''))[0] ?? null;
+  return [...actuals].sort((a, b) => periodOrder(b.period) - periodOrder(a.period))[0] ?? null;
 }
 
 /**
@@ -86,21 +86,14 @@ export function getMetricObservations(metricId: string): FinancialObservation[] 
 }
 
 /**
- * Get monthly progression for a metric (Apr, May, Jun)
+ * Get cumulative fiscal-year progression for a metric.
  */
 export function getMonthlyProgression(metricId: string): FinancialObservation[] {
   const observations = getAllObservations();
 
-  const periods = ['apr', 'apr-may', 'apr-jun'];
-  const monthly = periods
-    .map(period => observations.find(
-      obs => obs.metric === metricId &&
-             obs.period === period &&
-             obs.estimateType === 'provisional'
-    ))
-    .filter((obs): obs is FinancialObservation => obs !== undefined);
-
-  return monthly;
+  return observations
+    .filter(obs => obs.metric === metricId && obs.estimateType === 'provisional')
+    .sort((a, b) => periodOrder(a.period) - periodOrder(b.period));
 }
 
 /**
@@ -133,8 +126,7 @@ export function getMetricProvenance(observation: FinancialObservation | null) {
 
 export function getLatestPeriod(): string | null {
   const actuals = getAllObservations().filter(obs => obs.estimateType === 'actual' || obs.estimateType === 'provisional');
-  const periodOrder = ['apr', 'apr-may', 'apr-jun'];
-  return [...actuals].sort((a, b) => periodOrder.indexOf(b.period ?? '') - periodOrder.indexOf(a.period ?? ''))[0]?.period ?? null;
+  return [...actuals].sort((a, b) => periodOrder(b.period) - periodOrder(a.period))[0]?.period ?? null;
 }
 
 /**

@@ -23,6 +23,46 @@ from pipeline.models import DerivedMetric
 from pipeline.source_manifest import create_source_manifest
 
 
+FISCAL_MONTH_ORDER = {
+    "apr": 4,
+    "may": 5,
+    "jun": 6,
+    "jul": 7,
+    "aug": 8,
+    "sep": 9,
+    "oct": 10,
+    "nov": 11,
+    "dec": 12,
+    "jan": 13,
+    "feb": 14,
+    "mar": 15,
+}
+
+
+def period_end_month(period: str | None) -> int:
+    if not period:
+        return 0
+    return FISCAL_MONTH_ORDER.get(period.split("-")[-1], 0)
+
+
+def period_display(period: str) -> str:
+    month = period.split("-")[-1]
+    return {
+        "apr": "April",
+        "may": "May",
+        "jun": "June",
+        "jul": "July",
+        "aug": "August",
+        "sep": "September",
+        "oct": "October",
+        "nov": "November",
+        "dec": "December",
+        "jan": "January",
+        "feb": "February",
+        "mar": "March",
+    }.get(month, period)
+
+
 def run_ingestion():
     """
     Main ingestion pipeline
@@ -123,8 +163,15 @@ def run_ingestion():
     be_observations = [obs for obs in all_observations if obs.estimate_type == "BE"]
     actual_observations = [obs for obs in all_observations if obs.estimate_type == "provisional"]
 
-    # Get latest period actuals (jun is latest)
-    latest_actuals = [obs for obs in actual_observations if obs.period == "apr-jun"]
+    latest_period = max(
+        (obs.period for obs in actual_observations if obs.period),
+        key=period_end_month,
+        default=None,
+    )
+    if latest_period is None:
+        print("  ✗ No provisional actual period is available")
+        return False
+    latest_actuals = [obs for obs in actual_observations if obs.period == latest_period]
 
     be_by_metric = {obs.metric: obs for obs in be_observations}
     actual_by_metric = {obs.metric: obs for obs in latest_actuals}
@@ -142,7 +189,7 @@ def run_ingestion():
                 inputs=[be_obs.id or "", actual_obs.id or ""],
                 value=exec_rate["execution_rate"],
                 unit="percentage",
-                description=f"Execution rate for {metric_id} as of June 2026",
+                description=f"Execution rate for {metric_id} as of {period_display(latest_period)} 2026",
             )
 
             derived_metrics.append(derived)
@@ -189,8 +236,8 @@ def run_ingestion():
         "metadata": {
             "generated": date.today().isoformat(),
             "totalObservations": len(all_observations),
-            "sources": ["Union Budget 2026-27 BE", "CGA Apr-Jun 2026"],
-            "latestPeriod": "apr-jun",
+            "sources": ["Union Budget 2026-27 BE", f"CGA {latest_period}"],
+            "latestPeriod": latest_period,
             "dataStatus": "Real data from official government sources",
         },
     }
@@ -221,17 +268,18 @@ def run_ingestion():
             notes="Budget Estimates transcribed from the official Budget at a Glance PDF; page and table references are retained on each observation",
         ),
         create_source_manifest(
-            source_id="cga-2026-27-apr-jun",
+            source_id=f"cga-2026-27-{latest_period}",
             organization="Controller General of Accounts",
-            document_name="Accounts at a Glance - Apr-Jun 2026",
-            url="https://cga.nic.in/",
+            document_name=latest_actuals[0].source.document,
+            url=latest_actuals[0].source.url or "https://cga.nic.in/",
             financial_year="2026-27",
-            reporting_period="apr-jun",
+            reporting_period=latest_period,
             estimate_type="provisional",
-            source_format="pdf",
-            parser_used="pipeline.parsers.cga_parser",
+            source_format="html",
+            parser_used="pipeline.parsers.cga_html",
             metrics=list(actual_by_metric.keys()),
-            publication_date="2026-07-31",
+            publication_date=latest_actuals[0].source.published_at,
+            raw_file_path=f"datasets/raw/cga_2026-27_{latest_period.split('-')[-1]}.json",
             notes="Provisional actuals, cumulative YTD. Subject to CAG audit.",
         ),
     ]
@@ -250,7 +298,7 @@ def run_ingestion():
     print()
     print("Summary:")
     print(f"  Financial Year: 2026-27")
-    print(f"  Latest Period: June 2026")
+    print(f"  Latest Period: {period_display(latest_period)} 2026")
     print(f"  Metrics Ingested: {len(be_by_metric)}")
     print(f"  Total Observations: {len(all_observations)}")
     print(f"  Derived Metrics: {len(derived_metrics)}")

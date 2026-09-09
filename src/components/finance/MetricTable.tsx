@@ -3,14 +3,18 @@ import { formatCurrency, formatPercentage } from '@/lib/formatting';
 import { getMetricDefinition, type MetricId } from '@/data/metricDefinitions';
 import styles from './MetricTable.module.css';
 import { useTranslation } from '@/i18n';
+import { getDatasetMetadata } from '@/data/selectors';
+import { currentPeriodText } from '@/lib/fiscalPeriods';
 
 export default function MetricTable({ metrics }: { metrics: MetricId[] }) {
   const { t, localizeFormattedValue, localizeMetric } = useTranslation();
+  const metadata = getDatasetMetadata();
+  const actualHeading = currentPeriodText('Actual through {period}', metadata.latestPeriod, metadata.financialYear, t);
   return (
     <div className={styles.shell} tabIndex={0} aria-label={t('Scrollable fiscal metric table')}>
       <table>
         <caption className="sr-only">{t('FY 2026–27 Union Government fiscal metrics')}</caption>
-        <thead><tr><th>{t('Metric')}</th><th>{t('Budget Estimate')}</th><th>{t('Actual through June')}</th><th>{t('Execution')}</th><th>{t('Status')}</th></tr></thead>
+        <thead><tr><th>{t('Metric')}</th><th>{t('Budget Estimate')}</th><th>{actualHeading}</th><th>{t('Execution')}</th><th>{t('Status')}</th></tr></thead>
         <tbody>{metrics.map(metricId => {
           const rawDefinition = getMetricDefinition(metricId);
           const definition = rawDefinition ? localizeMetric(rawDefinition) : null;

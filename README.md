@@ -66,6 +66,12 @@ To regenerate the processed dataset from the preserved structured inputs:
 python3 -m pipeline.scripts.ingest
 ```
 
+## Automatic source monitoring
+
+A scheduled workflow checks the official Controller General of Accounts release index and compares it with the latest processed reporting period. A newer release creates a review request and preserves a machine-readable report as a workflow artifact. It does not replace published financial records automatically: a source adapter must first parse the official publication and pass the existing validation and reconciliation checks.
+
+See [Automatic data refresh](docs/automatic-data-refresh.md) for the refresh flow and the local check command.
+
 ## Data methodology
 
 Every monetary observation is normalized to ₹ crore and stores its jurisdiction, financial year, period, estimate type and source metadata. Budget Estimates and provisional actuals remain separate observation types. Arthrekha-derived ratios retain their formulas and input observation identifiers.
