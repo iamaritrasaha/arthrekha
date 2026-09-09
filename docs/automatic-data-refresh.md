@@ -1,8 +1,9 @@
 # Automatic data refresh
 
-Arthrekha uses a review-gated refresh workflow for official fiscal releases.
-The goal is to keep the public dataset current without silently replacing a
-validated financial record.
+Arthrekha uses a validation-gated refresh workflow for official fiscal
+releases. The goal is to keep the public dataset current without replacing a
+financial record until the new source has passed the complete data and
+application checks.
 
 ## Current flow
 
@@ -11,14 +12,14 @@ validated financial record.
 2. The checker compares the newest recognised monthly release with the latest
    period in the processed dataset.
 3. The run stores a machine-readable source report as an artifact.
-4. If a newer release is found, one open refresh request is created with the
-   official source link.
-5. A maintainer reviews the release, preserves the source evidence, updates the
-   source adapter when the publication format changes, and runs the complete
-   ingestion, reconciliation, frontend, and build checks.
-6. Only a reviewed change merged to `main` can update the published website.
+4. If a newer release is found, the official monthly report is downloaded and
+   normalized into a candidate raw source.
+5. The candidate runs the complete ingestion, reconciliation, frontend, and
+   build checks.
+6. Only a candidate that passes every check is committed to `main`, which
+   triggers the existing Pages deployment.
 
-## Why the workflow is review-gated
+## Why the workflow is validation-gated
 
 The CGA release index is a publication notice and the monthly dashboard is
 served by a dynamic government site. A release notice alone is not a safe data
@@ -26,9 +27,9 @@ input. The values must be extracted from the correct publication, mapped to
 the normalized metric registry, checked for cumulative-period semantics, and
 reconciled before they can replace the current dataset.
 
-The scheduled check therefore never writes to
-`datasets/processed/union/budget-summary-2026-27.json` and never changes the
-frontend on its own.
+The scheduled check therefore never writes to the processed dataset unless the
+source-specific parser and all validation gates succeed. A parser failure or
+any failed application gate leaves the published dataset unchanged.
 
 ## Local check
 

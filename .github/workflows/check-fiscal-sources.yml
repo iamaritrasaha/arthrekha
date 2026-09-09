@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: fiscal-source-check
@@ -88,21 +87,15 @@ jobs:
           npm run lint
           npm run build
 
-      - name: Create or update the reviewable refresh pull request
+      - name: Publish validated dataset refresh
         if: steps.source-check.outputs.status == 'new_release'
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: data-refresh/${{ steps.source-check.outputs.reporting_period }}
-          delete-branch: true
-          commit-message: Refresh CGA actuals through ${{ steps.source-check.outputs.reporting_period }}
-          title: Refresh CGA actuals through ${{ steps.source-check.outputs.reporting_period }}
-          body: |
-            This review request was generated from the official Controller General of Accounts monthly report.
-
-            Reporting period: `${{ steps.source-check.outputs.reporting_period }}`
-            Release notice: ${{ steps.source-check.outputs.source_url }}
-            Monthly report: ${{ steps.source-check.outputs.report_url }}
-
-            The candidate raw source, normalized dataset, provenance manifest, reconciliation checks, frontend tests, typecheck, lint, and production build all passed in the workflow before this request was created.
-          base: main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "datasets/raw/cga_2026-27_${REPORTING_PERIOD##*-}.json" \
+            datasets/processed/union/budget-summary-2026-27.json \
+            datasets/metadata/sources.json
+          git commit -m "Refresh CGA actuals through ${{ steps.source-check.outputs.reporting_period }}"
+          git push origin main
+        env:
+          REPORTING_PERIOD: ${{ steps.source-check.outputs.reporting_period }}

@@ -68,7 +68,7 @@ python3 -m pipeline.scripts.ingest
 
 ## Automatic source monitoring
 
-A scheduled workflow checks the official Controller General of Accounts release index and compares it with the latest processed reporting period. A newer release creates a review request and preserves a machine-readable report as a workflow artifact. It does not replace published financial records automatically: a source adapter must first parse the official publication and pass the existing validation and reconciliation checks.
+A scheduled workflow checks the official Controller General of Accounts release index and compares it with the latest processed reporting period. A newer release is parsed, normalized, reconciled, tested, and built before the validated dataset is committed to `main`. The workflow also preserves a machine-readable report as an artifact; a failed gate leaves the published financial records unchanged.
 
 See [Automatic data refresh](docs/automatic-data-refresh.md) for the refresh flow and the local check command.
 
