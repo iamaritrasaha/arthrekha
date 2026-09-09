@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: fiscal-source-check
@@ -99,3 +101,22 @@ jobs:
           git push origin main
         env:
           REPORTING_PERIOD: ${{ steps.source-check.outputs.reporting_period }}
+
+      - name: Add SPA fallback
+        if: steps.source-check.outputs.status == 'new_release'
+        run: cp dist/index.html dist/404.html
+
+      - name: Configure Pages
+        if: steps.source-check.outputs.status == 'new_release'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: steps.source-check.outputs.status == 'new_release'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy updated Pages artifact
+        if: steps.source-check.outputs.status == 'new_release'
+        id: deployment
+        uses: actions/deploy-pages@v4
