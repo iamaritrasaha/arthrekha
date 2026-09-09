@@ -72,6 +72,10 @@
 .navLinkActive::after { content: ''; position: absolute; left: 50%; bottom: 5px; width: 12px; height: 2px; transform: translateX(-50%); border-radius: var(--radius-pill); background: #a87f44; }
 .navLink:focus-visible { outline: 2px solid #a87f44; outline-offset: 2px; }
 
+.languageControl { display: inline-flex; align-items: center; padding: 0 5px; }
+.languageControl select { min-height: 34px; border: 0; border-radius: var(--radius-pill); padding: 6px 22px 6px 8px; color: var(--ink-secondary); background: transparent; font: inherit; font-size: 11px; cursor: pointer; }
+.languageControl select:focus-visible { outline: 2px solid #a87f44; outline-offset: 2px; }
+
 .scrolled { padding-top: 8px; }
 .scrolled .container { min-height: 54px; padding-top: 5px; padding-bottom: 5px; background: var(--nav-glass-background-scrolled); box-shadow: inset 0 1px 0 var(--nav-glass-highlight), inset 0 -1px 0 var(--nav-glass-lower-edge), var(--shadow-floating); }
 .scrolled .tagline { opacity: 0; max-height: 0; transform: translateY(-3px); }
@@ -88,6 +92,8 @@
   .rupeeMark { width: 20px; height: 20px; }
   .nav { gap: 0; padding: 2px; }
   .navLink { min-height: 36px; padding: 8px 9px; font-size: 10px; }
+  .languageControl { padding: 0 2px; }
+  .languageControl select { min-height: 32px; padding-inline: 5px; font-size: 10px; max-width: 62px; }
 }
 
 @media (max-width: 390px) {
