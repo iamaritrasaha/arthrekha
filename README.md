@@ -8,8 +8,8 @@ Arthrekha is an independent, editorial public-finance explorer for understanding
 
 The current release covers the Union Government for FY 2026–27:
 
-- Budget Estimate compared with cumulative provisional actuals through June 2026
-- Budget → Reality execution instrument with April–June progression
+- Budget Estimate compared with cumulative provisional actuals through July 2026
+- Budget → Reality execution instrument with April–July progression
 - 44-metric fiscal registry covering receipts, expenditure, deficits, financing and federal transfers
 - Understand and Analyse modes for progressive disclosure
 - beginner explanations connected directly to current figures
@@ -18,7 +18,7 @@ The current release covers the Union Government for FY 2026–27:
 - source and calculation lineage for important values
 - responsive layouts, keyboard focus and reduced-motion support
 
-Budget Estimates come from the Ministry of Finance's *Budget at a Glance 2026–27*. Current-year execution observations come from the Controller General of Accounts and remain provisional and unaudited.
+Budget Estimates come from the Ministry of Finance's *Budget at a Glance 2026–27*. Current-year execution observations through July 2026 come from the Controller General of Accounts and remain provisional and unaudited. The interface derives the latest reporting period from the processed dataset, so future recognised monthly releases update the period labels and progression automatically.
 
 Arthrekha is not affiliated with or endorsed by the Government of India. Government financial data remains attributed to its official publishers.
 
@@ -68,7 +68,17 @@ python3 -m pipeline.scripts.ingest
 
 ## Automatic source monitoring
 
-A scheduled workflow checks the official Controller General of Accounts release index and compares it with the latest processed reporting period. A newer release is parsed, normalized, reconciled, tested, and built before the validated dataset is committed to `main`. The workflow also preserves a machine-readable report as an artifact; a failed gate leaves the published financial records unchanged.
+A scheduled workflow checks the official Controller General of Accounts release index daily and can also be started manually. When a newer monthly release appears, it:
+
+1. downloads the official report;
+2. preserves the raw source and provenance;
+3. normalizes the ten core actual metrics;
+4. regenerates the processed dataset and derived execution rates;
+5. runs reconciliation, Python tests, frontend tests, typecheck, lint and the production build;
+6. commits the validated records to `main`; and
+7. deploys the updated Pages artifact.
+
+If any gate fails, the existing published records and website remain unchanged. The workflow also preserves a machine-readable source report as an artifact.
 
 See [Automatic data refresh](docs/automatic-data-refresh.md) for the refresh flow and the local check command.
 
@@ -87,7 +97,7 @@ Further details:
 
 ## Deployment
 
-The production site is published through GitHub Pages at [iamaritrasaha.github.io/arthrekha](https://iamaritrasaha.github.io/arthrekha/). Every successful push to `main` runs the validation suite, builds the Vite application and deploys the resulting `dist/` artifact through GitHub Actions.
+The production site is published through GitHub Pages at [iamaritrasaha.github.io/arthrekha](https://iamaritrasaha.github.io/arthrekha/). Every successful push to `main` runs the validation suite, builds the Vite application and deploys the resulting `dist/` artifact. Validated monthly source refreshes also deploy the newly built artifact as part of the same scheduled workflow.
 
 To create the production bundle locally:
 
@@ -99,7 +109,7 @@ npm run build
 
 - Union Government only
 - one current financial year
-- provisional actuals only through June 2026
+- provisional actuals currently through July 2026
 - no historical comparison series
 - no state finances or ministry-level execution
 - borrowing coverage is limited to financing components in the current Union Budget source, not a complete debt-stock history
