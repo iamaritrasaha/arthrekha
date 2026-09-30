@@ -4,7 +4,7 @@ import FinancialFlow from '@/components/finance/FinancialFlow';
 import MetricTable from '@/components/finance/MetricTable';
 import ModeSwitch, { type ExplorationMode } from '@/components/finance/ModeSwitch';
 import { FISCAL_DOMAINS, getFiscalDomain } from '@/data/domains';
-import { getMetricDefinition, getRelatedMetrics, type FinancialDomain, type MetricId } from '@/data/metricDefinitions';
+import { getMetricDefinition, getRelatedMetrics, isNavigableFiscalMetric, type FinancialDomain, type MetricId } from '@/data/metricDefinitions';
 import { getBudgetEstimate, getExecutionRate, getLatestActual, getMetricRatio, getMetricsForDomain } from '@/data/selectors';
 import { formatCurrency, formatPercentage } from '@/lib/formatting';
 import styles from './ExplorePage.module.css';
@@ -24,7 +24,7 @@ export default function ExplorePage() {
   const definition = localizeMetric(rawDefinition);
   const [domain, setDomain] = useState<FinancialDomain>(rawDefinition.domain === 'accounts' ? 'receipts' : rawDefinition.domain);
   const domainDefinition = getFiscalDomain(domain);
-  const domainMetrics = useMemo(() => getMetricsForDomain(domain).filter(metricId => metricId !== 'nominal_gdp'), [domain]);
+  const domainMetrics = useMemo(() => getMetricsForDomain(domain).filter(metricId => isNavigableFiscalMetric(metricId)), [domain]);
   const be = getBudgetEstimate(selectedMetric);
   const actual = getLatestActual(selectedMetric);
   const execution = getExecutionRate(selectedMetric);
@@ -64,7 +64,7 @@ export default function ExplorePage() {
       </div>
 
       <div className={styles.metricRail} aria-label={`${t(domainDefinition?.label ?? '')} ${t('metrics')}`}>
-        {domainMetrics.map(metricId => { const metricDefinition = getMetricDefinition(metricId); return <button key={metricId} aria-pressed={selectedMetric === metricId} className={selectedMetric === metricId ? styles.metricActive : styles.metricButton} onClick={() => selectMetric(metricId)}>{metricDefinition ? localizeMetric(metricDefinition).shortName : metricId}</button>; })}
+        {domainMetrics.map(metricId => { const metricDefinition = getMetricDefinition(metricId); const def = metricDefinition ? localizeMetric(metricDefinition) : null; return <button key={metricId} aria-pressed={selectedMetric === metricId} className={selectedMetric === metricId ? styles.metricActive : styles.metricButton} onClick={() => selectMetric(metricId)}>{def?.shortName || def?.displayName || metricId}</button>; })}
       </div>
 
       <article className={styles.metricDetail} aria-live="polite">

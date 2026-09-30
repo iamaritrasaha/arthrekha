@@ -1,58 +1,73 @@
 #!/usr/bin/env python3
 """
-Simple test runner - runs all pipeline tests
+Test runner - automatically discovers and runs all pipeline tests in pipeline/tests/
 """
+import importlib
+import inspect
+from pathlib import Path
 import sys
-import os
 
 # Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROJECT_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
-print("=" * 60)
-print("ARTHREKHA PIPELINE TESTS")
-print("=" * 60)
-print()
 
-# Run model tests
-print("Running model tests...")
-try:
-    from pipeline.tests import test_models
-    test_models.test_financial_observation_creation()
-    print("  ✓ test_financial_observation_creation")
-
-    test_models.test_observation_validation_valid()
-    print("  ✓ test_observation_validation_valid")
-
-    test_models.test_observation_validation_missing_source()
-    print("  ✓ test_observation_validation_missing_source")
-
-    test_models.test_observation_validation_invalid_unit()
-    print("  ✓ test_observation_validation_invalid_unit")
-
-    test_models.test_observation_to_dict()
-    print("  ✓ test_observation_to_dict")
+def main():
+    print("=" * 60)
+    print("ARTHREKHA PIPELINE TEST SUITE")
+    print("=" * 60)
     print()
-except Exception as e:
-    print(f"  ✗ Model tests failed: {e}")
-    sys.exit(1)
 
-# Run parser tests
-print("Running parser tests...")
-try:
-    from pipeline.tests import test_parsers
-    test_parsers.test_budget_parser()
-    print("  ✓ test_budget_parser")
+    tests_dir = PROJECT_ROOT / "pipeline" / "tests"
+    test_files = sorted(tests_dir.glob("test_*.py"))
 
-    test_parsers.test_cga_parser()
-    print("  ✓ test_cga_parser")
+    total_tests = 0
+    passed_tests = 0
+    failed_tests = []
 
-    test_parsers.test_parser_validates_metric_ids()
-    print("  ✓ test_parser_validates_metric_ids")
-    print()
-except Exception as e:
-    print(f"  ✗ Parser tests failed: {e}")
-    sys.exit(1)
+    for test_file in test_files:
+        module_name = f"pipeline.tests.{test_file.stem}"
+        try:
+            mod = importlib.import_module(module_name)
+        except Exception as e:
+            print(f"✗ Failed to import {module_name}: {e}")
+            failed_tests.append((module_name, "import", str(e)))
+            continue
 
-print("=" * 60)
-print("ALL TESTS PASSED")
-print("=" * 60)
+        # Get all test functions defined in this module
+        test_funcs = [
+            (name, func)
+            for name, func in inspect.getmembers(mod, inspect.isfunction)
+            if name.startswith("test_") and func.__module__ == module_name
+        ]
+
+        if not test_funcs:
+            continue
+
+        print(f"[{test_file.stem}]")
+        for name, func in test_funcs:
+            total_tests += 1
+            try:
+                func()
+                print(f"  ✓ {name}")
+                passed_tests += 1
+            except Exception as e:
+                print(f"  ✗ {name}: {e}")
+                failed_tests.append((module_name, name, str(e)))
+        print()
+
+    print("=" * 60)
+    if failed_tests:
+        print(f"FAILED: {len(failed_tests)}/{total_tests} tests failed.")
+        for mod, name, err in failed_tests:
+            print(f"  - {mod}.{name}: {err}")
+        print("=" * 60)
+        sys.exit(1)
+    else:
+        print(f"ALL {total_tests} TESTS PASSED SUCCESSFULLY")
+        print("=" * 60)
+        sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

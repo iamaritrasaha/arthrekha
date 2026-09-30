@@ -94,6 +94,8 @@ def validate_reconciliation(
     for key, metrics in grouped.items():
         if expected_total_metric not in metrics:
             continue
+        if not any(m in metrics for m in component_metrics):
+            continue
 
         expected = metrics[expected_total_metric]
 
@@ -101,7 +103,7 @@ def validate_reconciliation(
         calculated = sum(metrics.get(m, 0) for m in component_metrics)
 
         difference = abs(expected - calculated)
-        tolerance = expected * 0.01  # 1% tolerance for rounding
+        tolerance = max(abs(expected) * 0.01, 1.0)  # 1% tolerance or 1 crore
 
         reconciles = difference <= tolerance
 
@@ -115,9 +117,55 @@ def validate_reconciliation(
         })
 
     results["checks"] = reconciliation_checks
-    results["all_reconcile"] = all(c["reconciles"] for c in reconciliation_checks)
+    results["all_reconcile"] = all(c["reconciles"] for c in reconciliation_checks) if reconciliation_checks else True
 
     return results
+
+
+def validate_deficit_identities(observations: list[FinancialObservation]) -> dict[str, Any]:
+    """
+    Validate standard deficit identities across groups:
+    - Fiscal Deficit = Total Expenditure - Non-Borrowed Receipts
+    - Revenue Deficit = Revenue Expenditure - Revenue Receipts
+    - Effective Revenue Deficit = Revenue Deficit - Grants for Creation of Capital Assets
+    - Primary Deficit = Fiscal Deficit - Interest Payments
+    """
+    grouped: dict[tuple, dict[str, float]] = {}
+    for obs in observations:
+        key = (obs.financial_year, obs.period, obs.estimate_type)
+        if key not in grouped:
+            grouped[key] = {}
+        grouped[key][obs.metric] = obs.amount
+
+    checks = []
+    identities = [
+        ("fiscal_deficit", ("total_expenditure", "non_borrowed_receipts"), lambda m: m["total_expenditure"] - m["non_borrowed_receipts"], "Total Expenditure - Non-Borrowed Receipts"),
+        ("revenue_deficit", ("revenue_expenditure", "revenue_receipts"), lambda m: m["revenue_expenditure"] - m["revenue_receipts"], "Revenue Expenditure - Revenue Receipts"),
+        ("effective_revenue_deficit", ("revenue_deficit", "grants_for_capital_assets"), lambda m: m["revenue_deficit"] - m["grants_for_capital_assets"], "Revenue Deficit - Grants for Capital Assets"),
+        ("primary_deficit", ("fiscal_deficit", "interest_payments"), lambda m: m["fiscal_deficit"] - m["interest_payments"], "Fiscal Deficit - Interest Payments"),
+    ]
+
+    for key, metrics in grouped.items():
+        for deficit_metric, required_inputs, formula_fn, formula_str in identities:
+            if deficit_metric in metrics and all(inp in metrics for inp in required_inputs):
+                expected = metrics[deficit_metric]
+                calculated = formula_fn(metrics)
+                difference = abs(expected - calculated)
+                reconciles = difference <= max(abs(expected) * 0.01, 1.0)
+                checks.append({
+                    "key": key,
+                    "metric": deficit_metric,
+                    "formula": formula_str,
+                    "expected": expected,
+                    "calculated": calculated,
+                    "difference": difference,
+                    "reconciles": reconciles,
+                })
+
+    return {
+        "checks": checks,
+        "all_reconcile": all(c["reconciles"] for c in checks) if checks else True,
+    }
 
 
 def validate_execution_rate(

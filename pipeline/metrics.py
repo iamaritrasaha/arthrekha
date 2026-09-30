@@ -14,6 +14,7 @@ class MetricDefinition(TypedDict):
     parent_metric: str | None
     accounting_interpretation: str
     compatible_comparisons: list[str]
+    is_navigable: bool
 
 
 def _metric(
@@ -23,6 +24,7 @@ def _metric(
     interpretation: str,
     parent: str | None = None,
     comparisons: list[str] | None = None,
+    is_navigable: bool | None = None,
 ) -> MetricDefinition:
     return {
         "id": metric_id,
@@ -32,7 +34,9 @@ def _metric(
         "parent_metric": parent,
         "accounting_interpretation": interpretation,
         "compatible_comparisons": comparisons or [],
+        "is_navigable": is_navigable if is_navigable is not None else (domain != "accounts"),
     }
+
 
 
 METRICS: dict[str, MetricDefinition] = {

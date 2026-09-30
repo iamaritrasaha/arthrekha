@@ -114,4 +114,14 @@ describe('Data Selectors', () => {
     expect(getMetricsForDomain('deficit')).toEqual(expect.arrayContaining(['fiscal_deficit', 'revenue_deficit', 'primary_deficit']));
     expect(getMetricsForDomain('federal')).toContain('total_transfers_states_uts');
   });
+
+  it('enforces canonical DataStatus contract on all observations', () => {
+    const dataset = loadBudgetDataset();
+    const validDataStatuses = new Set(['final', 'provisional', 'estimated', 'derived', 'audited']);
+    for (const obs of dataset.observations) {
+      expect(validDataStatuses.has(obs.source.dataStatus)).toBe(true);
+      expect(obs.source.dataStatus).not.toBe('BE');
+    }
+  });
 });
+

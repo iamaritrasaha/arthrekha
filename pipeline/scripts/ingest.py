@@ -17,6 +17,7 @@ from pipeline.parsers.json_parser import load_all_sources
 from pipeline.validators import (
     validate_observations,
     validate_reconciliation,
+    validate_deficit_identities,
     validate_execution_rate,
 )
 from pipeline.models import DerivedMetric
@@ -153,6 +154,26 @@ def run_ingestion():
     else:
         print("  ✗ Total receipts including borrowing reconciliation failed")
 
+    # Deficit accounting identities (Fiscal, Revenue, Effective Revenue, Primary Deficit)
+    deficit_reconciliation = validate_deficit_identities(all_observations)
+    if deficit_reconciliation["all_reconcile"]:
+        print("  ✓ Deficit accounting identities reconcile")
+    else:
+        print("  ✗ Deficit accounting identities reconciliation failed")
+        for check in deficit_reconciliation["checks"]:
+            if not check["reconciles"]:
+                print(f"    {check['group']}: {check['identity']} - Expected: {check['expected']}, Got: {check['calculated']}")
+
+    if not (
+        receipts_reconciliation["all_reconcile"]
+        and revenue_reconciliation["all_reconcile"]
+        and expenditure_reconciliation["all_reconcile"]
+        and total_receipts_reconciliation["all_reconcile"]
+        and deficit_reconciliation["all_reconcile"]
+    ):
+        print("\n  ⚠ Reconciliation checks failed")
+        return False
+
     print()
 
     # Step 4: Calculate derived metrics (execution rates)
@@ -227,6 +248,59 @@ def run_ingestion():
     output_dir = Path("datasets/processed/union")
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # Discover and manifest each loaded CGA reporting period
+    cga_files = sorted(
+        Path("datasets/raw").glob("cga_2026-27_*.json"),
+        key=lambda path: {"apr": 0, "may": 1, "jun": 2, "jul": 3, "aug": 4, "sep": 5,
+                          "oct": 6, "nov": 7, "dec": 8, "jan": 9, "feb": 10, "mar": 11}.get(
+                              path.stem.rsplit("_", 1)[-1], 99
+                          ),
+    )
+
+    sources = [
+        create_source_manifest(
+            source_id="union-budget-2026-27-be",
+            organization="Ministry of Finance, Government of India",
+            document_name="Union Budget 2026-27 - Budget at a Glance",
+            url="https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+            financial_year="2026-27",
+            estimate_type="BE",
+            source_format="pdf",
+            parser_used="pipeline.parsers.json_parser",
+            metrics=list(be_by_metric.keys()),
+            publication_date="2026-02-01",
+            raw_file_path="datasets/raw/union_budget_2026-27_budget_at_a_glance.pdf",
+            notes="Budget Estimates transcribed from the official Budget at a Glance PDF; page and table references are retained on each observation",
+        ),
+    ]
+
+    for cga_file in cga_files:
+        try:
+            with open(cga_file, "r") as cf:
+                cga_data = json.load(cf)
+        except Exception:
+            continue
+        cga_src = cga_data.get("source", {})
+        reporting_period = cga_data.get("reporting_period", cga_file.stem.rsplit("_", 1)[-1])
+        cga_metrics = list(cga_data.get("data", {}).keys())
+        sources.append(
+            create_source_manifest(
+                source_id=f"cga-2026-27-{reporting_period}",
+                organization=cga_src.get("organization", "Controller General of Accounts, Government of India"),
+                document_name=cga_src.get("document", f"Union Government Accounts at a Glance - {reporting_period}"),
+                url=cga_src.get("url", "https://cga.nic.in/"),
+                financial_year="2026-27",
+                reporting_period=reporting_period,
+                estimate_type="provisional",
+                source_format="html",
+                parser_used="pipeline.parsers.json_parser",
+                metrics=cga_metrics,
+                publication_date=cga_src.get("publication_date"),
+                raw_file_path=f"datasets/raw/{cga_file.name}",
+                notes="Provisional actuals, cumulative YTD. Subject to CAG audit.",
+            )
+        )
+
     # Budget summary dataset
     budget_summary = {
         "financialYear": "2026-27",
@@ -236,7 +310,9 @@ def run_ingestion():
         "metadata": {
             "generated": date.today().isoformat(),
             "totalObservations": len(all_observations),
-            "sources": ["Union Budget 2026-27 BE", f"CGA {latest_period}"],
+            "sources": ["Union Budget 2026-27 BE"] + [
+                f"CGA {s['reporting_period']}" for s in sources if s.get("estimate_type") == "provisional"
+            ],
             "latestPeriod": latest_period,
             "dataStatus": "Real data from official government sources",
         },
@@ -251,38 +327,6 @@ def run_ingestion():
     # Source manifest
     metadata_dir = Path("datasets/metadata")
     metadata_dir.mkdir(parents=True, exist_ok=True)
-
-    sources = [
-        create_source_manifest(
-            source_id="union-budget-2026-27-be",
-            organization="Ministry of Finance, Government of India",
-            document_name="Union Budget 2026-27 - Budget at a Glance",
-            url="https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
-            financial_year="2026-27",
-            estimate_type="BE",
-            source_format="pdf",
-            parser_used="pipeline.parsers.budget_parser",
-            metrics=list(be_by_metric.keys()),
-            publication_date="2026-02-01",
-            raw_file_path="datasets/raw/union_budget_2026-27_budget_at_a_glance.pdf",
-            notes="Budget Estimates transcribed from the official Budget at a Glance PDF; page and table references are retained on each observation",
-        ),
-        create_source_manifest(
-            source_id=f"cga-2026-27-{latest_period}",
-            organization="Controller General of Accounts",
-            document_name=latest_actuals[0].source.document,
-            url=latest_actuals[0].source.url or "https://cga.nic.in/",
-            financial_year="2026-27",
-            reporting_period=latest_period,
-            estimate_type="provisional",
-            source_format="html",
-            parser_used="pipeline.parsers.cga_html",
-            metrics=list(actual_by_metric.keys()),
-            publication_date=latest_actuals[0].source.published_at,
-            raw_file_path=f"datasets/raw/cga_2026-27_{latest_period.split('-')[-1]}.json",
-            notes="Provisional actuals, cumulative YTD. Subject to CAG audit.",
-        ),
-    ]
 
     sources_file = metadata_dir / "sources.json"
     with open(sources_file, "w") as f:

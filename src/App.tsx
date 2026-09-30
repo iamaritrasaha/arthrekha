@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
+import LandingPage from '@/pages/LandingPage';
 import Shell from '@/components/layout/Shell';
 import { useTranslation } from '@/i18n';
 
@@ -11,16 +12,17 @@ const SourcesPage = lazy(() => import('@/pages/SourcesPage'));
 function App() {
   const { t } = useTranslation();
   return (
-    <Shell>
-      <Suspense fallback={<div role="status" style={{ minHeight: '70vh', display: 'grid', placeItems: 'center' }}>{t('Opening the fiscal atlas…')}</div>}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/explore" element={<ExplorePage />} />
-          <Route path="/learn" element={<LearnPage />} />
-          <Route path="/sources" element={<SourcesPage />} />
-        </Routes>
-      </Suspense>
-    </Shell>
+    <Suspense fallback={<div role="status" style={{ minHeight: '70vh', display: 'grid', placeItems: 'center' }}>{t('Opening the fiscal atlas…')}</div>}>
+      <Routes>
+        <Route path="/" element={<Shell><HomePage /></Shell>} />
+        <Route path="/landing" element={<LandingPage />} />
+        <Route path="/insights" element={<Navigate to="/" replace />} />
+        <Route path="/explore" element={<Shell><ExplorePage /></Shell>} />
+        <Route path="/learn" element={<Shell><LearnPage /></Shell>} />
+        <Route path="/sources" element={<Shell><SourcesPage /></Shell>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 

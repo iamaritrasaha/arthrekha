@@ -25,6 +25,7 @@ export interface MetricDefinition {
   compatibleRatios: string[];
   shortDescription: string;
   longDescription: string;
+  isNavigableMetric: boolean;
 }
 
 interface MetricOptions {
@@ -35,6 +36,7 @@ interface MetricOptions {
   caveats?: string[];
   relatedMetrics?: string[];
   compatibleRatios?: string[];
+  isNavigableMetric?: boolean;
 }
 
 function metric<TId extends string>(
@@ -48,13 +50,15 @@ function metric<TId extends string>(
   options: MetricOptions = {},
 ): MetricDefinition & { id: TId } {
   const explanation = { short, simple, whyItMatters, technical };
+  const classificationType = options.classificationType ?? (options.parentMetric ? 'component' : 'aggregate');
+  const isNavigableMetric = options.isNavigableMetric ?? (domain !== 'accounts' && classificationType !== 'denominator');
   return {
     id,
     displayName,
-    shortName: options.shortName,
+    shortName: options.shortName ?? displayName,
     domain,
     category: domain,
-    classificationType: options.classificationType ?? (options.parentMetric ? 'component' : 'aggregate'),
+    classificationType,
     parentMetric: options.parentMetric,
     unitType: 'crore',
     estimateStates: ['BE', 'RE', 'actual', 'provisional'],
@@ -65,6 +69,7 @@ function metric<TId extends string>(
     compatibleRatios: options.compatibleRatios ?? [],
     shortDescription: short,
     longDescription: simple,
+    isNavigableMetric,
   };
 }
 
@@ -138,3 +143,9 @@ export function getRelatedMetrics(metricId: string): MetricDefinition[] {
   const definition = getMetricDefinition(metricId);
   return definition ? definition.relatedMetrics.map(getMetricDefinition).filter((item): item is MetricDefinition => item !== null) : [];
 }
+
+export function isNavigableFiscalMetric(metricId: string): boolean {
+  const def = getMetricDefinition(metricId);
+  return !!def && def.isNavigableMetric;
+}
+

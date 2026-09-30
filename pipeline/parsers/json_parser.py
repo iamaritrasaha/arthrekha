@@ -39,6 +39,10 @@ def parse_json_source(file_path: str) -> list[FinancialObservation]:
 
         metric_meta = metric_metadata.get(metric_id, {})
         registry_definition = get_metric(metric_id)
+        data_status = metric_meta.get(
+            'data_status',
+            raw.get('data_status') or ('final' if raw.get('estimate_type') == 'BE' else 'provisional'),
+        )
         source = DataSource(
             organization=source_meta['organization'],
             document=source_meta['document'],
@@ -46,7 +50,7 @@ def parse_json_source(file_path: str) -> list[FinancialObservation]:
             table=metric_meta.get('table', source_meta.get('table')),
             published_at=source_meta.get('publication_date'),
             retrieved_at=source_meta['retrieval_date'],
-            data_status=metric_meta.get('data_status', raw.get('estimate_type', 'provisional')),
+            data_status=data_status,
             notes=source_meta.get('notes'),
             definition=metric_meta.get('definition'),
         )

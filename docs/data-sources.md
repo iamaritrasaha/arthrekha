@@ -2,7 +2,7 @@
 
 ## Current coverage
 
-Arthrekha currently covers the Union Government of India for FY 2026–27. Budget Estimates come from the Ministry of Finance. Provisional cumulative actuals run through June 2026 and come from the Controller General of Accounts.
+Arthrekha currently covers the Union Government of India for FY 2026–27. Budget Estimates come from the Ministry of Finance. Provisional cumulative actuals run through July 2026 and come from the Controller General of Accounts.
 
 ## Union Budget 2026–27
 
@@ -33,7 +33,7 @@ Coverage includes receipts, expenditure, deficits, nominal GDP, selected tax com
 - **Publication:** Monthly Accounts / Accounts at a Glance
 - **Official site:** https://cga.nic.in/
 - **Estimate type:** cumulative provisional actual
-- **Current periods:** April, April–May and April–June 2026
+- **Current periods:** April, April–May, April–June, and April–July 2026
 - **Status:** provisional and unaudited
 
 The CGA observations remain the ten validated current-year execution metrics established in Milestone 1. Values are cumulative year-to-date; Arthrekha does not manufacture monthly flows by subtracting cumulative observations.

@@ -42,4 +42,16 @@ describe('Bengali localization', () => {
       expect(translated).toMatch(bengaliText);
     });
   });
+
+  it('translates Fiscal Deficit and Revenue Deficit accurately and distinctly', () => {
+    const fiscalDeficit = translateText('Fiscal Deficit', 'bn-IN');
+    const revenueDeficit = translateText('Revenue Deficit', 'bn-IN');
+    expect(fiscalDeficit).toBe('রাজকোষ ঘাটতি');
+    expect(revenueDeficit).toBe('রাজস্ব ঘাটতি');
+    expect(fiscalDeficit).not.toBe(revenueDeficit);
+
+    const fiscalDeficitLower = translateText('Fiscal deficit', 'bn-IN');
+    expect(fiscalDeficitLower).toBe('রাজকোষ ঘাটতি');
+  });
 });
+

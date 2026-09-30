@@ -5,6 +5,9 @@ from pipeline.validators import validate_reconciliation
 
 def test_expanded_registry_covers_first_deep_finance_batch():
     assert len(METRICS) == 44
+    assert sum(1 for m in METRICS.values() if m["is_navigable"]) == 43
+    assert METRICS["nominal_gdp"]["is_navigable"] is False
+    assert METRICS["nominal_gdp"]["domain"] == "accounts"
     assert get_metric("primary_deficit")["parent_metric"] == "fiscal_deficit"
     assert get_metric("market_borrowings_net")["domain"] == "debt"
     assert len(get_metrics_by_category("federal")) >= 4

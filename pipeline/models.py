@@ -201,13 +201,22 @@ def validate_observation(obs: FinancialObservation) -> list[str]:
     if obs.financial_year and not _is_valid_fy_format(obs.financial_year):
         errors.append(f"invalid financial year format: {obs.financial_year}")
 
-    # Provenance
+    # Estimate type validation
+    valid_estimate_types = {"BE", "RE", "actual", "provisional", "audited_actual"}
+    if obs.estimate_type not in valid_estimate_types:
+        errors.append(f"invalid estimate_type: '{obs.estimate_type}', must be one of {sorted(valid_estimate_types)}")
+
+    # Provenance and data status
     if obs.source is None:
         errors.append("source provenance is required")
-    elif not obs.source.organization:
-        errors.append("source.organization is required")
-    elif not obs.source.document:
-        errors.append("source.document is required")
+    else:
+        if not obs.source.organization:
+            errors.append("source.organization is required")
+        if not obs.source.document:
+            errors.append("source.document is required")
+        valid_data_statuses = {"final", "provisional", "estimated", "derived", "audited"}
+        if obs.source.data_status not in valid_data_statuses:
+            errors.append(f"invalid data_status: '{obs.source.data_status}', must be one of {sorted(valid_data_statuses)}")
 
     return errors
 

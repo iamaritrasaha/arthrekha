@@ -1,6 +1,6 @@
 {
   "financialYear": "2026-27",
-  "asOfDate": "2026-09-09",
+  "asOfDate": "2026-09-30",
   "observations": [
     {
       "id": "3342d72dd7ed95e5",
@@ -20,7 +20,7 @@
         "table": "Budget at a Glance, page 1, row 1",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Revenue receipts of the Union Government."
       },
@@ -46,7 +46,7 @@
         "table": "Budget at a Glance, page 1, row 2",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Tax revenue net to Centre after the States' share and specified transfers."
       },
@@ -73,7 +73,7 @@
         "table": "Budget at a Glance, page 1, row 3",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Non-tax revenue receipts of the Union Government."
       },
@@ -100,7 +100,7 @@
         "table": "Budget at a Glance, page 1, row 4",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Capital receipts including non-debt receipts, borrowings and other liabilities."
       },
@@ -126,7 +126,7 @@
         "table": "Budget at a Glance, page 1, row 5",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Recovery of loans recorded as a capital receipt."
       },
@@ -153,7 +153,7 @@
         "table": "Budget at a Glance, page 1, row 6",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Other capital receipts in the Budget at a Glance classification."
       },
@@ -180,7 +180,7 @@
         "table": "Receipts, page 6, row 3A",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Non-debt capital receipts, comprising recoveries of loans and other receipts in this summary."
       },
@@ -207,7 +207,7 @@
         "table": "Budget at a Glance, page 1, row 7",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Borrowings and other liabilities; includes drawdown of cash balance."
       },
@@ -260,7 +260,7 @@
         "table": "Budget at a Glance, page 1, row 8",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Total receipts including capital receipts and borrowing."
       },
@@ -286,7 +286,7 @@
         "table": "Budget at a Glance, page 1, row 10",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Expenditure on revenue account."
       },
@@ -313,7 +313,7 @@
         "table": "Budget at a Glance, page 1, row 13",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Expenditure on capital account."
       },
@@ -340,7 +340,7 @@
         "table": "Budget at a Glance, page 1, row 9",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Total Union Government expenditure on revenue and capital accounts."
       },
@@ -366,7 +366,7 @@
         "table": "Budget at a Glance, page 1, row 11",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Interest payments included in revenue expenditure."
       },
@@ -393,7 +393,7 @@
         "table": "Budget at a Glance, page 1, row 12",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Grants in aid for creation of capital assets."
       },
@@ -420,7 +420,7 @@
         "table": "Budget at a Glance, page 1, row 14",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Capital expenditure plus grants in aid for creation of capital assets."
       },
@@ -447,7 +447,7 @@
         "table": "Budget at a Glance, page 1, row 15",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Revenue expenditure minus revenue receipts."
       },
@@ -473,7 +473,7 @@
         "table": "Budget at a Glance, page 1, row 16",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Revenue deficit minus grants in aid for creation of capital assets."
       },
@@ -500,7 +500,7 @@
         "table": "Budget at a Glance, page 1, row 17",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Total expenditure minus revenue receipts, recovery of loans and other non-debt receipts."
       },
@@ -526,7 +526,7 @@
         "table": "Budget at a Glance, page 1, row 18",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Fiscal deficit minus interest payments."
       },
@@ -553,7 +553,7 @@
         "table": "Receipts, page 6, Tax Revenue",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Gross Union tax revenue before deductions and the States' share."
       },
@@ -580,7 +580,7 @@
         "table": "Receipts, page 6, row 1a",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Corporation tax included in gross tax revenue."
       },
@@ -607,7 +607,7 @@
         "table": "Receipts, page 6, row 1b",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Taxes on income included in gross tax revenue."
       },
@@ -634,7 +634,7 @@
         "table": "Receipts, page 6, row 1c",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Customs duties included in gross tax revenue."
       },
@@ -661,7 +661,7 @@
         "table": "Receipts, page 6, row 1d",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Union excise duties included in gross tax revenue."
       },
@@ -688,7 +688,7 @@
         "table": "Receipts, page 6, row 1e",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Goods and Services Tax included in gross tax revenue."
       },
@@ -715,7 +715,7 @@
         "table": "Receipts, page 6, deduction from gross tax revenue",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "States' share deducted from gross tax revenue to arrive at tax revenue net to Centre."
       },
@@ -742,7 +742,7 @@
         "table": "Expenditure of Major Items, page 11",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Pension expenditure in the Budget at a Glance major-items presentation."
       },
@@ -769,7 +769,7 @@
         "table": "Expenditure of Major Items, page 11",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Defence expenditure in the Budget at a Glance major-items presentation."
       },
@@ -796,7 +796,7 @@
         "table": "Expenditure of Major Items, page 11",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Fertiliser subsidy expenditure."
       },
@@ -823,7 +823,7 @@
         "table": "Expenditure of Major Items, page 11",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Food subsidy expenditure."
       },
@@ -850,7 +850,7 @@
         "table": "Expenditure of Major Items, page 11",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Petroleum subsidy expenditure."
       },
@@ -877,7 +877,7 @@
         "table": "Expenditure of Government of India, page 8",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Expenditure on Central Sector schemes and projects."
       },
@@ -904,7 +904,7 @@
         "table": "Expenditure of Government of India, page 8",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Transfers for Centrally Sponsored Schemes."
       },
@@ -931,7 +931,7 @@
         "table": "Transfer of Resources to States and UTs, page 12",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Grants provided under Finance Commission recommendations."
       },
@@ -957,7 +957,7 @@
         "table": "Expenditure of Government of India, page 8",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Other grants, loans and transfers in the broad expenditure classification."
       },
@@ -983,7 +983,7 @@
         "table": "Transfer of Resources to States and UTs, page 12",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Devolution of States' share in Union taxes."
       },
@@ -1009,7 +1009,7 @@
         "table": "Transfer of Resources to States and UTs, page 12",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Total transfers to States and Union Territories with legislature."
       },
@@ -1035,7 +1035,7 @@
         "table": "Sources of Financing Fiscal Deficit, page 4",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Net debt receipts used in financing the fiscal deficit."
       },
@@ -1062,7 +1062,7 @@
         "table": "Sources of Financing Fiscal Deficit, page 4",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Net market borrowings through government securities, after buyback and switching operations."
       },
@@ -1090,7 +1090,7 @@
         "table": "Sources of Financing Fiscal Deficit, page 4",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Short-term borrowing including Treasury Bills."
       },
@@ -1118,7 +1118,7 @@
         "table": "Sources of Financing Fiscal Deficit, page 4",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Securities issued against small savings."
       },
@@ -1146,7 +1146,7 @@
         "table": "Sources of Financing Fiscal Deficit, page 4",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Net external debt receipts used in deficit financing."
       },
@@ -1174,7 +1174,7 @@
         "table": "Budget at a Glance, page 1, note (i)",
         "publishedAt": "2026-02-01",
         "retrievedAt": "2026-08-27",
-        "dataStatus": "BE",
+        "dataStatus": "final",
         "notes": "Budget Estimates presented to Parliament. Values transcribed from the official Ministry of Finance PDF; individual items may not sum due to rounding.",
         "definition": "Nominal GDP estimate for FY 2026-27 cited from NSO and used as the denominator for published deficit ratios."
       },
@@ -2478,10 +2478,13 @@
     }
   ],
   "metadata": {
-    "generated": "2026-09-09",
+    "generated": "2026-09-30",
     "totalObservations": 84,
     "sources": [
       "Union Budget 2026-27 BE",
+      "CGA apr",
+      "CGA apr-may",
+      "CGA apr-jun",
       "CGA apr-jul"
     ],
     "latestPeriod": "apr-jul",

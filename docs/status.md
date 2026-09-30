@@ -14,7 +14,7 @@
 ## Milestone 3 result
 
 - 44-metric FY 2026–27 Union Budget registry, up from 10 core metrics
-- 74 normalized observations and 17 explicit derived metrics
+- 84 normalized observations and 17 explicit derived metrics
 - official Budget-at-a-Glance PDF preserved in the truth layer
 - corrected official Budget Estimate values and clarified total receipts vs non-borrowed receipts
 - six fiscal domains with explicit hierarchy and classification safety
@@ -32,7 +32,7 @@
 - Jurisdiction: Union Government of India
 - Financial year: FY 2026–27
 - Annual plan: Ministry of Finance Budget Estimates
-- Latest execution: CGA provisional actuals through June 2026
+- Latest execution: CGA provisional actuals through July 2026
 - Historical data: not yet included
 - State data: not yet included
 
@@ -50,7 +50,7 @@
 ```bash
 npm run typecheck
 npm test -- --run
-PYTHONPATH=. pytest -q
+python3 run_tests.py
 npm run lint
 npm run build
 ```

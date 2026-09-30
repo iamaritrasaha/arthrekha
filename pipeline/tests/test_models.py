@@ -138,6 +138,82 @@ def test_observation_to_dict():
     assert d["source"]["organization"] == "MoF"
 
 
+def test_observation_validation_invalid_data_status():
+    """Test validation catches invalid data_status like 'BE'"""
+    source = DataSource(
+        organization="Test",
+        document="Test",
+        retrieved_at="2026-08-27",
+        data_status="BE",  # Invalid! Not in DataStatus union
+    )
+
+    obs = FinancialObservation(
+        jurisdiction="india",
+        jurisdiction_type="union",
+        financial_year="2026-27",
+        period=None,
+        period_type="annual",
+        metric="total_expenditure",
+        amount=5020579,
+        estimate_type="BE",
+        source=source,
+    )
+
+    errors = validate_observation(obs)
+    assert any("data_status" in e and "must be one of" in e for e in errors)
+
+
+def test_observation_validation_invalid_estimate_type():
+    """Test validation catches invalid estimate_type"""
+    source = DataSource(
+        organization="Test",
+        document="Test",
+        retrieved_at="2026-08-27",
+        data_status="final",
+    )
+
+    obs = FinancialObservation(
+        jurisdiction="india",
+        jurisdiction_type="union",
+        financial_year="2026-27",
+        period=None,
+        period_type="annual",
+        metric="total_expenditure",
+        amount=5020579,
+        estimate_type="INVALID_TYPE",
+        source=source,
+    )
+
+    errors = validate_observation(obs)
+    assert any("estimate_type" in e and "must be one of" in e for e in errors)
+
+
+def test_observation_validation_valid_data_statuses():
+    """Test validation accepts canonical data_statuses"""
+    for status in ["final", "provisional", "derived", "estimated", "audited"]:
+        source = DataSource(
+            organization="Test",
+            document="Test",
+            retrieved_at="2026-08-27",
+            data_status=status,
+        )
+
+        obs = FinancialObservation(
+            jurisdiction="india",
+            jurisdiction_type="union",
+            financial_year="2026-27",
+            period=None,
+            period_type="annual",
+            metric="total_expenditure",
+            amount=5020579,
+            estimate_type="BE",
+            source=source,
+        )
+
+        errors = validate_observation(obs)
+        assert len(errors) == 0, f"Expected {status} to be valid, got: {errors}"
+
+
 if __name__ == "__main__":
     test_financial_observation_creation()
     print("✓ test_financial_observation_creation")
@@ -151,7 +227,17 @@ if __name__ == "__main__":
     test_observation_validation_invalid_unit()
     print("✓ test_observation_validation_invalid_unit")
 
+    test_observation_validation_invalid_data_status()
+    print("✓ test_observation_validation_invalid_data_status")
+
+    test_observation_validation_invalid_estimate_type()
+    print("✓ test_observation_validation_invalid_estimate_type")
+
+    test_observation_validation_valid_data_statuses()
+    print("✓ test_observation_validation_valid_data_statuses")
+
     test_observation_to_dict()
     print("✓ test_observation_to_dict")
 
     print("\nAll tests passed!")
+
