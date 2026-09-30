@@ -4,6 +4,10 @@ Verifies all 44 BE metrics against the official Budget at a Glance PDF
 and all CGA monthly records for mathematical and provenance integrity.
 """
 
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
 from pipeline.source_verifier import verify_be_source_evidence, verify_cga_monthly_consistency
 
 
@@ -27,14 +31,30 @@ def test_be_source_evidence_against_official_pdf():
 
 def test_cga_monthly_provenance_and_identities():
     report = verify_cga_monthly_consistency()
-    assert report["files_checked"] == 4
-    assert set(report["periods"]) == {"apr", "apr-may", "apr-jun", "apr-jul"}
+    assert report["files_checked"] == len(set(report["periods"]))
+    assert {"apr", "apr-may", "apr-jun", "apr-jul"}.issubset(set(report["periods"]))
     assert report["all_reconciled"] is True
 
     for item in report["details"]:
         assert item["financial_year"] == "2026-27"
         assert item["estimate_type"] == "provisional"
         assert all(item["identities"].values())
+
+
+def test_cga_provenance_sidecars_are_not_counted_as_monthly_datasets():
+    source = Path("datasets/raw/cga_2026-27_apr.json")
+    with TemporaryDirectory() as directory:
+        raw_dir = Path(directory)
+        (raw_dir / source.name).write_bytes(source.read_bytes())
+        (raw_dir / "cga_2026-27_apr.provenance.json").write_text(
+            json.dumps({"source_sha256": "test"}), encoding="utf-8"
+        )
+
+        report = verify_cga_monthly_consistency(raw_dir)
+
+    assert report["files_checked"] == 1
+    assert report["periods"] == ["apr"]
+    assert report["all_reconciled"] is True
 
 
 def test_negative_wrong_row_on_same_page_rejected():

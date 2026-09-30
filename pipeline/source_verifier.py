@@ -263,7 +263,12 @@ def verify_cga_monthly_consistency(cga_dir: Path = Path("datasets/raw")) -> dict
     """
     Verify all raw CGA JSON files for accounting and period consistency.
     """
-    cga_files = sorted(cga_dir.glob("cga_2026-27_*.json"))
+    # Provenance sidecars share the monthly data-file prefix, but are not raw
+    # metric datasets and must not be counted as separate reporting periods.
+    cga_files = sorted(
+        path for path in cga_dir.glob("cga_2026-27_*.json")
+        if not path.name.endswith(".provenance.json")
+    )
     report = {
         "files_checked": len(cga_files),
         "periods": [],
