@@ -63,6 +63,12 @@ jobs:
             --report-url "$REPORT_URL" \
             --output "datasets/raw/cga_2026-27_${report_end}.json"
 
+      - name: Install system dependencies (Poppler pdftotext)
+        if: steps.source-check.outputs.status == 'new_release'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
       - name: Install Python validation dependencies
         if: steps.source-check.outputs.status == 'new_release'
         run: python -m pip install -r requirements-dev.txt
