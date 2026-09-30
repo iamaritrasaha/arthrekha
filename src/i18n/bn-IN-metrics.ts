@@ -213,7 +213,7 @@ export function localizeMetricDefinition(definition: MetricDefinition, language:
   return {
     ...definition,
     displayName: translation.displayName,
-    shortName: translation.shortName ?? translation.displayName,
+    shortName: translation.shortName,
     explanation: translation.explanation,
     shortDescription: translation.explanation.short,
     longDescription: translation.explanation.simple,

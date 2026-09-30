@@ -231,68 +231,141 @@ async function runBrowserAudit() {
     await new Promise(r => setTimeout(r, 300));
 
     // -------------------------------------------------------------
-    // Test 3: Explore Page & 44 Metric Rail Verification
+    // Test 3: Explore Page & 43 Metric Rail Verification (English & Bengali)
     // -------------------------------------------------------------
-    console.log('\n[3/6] Auditing Explore Page (/explore) & Metric Rails...');
-    await client.navigate(`${BASE_URL}/explore`);
-    await new Promise(r => setTimeout(r, 600));
+    console.log('\n[3/6] Auditing Explore Page (/explore) & Metric Rails (English & Bengali)...');
 
-    const exploreAudit = await client.evaluate(`(async () => {
-      const results = {
-        domainCount: 0,
-        domains: [],
-        totalMetricsSeen: 0,
-        emptyButtons: 0,
-        metrics: [],
-      };
+    for (const lang of ['en-IN', 'bn-IN']) {
+      console.log(`\n  --- Auditing Explore Metric Rails in [${lang}] ---`);
+      // Switch language
+      await client.evaluate(`(() => {
+        const select = document.querySelector('header select') || document.querySelector('select[aria-label*="Language"]');
+        if (select) {
+          select.value = '${lang}';
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      })()`);
+      await new Promise(r => setTimeout(r, 300));
+      await client.navigate(`${BASE_URL}/explore`);
+      await new Promise(r => setTimeout(r, 600));
 
-      const domainTabs = Array.from(document.querySelectorAll('[role=\"tab\"]'));
-      results.domainCount = domainTabs.length;
+      const exploreAudit = await client.evaluate(`(async () => {
+        const results = {
+          lang: '${lang}',
+          domainCount: 0,
+          domains: [],
+          totalMetricsSeen: 0,
+          emptyButtons: 0,
+          collapsedPills: 0,
+          missingVisibleText: 0,
+          rawMetricIdsSeen: [],
+          details: [],
+        };
 
-      const seenMetricIds = new Set();
+        const domainTabs = Array.from(document.querySelectorAll('[role="tab"]'));
+        results.domainCount = domainTabs.length;
 
-      for (const tab of domainTabs) {
-        tab.click();
-        await new Promise(r => setTimeout(r, 100));
+        const seenMetricLabels = new Set();
 
-        const tabText = tab.innerText.replace(/\\s+/g, ' ').trim();
-        const rail = document.querySelector('[class*=\"metricRail\"]');
-        if (!rail) continue;
+        for (const tab of domainTabs) {
+          tab.click();
+          await new Promise(r => setTimeout(r, 150));
 
-        const metricButtons = Array.from(rail.querySelectorAll('button'));
-        const tabMetrics = [];
+          const tabText = tab.innerText.replace(/\\s+/g, ' ').trim();
+          const rail = document.querySelector('[class*="metricRail"]');
+          if (!rail) continue;
 
-        for (const btn of metricButtons) {
-          const label = btn.innerText.trim();
-          if (!label) {
-            results.emptyButtons++;
+          const metricButtons = Array.from(rail.querySelectorAll('button'));
+          const tabMetrics = [];
+
+          for (const btn of metricButtons) {
+            const textContent = (btn.textContent || '').trim();
+            const innerText = (btn.innerText || '').trim();
+            const rect = btn.getBoundingClientRect();
+            const computedStyle = window.getComputedStyle(btn);
+
+            // 1. Check textContent.trim().length > 0
+            const hasText = textContent.length > 0;
+            // 2. Check visible rendered text, not merely aria-label
+            const hasVisibleText = innerText.length > 0 && computedStyle.visibility !== 'hidden' && computedStyle.display !== 'none';
+            // 3. Check width consistency (an empty pill with 15px padding is ~30-32px; shortest metric 'GST' is >= 48px)
+            const isCollapsed = rect.width < 45;
+            // 4. Check for undefined or null literals
+            const isUndefinedLiteral = textContent === 'undefined' || textContent === 'null';
+
+            if (!hasText || isUndefinedLiteral) {
+              results.emptyButtons++;
+            }
+            if (!hasVisibleText) {
+              results.missingVisibleText++;
+            }
+            if (isCollapsed) {
+              results.collapsedPills++;
+            }
+
+            // Check if label appears to be a raw snake_case metric id rather than human-readable
+            if (/^[a-z]+(_[a-z]+)+$/.test(textContent)) {
+              results.rawMetricIdsSeen.push(textContent);
+            }
+
+            tabMetrics.push({
+              label: textContent,
+              width: Math.round(rect.width),
+              height: Math.round(rect.height),
+              hasText,
+              hasVisibleText,
+              isCollapsed,
+            });
+            seenMetricLabels.add(textContent);
           }
-          tabMetrics.push(label);
-          seenMetricIds.add(label);
+
+          results.domains.push({
+            tab: tabText,
+            metricsCount: metricButtons.length,
+            metrics: tabMetrics.map(m => m.label),
+            details: tabMetrics,
+          });
         }
 
-        results.domains.push({
-          tab: tabText,
-          metricsCount: metricButtons.length,
-          metrics: tabMetrics,
-        });
+        results.totalMetricsSeen = seenMetricLabels.size;
+        return results;
+      })()`);
+
+      console.log(`    Domain tabs found: ${exploreAudit.domainCount}`);
+      for (const d of exploreAudit.domains) {
+        console.log(`      • ${d.tab}: ${d.metricsCount} metrics (e.g. ${d.metrics.slice(0, 3).join(', ')}...)`);
+      }
+      console.log(`    Total unique metric rail buttons rendered: ${exploreAudit.totalMetricsSeen}`);
+      console.log(`    Empty / blank buttons: ${exploreAudit.emptyButtons}`);
+      console.log(`    Collapsed narrow pills (<45px): ${exploreAudit.collapsedPills}`);
+      console.log(`    Buttons missing visible text: ${exploreAudit.missingVisibleText}`);
+      if (exploreAudit.rawMetricIdsSeen.length > 0) {
+        console.log(`    Warning: raw snake_case IDs rendered: ${exploreAudit.rawMetricIdsSeen.join(', ')}`);
       }
 
-      results.totalMetricsSeen = seenMetricIds.size;
-      return results;
+      if (
+        exploreAudit.emptyButtons > 0 ||
+        exploreAudit.collapsedPills > 0 ||
+        exploreAudit.missingVisibleText > 0 ||
+        exploreAudit.totalMetricsSeen !== 43
+      ) {
+        console.log(`    ✗ Explore metric rail verification FAILED in [${lang}]!`);
+        auditReport.allPassed = false;
+      } else {
+        console.log(`    ✓ All 43 metric rail buttons have non-empty, visible text and consistent widths in [${lang}].`);
+      }
+      auditReport.pagesTested.push({ page: `Explore (${lang})`, data: exploreAudit });
+    }
+
+    // Switch back to English for subsequent tests
+    await client.evaluate(`(() => {
+      const select = document.querySelector('header select') || document.querySelector('select[aria-label*="Language"]');
+      if (select) {
+        select.value = 'en-IN';
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      }
     })()`);
-
-    console.log(`  Domain tabs found: ${exploreAudit.domainCount}`);
-    for (const d of exploreAudit.domains) {
-      console.log(`    • ${d.tab}: ${d.metricsCount} metrics (e.g. ${d.metrics.slice(0, 3).join(', ')}...)`);
-    }
-    console.log(`  Total unique metric rail buttons rendered across domains: ${exploreAudit.totalMetricsSeen}`);
-    console.log(`  Empty / blank buttons found: ${exploreAudit.emptyButtons}`);
-
-    if (exploreAudit.emptyButtons > 0 || exploreAudit.totalMetricsSeen < 43) {
-      auditReport.allPassed = false;
-    }
-    auditReport.pagesTested.push({ page: 'Explore', data: exploreAudit });
+    await new Promise(r => setTimeout(r, 300));
 
     // -------------------------------------------------------------
     // Test 4: 5 Representative Metrics Deep Trace on UI

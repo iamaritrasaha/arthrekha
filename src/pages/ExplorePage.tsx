@@ -4,7 +4,7 @@ import FinancialFlow from '@/components/finance/FinancialFlow';
 import MetricTable from '@/components/finance/MetricTable';
 import ModeSwitch, { type ExplorationMode } from '@/components/finance/ModeSwitch';
 import { FISCAL_DOMAINS, getFiscalDomain } from '@/data/domains';
-import { getMetricDefinition, getRelatedMetrics, isNavigableFiscalMetric, type FinancialDomain, type MetricId } from '@/data/metricDefinitions';
+import { getMetricButtonLabel, getMetricDefinition, getRelatedMetrics, isNavigableFiscalMetric, type FinancialDomain, type MetricId } from '@/data/metricDefinitions';
 import { getBudgetEstimate, getExecutionRate, getLatestActual, getMetricRatio, getMetricsForDomain } from '@/data/selectors';
 import { formatCurrency, formatPercentage } from '@/lib/formatting';
 import styles from './ExplorePage.module.css';
@@ -64,7 +64,21 @@ export default function ExplorePage() {
       </div>
 
       <div className={styles.metricRail} aria-label={`${t(domainDefinition?.label ?? '')} ${t('metrics')}`}>
-        {domainMetrics.map(metricId => { const metricDefinition = getMetricDefinition(metricId); const def = metricDefinition ? localizeMetric(metricDefinition) : null; return <button key={metricId} aria-pressed={selectedMetric === metricId} className={selectedMetric === metricId ? styles.metricActive : styles.metricButton} onClick={() => selectMetric(metricId)}>{def?.shortName || def?.displayName || metricId}</button>; })}
+        {domainMetrics.map(metricId => {
+          const canonicalDef = getMetricDefinition(metricId);
+          const localizedDef = canonicalDef ? localizeMetric(canonicalDef) : null;
+          const label = getMetricButtonLabel(metricId, localizedDef, canonicalDef);
+          return (
+            <button
+              key={metricId}
+              aria-pressed={selectedMetric === metricId}
+              className={selectedMetric === metricId ? styles.metricActive : styles.metricButton}
+              onClick={() => selectMetric(metricId)}
+            >
+              {label}
+            </button>
+          );
+        })}
       </div>
 
       <article className={styles.metricDetail} aria-live="polite">

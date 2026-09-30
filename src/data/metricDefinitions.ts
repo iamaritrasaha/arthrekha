@@ -55,7 +55,7 @@ function metric<TId extends string>(
   return {
     id,
     displayName,
-    shortName: options.shortName ?? displayName,
+    shortName: options.shortName,
     domain,
     category: domain,
     classificationType,
@@ -147,5 +147,33 @@ export function getRelatedMetrics(metricId: string): MetricDefinition[] {
 export function isNavigableFiscalMetric(metricId: string): boolean {
   const def = getMetricDefinition(metricId);
   return !!def && def.isNavigableMetric;
+}
+
+/**
+ * Resolves the display label for a metric button following the strict fallback contract:
+ * localized shortName -> localized displayName -> canonical shortName -> canonical displayName -> metricId
+ *
+ * A metric button must never return an empty string, whitespace-only string, or undefined.
+ */
+export function getMetricButtonLabel(
+  metricId: string,
+  localizedDef?: Partial<MetricDefinition> | null,
+  canonicalDef?: Partial<MetricDefinition> | null,
+): string {
+  const isNonEmpty = (val?: string | null): val is string => typeof val === 'string' && val.trim().length > 0;
+
+  if (isNonEmpty(localizedDef?.shortName)) {
+    return localizedDef.shortName.trim();
+  }
+  if (isNonEmpty(localizedDef?.displayName)) {
+    return localizedDef.displayName.trim();
+  }
+  if (isNonEmpty(canonicalDef?.shortName)) {
+    return canonicalDef.shortName.trim();
+  }
+  if (isNonEmpty(canonicalDef?.displayName)) {
+    return canonicalDef.displayName.trim();
+  }
+  return metricId.trim();
 }
 

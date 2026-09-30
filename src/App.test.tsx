@@ -18,8 +18,9 @@ describe('App routing and navigation', () => {
     expect(await screen.findByRole('heading', { level: 1 })).toBeInTheDocument();
   });
 
-  it('renders ExplorePage and verifies metric rail buttons across domains have non-empty labels', () => {
-    render(
+  it('renders ExplorePage and verifies all 43 metric rail buttons across domains have non-empty visible labels in both English and Bengali', () => {
+    // 1. English rendering verification
+    const { unmount } = render(
       <LanguageProvider>
         <MemoryRouter initialEntries={['/explore']}>
           <ExplorePage />
@@ -40,7 +41,8 @@ describe('App routing and navigation', () => {
     const domainTabs = screen.getAllByRole('tab');
     expect(domainTabs.length).toBe(5);
 
-    const seenLabels = new Set<string>();
+    let totalEnButtonsSeen = 0;
+    const seenEnLabels = new Set<string>();
     for (const tab of domainTabs) {
       fireEvent.click(tab);
       const rail = document.querySelector('[class*="metricRail"]');
@@ -48,13 +50,58 @@ describe('App routing and navigation', () => {
       const metricButtons = Array.from(rail!.querySelectorAll('button'));
       expect(metricButtons.length).toBeGreaterThan(0);
       for (const btn of metricButtons) {
+        totalEnButtonsSeen++;
         const text = btn.textContent?.trim() || '';
         expect(text.length).toBeGreaterThan(0);
-        seenLabels.add(text);
+        expect(text).not.toBe('undefined');
+        expect(text).not.toBe('null');
+        seenEnLabels.add(text);
       }
     }
 
-    // All 43 domain metrics across the 5 domains should have unique non-empty labels
-    expect(seenLabels.size).toBe(43);
+    // Regression check: all 43 metrics must have unique visible labels, never collapsing to only 3 named buttons
+    expect(totalEnButtonsSeen).toBe(43);
+    expect(seenEnLabels.size).toBe(43);
+    expect(seenEnLabels.size).toBeGreaterThan(3);
+
+    unmount();
+
+    // 2. Bengali rendering verification
+    window.localStorage.setItem('arthrekha-language', 'bn-IN');
+    render(
+      <LanguageProvider>
+        <MemoryRouter initialEntries={['/explore']}>
+          <ExplorePage />
+        </MemoryRouter>
+      </LanguageProvider>
+    );
+
+    const bnTabs = screen.getAllByRole('tab');
+    expect(bnTabs.length).toBe(5);
+
+    let totalBnButtonsSeen = 0;
+    const seenBnLabels = new Set<string>();
+    for (const tab of bnTabs) {
+      fireEvent.click(tab);
+      const rail = document.querySelector('[class*="metricRail"]');
+      expect(rail).not.toBeNull();
+      const metricButtons = Array.from(rail!.querySelectorAll('button'));
+      expect(metricButtons.length).toBeGreaterThan(0);
+      for (const btn of metricButtons) {
+        totalBnButtonsSeen++;
+        const text = btn.textContent?.trim() || '';
+        expect(text.length).toBeGreaterThan(0);
+        expect(text).not.toBe('undefined');
+        expect(text).not.toBe('null');
+        seenBnLabels.add(text);
+      }
+    }
+
+    expect(totalBnButtonsSeen).toBe(43);
+    expect(seenBnLabels.size).toBe(43);
+    expect(seenBnLabels.size).toBeGreaterThan(3);
+
+    // Clean up local storage
+    window.localStorage.removeItem('arthrekha-language');
   });
 });
