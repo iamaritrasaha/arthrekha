@@ -1,0 +1,10 @@
+{
+  "url": "https://cga.nic.in/MonthlyReport/Published/8/2026-2027.aspx",
+  "fetched_at": "2026-09-30T18:55:39+00:00",
+  "sha256_html_utf8": "b8cab3671ae7cf8511eec2e40481b4044f3f75db77ece9a48ada8def8a759642",
+  "reporting_period": "apr-aug",
+  "financial_year": "2026-27",
+  "parser": "pipeline.parsers.cga_html",
+  "parser_version": "1.0",
+  "archive_path": "datasets/raw/cga_2026-27_aug.html"
+}
