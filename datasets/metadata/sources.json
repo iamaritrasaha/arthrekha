@@ -177,5 +177,34 @@
       "total_expenditure",
       "fiscal_deficit"
     ]
+  },
+  {
+    "source_id": "cga-2026-27-apr-aug",
+    "source_organization": "Controller General of Accounts, Government of India",
+    "document_name": "Union Government Accounts at a Glance - August 2026",
+    "canonical_url": "https://cga.nic.in/MonthlyReport/Published/8/2026-2027.aspx",
+    "financial_year": "2026-27",
+    "reporting_period": "apr-aug",
+    "publication_date": null,
+    "retrieval_date": "2026-09-30",
+    "source_format": "html",
+    "estimate_type": "provisional",
+    "data_status": "provisional",
+    "parser_used": "pipeline.parsers.json_parser",
+    "raw_file_path": "datasets/raw/cga_2026-27_aug.json",
+    "authoritative_status": "primary",
+    "notes": "Provisional actuals, cumulative YTD. Subject to CAG audit.",
+    "metrics_available": [
+      "revenue_receipts",
+      "tax_revenue_net",
+      "non_tax_revenue",
+      "non_debt_capital_receipts",
+      "non_borrowed_receipts",
+      "revenue_expenditure",
+      "interest_payments",
+      "capital_expenditure",
+      "total_expenditure",
+      "fiscal_deficit"
+    ]
   }
 ]
