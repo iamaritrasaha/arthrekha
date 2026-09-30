@@ -164,14 +164,27 @@ jobs:
             --output pr-body.md
 
       - name: Create or update PR
+        id: candidate-pr
         run: |
           if [ -n "$EXISTING_PR" ]; then
             gh pr edit "$EXISTING_PR" \
               --title "data: CGA refresh through ${REPORTING_PERIOD} [FY ${FINANCIAL_YEAR}]" \
               --body-file pr-body.md
+            PR_URL="$(gh pr view "$EXISTING_PR" --json url --jq .url)"
           else
-            gh pr create --base main --head "$BRANCH" \
+            PR_URL="$(gh pr create --base main --head "$BRANCH" \
               --title "data: CGA refresh through ${REPORTING_PERIOD} [FY ${FINANCIAL_YEAR}]" \
-              --body-file pr-body.md \
-              --label data-refresh
+              --body-file pr-body.md)"
+          fi
+          echo "url=$PR_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Apply optional data-refresh label
+        if: success()
+        env:
+          PR_URL: ${{ steps.candidate-pr.outputs.url }}
+        run: |
+          if gh pr edit "$PR_URL" --add-label data-refresh; then
+            echo "Applied optional data-refresh label."
+          else
+            echo "::warning::Could not apply optional data-refresh label; the candidate PR was created or updated successfully."
           fi
