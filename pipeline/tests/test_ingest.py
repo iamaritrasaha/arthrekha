@@ -16,6 +16,13 @@ def test_ingestion_entrypoint_resolves_financial_year_from_environment():
     with tempfile.TemporaryDirectory() as temp_dir:
         working_dir = Path(temp_dir)
         shutil.copytree(PROJECT_ROOT / "datasets/raw", working_dir / "datasets/raw")
+        august_path = working_dir / "datasets/raw/cga_2026-27_aug.json"
+        august = json.loads((working_dir / "datasets/raw/cga_2026-27_jul.json").read_text())
+        august["reporting_period"] = "apr-aug"
+        august_path.write_text(json.dumps(august))
+        august_path.with_suffix(".provenance.json").write_text(
+            json.dumps({"sha256_html_utf8": "test-provenance-only"})
+        )
         environment = os.environ.copy()
         environment["FINANCIAL_YEAR"] = "2026-27"
         environment["PYTHONPATH"] = str(PROJECT_ROOT)
@@ -33,8 +40,9 @@ def test_ingestion_entrypoint_resolves_financial_year_from_environment():
         assert "Financial Year: 2026-27" in result.stdout
         output = working_dir / "datasets/processed/union/budget-summary-2026-27.json"
         assert output.exists()
-        assert json.loads(output.read_text())["metadata"]["latestPeriod"] == "apr-jul"
+        assert json.loads(output.read_text())["metadata"]["latestPeriod"] == "apr-aug"
         manifest = json.loads((working_dir / "datasets/metadata/sources.json").read_text())
+        assert len(manifest) == 6
         budget = next(item for item in manifest if item["estimate_type"] == "BE")
         assert budget["publication_date"] == "2026-02-01"
 

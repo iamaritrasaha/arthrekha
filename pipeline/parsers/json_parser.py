@@ -141,7 +141,11 @@ def load_all_sources() -> tuple[list[FinancialObservation], dict[str, any]]:
 
     # Load all available CGA actuals in fiscal-year order.
     actual_files = sorted(
-        Path("datasets/raw").glob(f"cga_{FINANCIAL_YEAR}_*.json"),
+        (
+            path
+            for path in Path("datasets/raw").glob(f"cga_{FINANCIAL_YEAR}_*.json")
+            if not path.name.endswith(".provenance.json")
+        ),
         key=lambda path: {"apr": 0, "may": 1, "jun": 2, "jul": 3, "aug": 4, "sep": 5,
                           "oct": 6, "nov": 7, "dec": 8, "jan": 9, "feb": 10, "mar": 11}.get(
                               path.stem.rsplit("_", 1)[-1], 99

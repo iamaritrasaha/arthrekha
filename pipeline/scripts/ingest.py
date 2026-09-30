@@ -257,7 +257,11 @@ def run_ingestion():
 
     # Discover and manifest each loaded CGA reporting period
     cga_files = sorted(
-        Path("datasets/raw").glob(f"cga_{FINANCIAL_YEAR}_*.json"),
+        (
+            path
+            for path in Path("datasets/raw").glob(f"cga_{FINANCIAL_YEAR}_*.json")
+            if not path.name.endswith(".provenance.json")
+        ),
         key=lambda path: period_end_month(path.stem.rsplit("_", 1)[-1]) or 99,
     )
 
