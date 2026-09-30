@@ -1,0 +1,3 @@
+datasets/raw/*.html linguist-generated=true
+datasets/raw/*.html linguist-detectable=false
+datasets/raw/*.provenance.json linguist-generated=true

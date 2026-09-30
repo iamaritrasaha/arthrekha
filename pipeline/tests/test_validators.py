@@ -151,6 +151,37 @@ def test_validate_execution_rate_valid_and_invalid():
         pass
 
 
+def test_validate_deficit_identities_negative_failure():
+    """Accounting identity failure is properly detected when components do not sum to deficit."""
+    source = DataSource(organization="Test", document="Test", data_status="provisional")
+    # Total Expenditure (100) - Non-Borrowed Receipts (40) should give Fiscal Deficit = 60.
+    # We intentionally set Fiscal Deficit to 999.
+    obs = [
+        FinancialObservation(
+            jurisdiction="india", jurisdiction_type="union", financial_year="2026-27",
+            period="apr-jul", period_type="annual", metric="total_expenditure", amount=100.0,
+            estimate_type="provisional", source=source,
+        ),
+        FinancialObservation(
+            jurisdiction="india", jurisdiction_type="union", financial_year="2026-27",
+            period="apr-jul", period_type="annual", metric="non_borrowed_receipts", amount=40.0,
+            estimate_type="provisional", source=source,
+        ),
+        FinancialObservation(
+            jurisdiction="india", jurisdiction_type="union", financial_year="2026-27",
+            period="apr-jul", period_type="annual", metric="fiscal_deficit", amount=999.0,
+            estimate_type="provisional", source=source,
+        ),
+    ]
+    res = validate_deficit_identities(obs)
+    assert res["all_reconcile"] is False
+    assert len(res["checks"]) == 1
+    assert res["checks"][0]["metric"] == "fiscal_deficit"
+    assert res["checks"][0]["reconciles"] is False
+    assert res["checks"][0]["difference"] == 939.0
+
+
+
 if __name__ == "__main__":
     test_validate_observations()
     print("✓ test_validate_observations")

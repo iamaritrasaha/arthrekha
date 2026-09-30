@@ -1,5 +1,5 @@
 from pipeline.metrics import METRICS, get_metric, get_metrics_by_category
-from pipeline.parsers.json_parser import load_budget_be_2026_27
+from pipeline.parsers.json_parser import load_budget_be
 from pipeline.validators import validate_reconciliation
 
 
@@ -14,7 +14,7 @@ def test_expanded_registry_covers_first_deep_finance_batch():
 
 
 def test_official_budget_source_values_and_provenance():
-    observations = load_budget_be_2026_27()
+    observations = load_budget_be()
     by_metric = {observation.metric: observation for observation in observations}
 
     assert len(observations) == 44
@@ -26,7 +26,7 @@ def test_official_budget_source_values_and_provenance():
 
 
 def test_receipts_and_expenditure_hierarchies_reconcile():
-    observations = load_budget_be_2026_27()
+    observations = load_budget_be()
     non_borrowed = validate_reconciliation(
         observations,
         "non_borrowed_receipts",
@@ -42,6 +42,6 @@ def test_receipts_and_expenditure_hierarchies_reconcile():
 
 
 def test_derived_source_status_is_preserved():
-    observation = next(item for item in load_budget_be_2026_27() if item.metric == "non_borrowed_receipts")
+    observation = next(item for item in load_budget_be() if item.metric == "non_borrowed_receipts")
     assert observation.source.data_status == "derived"
     assert observation.source.definition == "Revenue receipts plus non-debt capital receipts."

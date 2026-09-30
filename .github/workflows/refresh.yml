@@ -1,0 +1,177 @@
+name: Candidate CGA Data Refresh
+
+on:
+  workflow_dispatch:
+    inputs:
+      reporting_period:
+        required: true
+        type: string
+      report_url:
+        required: true
+        type: string
+      financial_year:
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: cga-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      FINANCIAL_YEAR: ${{ inputs.financial_year }}
+      REPORTING_PERIOD: ${{ inputs.reporting_period }}
+      REPORT_URL: ${{ inputs.report_url }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Install frontend packages
+        run: npm ci
+
+      - name: Create candidate branch
+        run: |
+          MONTH_END="${REPORTING_PERIOD##*-}"
+          CANDIDATE_TITLE="data: CGA refresh through ${REPORTING_PERIOD} [FY ${FINANCIAL_YEAR}]"
+          STABLE_BRANCH="refresh/cga-${FINANCIAL_YEAR}-${MONTH_END}"
+          EXISTING_PRS="$(gh pr list --state open --base main --json number,headRefName,title \
+            | jq -r --arg title "$CANDIDATE_TITLE" --arg stable "$STABLE_BRANCH" \
+              '.[] | select(.title == $title or .headRefName == $stable) | [.number, .headRefName] | @tsv')"
+          EXISTING="$(printf '%s\n' "$EXISTING_PRS" | head -n 1)"
+          EXISTING_PR="${EXISTING%%$'\t'*}"
+          if [ -n "$EXISTING" ]; then
+            BRANCH="${EXISTING#*$'\t'}"
+          else
+            BRANCH="$STABLE_BRANCH"
+          fi
+          if [ -n "$EXISTING_PR" ]; then
+            printf '%s\n' "$EXISTING_PRS" | tail -n +2 | while IFS=$'\t' read -r duplicate_pr duplicate_branch; do
+              [ -n "$duplicate_pr" ] || continue
+              gh pr close "$duplicate_pr" --comment "Consolidated into CGA release candidate #${EXISTING_PR}."
+            done
+          fi
+          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
+          echo "EXISTING_PR=$EXISTING_PR" >> $GITHUB_ENV
+          if git ls-remote --heads origin "$BRANCH" | grep -q .; then
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" FETCH_HEAD
+          else
+            git checkout -b "$BRANCH"
+          fi
+
+      - name: Preserve accepted period for revision comparison
+        run: |
+          MONTH_END="${REPORTING_PERIOD##*-}"
+          REVISION_BASELINE_DIR="$RUNNER_TEMP/cga-revision-baseline"
+          mkdir -p "$REVISION_BASELINE_DIR"
+          git fetch origin main
+          for suffix in json provenance.json; do
+            path="datasets/raw/cga_${FINANCIAL_YEAR}_${MONTH_END}.${suffix}"
+            if git show "origin/main:$path" > "$REVISION_BASELINE_DIR/$(basename "$path")" 2>/dev/null; then
+              :
+            else
+              rm -f "$REVISION_BASELINE_DIR/$(basename "$path")"
+            fi
+          done
+          echo "REVISION_BASELINE_DIR=$REVISION_BASELINE_DIR" >> $GITHUB_ENV
+
+      - name: Fetch and archive CGA report
+        run: |
+          MONTH_END="${REPORTING_PERIOD##*-}"
+          RAW_JSON_PATH="datasets/raw/cga_${FINANCIAL_YEAR}_${MONTH_END}.json"
+          echo "RAW_JSON_PATH=$RAW_JSON_PATH" >> $GITHUB_ENV
+          PYTHONPATH=. python -m pipeline.scripts.refresh_cga \
+            --report-url "$REPORT_URL" \
+            --output "$RAW_JSON_PATH" \
+            --archive-html "datasets/raw/cga_${FINANCIAL_YEAR}_${MONTH_END}.html" \
+            --financial-year "$FINANCIAL_YEAR"
+
+      - name: Run revision detection
+        run: |
+          PYTHONPATH=. python pipeline/scripts/run_revision_detector.py \
+            --json-path "$RAW_JSON_PATH" \
+            --raw-dir "$REVISION_BASELINE_DIR" \
+            --report-path revision-report.json
+
+      - name: Run MoM delta validation
+        run: |
+          PYTHONPATH=. python -m pipeline.scripts.validate_mom_delta \
+            --json-path "$RAW_JSON_PATH" \
+            --report-path mom-delta-report.json
+
+      - name: Run ingestion
+        run: |
+          PYTHONPATH=. python -m pipeline.scripts.ingest
+
+      - name: Run full test suite
+        run: |
+          PYTHONPATH=. python -m pytest -q
+          python3 run_tests.py
+          npm test -- --run
+          npm run typecheck
+          npm run lint
+          npm run build
+
+      - name: Commit to branch
+        run: |
+          MONTH_END="${REPORTING_PERIOD##*-}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            "datasets/raw/cga_${FINANCIAL_YEAR}_${MONTH_END}.html" \
+            "datasets/raw/cga_${FINANCIAL_YEAR}_${MONTH_END}.provenance.json" \
+            "datasets/raw/cga_${FINANCIAL_YEAR}_${MONTH_END}.json" \
+            datasets/processed/union/budget-summary-*.json \
+            datasets/metadata/sources.json
+          if [ -d datasets/raw/archive ]; then git add datasets/raw/archive/; fi
+          if ! git diff --cached --quiet; then
+            git commit -m "data: CGA candidate refresh through ${REPORTING_PERIOD} [FY ${FINANCIAL_YEAR}]"
+          fi
+          git push --set-upstream origin "$BRANCH"
+
+      - name: Generate PR body
+        run: |
+          PYTHONPATH=. python pipeline/scripts/generate_pr_body.py \
+            --revision-report revision-report.json \
+            --delta-report mom-delta-report.json \
+            --raw-json "$RAW_JSON_PATH" \
+            --output pr-body.md
+
+      - name: Create or update PR
+        run: |
+          if [ -n "$EXISTING_PR" ]; then
+            gh pr edit "$EXISTING_PR" \
+              --title "data: CGA refresh through ${REPORTING_PERIOD} [FY ${FINANCIAL_YEAR}]" \
+              --body-file pr-body.md
+          else
+            gh pr create --base main --head "$BRANCH" \
+              --title "data: CGA refresh through ${REPORTING_PERIOD} [FY ${FINANCIAL_YEAR}]" \
+              --body-file pr-body.md \
+              --label data-refresh
+          fi

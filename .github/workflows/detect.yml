@@ -1,0 +1,53 @@
+name: Detect CGA Data Updates
+
+on:
+  schedule:
+    - cron: '20 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: cga-detect
+  cancel-in-progress: true
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check the official CGA release index
+        id: check
+        run: |
+          PYTHONPATH=. python -m pipeline.scripts.check_updates --report-path source-update-report.json
+
+      - name: Preserve the source report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-update-report
+          path: source-update-report.json
+          if-no-files-found: error
+
+      - name: Warn if source shape unrecognised
+        if: steps.check.outputs.status == 'source_shape_unrecognised'
+        run: echo "::warning::CGA source format unrecognised. Parser update may be needed."
+
+      - name: Trigger refresh workflow
+        if: steps.check.outputs.status == 'new_release'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run refresh.yml \
+            --field reporting_period="${{ steps.check.outputs.reporting_period }}" \
+            --field report_url="${{ steps.check.outputs.report_url }}" \
+            --field financial_year="${{ steps.check.outputs.financial_year }}"

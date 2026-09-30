@@ -1,14 +1,14 @@
 name: Check official fiscal sources
 
 on:
-  schedule:
-    - cron: '20 5 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: read
+  # NOTE: This workflow was the original monolithic auto-commit workflow.
+  # Phase 4 of CGA_REFRESH_PLAN.md stripped all auto-commit/deploy steps.
+  # Detection is now handled by detect.yml; refresh by refresh.yml.
+  # Only read access is needed to run check_updates.py and upload an artifact.
 
 concurrency:
   group: fiscal-source-check
@@ -51,78 +51,3 @@ jobs:
           name: fiscal-source-report
           path: source-update-report.json
           if-no-files-found: error
-
-      - name: Fetch and normalize a newer CGA report
-        if: steps.source-check.outputs.status == 'new_release'
-        env:
-          REPORTING_PERIOD: ${{ steps.source-check.outputs.reporting_period }}
-          REPORT_URL: ${{ steps.source-check.outputs.report_url }}
-        run: |
-          report_end="${REPORTING_PERIOD##*-}"
-          PYTHONPATH=. python -m pipeline.scripts.refresh_cga \
-            --report-url "$REPORT_URL" \
-            --output "datasets/raw/cga_2026-27_${report_end}.json"
-
-      - name: Install system dependencies (Poppler pdftotext)
-        if: steps.source-check.outputs.status == 'new_release'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y poppler-utils
-
-      - name: Install Python validation dependencies
-        if: steps.source-check.outputs.status == 'new_release'
-        run: python -m pip install -r requirements-dev.txt
-
-      - name: Install frontend dependencies for candidate validation
-        if: steps.source-check.outputs.status == 'new_release'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Install frontend packages
-        if: steps.source-check.outputs.status == 'new_release'
-        run: npm ci
-
-      - name: Regenerate and validate the candidate dataset
-        if: steps.source-check.outputs.status == 'new_release'
-        run: |
-          PYTHONPATH=. python -m pipeline.scripts.ingest
-          PYTHONPATH=. python -m pytest -q
-          python3 run_tests.py
-          npm test -- --run
-          npm run typecheck
-          npm run lint
-          npm run build
-
-      - name: Publish validated dataset refresh
-        if: steps.source-check.outputs.status == 'new_release'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "datasets/raw/cga_2026-27_${REPORTING_PERIOD##*-}.json" \
-            datasets/processed/union/budget-summary-2026-27.json \
-            datasets/metadata/sources.json
-          git commit -m "Refresh CGA actuals through ${{ steps.source-check.outputs.reporting_period }}"
-          git push origin main
-        env:
-          REPORTING_PERIOD: ${{ steps.source-check.outputs.reporting_period }}
-
-      - name: Add SPA fallback
-        if: steps.source-check.outputs.status == 'new_release'
-        run: cp dist/index.html dist/404.html
-
-      - name: Configure Pages
-        if: steps.source-check.outputs.status == 'new_release'
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        if: steps.source-check.outputs.status == 'new_release'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-      - name: Deploy updated Pages artifact
-        if: steps.source-check.outputs.status == 'new_release'
-        id: deployment
-        uses: actions/deploy-pages@v4

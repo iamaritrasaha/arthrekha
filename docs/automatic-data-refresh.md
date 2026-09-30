@@ -19,6 +19,14 @@ application checks.
 6. Only a candidate that passes every check is committed to `main`, which
    triggers the existing Pages deployment.
 
+Candidate branches use a stable financial-year and reporting-month identity.
+An open candidate for the same period is updated in place, so repeated daily
+detection runs reuse its single pull request. Large month-on-month movements
+appear as review warnings; percentage magnitude alone does not fail publication.
+When an accepted period's source HTML is revised, the replaced bytes are kept
+under `datasets/raw/archive/` with their SHA-256 in the filename, while the
+provenance sidecar records the hash of the current source.
+
 ## Why the workflow is validation-gated
 
 The CGA release index is a publication notice and the monthly dashboard is

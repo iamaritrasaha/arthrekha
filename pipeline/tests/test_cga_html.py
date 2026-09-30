@@ -33,3 +33,47 @@ def test_cga_html_parser_normalizes_core_july_values():
     assert source["data"]["capital_expenditure"] == 450635
     assert source["data"]["fiscal_deficit"] == 455144
     assert source["source"]["url"].endswith("7/2026-2027.aspx")
+
+
+def test_cga_html_parser_malformed_heading_fails_closed():
+    """Malformed CGA response with missing period heading raises ValueError."""
+    bad_html = JULY_REPORT.replace("AS AT THE END OF JULY 2026", "MALFORMED HEADER")
+    try:
+        parse_cga_monthly_report(bad_html, report_url="https://cga.nic.in/test.aspx")
+        assert False, "Should have raised ValueError for missing period heading"
+    except ValueError as e:
+        assert "period heading was not found" in str(e)
+
+
+def test_cga_html_parser_missing_core_metric_fails_closed():
+    """CGA table missing a core required metric raises ValueError immediately."""
+    bad_html = JULY_REPORT.replace("Revenue Receipts", "Arbitrary Other Header")
+    try:
+        parse_cga_monthly_report(bad_html, report_url="https://cga.nic.in/test.aspx")
+        assert False, "Should have raised ValueError for missing core metric"
+    except ValueError as e:
+        assert "missing core metrics" in str(e)
+        assert "revenue_receipts" in str(e)
+
+
+def test_candidate_generation_failure_before_commit():
+    """If parsing or fetch fails during refresh_report, output file must NOT be written."""
+    import tempfile
+    from pathlib import Path
+    import pipeline.scripts.refresh_cga as rcga
+
+    bad_html = JULY_REPORT.replace("Revenue Receipts", "Broken Metric")
+    old_fetch = rcga.fetch_report
+    rcga.fetch_report = lambda url: bad_html
+
+    try:
+        with tempfile.TemporaryDirectory() as td:
+            output_json = Path(td) / "cga_test_fail.json"
+            try:
+                rcga.refresh_report("https://cga.nic.in/test.aspx", output_json, "2026-27")
+                assert False, "Should have failed before writing output"
+            except ValueError:
+                pass
+            assert not output_json.exists(), "Output file must not exist if parsing fails"
+    finally:
+        rcga.fetch_report = old_fetch

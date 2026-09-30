@@ -74,7 +74,7 @@ def run_ingestion():
     print()
 
     # Step 1: Load all sources
-    print("Step 1: Loading all sources for FY 2026-27...")
+    print(f"Step 1: Loading all sources for FY {FINANCIAL_YEAR}...")
     all_observations, load_metadata = load_all_sources()
 
     for source in load_metadata['sources_loaded']:
@@ -236,7 +236,7 @@ def run_ingestion():
             inputs=[numerator.id or "", denominator.id or ""],
             value=numerator.amount / denominator.amount * 100,
             unit="percentage",
-            description=f"Arthrekha-derived ratio for {numerator_id} using compatible FY 2026-27 Budget Estimate inputs",
+            description=f"Arthrekha-derived ratio for {numerator_id} using compatible FY {FINANCIAL_YEAR} Budget Estimate inputs",
         ))
 
     print(f"  ✓ Calculated {len(derived_metrics)} execution rates and analytical ratios")
@@ -250,7 +250,7 @@ def run_ingestion():
 
     # Discover and manifest each loaded CGA reporting period
     cga_files = sorted(
-        Path("datasets/raw").glob("cga_2026-27_*.json"),
+        Path("datasets/raw").glob(f"cga_{FINANCIAL_YEAR}_*.json"),
         key=lambda path: {"apr": 0, "may": 1, "jun": 2, "jul": 3, "aug": 4, "sep": 5,
                           "oct": 6, "nov": 7, "dec": 8, "jan": 9, "feb": 10, "mar": 11}.get(
                               path.stem.rsplit("_", 1)[-1], 99
@@ -259,17 +259,17 @@ def run_ingestion():
 
     sources = [
         create_source_manifest(
-            source_id="union-budget-2026-27-be",
+            source_id=f"union-budget-{FINANCIAL_YEAR}-be",
             organization="Ministry of Finance, Government of India",
-            document_name="Union Budget 2026-27 - Budget at a Glance",
+            document_name=f"Union Budget {FINANCIAL_YEAR} - Budget at a Glance",
             url="https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
-            financial_year="2026-27",
+            financial_year=FINANCIAL_YEAR,
             estimate_type="BE",
             source_format="pdf",
             parser_used="pipeline.parsers.json_parser",
             metrics=list(be_by_metric.keys()),
             publication_date="2026-02-01",
-            raw_file_path="datasets/raw/union_budget_2026-27_budget_at_a_glance.pdf",
+            raw_file_path=f"datasets/raw/union_budget_{FINANCIAL_YEAR}_budget_at_a_glance.pdf",
             notes="Budget Estimates transcribed from the official Budget at a Glance PDF; page and table references are retained on each observation",
         ),
     ]
@@ -285,11 +285,11 @@ def run_ingestion():
         cga_metrics = list(cga_data.get("data", {}).keys())
         sources.append(
             create_source_manifest(
-                source_id=f"cga-2026-27-{reporting_period}",
+                source_id=f"cga-{FINANCIAL_YEAR}-{reporting_period}",
                 organization=cga_src.get("organization", "Controller General of Accounts, Government of India"),
                 document_name=cga_src.get("document", f"Union Government Accounts at a Glance - {reporting_period}"),
                 url=cga_src.get("url", "https://cga.nic.in/"),
-                financial_year="2026-27",
+                financial_year=FINANCIAL_YEAR,
                 reporting_period=reporting_period,
                 estimate_type="provisional",
                 source_format="html",
@@ -303,14 +303,14 @@ def run_ingestion():
 
     # Budget summary dataset
     budget_summary = {
-        "financialYear": "2026-27",
+        "financialYear": FINANCIAL_YEAR,
         "asOfDate": date.today().isoformat(),
         "observations": [obs.to_dict() for obs in all_observations],
         "derivedMetrics": [dm.to_dict() for dm in derived_metrics],
         "metadata": {
             "generated": date.today().isoformat(),
             "totalObservations": len(all_observations),
-            "sources": ["Union Budget 2026-27 BE"] + [
+            "sources": [f"Union Budget {FINANCIAL_YEAR} BE"] + [
                 f"CGA {s['reporting_period']}" for s in sources if s.get("estimate_type") == "provisional"
             ],
             "latestPeriod": latest_period,
@@ -318,7 +318,7 @@ def run_ingestion():
         },
     }
 
-    output_file = output_dir / "budget-summary-2026-27.json"
+    output_file = output_dir / f"budget-summary-{FINANCIAL_YEAR}.json"
     with open(output_file, "w") as f:
         json.dump(budget_summary, f, indent=2)
 
@@ -341,7 +341,7 @@ def run_ingestion():
     print("=" * 60)
     print()
     print("Summary:")
-    print(f"  Financial Year: 2026-27")
+    print(f"  Financial Year: {FINANCIAL_YEAR}")
     print(f"  Latest Period: {period_display(latest_period)} 2026")
     print(f"  Metrics Ingested: {len(be_by_metric)}")
     print(f"  Total Observations: {len(all_observations)}")
@@ -353,7 +353,7 @@ def run_ingestion():
     print(f"  {sources_file}")
     print()
     print("Data Sources:")
-    print("  - Union Budget 2026-27: indiabudget.gov.in")
+    print(f"  - Union Budget {FINANCIAL_YEAR}: indiabudget.gov.in")
     print("  - CGA Monthly Accounts: cga.nic.in")
     print("  - Raw data preserved in: datasets/raw/")
     print()

@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 
+from pipeline.scripts.fy_utils import active_financial_year
 from pipeline.source_updates import (
     CGA_RELEASE_INDEX_URL,
     compare_release_to_dataset,
@@ -40,6 +41,7 @@ def check_updates(dataset_path: Path = DATASET_PATH, index_url: str = CGA_RELEAS
         report["release"]["reportUrl"] = monthly_report_url(release, dataset.get("financialYear", "2026-27"))
     report["checkedAt"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     report["sourceIndex"] = index_url
+    report["financialYear"] = active_financial_year()
     return report
 
 
@@ -68,7 +70,7 @@ def main() -> int:
         {
             "status": report["status"],
             "reporting_period": release.get("reportingPeriod", ""),
-            "source_url": release.get("url", ""),
+            "financial_year": active_financial_year(),
             "report_url": release.get("reportUrl", ""),
             "source_title": release.get("title", ""),
         }

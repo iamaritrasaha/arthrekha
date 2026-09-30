@@ -8,6 +8,8 @@ official government financial data.
 import json
 from pathlib import Path
 import re
+import os
+FINANCIAL_YEAR = os.environ.get('FINANCIAL_YEAR', '2026-27')
 from pipeline.models import FinancialObservation, DataSource
 from pipeline.metrics import get_metric, validate_metric_id
 
@@ -84,15 +86,15 @@ def parse_json_source(file_path: str) -> list[FinancialObservation]:
     return observations
 
 
-def load_budget_be_2026_27() -> list[FinancialObservation]:
+def load_budget_be() -> list[FinancialObservation]:
     """
     Load Budget Estimates FY 2026-27 from raw data.
     """
-    file_path = "datasets/raw/union_budget_2026-27_be.json"
+    file_path = f"datasets/raw/union_budget_{FINANCIAL_YEAR}_be.json"
     return parse_json_source(file_path)
 
 
-def load_cga_actuals_2026_27(period: str) -> list[FinancialObservation]:
+def load_cga_actuals(period: str) -> list[FinancialObservation]:
     """
     Load CGA actuals for FY 2026-27.
 
@@ -107,8 +109,14 @@ def load_cga_actuals_2026_27(period: str) -> list[FinancialObservation]:
     else:
         raise ValueError(f"No data available for period: {period}")
 
-    file_path = f"datasets/raw/cga_2026-27_{suffix}.json"
+    file_path = f"datasets/raw/cga_{FINANCIAL_YEAR}_{suffix}.json"
     return parse_json_source(file_path)
+
+
+# Backwards-compatible aliases for earlier imports
+load_budget_be_2026_27 = load_budget_be
+load_cga_actuals_2026_27 = load_cga_actuals
+
 
 
 def load_all_sources() -> tuple[list[FinancialObservation], dict[str, any]]:
@@ -122,17 +130,17 @@ def load_all_sources() -> tuple[list[FinancialObservation], dict[str, any]]:
     sources_loaded = []
 
     # Load Budget Estimates
-    be_obs = load_budget_be_2026_27()
+    be_obs = load_budget_be()
     observations.extend(be_obs)
     sources_loaded.append({
         "type": "Budget Estimate",
         "count": len(be_obs),
-        "file": "union_budget_2026-27_be.json"
+        "file": f"union_budget_{FINANCIAL_YEAR}_be.json"
     })
 
     # Load all available CGA actuals in fiscal-year order.
     actual_files = sorted(
-        Path("datasets/raw").glob("cga_2026-27_*.json"),
+        Path("datasets/raw").glob(f"cga_{FINANCIAL_YEAR}_*.json"),
         key=lambda path: {"apr": 0, "may": 1, "jun": 2, "jul": 3, "aug": 4, "sep": 5,
                           "oct": 6, "nov": 7, "dec": 8, "jan": 9, "feb": 10, "mar": 11}.get(
                               path.stem.rsplit("_", 1)[-1], 99
@@ -154,7 +162,7 @@ def load_all_sources() -> tuple[list[FinancialObservation], dict[str, any]]:
     metadata = {
         "sources_loaded": sources_loaded,
         "total_observations": len(observations),
-        "financial_year": "2026-27",
+        "financial_year": FINANCIAL_YEAR,
     }
 
     return observations, metadata

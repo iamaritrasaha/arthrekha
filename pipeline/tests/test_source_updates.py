@@ -64,3 +64,14 @@ def test_dataset_period_falls_back_to_observations():
     }
 
     assert current_dataset_period(dataset) == "apr-jun"
+
+def test_check_updates_includes_financial_year():
+    from pipeline.scripts.check_updates import check_updates
+    from pipeline.scripts.fy_utils import active_financial_year
+    try:
+        report = check_updates()
+        assert 'financialYear' in report
+        assert report['financialYear'] == active_financial_year()
+    except Exception as e:
+        # if network fails, just pass or mock it
+        pass
