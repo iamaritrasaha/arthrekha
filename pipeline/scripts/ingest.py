@@ -22,21 +22,28 @@ from pipeline.validators import (
 )
 from pipeline.models import DerivedMetric
 from pipeline.source_manifest import create_source_manifest
+from pipeline.scripts.fy_utils import (
+    active_financial_year,
+    calendar_year_for_month,
+    fy_start_year,
+)
+
+FINANCIAL_YEAR = active_financial_year()
 
 
 FISCAL_MONTH_ORDER = {
-    "apr": 4,
-    "may": 5,
-    "jun": 6,
-    "jul": 7,
-    "aug": 8,
-    "sep": 9,
-    "oct": 10,
-    "nov": 11,
-    "dec": 12,
-    "jan": 13,
-    "feb": 14,
-    "mar": 15,
+    "apr": 1,
+    "may": 2,
+    "jun": 3,
+    "jul": 4,
+    "aug": 5,
+    "sep": 6,
+    "oct": 7,
+    "nov": 8,
+    "dec": 9,
+    "jan": 10,
+    "feb": 11,
+    "mar": 12,
 }
 
 
@@ -46,7 +53,7 @@ def period_end_month(period: str | None) -> int:
     return FISCAL_MONTH_ORDER.get(period.split("-")[-1], 0)
 
 
-def period_display(period: str) -> str:
+def period_display(period: str, financial_year: str = FINANCIAL_YEAR) -> str:
     month = period.split("-")[-1]
     return {
         "apr": "April",
@@ -61,7 +68,7 @@ def period_display(period: str) -> str:
         "jan": "January",
         "feb": "February",
         "mar": "March",
-    }.get(month, period)
+    }.get(month, period) + f" {calendar_year_for_month(period_end_month(period), financial_year)}"
 
 
 def run_ingestion():
@@ -210,7 +217,7 @@ def run_ingestion():
                 inputs=[be_obs.id or "", actual_obs.id or ""],
                 value=exec_rate["execution_rate"],
                 unit="percentage",
-                description=f"Execution rate for {metric_id} as of {period_display(latest_period)} 2026",
+                description=f"Execution rate for {metric_id} as of {period_display(latest_period)}",
             )
 
             derived_metrics.append(derived)
@@ -251,10 +258,7 @@ def run_ingestion():
     # Discover and manifest each loaded CGA reporting period
     cga_files = sorted(
         Path("datasets/raw").glob(f"cga_{FINANCIAL_YEAR}_*.json"),
-        key=lambda path: {"apr": 0, "may": 1, "jun": 2, "jul": 3, "aug": 4, "sep": 5,
-                          "oct": 6, "nov": 7, "dec": 8, "jan": 9, "feb": 10, "mar": 11}.get(
-                              path.stem.rsplit("_", 1)[-1], 99
-                          ),
+        key=lambda path: period_end_month(path.stem.rsplit("_", 1)[-1]) or 99,
     )
 
     sources = [
@@ -268,7 +272,7 @@ def run_ingestion():
             source_format="pdf",
             parser_used="pipeline.parsers.json_parser",
             metrics=list(be_by_metric.keys()),
-            publication_date="2026-02-01",
+            publication_date=f"{fy_start_year(FINANCIAL_YEAR)}-02-01",
             raw_file_path=f"datasets/raw/union_budget_{FINANCIAL_YEAR}_budget_at_a_glance.pdf",
             notes="Budget Estimates transcribed from the official Budget at a Glance PDF; page and table references are retained on each observation",
         ),
@@ -342,7 +346,7 @@ def run_ingestion():
     print()
     print("Summary:")
     print(f"  Financial Year: {FINANCIAL_YEAR}")
-    print(f"  Latest Period: {period_display(latest_period)} 2026")
+    print(f"  Latest Period: {period_display(latest_period)}")
     print(f"  Metrics Ingested: {len(be_by_metric)}")
     print(f"  Total Observations: {len(all_observations)}")
     print(f"  Derived Metrics: {len(derived_metrics)}")

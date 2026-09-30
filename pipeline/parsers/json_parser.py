@@ -8,8 +8,9 @@ official government financial data.
 import json
 from pathlib import Path
 import re
-import os
-FINANCIAL_YEAR = os.environ.get('FINANCIAL_YEAR', '2026-27')
+from pipeline.scripts.fy_utils import active_financial_year
+
+FINANCIAL_YEAR = active_financial_year()
 from pipeline.models import FinancialObservation, DataSource
 from pipeline.metrics import get_metric, validate_metric_id
 
