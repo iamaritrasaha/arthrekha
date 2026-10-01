@@ -14,5 +14,13 @@
   "artifact_role": "observation_source",
   "source_hash": "d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e",
   "file_size_bytes": 1109120,
-  "artifact_path": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-interim-budget-2024-25-be-2024-02-01/d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e.pdf"
+  "artifact_path": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-interim-budget-2024-25-be-2024-02-01/d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e.pdf",
+  "supported_financial_years": [
+    "2023-24",
+    "2024-25"
+  ],
+  "supported_estimate_types": [
+    "BE",
+    "RE"
+  ]
 }

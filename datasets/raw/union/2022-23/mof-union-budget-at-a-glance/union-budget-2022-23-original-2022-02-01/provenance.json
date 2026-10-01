@@ -1,0 +1,27 @@
+{
+  "source_id": "mof-union-budget-at-a-glance",
+  "release_id": "union-budget-2022-23-original-2022-02-01",
+  "url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_at_Glance/bag1.pdf",
+  "ext": "pdf",
+  "document": "Budget at a Glance, Union Budget 2022-2023",
+  "organization": "Ministry of Finance, Government of India",
+  "published_at": "2022-02-01",
+  "estimate_type": "BE",
+  "role": "observation_source",
+  "original_url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_at_Glance/bag1.pdf",
+  "retrieval_date": "2026-10-01",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_at_Glance/bag1.pdf",
+  "content_type": "application/pdf",
+  "source_hash": "9ad916187020c7e3a6d7e03da439ca6720b662bc1ac6261323b97091d954078e",
+  "file_size_bytes": 1295214,
+  "artifact_path": "datasets/raw/union/2022-23/mof-union-budget-at-a-glance/union-budget-2022-23-original-2022-02-01/9ad916187020c7e3a6d7e03da439ca6720b662bc1ac6261323b97091d954078e.pdf",
+  "artifact_role": "observation_source",
+  "supported_financial_years": [
+    "2021-22",
+    "2022-23"
+  ],
+  "supported_estimate_types": [
+    "BE",
+    "RE"
+  ]
+}

@@ -263,3 +263,53 @@ Measured with the same installed Vite toolchain:
 The two historical JSON files are 241,804 bytes combined in their processed source form. The build now emits them separately at `dist/data/history/{fy}.json` (Vite reports 139.88 kB for FY24–25 and 101.25 kB for FY25–26), alongside the two source manifests and a small index. The post-build verifier checks that release-specific sentinel IDs are absent from every JS chunk and that each indexed data/manifest asset exists and carries the indexed FY.
 
 `datasets/metadata/historical-index.json` is the explicit year-to-asset contract. The Vite asset plugin validates each entry and emits only the processed JSON and per-year manifest as static assets. At runtime the loader requests the small index when historical access is requested, then fetches only the exact requested FY. It caches that FY separately, rejects unknown years and failed/mismatched responses, and never selects another year as a fallback. The same routes are served by the Vite development server. Current FY selectors remain synchronous and do not initiate a historical fetch. Async historical selectors preserve estimate-state and release-qualified ambiguity behavior.
+
+## Controlled annual-data batch: FY 2021–22 to FY 2023–24
+
+This batch extends the annual historical index without adding monthly CGA series or UI. Each year has separate BE, RE, and `final_actual` groups. The raw captures stay hash-addressed by their logical publication release. When one publication supplies values for two target FYs, both FY manifests reference the same captured bytes and release ID, with separate target-year transcriptions; the file is not duplicated.
+
+### Source releases and observation counts
+
+| Target FY | BE release | RE release | Final actual release | Counts (BE / RE / final actual) |
+|---|---|---|---|---:|
+| 2021–22 | Union Budget 2021–22, published 2021-02-01 | Union Budget 2022–23, published 2022-02-01 | CGA Finance Accounts 2022–23, comparative 2021–22 actual column | 12 / 12 / 8 |
+| 2022–23 | Union Budget 2022–23, published 2022-02-01 | Union Budget 2023–24, published 2023-02-01 | CGA Finance Accounts 2022–23, 2022–23 actual column | 12 / 12 / 8 |
+| 2023–24 | Union Budget 2023–24, published 2023-02-01 | Interim Union Budget 2024–25, published 2024-02-01 | CGA Finance Accounts 2023–24, 2023–24 actual column | 12 / 12 / 8 |
+
+The CGA Finance Accounts 2022–23 Statement No. 1 publishes actuals for both 2022–23 and 2021–22. FY 2021–22 therefore uses release `union-finance-accounts-2022-23-final` and the comparative 2021–22 column, rather than creating a duplicate copy or pretending this is a separate CGA release. The Interim Budget 2024–25 publication supplies both its FY24–25 BE (in the existing dataset) and FY23–24 RE; both observations retain the same release identity and artifact hash.
+
+The BE/RE common core remains the established 12 rows: revenue receipts, net tax revenue, non-tax revenue, recovery of loans, other receipts, revenue expenditure, capital expenditure, total expenditure, interest payments, fiscal deficit, revenue deficit, and primary deficit. Each final-account group has eight source-reported rows: revenue receipts, net tax revenue, non-tax revenue, recovery of loans, other capital receipts, revenue expenditure, capital expenditure, and interest payments. Final-account total expenditure is derived from final revenue and capital expenditure. Non-debt capital receipts and non-borrowed receipts are also derived from their source-reported inputs.
+
+Final actual fiscal deficit, revenue deficit, and primary deficit remain absent for these three years. Statement No. 1 does not provide those aggregates as directly aligned rows in the verified annual-account packet. No estimate, Budget-at-a-Glance actual from a different publication, or zero value is substituted. Provisional actuals are absent because this batch intentionally uses final Finance Accounts.
+
+### Source hashes
+
+| Release ID | SHA-256 |
+|---|---|
+| `union-budget-2021-22-original-be-2021-02-01` | `89bb053ce6c312e025bbbd25cf9ffff82cf5a014642bac3132fc79b3968153ae` |
+| `union-budget-2022-23-original-2022-02-01` | `9ad916187020c7e3a6d7e03da439ca6720b662bc1ac6261323b97091d954078e` |
+| `union-budget-2023-24-original-2023-02-01` | `a388738767dfd6582bc46e5d3324094e2fc995e883a90b151af5c9c0e204e052` |
+| `union-interim-budget-2024-25-be-2024-02-01` | `d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e` |
+| `union-finance-accounts-2022-23-final` | `0e1cdb9ea357ccd189469572102c8e5fe88eb01ecc293acfab7ee35e25445afc` |
+| `union-finance-accounts-2023-24-final` | `f84202ca980c1372c7497b34abd199d1470511806bee29cb5379e12f85c707bd` |
+
+### Comparability decisions and boundaries
+
+- **Tax revenue:** BE/RE say “Tax Revenue (Net to Centre)”; the CGA Finance Accounts tax total includes the net receipts basis and points to the annex showing gross receipts, state assignments, and net receipts. Gross tax receipts and States’ shares are not substituted. Net-tax comparisons remain eligible on the canonical net-to-centre definition.
+- **Revenue receipts:** final CGA account totals include the separately listed grants-in-aid and contributions line. Budget BE/RE totals do not add this separate line. The source values are preserved; final-account revenue-receipt comparisons carry `comparable_with_note` and name this accounting presentation difference.
+- **Capital receipts:** “Recovery of Loans” and “Other Receipts” are retained as separate rows. `non_debt_capital_receipts` and `non_borrowed_receipts` are derived using the same formulas as the later historical years. Borrowing-inclusive “Total Receipts” is never presented as non-borrowed receipts.
+- **Capital expenditure:** “On Capital Account” is used; grants for creation of capital assets and “Effective Capital Expenditure” are excluded. The common-core capital-expenditure value is not silently expanded to include grants or off-budget spending.
+- **FY 2023–24 RE vintage:** the RE is read from the Interim Budget 2024–25 publication and remains a distinct `comparable_with_note` release. Its printed amounts are retained, with the publication's component-rounding note attached to every mapped row.
+- **Covid-era actuals:** FY 2021–22 CGA outturns are retained as printed. Revenue and capital account actuals carry a note to make the pandemic-period expenditure context visible. This affects the interpretation of levels, not the metric labels used by the audited annual-account rows. Values are not adjusted to later Budget presentation.
+- **Deficits and GDP:** BE/RE deficit values remain directly sourced from each Budget publication. No FY21–24 final deficits are inferred where the same-basis annual-account aggregate is not verified. GDP-percent variants, GDP denominator vintages, effective revenue deficit, effective capital expenditure, gross tax, and subsidy/off-budget expansions are excluded from this bounded common core.
+- **Rounding:** Budget publications state that individual items may not sum to totals due to rounding. The ingestion validator permits a maximum absolute difference of ₹1 crore only for BE/RE arithmetic identities. It preserves every printed row amount and reports the explicit tolerance. CGA receipt reconciliation uses the exact two-decimal amounts and no tolerance.
+
+The output retains source-level `comparable`, `comparable_with_note`, or `not_comparable` metadata. The comparison selector also rejects differing estimate states, unit mismatches, and definition mismatches; it omits percentage change for rejected pairs. Missing final deficits and missing provisional states remain absence.
+
+### Files, validation, and bundle boundary
+
+Per-year manifests and processed datasets are `datasets/metadata/source-manifests/{FY}.json` and `datasets/processed/union/history/{FY}.json`. The three year entries are added to `datasets/metadata/historical-index.json`. Raw Budget and CGA captures live under the existing `datasets/raw/union/{artifact-FY}/{sourceId}/{releaseId}/{sha256}.pdf` contract; transcriptions remain attached to those release directories and specify the target FY.
+
+Each included source row is checked from the hash-verified PDF page and the exact fiscal-year column through structured transcription into the identity-v2 observation and processed evidence mapping. Every final source observation retains source ID, release ID, hash, source wording, canonical definition/version, and page/table/row/column locator. Derived observations carry formulas and input observation IDs and are marked source-reported=false. The build verifier scans all indexed FY payloads and source manifests, then ensures their observation IDs, release IDs, and source hashes do not appear in any JavaScript bundle. New historical data therefore adds static JSON assets without adding annual data to the initial JS graph.
+
+This batch does not change the FY 2026–27 current dataset, selectors, CGA refresh path, or the previously generated FY 2024–25 and FY 2025–26 datasets.

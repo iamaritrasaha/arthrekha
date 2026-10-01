@@ -4,6 +4,9 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import { loadBudgetDataset, getDatasetMetadata } from '@/data/budgetData';
+import historical2021_22 from '@/../datasets/processed/union/history/2021-22.json';
+import historical2022_23 from '@/../datasets/processed/union/history/2022-23.json';
+import historical2023_24 from '@/../datasets/processed/union/history/2023-24.json';
 import historical2024_25 from '@/../datasets/processed/union/history/2024-25.json';
 import historical2025_26 from '@/../datasets/processed/union/history/2025-26.json';
 import {
@@ -150,9 +153,15 @@ describe('Data Selectors', () => {
       const url = String(input);
       urls.push(url);
       if (url.endsWith('/index.json')) return { ok: true, status: 200, json: async () => ({ schemaVersion: 1, datasets: [
+        { financialYear: '2021-22', path: '2021-22.json', sourceManifestPath: 'manifests/2021-22.json' },
+        { financialYear: '2022-23', path: '2022-23.json', sourceManifestPath: 'manifests/2022-23.json' },
+        { financialYear: '2023-24', path: '2023-24.json', sourceManifestPath: 'manifests/2023-24.json' },
         { financialYear: '2024-25', path: '2024-25.json', sourceManifestPath: 'manifests/2024-25.json' },
         { financialYear: '2025-26', path: '2025-26.json', sourceManifestPath: 'manifests/2025-26.json' },
       ] }) } as Response;
+      if (url.endsWith('/2021-22.json')) return { ok: true, status: 200, json: async () => historical2021_22 } as Response;
+      if (url.endsWith('/2022-23.json')) return { ok: true, status: 200, json: async () => historical2022_23 } as Response;
+      if (url.endsWith('/2023-24.json')) return { ok: true, status: 200, json: async () => historical2023_24 } as Response;
       if (url.endsWith('/2024-25.json')) return { ok: true, status: 200, json: async () => historical2024_25 } as Response;
       if (url.endsWith('/2025-26.json')) return { ok: true, status: 200, json: async () => historical2025_26 } as Response;
       return { ok: false, status: 404, json: async () => ({}) } as Response;
@@ -174,16 +183,55 @@ describe('Data Selectors', () => {
       const estimateComparison = createObservationComparison(fullBudgetBe, fy25Be);
       expect(estimateComparison.status).toBe('comparable');
       expect(estimateComparison.percentageChangePermitted).toBe(true);
+      const re24 = await getObservationAsync('fiscal_deficit', '2024-25', 'RE');
+      const re25 = await getObservationAsync('fiscal_deficit', '2025-26', 'RE');
+      expect(createObservationComparison(re24, re25).status).toBe('comparable');
+      const re23 = await getObservationAsync('fiscal_deficit', '2023-24', 'RE');
+      const re23to24 = createObservationComparison(re23, re24);
+      expect(re23to24.status).toBe('comparable_with_note');
+      expect(re23to24.rationale).toContain('Interim Budget 2024-25');
       const final = await getObservationAsync('revenue_receipts', '2024-25', 'final_actual');
       const provisional = await getObservationAsync('revenue_receipts', '2025-26', 'provisional');
       const actualComparison = createObservationComparison(final, provisional);
       expect(actualComparison.status).toBe('not_comparable');
       expect(actualComparison.rationale).toContain('Estimate states differ');
       expect(actualComparison.percentageChangePermitted).toBe(false);
-      expect(await getAvailableYearsAsync()).toEqual(['2026-27', '2025-26', '2024-25']);
-      expect(urls).toEqual(['/data/history/index.json', '/data/history/2024-25.json', '/data/history/2025-26.json']);
-      await expect(getObservationAsync('fiscal_deficit', '2023-24', 'BE')).rejects.toThrow('No historical dataset is published for FY 2023-24.');
-      expect(urls).not.toContain('/data/history/2023-24.json');
+      const interim23 = await getObservationAsync('revenue_receipts', '2023-24', 'RE', 'union-interim-budget-2024-25-be-2024-02-01');
+      const be22 = await getObservationAsync('revenue_receipts', '2022-23', 'BE', 'union-budget-2022-23-original-2022-02-01');
+      const be21 = await getObservationAsync('revenue_receipts', '2021-22', 'BE', 'union-budget-2021-22-original-be-2021-02-01');
+      expect(interim23?.amount).toBe(2699713);
+      expect(be22?.amount).toBe(2204422);
+      expect(be21?.amount).toBe(1788424);
+      expect(await getObservationAsync('fiscal_deficit', '2023-24', 'final_actual')).toBeNull();
+      expect(await getObservationAsync('revenue_receipts', '2021-22', 'final_actual')).toMatchObject({
+        amount: 2436421.48,
+        identityVersion: 2,
+      });
+      const actual21 = await getObservationAsync('revenue_receipts', '2021-22', 'final_actual');
+      const actual22 = await getObservationAsync('revenue_receipts', '2022-23', 'final_actual');
+      const finalComparison = createObservationComparison(actual21, actual22);
+      expect(finalComparison.status).toBe('comparable_with_note');
+      expect(finalComparison.rationale).toContain('separately reported grants-in-aid');
+      expect(finalComparison.percentageChangePermitted).toBe(true);
+      const actual23 = await getObservationAsync('revenue_receipts', '2023-24', 'final_actual');
+      const actual24 = await getObservationAsync('revenue_receipts', '2024-25', 'final_actual');
+      expect(createObservationComparison(actual23, actual24).status).toBe('comparable_with_note');
+      const fullBe23 = await getObservationAsync('fiscal_deficit', '2023-24', 'BE');
+      const interimBe24 = await getObservationAsync('fiscal_deficit', '2024-25', 'BE', 'union-interim-budget-2024-25-be-2024-02-01');
+      const interimBeComparison = createObservationComparison(fullBe23, interimBe24);
+      expect(interimBeComparison.status).toBe('comparable_with_note');
+      expect(interimBeComparison.rationale).toContain('Interim Budget vintage');
+      const notComparable = createObservationComparison(actual21, await getObservationAsync('revenue_receipts', '2022-23', 'BE'));
+      expect(notComparable.status).toBe('not_comparable');
+      expect(notComparable.percentageChangePermitted).toBe(false);
+      expect(Object.prototype.hasOwnProperty.call(notComparable, 'percentageChange')).toBe(false);
+      expect(await getAvailableYearsAsync()).toEqual(['2026-27', '2025-26', '2024-25', '2023-24', '2022-23', '2021-22']);
+      expect(urls).toEqual([
+        '/data/history/index.json', '/data/history/2024-25.json', '/data/history/2025-26.json',
+        '/data/history/2023-24.json', '/data/history/2022-23.json', '/data/history/2021-22.json',
+      ]);
+      await expect(getObservationAsync('fiscal_deficit', '2020-21', 'BE')).rejects.toThrow('No historical dataset is published for FY 2020-21.');
+      expect(urls).not.toContain('/data/history/2020-21.json');
     } finally {
       vi.unstubAllGlobals();
     }

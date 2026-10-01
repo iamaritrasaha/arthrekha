@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "financialYear": "2022-23",
+  "jurisdiction": "india",
+  "jurisdictionType": "union",
+  "sources": [
+    {
+      "sourceId": "mof-union-budget-at-a-glance",
+      "releaseId": "union-budget-2022-23-original-2022-02-01",
+      "financialYear": "2022-23",
+      "artifactFinancialYear": "2022-23",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Budget at a Glance, Union Budget 2022-2023",
+      "url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_at_Glance/bag1.pdf",
+      "publishedAt": "2022-02-01",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "BE",
+      "sourceHash": "9ad916187020c7e3a6d7e03da439ca6720b662bc1ac6261323b97091d954078e",
+      "artifactPath": "datasets/raw/union/2022-23/mof-union-budget-at-a-glance/union-budget-2022-23-original-2022-02-01/9ad916187020c7e3a6d7e03da439ca6720b662bc1ac6261323b97091d954078e.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2022-23/mof-union-budget-at-a-glance/union-budget-2022-23-original-2022-02-01/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2022-23/mof-union-budget-at-a-glance/union-budget-2022-23-original-2022-02-01/transcription-2022-23.json",
+      "publicationDateEvidence": {
+        "sourceId": "mof-union-budget-speech",
+        "releaseId": "union-budget-speech-2022-02-01",
+        "financialYear": "2022-23",
+        "artifactFinancialYear": "2022-23",
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Budget Speech 2022-2023",
+        "url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_Speech.pdf",
+        "publishedAt": "2022-02-01",
+        "retrievedAt": "2026-10-01",
+        "format": "pdf",
+        "estimateType": "BE",
+        "role": "release_date_evidence",
+        "sourceHash": "9767a916bdc0596577659767b50da5c92929d1b9f5f835ae3769b954fcee8b84",
+        "artifactPath": "datasets/raw/union/2022-23/mof-union-budget-speech/union-budget-speech-2022-02-01/9767a916bdc0596577659767b50da5c92929d1b9f5f835ae3769b954fcee8b84.pdf",
+        "sidecarPath": "datasets/raw/union/2022-23/mof-union-budget-speech/union-budget-speech-2022-02-01/provenance.json",
+        "locator": {
+          "kind": "budget_speech_release_date",
+          "page": 1,
+          "printedPage": null,
+          "wording": "2022-02-01"
+        }
+      },
+      "publicationFiscalYears": [
+        "2021-22",
+        "2022-23"
+      ],
+      "publishedEstimateTypes": [
+        "BE",
+        "RE"
+      ]
+    },
+    {
+      "sourceId": "mof-union-budget-at-a-glance",
+      "releaseId": "union-budget-2023-24-original-2023-02-01",
+      "financialYear": "2022-23",
+      "artifactFinancialYear": "2023-24",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Budget at a Glance, Union Budget 2023-2024",
+      "url": "https://www.indiabudget.gov.in/budget2023-24/doc/Budget_at_Glance/bag1.pdf",
+      "publishedAt": "2023-02-01",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "RE",
+      "sourceHash": "a388738767dfd6582bc46e5d3324094e2fc995e883a90b151af5c9c0e204e052",
+      "artifactPath": "datasets/raw/union/2023-24/mof-union-budget-at-a-glance/union-budget-2023-24-original-2023-02-01/a388738767dfd6582bc46e5d3324094e2fc995e883a90b151af5c9c0e204e052.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2023-24/mof-union-budget-at-a-glance/union-budget-2023-24-original-2023-02-01/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2023-24/mof-union-budget-at-a-glance/union-budget-2023-24-original-2023-02-01/transcription-2022-23.json",
+      "publicationDateEvidence": {
+        "sourceId": "mof-union-budget-speech",
+        "releaseId": "union-budget-speech-2023-02-01",
+        "financialYear": "2023-24",
+        "artifactFinancialYear": "2023-24",
+        "organization": "Ministry of Finance, Government of India",
+        "document": "Budget Speech 2023-2024",
+        "url": "https://www.indiabudget.gov.in/budget2023-24/doc/Budget_Speech.pdf",
+        "publishedAt": "2023-02-01",
+        "retrievedAt": "2026-10-01",
+        "format": "pdf",
+        "estimateType": "BE",
+        "role": "release_date_evidence",
+        "sourceHash": "6e432b14989d83526ffff6dfae3571e19f9a4507522bca248ac33757ebcef245",
+        "artifactPath": "datasets/raw/union/2023-24/mof-union-budget-speech/union-budget-speech-2023-02-01/6e432b14989d83526ffff6dfae3571e19f9a4507522bca248ac33757ebcef245.pdf",
+        "sidecarPath": "datasets/raw/union/2023-24/mof-union-budget-speech/union-budget-speech-2023-02-01/provenance.json",
+        "locator": {
+          "kind": "budget_speech_release_date",
+          "page": 1,
+          "printedPage": null,
+          "wording": "2023-02-01"
+        }
+      },
+      "publicationFiscalYears": [
+        "2022-23",
+        "2023-24"
+      ],
+      "publishedEstimateTypes": [
+        "BE",
+        "RE"
+      ]
+    },
+    {
+      "sourceId": "cga-union-finance-accounts",
+      "releaseId": "union-finance-accounts-2022-23-final",
+      "financialYear": "2022-23",
+      "artifactFinancialYear": "2022-23",
+      "organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+      "document": "Union Government Finance Accounts 2022-2023, Statement No. 1 — Summary of Transactions",
+      "url": "https://cga.gov.in//writereaddata/file/Fin20222023Statement1.pdf",
+      "publishedAt": null,
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "final_actual",
+      "sourceHash": "0e1cdb9ea357ccd189469572102c8e5fe88eb01ecc293acfab7ee35e25445afc",
+      "artifactPath": "datasets/raw/union/2022-23/cga-union-finance-accounts/union-finance-accounts-2022-23-final/0e1cdb9ea357ccd189469572102c8e5fe88eb01ecc293acfab7ee35e25445afc.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2022-23/cga-union-finance-accounts/union-finance-accounts-2022-23-final/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2022-23/cga-union-finance-accounts/union-finance-accounts-2022-23-final/transcription-2022-23.json",
+      "publicationDateEvidence": {
+        "url": "https://cga.nic.in/FinanceReport/Published/2022-23.aspx",
+        "label": "CGA Finance Accounts archive listing; publication date not stated in capture"
+      },
+      "publicationFiscalYears": [
+        "2021-22",
+        "2022-23"
+      ],
+      "publishedEstimateTypes": [
+        "final_actual"
+      ]
+    }
+  ],
+  "requiredSourceReleases": [
+    [
+      "mof-union-budget-at-a-glance",
+      "union-budget-2022-23-original-2022-02-01"
+    ],
+    [
+      "mof-union-budget-at-a-glance",
+      "union-budget-2023-24-original-2023-02-01"
+    ],
+    [
+      "cga-union-finance-accounts",
+      "union-finance-accounts-2022-23-final"
+    ]
+  ],
+  "commonCoreMetricIds": [
+    "revenue_receipts",
+    "tax_revenue_net",
+    "non_tax_revenue",
+    "recovery_of_loans",
+    "other_capital_receipts",
+    "revenue_expenditure",
+    "capital_expenditure",
+    "total_expenditure",
+    "interest_payments",
+    "fiscal_deficit",
+    "revenue_deficit",
+    "primary_deficit"
+  ],
+  "expectedObservationCounts": {
+    "BE": 12,
+    "RE": 12,
+    "final_actual": 8
+  },
+  "expectedObservationCountsByRelease": {
+    "union-budget-2022-23-original-2022-02-01": 12,
+    "union-budget-2023-24-original-2023-02-01": 12,
+    "union-finance-accounts-2022-23-final": 8
+  },
+  "expectedDerivedMetricCounts": {
+    "BE": 2,
+    "RE": 2,
+    "final_actual": 3
+  },
+  "defaultComparisonReleaseByState": {
+    "BE": "union-budget-2022-23-original-2022-02-01",
+    "RE": "union-budget-2023-24-original-2023-02-01",
+    "final_actual": "union-finance-accounts-2022-23-final"
+  },
+  "reconciliationToleranceCrore": 1,
+  "reconciliationToleranceRationale": "Budget at a Glance publications explicitly state individual items may not sum to totals due to rounding; source printed values remain unchanged and a one-crore maximum is allowed only for BE/RE arithmetic checks. CGA actual receipt reconciliation uses exact paise values and no tolerance.",
+  "reconciliationAdjustments": [
+    {
+      "metric": "grants_in_aid_receipts",
+      "estimateType": "final_actual",
+      "amount": 1887.11,
+      "unit": "crore",
+      "sourceId": "cga-union-finance-accounts",
+      "releaseId": "union-finance-accounts-2022-23-final",
+      "sourceHash": "0e1cdb9ea357ccd189469572102c8e5fe88eb01ecc293acfab7ee35e25445afc",
+      "sourceLabel": "TOTAL-C-GRANTS-IN-AID AND CONTRIBUTIONS",
+      "sourceWording": "TOTAL-C-GRANTS-IN-AID AND CONTRIBUTIONS",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "printedPage": 18,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "TOTAL-C-GRANTS-IN-AID AND CONTRIBUTIONS",
+        "columnIndex": 0
+      }
+    }
+  ],
+  "unavailableMetricStates": {
+    "final_actual": {
+      "metrics": [
+        "fiscal_deficit",
+        "revenue_deficit",
+        "primary_deficit"
+      ],
+      "status": "absent",
+      "reason": "Statement No. 1 does not report these fiscal deficit aggregates on the same annual-account row basis; no source-equivalent audited row was verified for this packet."
+    },
+    "provisional": {
+      "status": "absent",
+      "reason": "This packet uses final annual Finance Accounts; no provisional monthly series is substituted."
+    }
+  },
+  "sourceToOutputTrace": "Every source-reported observation has its locator verified from the captured PDF page and column before normalization."
+}

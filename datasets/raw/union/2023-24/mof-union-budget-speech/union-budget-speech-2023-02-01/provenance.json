@@ -1,0 +1,28 @@
+{
+  "source_id": "mof-union-budget-speech",
+  "release_id": "union-budget-speech-2023-02-01",
+  "url": "https://www.indiabudget.gov.in/budget2023-24/doc/Budget_Speech.pdf",
+  "original_url": "https://www.indiabudget.gov.in/budget2023-24/doc/Budget_Speech.pdf",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/budget2023-24/doc/Budget_Speech.pdf",
+  "ext": "pdf",
+  "source_format": "pdf",
+  "document": "Budget Speech 2023-2024",
+  "document_name": "Budget Speech 2023-2024",
+  "organization": "Ministry of Finance, Government of India",
+  "source_organization": "Ministry of Finance, Government of India",
+  "published_at": "2023-02-01",
+  "publication_date": "2023-02-01",
+  "retrieval_date": "2026-10-01",
+  "content_type": "application/pdf",
+  "source_hash": "6e432b14989d83526ffff6dfae3571e19f9a4507522bca248ac33757ebcef245",
+  "file_size_bytes": 472415,
+  "artifact_path": "datasets/raw/union/2023-24/mof-union-budget-speech/union-budget-speech-2023-02-01/6e432b14989d83526ffff6dfae3571e19f9a4507522bca248ac33757ebcef245.pdf",
+  "artifact_role": "release_date_evidence",
+  "role": "release_date_evidence",
+  "estimate_type": "BE",
+  "date_locator": {
+    "page": 1,
+    "printedPage": null,
+    "text": "2023-02-01"
+  }
+}

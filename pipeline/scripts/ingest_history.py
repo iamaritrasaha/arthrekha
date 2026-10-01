@@ -12,6 +12,7 @@ import hashlib
 import json
 import re
 from collections import Counter
+from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
@@ -60,6 +61,41 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _verify_publication_date_evidence(source: dict[str, Any]) -> None:
+    evidence = source.get("publicationDateEvidence")
+    # Older CGA packets retain an external notice URL/label here; captured,
+    # hash-addressed speech evidence uses the full artifact contract below.
+    if not evidence or "artifactPath" not in evidence:
+        return
+    artifact = Path(evidence["artifactPath"])
+    sidecar_path = Path(evidence["sidecarPath"])
+    if not artifact.is_file() or not sidecar_path.is_file():
+        raise ValueError(f"missing publication-date evidence artifact or sidecar: {artifact}")
+    sidecar = _load_json(sidecar_path)
+    digest = _sha256(artifact)
+    if digest != evidence["sourceHash"] or digest != sidecar.get("source_hash"):
+        raise ValueError(f"publication-date evidence hash mismatch: {artifact}")
+    expected_artifact = historical_source_artifact_path(
+        evidence.get("artifactFinancialYear", evidence["financialYear"]),
+        evidence["sourceId"], evidence["releaseId"], digest, evidence["format"],
+    )
+    if artifact != expected_artifact:
+        raise ValueError(f"publication-date evidence is outside its hash-addressed release path: {artifact}")
+    for field, sidecar_field in (("sourceId", "source_id"), ("releaseId", "release_id"), ("url", "original_url")):
+        if evidence[field] != sidecar.get(sidecar_field):
+            raise ValueError(f"publication-date evidence sidecar mismatch for {field}: {artifact}")
+    if evidence["retrievedAt"] != sidecar.get("retrieval_date"):
+        raise ValueError(f"publication-date evidence sidecar mismatch for retrieval date: {artifact}")
+    if evidence["publishedAt"] != sidecar.get("published_at", sidecar.get("publication_date")):
+        raise ValueError(f"publication-date evidence sidecar mismatch for publication date: {artifact}")
+    locator = evidence["locator"]
+    if locator.get("kind") != "budget_speech_release_date" or int(locator.get("page", 0)) != 1:
+        raise ValueError(f"unsupported publication-date evidence locator: {locator}")
+    expected_wording = date.fromisoformat(evidence["publishedAt"]).strftime("%B %-d, %Y")
+    if expected_wording.lower() not in extract_pdf_page_layout(artifact, 1).lower():
+        raise ValueError(f"publication date not found at declared speech locator: {artifact}")
+
+
 def _clean_amount(value: str) -> str:
     return re.sub(r"[^0-9]", "", value)
 
@@ -81,7 +117,20 @@ def _verify_locator(source: dict[str, Any], mapping: dict[str, Any]) -> None:
             for index in range(len(lines)):
                 row_window = " ".join(lines[index:index + 5])
                 flat_window = re.sub(r"\s+", " ", row_window).lower()
-                if all(token in flat_window for token in label_tokens) and value in re.sub(r"[ ,]", "", row_window):
+                if not all(token in flat_window for token in label_tokens):
+                    continue
+                # CGA summary tables carry two financial-year columns. Anchor
+                # the numeric scan after the exact row label, then select the
+                # declared column instead of accepting a same-row value from
+                # the adjacent comparative year.
+                label_end = row_window.lower().rfind(label_tokens[-1]) + len(label_tokens[-1])
+                following_cells = row_window[label_end:]
+                row_amounts = [
+                    float(token.replace(",", ""))
+                    for token in re.findall(r"(?<![A-Za-z])[-−]?\d[\d,]*\.\d{2}", following_cells)
+                ]
+                column_index = int(locator.get("columnIndex", 0))
+                if len(row_amounts) > column_index and f"{row_amounts[column_index]:.2f}" == value:
                     matched = True
                     break
             if not matched:
@@ -100,7 +149,7 @@ def _verify_locator(source: dict[str, Any], mapping: dict[str, Any]) -> None:
         # Budget at a Glance lists four adjacent fiscal-year values: the final
         # column is 2025-26 BE in the original document, and the third is
         # 2025-26 RE in the later Budget document.
-        expected_column = int(locator.get("columnIndex", 3 if source["estimateType"] == "BE" else 2))
+        expected_column = int(locator.get("columnIndex", 3 if source["estimateType"] == "BE" else 2)) + int(locator.get("valueOffset", 0))
         if (
             not all(token in row_flat for token in label_tokens)
             or len(row_amounts) <= expected_column
@@ -129,6 +178,8 @@ def _verify_locator(source: dict[str, Any], mapping: dict[str, Any]) -> None:
 def ingest(financial_year: str, manifest_path: Path | None = None, output_path: Path | None = None) -> dict[str, Any]:
     if financial_year == "2024-25":
         return _ingest_fy_2024_25(manifest_path, output_path)
+    if financial_year in {"2021-22", "2022-23", "2023-24"}:
+        return _ingest_annual_actual_fy(financial_year, manifest_path, output_path)
     manifest_path = manifest_path or historical_source_manifest_path(financial_year)
     output_path = output_path or historical_processed_path(financial_year)
     manifest = _load_json(manifest_path)
@@ -168,6 +219,7 @@ def ingest(financial_year: str, manifest_path: Path | None = None, output_path: 
         if source.get("publishedAt") != sidecar_publication_date:
             raise ValueError(f"source sidecar mismatch for publication date: {artifact}")
         source["_artifact"] = artifact
+        _verify_publication_date_evidence(source)
         sources[key] = source
     if expected_sources and set(sources) != expected_sources:
         raise ValueError(f"declared source releases do not match required packet: {set(sources)} != {expected_sources}")
@@ -318,6 +370,200 @@ def ingest(financial_year: str, manifest_path: Path | None = None, output_path: 
         "unavailableEstimateStates": {"final_actual": {"status": "absent", "reason": manifest["finalActualAbsence"]["reason"], "evidenceSourceId": manifest["finalActualAbsence"]["evidenceSourceId"], "evidenceReleaseId": manifest["finalActualAbsence"]["evidenceReleaseId"], "sourceHash": manifest["finalActualAbsence"]["sourceHash"]}},
         "sourceManifestPath": str(manifest_path),
         "evidenceMappings": evidence + derived_evidence,
+        "reconciliations": reconciliations,
+    }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return output
+
+
+def _ingest_annual_actual_fy(
+    financial_year: str, manifest_path: Path | None, output_path: Path | None
+) -> dict[str, Any]:
+    """Normalize BE/RE plus final CGA annual accounts for FY21-22 through FY23-24."""
+    manifest_path = manifest_path or historical_source_manifest_path(financial_year)
+    output_path = output_path or historical_processed_path(financial_year)
+    manifest = _load_json(manifest_path)
+    if manifest.get("financialYear") != financial_year:
+        raise ValueError(f"manifest FY {manifest.get('financialYear')} does not match requested FY {financial_year}")
+    if manifest.get("schemaVersion") != 1:
+        raise ValueError("unsupported historical manifest schemaVersion")
+
+    sources: dict[tuple[str, str], dict[str, Any]] = {}
+    for source in manifest.get("sources", []):
+        if source.get("financialYear") != financial_year:
+            raise ValueError(f"wrong FY on source {source.get('sourceId')}/{source.get('releaseId')}")
+        key = (source["sourceId"], source["releaseId"])
+        if key in sources:
+            raise ValueError(f"duplicate declared source release: {key}")
+        artifact = Path(source["artifactPath"])
+        sidecar_path = Path(source["sidecarPath"])
+        if not artifact.is_file() or not sidecar_path.is_file():
+            raise ValueError(f"missing declared source artifact or sidecar: {artifact}")
+        sidecar = _load_json(sidecar_path)
+        digest = _sha256(artifact)
+        if digest != source["sourceHash"] or digest != sidecar.get("source_hash"):
+            raise ValueError(f"source hash mismatch: {artifact}")
+        artifact_fy = source.get("artifactFinancialYear", financial_year)
+        expected_artifact = historical_source_artifact_path(
+            artifact_fy, source["sourceId"], source["releaseId"], digest, source["format"]
+        )
+        if artifact != expected_artifact:
+            raise ValueError(f"artifact is outside its declared hash-addressed release path: {artifact}")
+        for field, sidecar_field in (("sourceId", "source_id"), ("releaseId", "release_id"), ("url", "original_url")):
+            if source[field] != sidecar.get(sidecar_field):
+                raise ValueError(f"source sidecar mismatch for {field}: {artifact}")
+        if source.get("retrievedAt") != sidecar.get("retrieval_date"):
+            raise ValueError(f"source sidecar mismatch for retrieval date: {artifact}")
+        sidecar_published = sidecar.get("published_at", sidecar.get("publication_date"))
+        if source.get("publishedAt") != sidecar_published:
+            raise ValueError(f"source sidecar mismatch for publication date: {artifact}")
+        source["_artifact"] = artifact
+        sources[key] = source
+    required = {tuple(item) for item in manifest.get("requiredSourceReleases", [])}
+    if set(sources) != required:
+        raise ValueError(f"declared source releases do not match required packet: {set(sources)} != {required}")
+
+    records: list[tuple[dict[str, Any], dict[str, Any]]] = []
+    for source in sources.values():
+        transcription_path = Path(source["transcriptionPath"])
+        if not transcription_path.is_file():
+            raise ValueError(f"missing declared structured transcription: {transcription_path}")
+        transcription = _load_json(transcription_path)
+        if (transcription.get("financialYear") != financial_year or
+            transcription.get("sourceId") != source["sourceId"] or
+            transcription.get("releaseId") != source["releaseId"] or
+            transcription.get("sourceHash") != source["sourceHash"]):
+            raise ValueError(f"transcription provenance mismatch: {transcription_path}")
+        for item in transcription.get("observations", []):
+            _verify_locator(source, item)
+            records.append((source, item))
+
+    supporting: list[dict[str, Any]] = []
+    for item in manifest.get("reconciliationAdjustments", []):
+        source = sources.get((item["sourceId"], item["releaseId"]))
+        if not source or source["sourceHash"] != item["sourceHash"]:
+            raise ValueError(f"missing or mismatched reconciliation support source: {item.get('metric')}")
+        _verify_locator(source, item)
+        supporting.append({**item, "traceStatus": "verified_artifact_to_row_value_supporting_reconciliation"})
+
+    observations: list[FinancialObservation] = []
+    evidence: list[dict[str, Any]] = []
+    seen: set[tuple[str, str, str, str, str]] = set()
+    ids: dict[tuple[str, str, str], str] = {}
+    by_id: dict[str, FinancialObservation] = {}
+    for source, item in records:
+        metric, state, release_id = item["metric"], item["estimateType"], source["releaseId"]
+        if metric not in METRICS:
+            raise ValueError(f"unknown metric id: {metric}")
+        if state not in {"BE", "RE", "final_actual"}:
+            raise ValueError(f"invalid estimate state in historical packet: {state}")
+        if (item.get("financialYear") != financial_year or item.get("unit") != "crore" or
+            item.get("currency") != "INR" or state != source["estimateType"]):
+            raise ValueError(f"wrong FY, units, currency, or estimate state in {metric}")
+        if item.get("comparability") in {"not_comparable", "comparable_with_note"} and not item.get("rationale"):
+            raise ValueError(f"{item['comparability']} requires rationale: {metric} {state}")
+        key = (financial_year, state, source["sourceId"], release_id, metric)
+        if key in seen:
+            raise ValueError(f"duplicate or conflicting release-qualified observation key {key}")
+        seen.add(key)
+        locator = item["locator"]
+        data_source = DataSource(
+            organization=source["organization"], document=source["document"], url=source["url"],
+            table=locator.get("table"), page=str(locator.get("page", "")) or None,
+            row=str(locator.get("row", "")) or None, published_at=source.get("publishedAt"),
+            retrieved_at=source["retrievedAt"], data_status="final" if state == "final_actual" else "estimated",
+            notes=item.get("rationale"), definition=item["sourceWording"], source_id=source["sourceId"],
+            release_id=release_id, source_hash=source["sourceHash"],
+        )
+        observation = FinancialObservation(
+            jurisdiction="india", jurisdiction_type="union", financial_year=financial_year,
+            period_type="annual", metric=metric, amount=float(item["amount"]), estimate_type=state,
+            source=data_source, definition_id=metric, coverage="Union Government of India",
+            classification_type=METRICS[metric]["domain"], parent_metric=METRICS[metric]["parent_metric"],
+            canonical_definition=METRICS[metric]["accounting_interpretation"],
+            definition_version=item["definitionVersion"],
+            comparison_eligibility={"status": item["comparability"], **({"rationale": item["rationale"]} if item.get("rationale") else {})},
+            identity_version=2,
+        )
+        errors = validate_observation(observation)
+        if errors:
+            raise ValueError(f"invalid historical observation {metric}: {errors}")
+        observations.append(observation)
+        by_id[observation.id] = observation
+        ids[(metric, state, release_id)] = observation.id
+        evidence.append({
+            **item, "sourceId": source["sourceId"], "releaseId": release_id,
+            "sourceHash": source["sourceHash"], "canonicalDefinition": observation.canonical_definition,
+            "definitionVersion": item["definitionVersion"],
+            "traceStatus": "verified_artifact_to_row_to_transcription_to_observation",
+        })
+
+    release_counts = Counter(o.source.release_id for o in observations)
+    if dict(release_counts) != manifest["expectedObservationCountsByRelease"]:
+        raise ValueError(f"observation counts by release mismatch: {dict(release_counts)} != {manifest['expectedObservationCountsByRelease']}")
+    if any(o.identity_version != 2 for o in observations):
+        raise ValueError("all historical observations must use identity v2")
+
+    derived: list[DerivedMetric] = []
+    derived_evidence: list[dict[str, Any]] = []
+    groups = sorted({(o.estimate_type, o.source.release_id) for o in observations})
+    for state, release_id in groups:
+        group = {o.metric: o for o in observations if o.estimate_type == state and o.source.release_id == release_id}
+        formulas: list[tuple[str, str, list[str], float, str]] = []
+        if {"recovery_of_loans", "other_capital_receipts"} <= group.keys():
+            recovery, other = group["recovery_of_loans"], group["other_capital_receipts"]
+            formulas.append(("non_debt_capital_receipts", "recovery_of_loans + other_capital_receipts", [recovery.id, other.id], recovery.amount + other.amount, "Derived from the official recovery-of-loans and other-receipts rows; not source-reported as one value."))
+        if {"revenue_receipts", "recovery_of_loans", "other_capital_receipts"} <= group.keys():
+            receipts, recovery, other = group["revenue_receipts"], group["recovery_of_loans"], group["other_capital_receipts"]
+            formulas.append(("non_borrowed_receipts", "revenue_receipts + recovery_of_loans + other_capital_receipts", [receipts.id, recovery.id, other.id], receipts.amount + recovery.amount + other.amount, "Derived from official components; does not use borrowing-inclusive Total Receipts."))
+        if state == "final_actual" and {"revenue_expenditure", "capital_expenditure"} <= group.keys():
+            revenue, capital = group["revenue_expenditure"], group["capital_expenditure"]
+            formulas.append(("total_expenditure", "revenue_expenditure + capital_expenditure", [revenue.id, capital.id], revenue.amount + capital.amount, "Derived from final CGA revenue- and capital-account outturn rows; no single total-expenditure observation is source-reported in this packet."))
+        for metric, formula, input_ids, amount, rationale in formulas:
+            derived.append(DerivedMetric(metric=metric, formula=formula, inputs=input_ids, value=amount, unit="crore", description=rationale, financial_year=financial_year, estimate_type=state))
+            derived_evidence.append({"metric": metric, "estimateType": state, "releaseId": release_id, "amount": amount, "unit": "crore", "sourceReported": False, "formula": formula, "inputObservationIds": input_ids, "inputEvidence": [{"observationId": oid, "sourceId": by_id[oid].source.source_id, "releaseId": by_id[oid].source.release_id, "sourceHash": by_id[oid].source.source_hash} for oid in input_ids], "comparability": "comparable_with_note", "rationale": rationale, "traceStatus": "derived_from_verified_input_observations"})
+
+    tolerance = float(manifest.get("reconciliationToleranceCrore", 0))
+    reconciliations: list[dict[str, Any]] = []
+    for state, release_id in groups:
+        values = {o.metric: o.amount for o in observations if o.estimate_type == state and o.source.release_id == release_id}
+        checks: list[tuple[str, float, float]] = []
+        if {"total_expenditure", "revenue_expenditure", "capital_expenditure"} <= values.keys():
+            checks.append(("total_expenditure_equals_revenue_plus_capital", values["total_expenditure"], values["revenue_expenditure"] + values["capital_expenditure"]))
+        if state in {"BE", "RE"}:
+            checks.extend([
+                ("revenue_deficit_equals_revenue_expenditure_minus_receipts", values["revenue_deficit"], values["revenue_expenditure"] - values["revenue_receipts"]),
+                ("fiscal_deficit_equals_expenditure_minus_nonborrowed_receipts", values["fiscal_deficit"], values["total_expenditure"] - values["revenue_receipts"] - values["recovery_of_loans"] - values["other_capital_receipts"]),
+                ("primary_deficit_equals_fiscal_deficit_minus_interest", values["primary_deficit"], values["fiscal_deficit"] - values["interest_payments"]),
+                ("revenue_receipts_equals_net_tax_plus_nontax", values["revenue_receipts"], values["tax_revenue_net"] + values["non_tax_revenue"]),
+            ])
+        elif state == "final_actual":
+            grants = next(float(a["amount"]) for a in supporting if a["estimateType"] == state)
+            checks.append(("revenue_receipts_equals_net_tax_plus_nontax_and_reported_grants", values["revenue_receipts"], values["tax_revenue_net"] + values["non_tax_revenue"] + grants))
+        for name, reported, calculated in checks:
+            allowed = tolerance if state in {"BE", "RE"} else 0.005
+            if abs(reported - calculated) > allowed:
+                raise ValueError(f"accounting reconciliation failed: {release_id} {name}: {reported} != {calculated} (tolerance {allowed})")
+            reconciliations.append({"estimateType": state, "releaseId": release_id, "identity": name, "reported": reported, "calculated": calculated, "toleranceCrore": allowed, "status": "passed"})
+
+    counts = Counter(o.estimate_type for o in observations)
+    if dict(counts) != manifest["expectedObservationCounts"]:
+        raise ValueError(f"observation counts by state mismatch: {dict(counts)} != {manifest['expectedObservationCounts']}")
+    derived_counts = Counter(d.estimate_type for d in derived)
+    if dict(derived_counts) != manifest["expectedDerivedMetricCounts"]:
+        raise ValueError(f"derived metric counts mismatch: {dict(derived_counts)} != {manifest['expectedDerivedMetricCounts']}")
+    unavailable = manifest["unavailableMetricStates"]
+    output = {
+        "schemaVersion": 1, "financialYear": financial_year, "jurisdiction": "india", "jurisdictionType": "union",
+        "observations": [o.to_dict() for o in observations], "derivedMetrics": [d.to_dict() for d in derived],
+        "availableEstimateStates": ["BE", "RE", "final_actual"],
+        "unavailableEstimateStates": {"provisional": unavailable["provisional"]},
+        "unavailableMetricStates": {metric: {"status": "absent", "reason": unavailable["final_actual"]["reason"]} for metric in unavailable["final_actual"]["metrics"]},
+        "sourceManifestPath": str(manifest_path),
+        "releaseCatalog": [{"sourceId": source["sourceId"], "releaseId": source["releaseId"], "estimateType": source["estimateType"], "publishedAt": source.get("publishedAt"), "sourceHash": source["sourceHash"], "defaultComparisonRelease": source["releaseId"] == manifest.get("defaultComparisonReleaseByState", {}).get(source["estimateType"])} for source in sources.values()],
+        "evidenceMappings": evidence + derived_evidence,
+        "supportingEvidenceMappings": supporting,
         "reconciliations": reconciliations,
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)

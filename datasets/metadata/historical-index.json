@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "datasets": [
     {
+      "financialYear": "2021-22",
+      "path": "2021-22.json",
+      "sourceManifestPath": "manifests/2021-22.json"
+    },
+    {
+      "financialYear": "2022-23",
+      "path": "2022-23.json",
+      "sourceManifestPath": "manifests/2022-23.json"
+    },
+    {
+      "financialYear": "2023-24",
+      "path": "2023-24.json",
+      "sourceManifestPath": "manifests/2023-24.json"
+    },
+    {
       "financialYear": "2024-25",
       "path": "2024-25.json",
       "sourceManifestPath": "manifests/2024-25.json"

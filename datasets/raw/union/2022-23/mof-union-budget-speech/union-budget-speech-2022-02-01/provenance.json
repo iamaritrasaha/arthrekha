@@ -1,0 +1,28 @@
+{
+  "source_id": "mof-union-budget-speech",
+  "release_id": "union-budget-speech-2022-02-01",
+  "url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_Speech.pdf",
+  "original_url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_Speech.pdf",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/budget2022-23/doc/Budget_Speech.pdf",
+  "ext": "pdf",
+  "source_format": "pdf",
+  "document": "Budget Speech 2022-2023",
+  "document_name": "Budget Speech 2022-2023",
+  "organization": "Ministry of Finance, Government of India",
+  "source_organization": "Ministry of Finance, Government of India",
+  "published_at": "2022-02-01",
+  "publication_date": "2022-02-01",
+  "retrieval_date": "2026-10-01",
+  "content_type": "application/pdf",
+  "source_hash": "9767a916bdc0596577659767b50da5c92929d1b9f5f835ae3769b954fcee8b84",
+  "file_size_bytes": 706427,
+  "artifact_path": "datasets/raw/union/2022-23/mof-union-budget-speech/union-budget-speech-2022-02-01/9767a916bdc0596577659767b50da5c92929d1b9f5f835ae3769b954fcee8b84.pdf",
+  "artifact_role": "release_date_evidence",
+  "role": "release_date_evidence",
+  "estimate_type": "BE",
+  "date_locator": {
+    "page": 1,
+    "printedPage": null,
+    "text": "2022-02-01"
+  }
+}

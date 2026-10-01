@@ -8,6 +8,9 @@ import {
 const index = {
   schemaVersion: 1,
   datasets: [
+    { financialYear: '2021-22', path: '2021-22.json', sourceManifestPath: 'manifests/2021-22.json' },
+    { financialYear: '2022-23', path: '2022-23.json', sourceManifestPath: 'manifests/2022-23.json' },
+    { financialYear: '2023-24', path: '2023-24.json', sourceManifestPath: 'manifests/2023-24.json' },
     { financialYear: '2024-25', path: '2024-25.json', sourceManifestPath: 'manifests/2024-25.json' },
     { financialYear: '2025-26', path: '2025-26.json', sourceManifestPath: 'manifests/2025-26.json' },
   ],
@@ -58,8 +61,26 @@ describe('Historical Dataset Loader', () => {
     });
     const loader = createHistoricalDatasetLoader(fetchAsset, '/');
 
-    await expect(loader.load('2023-24')).rejects.toBeInstanceOf(UnknownHistoricalFiscalYearError);
+    await expect(loader.load('2020-21')).rejects.toBeInstanceOf(UnknownHistoricalFiscalYearError);
     expect(urls).toEqual(['/data/history/index.json']);
+  });
+
+  it('loads each newly indexed year only when requested', async () => {
+    const urls: string[] = [];
+    const fetchAsset = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      urls.push(url);
+      if (url.endsWith('/index.json')) return response(index);
+      const match = url.match(/\/(20\d\d-\d\d)\.json$/);
+      return match ? response(dataset(match[1]!)) : response({}, 404);
+    });
+    const loader = createHistoricalDatasetLoader(fetchAsset, '/');
+
+    expect((await loader.load('2023-24')).financialYear).toBe('2023-24');
+    expect(urls).toEqual(['/data/history/index.json', '/data/history/2023-24.json']);
+    expect((await loader.load('2022-23')).financialYear).toBe('2022-23');
+    expect(urls.slice(-1)).toEqual(['/data/history/2022-23.json']);
+    expect(urls).not.toContain('/data/history/2021-22.json');
   });
 
   it('fails explicitly when an indexed historical asset is unavailable', async () => {

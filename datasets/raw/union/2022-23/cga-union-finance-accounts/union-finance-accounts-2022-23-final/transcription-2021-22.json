@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "financialYear": "2021-22",
+  "sourceId": "cga-union-finance-accounts",
+  "releaseId": "union-finance-accounts-2022-23-final",
+  "sourceHash": "0e1cdb9ea357ccd189469572102c8e5fe88eb01ecc293acfab7ee35e25445afc",
+  "observations": [
+    {
+      "metric": "revenue_receipts",
+      "amount": 2436421.48,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "TOTAL-RECEIPT HEADS (REVENUE ACCOUNT)",
+      "sourceWording": "TOTAL-RECEIPT HEADS (REVENUE ACCOUNT)",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "printedPage": 18,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "TOTAL-RECEIPT HEADS (REVENUE ACCOUNT)",
+        "columnIndex": 1
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "CGA final Revenue Receipts include the separately reported grants-in-aid and contributions line; Budget BE/RE receipt rows present these components differently."
+    },
+    {
+      "metric": "tax_revenue_net",
+      "amount": 1810923.51,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "TOTAL—A-TAX REVENUE",
+      "sourceWording": "TOTAL—A-TAX REVENUE",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 4,
+        "printedPage": 10,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "TOTAL—A-TAX REVENUE",
+        "columnIndex": 1
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "non_tax_revenue",
+      "amount": 624192.01,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "TOTAL B - NON-TAX REVENUE",
+      "sourceWording": "TOTAL B - NON-TAX REVENUE",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 10,
+        "printedPage": 16,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "TOTAL B - NON-TAX REVENUE",
+        "columnIndex": 1
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "recovery_of_loans",
+      "amount": 24948.1,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "F-LOANS AND ADVANCES",
+      "sourceWording": "F-LOANS AND ADVANCES",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "printedPage": 18,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "F-LOANS AND ADVANCES",
+        "columnIndex": 1
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "The CGA receipt row is labelled F-Loans and Advances; this maps to Recovery of Loans in Budget tables while preserving the annual-account source wording."
+    },
+    {
+      "metric": "other_capital_receipts",
+      "amount": 14638.22,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "Miscellaneous Capital Receipts",
+      "sourceWording": "Miscellaneous Capital Receipts",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "printedPage": 18,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "Miscellaneous Capital Receipts",
+        "columnIndex": 1
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "revenue_expenditure",
+      "amount": 3468188.84,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "TOTAL- EXPENDITURE HEADS (REVENUE ACCOUNT)",
+      "sourceWording": "TOTAL- EXPENDITURE HEADS (REVENUE ACCOUNT)",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 17,
+        "printedPage": 23,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "TOTAL- EXPENDITURE HEADS (REVENUE ACCOUNT)",
+        "columnIndex": 1
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "CGA final actuals use Total-Expenditure Heads (Revenue Account); Budget tables label the corresponding aggregate On Revenue Account. The final-account value is retained. FY 2021-22 includes Covid-era spending and related central support; printed Revenue Account and Capital Account actuals are not recast."
+    },
+    {
+      "metric": "capital_expenditure",
+      "amount": 538140.22,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "EXPENDITURE HEADS (CAPITAL ACCOUNT)",
+      "sourceWording": "EXPENDITURE HEADS (CAPITAL ACCOUNT)",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 17,
+        "printedPage": 23,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "EXPENDITURE HEADS (CAPITAL ACCOUNT)",
+        "columnIndex": 1
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "CGA final actuals use Expenditure Heads (Capital Account). Separately reported grants for creation of capital assets and Effective Capital Expenditure are excluded. FY 2021-22 includes Covid-era spending and related central support; printed Revenue Account and Capital Account actuals are not recast."
+    },
+    {
+      "metric": "interest_payments",
+      "amount": 823011.27,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2021-22",
+      "estimateType": "final_actual",
+      "sourceLabel": "Interest Payments",
+      "sourceWording": "Interest Payments",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 5,
+        "printedPage": 11,
+        "table": "Statement No. 1 — Summary of Transactions",
+        "row": "Interest Payments",
+        "columnIndex": 1
+      },
+      "comparability": "comparable",
+      "rationale": null
+    }
+  ]
+}

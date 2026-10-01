@@ -1,0 +1,26 @@
+{
+  "source_id": "cga-union-finance-accounts",
+  "release_id": "union-finance-accounts-2022-23-final",
+  "url": "https://cga.gov.in//writereaddata/file/Fin20222023Statement1.pdf",
+  "ext": "pdf",
+  "document": "Union Government Finance Accounts 2022-2023, Statement No. 1 — Summary of Transactions",
+  "organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+  "published_at": null,
+  "estimate_type": "final_actual",
+  "role": "observation_source",
+  "original_url": "https://cga.gov.in//writereaddata/file/Fin20222023Statement1.pdf",
+  "retrieval_date": "2026-10-01",
+  "retrieved_final_url": "https://cga.gov.in//writereaddata/file/Fin20222023Statement1.pdf",
+  "content_type": "application/pdf",
+  "source_hash": "0e1cdb9ea357ccd189469572102c8e5fe88eb01ecc293acfab7ee35e25445afc",
+  "file_size_bytes": 1188358,
+  "artifact_path": "datasets/raw/union/2022-23/cga-union-finance-accounts/union-finance-accounts-2022-23-final/0e1cdb9ea357ccd189469572102c8e5fe88eb01ecc293acfab7ee35e25445afc.pdf",
+  "artifact_role": "observation_source",
+  "supported_financial_years": [
+    "2021-22",
+    "2022-23"
+  ],
+  "supported_estimate_types": [
+    "final_actual"
+  ]
+}

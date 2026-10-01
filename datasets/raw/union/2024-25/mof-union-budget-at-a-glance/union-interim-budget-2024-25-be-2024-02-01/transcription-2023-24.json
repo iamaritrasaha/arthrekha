@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "financialYear": "2023-24",
+  "sourceId": "mof-union-budget-at-a-glance",
+  "releaseId": "union-interim-budget-2024-25-be-2024-02-01",
+  "sourceHash": "d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e",
+  "observations": [
+    {
+      "metric": "revenue_receipts",
+      "amount": 2699713,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Revenue Receipts",
+      "sourceWording": "Revenue Receipts",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "1",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "tax_revenue_net",
+      "amount": 2323918,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Tax Revenue (Net to Centre)",
+      "sourceWording": "Tax Revenue (Net to Centre)",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "2",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "non_tax_revenue",
+      "amount": 375795,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Non Tax Revenue",
+      "sourceWording": "Non Tax Revenue",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "3",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "recovery_of_loans",
+      "amount": 26000,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Recovery of Loans",
+      "sourceWording": "Recovery of Loans",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "5",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "other_capital_receipts",
+      "amount": 30000,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Other Receipts",
+      "sourceWording": "Other Receipts",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "6",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "revenue_expenditure",
+      "amount": 3540239,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "On Revenue Account",
+      "sourceWording": "On Revenue Account",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "10",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "capital_expenditure",
+      "amount": 950246,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "On Capital Account",
+      "sourceWording": "On Capital Account",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "13",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "total_expenditure",
+      "amount": 4490486,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Total Expenditure",
+      "sourceWording": "Total Expenditure",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "9",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "interest_payments",
+      "amount": 1055427,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Interest Payments",
+      "sourceWording": "Interest Payments",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "11",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "fiscal_deficit",
+      "amount": 1734773,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Fiscal Deficit",
+      "sourceWording": "Fiscal Deficit",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "17",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "revenue_deficit",
+      "amount": 840527,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Revenue Deficit",
+      "sourceWording": "Revenue Deficit",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "15",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    },
+    {
+      "metric": "primary_deficit",
+      "amount": 679346,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2023-24",
+      "estimateType": "RE",
+      "sourceLabel": "Primary Deficit",
+      "sourceWording": "Primary Deficit",
+      "definitionVersion": "1",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "printedPage": 1,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "18",
+        "columnIndex": 2
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "FY 2023-24 RE is taken from the Interim Budget 2024-25 release. That publication notes individual rounded components may not sum to its totals; printed source values are preserved."
+    }
+  ]
+}
