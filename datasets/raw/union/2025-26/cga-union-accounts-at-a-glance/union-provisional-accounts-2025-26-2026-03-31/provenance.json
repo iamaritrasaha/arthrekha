@@ -1,0 +1,22 @@
+{
+  "source_id": "cga-union-accounts-at-a-glance",
+  "release_id": "union-provisional-accounts-2025-26-2026-03-31",
+  "financial_year": "2025-26",
+  "source_organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+  "document_name": "Union Government Accounts at a Glance, Provisional Accounts 2025-2026",
+  "original_url": "https://cga.nic.in/writereaddata/MonthAccount/32026/DATA2526.htm",
+  "retrieved_final_url": "https://cga.nic.in/writereaddata/MonthAccount/32026/DATA2526.htm",
+  "content_type": "text/html",
+  "publication_date": "2026-03-31",
+  "retrieval_date": "2026-10-01",
+  "source_format": "html",
+  "estimate_type": "provisional",
+  "artifact_role": "observation_source",
+  "source_hash": "c322781d2d4cbf65105941e846c1339c3ba044d4986620436f3bfce5364ea83c",
+  "file_size_bytes": 132750,
+  "artifact_path": "datasets/raw/union/2025-26/cga-union-accounts-at-a-glance/union-provisional-accounts-2025-26-2026-03-31/c322781d2d4cbf65105941e846c1339c3ba044d4986620436f3bfce5364ea83c.html",
+  "publication_date_evidence": {
+    "url": "https://cga.nic.in/Circular/Published/7115.aspx",
+    "label": "Provisional Accounts for the Financial Year 2025-26-reg Order No 482 Dated 31st March 2026"
+  }
+}

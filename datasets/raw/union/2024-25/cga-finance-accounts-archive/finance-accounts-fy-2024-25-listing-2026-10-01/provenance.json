@@ -1,0 +1,18 @@
+{
+  "source_id": "cga-finance-accounts-archive",
+  "release_id": "finance-accounts-fy-2024-25-listing-2026-10-01",
+  "financial_year": "2024-25",
+  "source_organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+  "document_name": "CGA Finance Accounts 2024-2025 publication listing",
+  "original_url": "https://cga.nic.in/FinanceReport/Published/2024-2025.aspx",
+  "retrieved_final_url": "https://cga.nic.in/FinanceReport/Published/2024-2025.aspx",
+  "content_type": "text/html; charset=utf-8",
+  "publication_date": null,
+  "retrieval_date": "2026-10-01",
+  "source_format": "html",
+  "estimate_type": null,
+  "artifact_role": "release_listing_evidence",
+  "source_hash": "260c1dad7634c8366ff5c8811a4a3a5b0c72662fb2bf301331095c0caff56ed3",
+  "file_size_bytes": 103286,
+  "artifact_path": "datasets/raw/union/2024-25/cga-finance-accounts-archive/finance-accounts-fy-2024-25-listing-2026-10-01/260c1dad7634c8366ff5c8811a4a3a5b0c72662fb2bf301331095c0caff56ed3.html"
+}

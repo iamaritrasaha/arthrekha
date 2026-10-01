@@ -1,0 +1,18 @@
+{
+  "source_id": "mof-union-budget-speech",
+  "release_id": "union-full-budget-speech-2024-07-23",
+  "financial_year": "2024-25",
+  "source_organization": "Ministry of Finance, Government of India",
+  "document_name": "Speech on Union Budget 2024-2025",
+  "original_url": "https://www.indiabudget.gov.in/budget2024-25/doc/Budget_Speech.pdf",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/budget2024-25/doc/Budget_Speech.pdf",
+  "content_type": "application/pdf",
+  "publication_date": "2024-07-23",
+  "retrieval_date": "2026-10-01",
+  "source_format": "pdf",
+  "estimate_type": "BE",
+  "artifact_role": "release_date_evidence",
+  "source_hash": "c50ea76c25d361c6854c26c013f0c96051c92d496bc0bcafdc19547271e85e0a",
+  "file_size_bytes": 779225,
+  "artifact_path": "datasets/raw/union/2024-25/mof-union-budget-speech/union-full-budget-speech-2024-07-23/c50ea76c25d361c6854c26c013f0c96051c92d496bc0bcafdc19547271e85e0a.pdf"
+}

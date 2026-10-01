@@ -1,0 +1,18 @@
+{
+  "source_id": "mof-union-budget-speech",
+  "release_id": "union-budget-2025-26-speech-2025-02-01",
+  "financial_year": "2025-26",
+  "source_organization": "Ministry of Finance, Government of India",
+  "document_name": "Budget Speech 2025-2026",
+  "original_url": "https://www.indiabudget.gov.in/doc/bspeech/bs2025_26.pdf",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/doc/bspeech/bs2025_26.pdf",
+  "content_type": "application/pdf",
+  "publication_date": "2025-02-01",
+  "retrieval_date": "2026-10-01",
+  "source_format": "pdf",
+  "estimate_type": "BE",
+  "artifact_role": "release_date_evidence",
+  "source_hash": "6448cfdea5152338a1134cae3cc98ca8941e8ebc1bfa8479e091e5a803a356b0",
+  "file_size_bytes": 724405,
+  "artifact_path": "datasets/raw/union/2025-26/mof-union-budget-speech/union-budget-2025-26-speech-2025-02-01/6448cfdea5152338a1134cae3cc98ca8941e8ebc1bfa8479e091e5a803a356b0.pdf"
+}

@@ -1,0 +1,1123 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="ctl00_Head1"><title>
+	FinanceReport : CGA
+</title><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    
+    <!--[if lte IE 6]>
+  		<link rel="stylesheet" type="text/css" media="screen, projection" href="https://universal-ie6-css.googlecode.com/files/ie6.0.3.css" />
+	<![endif]-->
+    <!--[if lte IE 8]>
+		<link rel="stylesheet" type="text/css" media="all" href="ie.css" />
+	<![endif]-->
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" type="text/css" media="all" href="/css/style_tab.css" />
+     <link rel="stylesheet" href="/SpryAsset/SpryTabbedPanels.css" type="text/css" />
+    <meta id="ctl00_title" name="title" content="Finance" /><meta id="ctl00_Description" name="description" content="Finance" /><meta id="ctl00_Keywords" name="keywords" content="Finance" /><meta id="ctl00_language" name="language" content="English" />
+    <link rel="stylesheet" href="/App_Themes/SkyBlue/style-SkyBlue.css" type="text/css" />
+    <link rel="stylesheet" href="/App_Themes/SkyBlue/blue.css" type="text/css" />
+    <link rel="stylesheet" href="/App_Themes/SkyBlue/media-css-blue.css" type="text/css" />
+    <link rel="stylesheet" href="/App_Themes/SkyBlue/slicknav-blue.css" type="text/css" />
+    <link rel="stylesheet" href="/App_Themes/SkyBlue/jquery.datetimepicker-blue.css" type="text/css" />
+    <link rel="stylesheet" href="/css/jssor.css" type="text/css" />
+    
+    
+    
+     <script type="text/javascript" src="/JSNew/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/html5shiv-printshiv.js"></script>
+   
+    
+    <script type="text/javascript" src="/js/jquery.slicknav.js"></script>
+    <script type="text/javascript" src="/js/jquery.jfontsize-1.0.js"></script>
+   
+    <script type="text/javascript" src="/SpryAsset/SpryTabbedPanels.js"></script>
+    <script type="text/javascript" src="/js/dropdown.js"></script>
+    
+
+    
+    <script type="text/javascript" src="/JSNew/boot5/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/JSNew/boot5/script.js"></script>
+     <link href="/css/boot5/bootstrap.min.css" rel="stylesheet" type="text/css" /><link href="/css/boot5/custom.css" rel="stylesheet" type="text/css" /><link rel="stylesheet" type="text/css" href="/css/boot5/reset.min.css" /><link rel="stylesheet" type="text/css" href="/css/boot5/style.min.css" /><link rel="stylesheet" type="text/css" href="/css/boot5/ionicon.min.css" /><link rel="stylesheet" type="text/css" href="/css/boot5/custom-st.css" /><link rel="stylesheet" type="text/css" href="/css/boot5/responsive.css" />
+    
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('#menu').slicknav();
+        });
+    </script>
+    <script type="text/javascript" src='/js/access.js'></script>
+    
+    <script type="text/javascript">
+        // initialise plugins
+        jQuery(function () {
+            dropdown('menu', 'hover', 1);
+        });
+    </script>
+    <!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
+    <script type="text/javascript">
+        $(function () {
+            $('#slides').slidesjs({
+                width: 940,
+                height: 528,
+                play: {
+                    active: true,
+                    auto: true,
+                    interval: 4000,
+                    swap: true
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+
+        $(function () {
+            $(".slider").jCarouselLite({
+                btnNext: ".next",
+                btnPrev: ".prev",
+                visible: 3,
+                scroll: 1,
+                auto: 1000,
+                speed: 1000,
+                pauseOnMouseOver: true,
+            });
+
+        });
+        $(document).ready(function () {
+            $('.slider').attr("style", "width:684px;float:left;left: 0;overflow: hidden; position: relative;visibility: visible;z-index: 2;margin-top:8px;");
+            $('.slider').trigger('pauseCarousel')
+        });
+
+
+
+
+    </script>
+    <script type="text/javascript">
+        function SetMyFocus(txt) {
+            document.getElementById(txt).focus();
+        }
+    </script>
+    <script type="text/javascript">
+        function EnableJavascript() {
+            alert("You must enable javascript to continue.");
+            return false;
+        }
+    </script>
+    
+    
+</head>
+<body onload="ZoomText(); AddClick();">
+    <form name="aspnetForm" method="post" action="/FinanceReport/Published/2025-2026.aspx" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=-cV7SCNE1m62iORhL6e4aDK8anJ89gXIDNg5U6zpy9058a9qmIDIbH2w3yJOO5gVF3DVc4W2rgh1Rvwpe8EkJkRpv8o1&amp;t=639202794265548063" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=-Q0a3sK4eDLFL116g5XWZFvK1yD27pBPhYlYovMkQpMri97HeWrdSeAse2ToCmZKWlL2mfFWh9bE3BjGJ1UFiZHzE-58mmKAJA6UCLaoDU9EBMc00jlDY03IjdU0b25eOOS0HYpSSWYpB2kHh-XAWjH7Fd81&amp;t=fffffffff7f39b88" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=QS20eHjox6vwG__3nVMB10vX9fNH2MVkNWHxsJAC4ogbZH64ZPkFbXPxfkTB25-ugQqldV2lGlxvodGv8tKH_aOVj8HHRmlPU4Vaf4KeGy1vmUxvTG6x2Acx6gJvYjWz6ABQavbQV9eoaMdDqtR_ZNEi_7bGefgwMRetXJ-rS54rkNae0&amp;t=fffffffff7f39b88" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=tX5jFuHUZzRzYBRHb0EmyUE2A-InlfrLx2pUCKYmFjm8cl6eb21Y_c8MWEwxS6sb2dk3N48IHK0CNyu1Oea8i8AWYC5jlFSdjihsWXDeZQgxi1YD0F5E8fSq_FvbZqUHMhjjtVNQWlRVV_MFzAxp9imgwwY1&amp;t=fffffffff7f39b88" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="E31053C3" />
+	<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="MlRyjVwjaRYJ9MwdNMBxciy3SBqxv5HE97+/1qA72Dy8gmsSG8lO7WJ8ZJHPQse4F5gSI3iPn36FEFJYv5DRBWCZea3uzL621aBb/sTmGPjcihnY5EVEaxxZ7WyiauZ7ib14RjSOiVXv5ggsXSFcjCdQJlDoVPs8gQsGBwz33/rKE3cebsH6OrPkzzHTip+O6l/A7azCnHgkCfK2jCDIWgw1iwXn4bSFgmjucHqwjEMVFgnQFdh6kpWM7hxPP4ZjplkAQaYWX4hA+dd0lPRwtoNg6BXtTRxFMdugC3BEqWd0D3ZxJIu1gRHdJ3F6VU5rXyedRM5I+zTSBHi4AiAYlTrOf6T/Kn8wfUoYaIEVWrhhROp1NNlSLkHY72tDi0nshxRdqM99utLy9lNzrkHPbO7MepHfOshOInPc7NhKm6upNns3" />
+</div>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'aspnetForm', ['tctl00$MainHead$UpdatePanel1',''], ['ctl00$MainHead$Timer2',''], [], 90, 'ctl00');
+//]]>
+</script>
+
+        <div class="some-class-name2">
+            
+
+<script type="text/javascript">
+
+    function ZoomTextOrig() {
+        document.cookie = "nrcc_zoom=0.8";
+        //document.body.style.zoom = 1;
+        document.body.style.fontSize = "0.8em";
+        $('').css({ 'font-size': '18px' });
+        $('.some-class-name2').css({ 'font-size': '95%' });
+        $('p').css({ 'font-size': '95%' });
+        $('a').css({ 'font-size': '95%' });
+
+    }
+
+    function ZoomOutText() {
+
+        document.cookie = "nrcc_zoom=0.7";
+        //document.body.style.zoom = 0.8;
+        document.body.style.fontSize = "0.7em";
+        $('.some-class-name2').css({ 'font-size': '90%' });
+        $('p').css({ 'font-size': '90%' });
+        $('a').css({ 'font-size': '90%' });
+
+    }
+    function ZoomInText() {
+        document.cookie = "nrcc_zoom=0.9";
+        //document.body.style.zoom = 1.2;
+        document.body.style.fontSize = "0.9em";
+        $('.some-class-name2').css({ 'font-size': '100%' });
+        $('p').css({ 'font-size': '100%' });
+        $('a').css({ 'font-size': '100%' });
+    }
+    function ZoomText() {
+        var myzoom = getCookie('nrcc_zoom');
+
+        if (myzoom == '0.7')
+            ZoomOutText();
+        else if (myzoom == '0.9')
+            ZoomInText();
+        else
+            ZoomTextOrig();
+
+    }
+
+    function getCookie(c_name) {
+        var c_value = document.cookie;
+        var c_start = c_value.indexOf(" " + c_name + "=");
+        if (c_start == -1) {
+            c_start = c_value.indexOf(c_name + "=");
+        }
+        if (c_start == -1) {
+            c_value = '';
+        }
+        else {
+            c_start = c_value.indexOf("=", c_start) + 1;
+            var c_end = c_value.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = c_value.length;
+            }
+            c_value = unescape(c_value.substring(c_start, c_end));
+        }
+        return c_value;
+    }
+
+    $(document).ready(function () {
+        ZoomText();
+
+    });
+
+
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        
+        $("li.MenuLi").hover(function () {
+            $("ul.menuSubUl li ul.menuSubUl").addClass("intro2");
+        });
+    });
+
+</script>
+<!--End Font size-->
+
+<script type="text/javascript">
+    //<![CDATA[
+    function Search() {
+
+        var emailPat = /^[^*|\".:>[\]{}`\\()';^!%#@\$]+$/;
+
+        var emailid = document.getElementById('ctl00_MainHead_txtSearch').value;
+        if (emailid == " Enter Your Text") {
+            emailid = "";
+        }
+        else {
+            emailid = document.getElementById('ctl00_MainHead_txtSearch').value;
+        }
+
+
+        var matchArray = emailid.match(emailPat);
+
+        if (emailid == "") {
+            alert("Enter text to search");
+            document.getElementById("ctl00_MainHead_txtSearch").focus();
+            return false;
+        }
+        else if (matchArray == null) {
+            alert("Please enter valid text, only enter alpha numbers.");
+            document.getElementById('ctl00_MainHead_txtSearch').focus();
+            return false;
+        }
+        else if (($('<div/>').text(emailid).html().indexOf("&lt;") >= 0) || ($('<div/>').text(emailid).html().indexOf("&amp;") >= 0)) {
+            alert("Please enter valid text, only enter alpha numbers.");
+            document.getElementById('ctl00_MainHead_txtSearch').focus();
+            return false;
+        }
+    return true;
+}
+
+
+
+function smalltext() {
+    ts('body', -1);
+
+}
+
+function Defaulttext() {
+    tsO('body', 0);
+
+}
+
+function largetext() {
+    ts('body', 1);
+
+}
+//]]>
+</script>
+
+<script type="text/javascript">
+    function ChangeAlert() {
+        confirm("Language will be Changed");
+    }
+</script>
+
+<script type="text/javascript">
+    function EnterEvent(e) {
+
+
+        if (e.keyCode == 13) {
+            if (Search()) {
+
+                document.getElementById('ctl00_MainHead_btnsearch').click();
+
+            }
+            return false;
+        }
+        return true;
+    }
+
+
+
+</script>
+
+<script type="text/javascript">
+    function WaterMark(txtName, event) {
+        var defaultText = " Enter Your Text";
+
+        if (txtName.value.length == 0) {
+            if (event.type == "blur") {
+                txtName.style.color = "Gray";
+                txtName.value = defaultText;
+            }
+        }
+        // Condition to check textbox value and event type
+        if (txtName.value == defaultText) {
+            if (event.type == "focus") {
+                txtName.style.color = "black";
+                txtName.value = "";
+            }
+        }
+    }
+    var min = 8;
+    var max = 18;
+    function increaseFontSize() {
+        var p = document.getElementsByTagName('p');
+        for (i = 0; i < p.length; i++) {
+            if (p[i].style.fontSize) {
+                var s = parseInt(p[i].style.fontSize.replace("px", ""));
+            } else {
+                var s = 12;
+            }
+            if (s != max) {
+                s += 1;
+            }
+            p[i].style.fontSize = s + "px"
+        }
+    }
+    function decreaseFontSize() {
+        var p = document.getElementsByTagName('p');
+        for (i = 0; i < p.length; i++) {
+            if (p[i].style.fontSize) {
+                var s = parseInt(p[i].style.fontSize.replace("px", ""));
+            } else {
+                var s = 12;
+            }
+            if (s != min) {
+                s -= 1;
+            }
+            p[i].style.fontSize = s + "px"
+        }
+    }
+</script>
+<script type="text/javascript">
+        function AddClick() {
+            $("a").click(function () {
+
+                //if (this.href == "javascript:__doPostBack('ctl00$MainHead$divskip','')")
+                //    return true;
+                 if (this.href == "javascript:__doPostBack('ctl00$MainHead$btnaccess','')")
+                    return true;
+                else if (this.href.substring(0, 24) == "javascript:__doPostBack(")
+                    return true;
+                else if (this.id == "recaptcha_reload_btn")
+                    return true;
+                else if (this.id == "recaptcha_switch_audio_btn")
+                    return true;
+                else if (this.id == "recaptcha_switch_img_btn")
+                    return true;
+                else if (this.href == "")
+                    return true;
+                else if (domain(location.href) !== domain(this.href)) {
+
+                    var r = confirm("You will be redirected on another website.");
+                    if (r == true) {
+                        this.target = "new";
+                    }
+                    else {
+                        return false;
+                    }
+
+                    return true;
+                }
+                else
+                    return true;
+            });
+        }
+
+        function domain(url) {
+            return url.replace('http://', '').replace('https://', '').split('/')[0];
+        };
+    </script>
+<style>
+    .black_overlay {
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 1001;
+        -moz-opacity: 0.8;
+        opacity: .80;
+        filter: alpha(opacity=80);
+    }
+
+    .white_content-old {
+        display: none;
+        position: absolute;
+        top: 107%;
+        left: -494%;
+        width: 539%;
+        height: 334%;
+        padding: 16px;
+        border: 1px solid grey;
+        background-color: white;
+        z-index: 1002;
+        overflow: auto;
+    }
+ .white_content {display: none;
+			position: absolute;
+			top: 30%;
+			right: 15%;
+			width: 600px;
+			padding: 16px;
+			border: 1px solid #e0e0e0;
+			border-radius: 12px;
+			background-color: #ffffffdb;
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+			z-index: 1002;
+			box-sizing: border-box;
+			height: 150px;
+			backdrop-filter: blur(5px);
+		}
+
+
+		.white_content>div {
+			display: flex !important;
+			flex-direction: column !important;
+			width: 100%;
+		}
+
+
+		.white_content>div>a {
+			align-self: flex-end;
+			font-size: 0.75rem;
+			font-weight: 700;
+			color: #2b569a;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			text-decoration: none;
+			margin-bottom: 12px;
+		}
+
+		.white_content>div>a:hover {
+			color: #1d3b6c;
+		}
+
+
+		.white_content .search_input {
+			display: flex !important;
+			align-items: center;
+			gap: 10px !important;
+			width: 100% !important;
+		}
+
+
+		.white_content input[type="text"] {
+			width: 100% !important;
+			height: 40px;
+			padding: 8px 12px !important;
+			border: 1px solid #d0d5dd !important;
+			border-radius: 8px !important;
+			font-size: 0.85rem;
+			outline: none;
+			box-sizing: border-box;
+		}
+
+		.white_content input[type="text"]:focus {
+			border-color: #2575fc !important;
+			box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.15);
+		}
+
+		.go_btn {
+			padding:4px 8px;
+			border-radius: 4px;color: #fff;
+			text-transform: uppercase;
+			background: linear-gradient(to right, #6a11cb, #2575fc);
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: 900;
+			display: inline;
+			position: relative;
+			top: -1px;
+		}
+
+		.go-btn1:hover {
+			opacity: 0.92;
+		}
+
+		.go-btn1 {
+			filter: brightness(0.1) invert(1);background:none;
+		}
+</style>
+
+
+
+
+
+<!-- Logo and Navigation 15-06-2022 -->
+
+<!-- Header Section -->
+	<header class="header">
+    <!--top header-->
+   <div class="header">
+    <div class="container">
+        
+        
+                    
+    </div>
+
+    <!--end of top-menu-->
+
+    <!--<div class="access-content">
+                <ul>
+                    <li>
+                        <a class="aplus" href="#" onclick="return ZoomOutText();" tabindex="7">
+                    <img src="/cga/images/A_min.jpg" id="ctl00_MainHead_jfontsize_m2" width="20" border="0" height="20" alt="ImageDecrease" title="Font Decrease" /></a>
+                    </li>
+                    <li><a class="aplus" href="#" onclick="return ZoomTextOrig();" tabindex="8">
+                    <img src="/cga/images/a.jpg" id="ctl00_MainHead_jfontsize_d2" width="20" border="0" height="20" alt="ImageNormal" title="Font Normal" /></a></li>
+                    <li>
+                        <a class="aplus" href="#" onclick="return ZoomInText();" tabindex="9">
+                    <img src="/cga/images/a_plus.jpg" id="ctl00_MainHead_jfontsize_p2" width="20" border="0" height="20" alt="ImageIncrease" title="Font Increase" /></a>
+                    </li>
+                   
+                       </li>
+                    <li>
+                        <img src="/cga/images/nav-line1.png" alt="" title=""></li>
+                    <li>
+                        <div id="ctl00_MainHead_divthem" class="text_selecttheme">
+                            Select Theme
+                        </div>
+                    </li>
+                </ul>
+               <script type="text/javascript">
+                   $('.some-class-name2').jfontsize({
+                       btnMinusClasseId: '#ctl00_Top_jfontsize_m2',
+                       btnDefaultClasseId: '#ctl00_Top_jfontsize_d2',
+                       btnPlusClasseId: '#ctl00_Top_jfontsize_p2',
+                       btnMinusMaxHits: 1,
+                       btnPlusMaxHits: 1,
+                       sizeChange: 2
+                   });
+			  </script>-->
+            </div>
+      <div class="container-fluid bg-grey dnone">
+          <div class="row">
+              <div class="col-md-6">&nbsp;</div>
+               <div class="col-md-6">
+ <div class="common-right clearfix">
+        <ul id="header-nav">
+		<li TabIndex="1"><a id="ctl00_MainHead_lnkSRA111" title="Screen Reader Access" href="javascript:__doPostBack(&#39;ctl00$MainHead$lnkSRA111&#39;,&#39;&#39;)" style="display:inline-block;width:135px;text-decoration: none;">Screen Reader Access</a></li>
+            <li TabIndex="2"><a href="#"><input type="image" name="ctl00$MainHead$ibBlue11" id="ctl00_MainHead_ibBlue11" src="/cga/images/blue.png" alt="Blue" style="height:20px;width:20px;border-width:0px;" /></a></li>
+                    <li TabIndex="3"><a href="#"><input type="image" name="ctl00$MainHead$ibRed111" id="ctl00_MainHead_ibRed111" src="/cga/images/red.png" alt="Red" style="height:20px;width:20px;border-width:0px;" /></a></li>
+                    <li TabIndex="4"><a href="#"><input type="image" name="ctl00$MainHead$ibGreen111" id="ctl00_MainHead_ibGreen111" src="/cga/images/yellow.png" alt="Green" style="height:20px;width:20px;border-width:0px;" /></a></li>
+            <li tabindex="5"><a href="#Skip"><img src="/cga/images/ico-skip.png" alt="Skip To Main Content" title="Skip To Main Content" /></a></li>
+            <li tabindex="6"><img src="/cga/images/ico-accessibility.png" alt="Accessibility" title="Accessibility Dropdown" />
+                <ul>
+                    <li><a href="#" title="Increase font size" tabindex="7" onclick="return ZoomInText();">A<sup>+</sup></a> </li>
+                    <li><a href="#" title="Reset font size"  tabindex="8" onclick="return ZoomTextOrig();">A<sup>&nbsp;</sup></a> </li>
+                    <li><a href="#" title="Decrease font size" tabindex="9" onclick="return ZoomOutText();">A<sup>-</sup></a> </li>
+                    <li>
+                        <input type="image" name="ctl00$MainHead$imgDefault111" id="ctl00_MainHead_imgDefault111" tabindex="10" src="/cga/images/aa.jpg" alt="DefaultImage" style="border-width:0px;" />
+                    </li>
+                    <li>
+                        <input type="image" name="ctl00$MainHead$ImageButton1111" id="ctl00_MainHead_ImageButton1111" tabindex="11" src="/cga/images/aa.jpg" alt="Standard View" style="height:20px;width:20px;border-width:0px;" />
+                    </li>
+
+                </ul>
+            </li>
+            <li tabindex="12"><img src="/cga/images/ico-skip.png" title="Social Media's" alt="Social Media's" />
+                <ul>
+                    <li><a href="https://www.facebook.com"  onclick="return OnAnchClick(); return disp_confirm();" title="Facebook" tabindex="13" target="_blank">
+                        <img src="/cga/images/ico-facebook.png" alt="Facebook"></a></li>
+                    <li><a href="https://twitter.com/" onclick="return OnAnchClick(); return disp_confirm()" title="Twitter"  tabindex="14" target="_blank">
+                        <img src="/cga/images/ico-twitter.png" alt="Twitter"></a></li>
+                    <li><a href="https://www.youtube.com/" onclick="return OnAnchClick(); return disp_confirm()" title="youtube"  tabindex="15" target="_blank">
+                        <img src="/cga/images/ico-youtube.png" alt="youtube"></a></li>
+                </ul>
+            </li>
+            
+            <li class="hindi">
+                </li>
+        </ul>
+    </div>
+                   </div>
+          </div>
+      </div>
+   
+    <!--end of access-content-->
+
+<!--end of header-top-->
+
+   <!-- end of top header-->
+
+
+
+		<div class="container-fluid nav-bg">
+
+
+                     <!--top header-->
+			<div class="row bg-grey">
+              <div class="col-md-6">&nbsp;</div>
+               <div class="col-md-6">
+                 <div class="common-right clearfix">
+        <ul id="header-nav">
+		
+            
+<li TabIndex="1"><a id="ctl00_MainHead_lnkSRA" title="Screen Reader Access" href="javascript:__doPostBack(&#39;ctl00$MainHead$lnkSRA&#39;,&#39;&#39;)" style="text-decoration: none;">Screen Reader Access</a></li>
+            <li TabIndex="2" ><a href="#"><input type="image" name="ctl00$MainHead$ibBlue" id="ctl00_MainHead_ibBlue" title="Blue Theme" src="/cga/images/blue.png" alt="Blue" style="height:20px;width:20px;border-width:0px;" /></a></li>
+                    <li TabIndex="3" ><a href="#"><input type="image" name="ctl00$MainHead$ibRed" id="ctl00_MainHead_ibRed" title="Red Theme" src="/cga/images/red.png" alt="Red" style="height:20px;width:20px;border-width:0px;" /></a></li>
+                    <li TabIndex="4" ><a href="#"><input type="image" name="ctl00$MainHead$ibGreen" id="ctl00_MainHead_ibGreen" title="Yellow Theme" src="/cga/images/yellow.png" alt="Green" style="height:20px;width:20px;border-width:0px;" /></a></li>
+            <li tabindex="5"><a href="#Skip"><img src="/cga/images/ico-skip.png" alt="Skip To Main Content" title="Skip To Main Content" /></a></li>
+            <li tabindex="6"><img src="/cga/images/ico-accessibility.png" alt="Accessibility" title="Accessibility Dropdown" />
+                <ul>
+                    <li><a href="#" title="Increase font size" tabindex="7" onclick="return ZoomInText();">A<sup>+</sup></a> </li>
+                    <li><a href="#" title="Reset font size"  tabindex="8" onclick="return ZoomTextOrig();">A<sup>&nbsp;</sup></a> </li>
+                    <li><a href="#" title="Decrease font size" tabindex="9" onclick="return ZoomOutText();">A<sup>-</sup></a> </li>
+                    <li class="dnone">
+                        <input type="image" name="ctl00$MainHead$imgDefault" id="ctl00_MainHead_imgDefault" tabindex="10" title="High Contrast View" src="/cga/images/aa.jpg" alt="DefaultImage" style="border-width:0px;" />
+                    </li>
+                    <li class="dnone">
+                        <input type="image" name="ctl00$MainHead$ImageButton1" id="ctl00_MainHead_ImageButton1" tabindex="11" title="Standard View" src="/cga/images/aa.jpg" alt="Standard View" style="height:20px;width:20px;border-width:0px;" />
+                    </li>
+
+                </ul>
+            </li>
+           
+           
+
+            <li class="hindi">
+                </li>
+        </ul>
+    </div>
+
+                    </div>
+          </div>
+                     <!-- End of top header-->
+
+
+
+
+
+
+			<section class="wrapper">
+				<div class="header-item-left brand">
+					<a href="#" class=""><img src="/cga/images/logo-cga.png"></a>
+				</div>
+				<!-- Navbar Section -->
+				<div class="header-item-center">
+					<div class="overlay"></div>
+					
+				</div>
+
+				<div class="header-item-right">
+				    <div class="row d-none11 d-sm-block">
+					<div class="right-up col-md-12">
+						<ul>    
+							<li><a href="/Sitemap.aspx">Sitemap</a></li>
+							<li class="d-none"><a href="/Page/Contact-Us-.aspx">&nbsp;&nbsp;Contact Us</a></li>
+							<li><a href="/feedback.aspx">&nbsp;&nbsp;Feedback</a></li>
+							<li class="hindi">
+                <input type="image" name="ctl00$MainHead$imgHinEng" id="ctl00_MainHead_imgHinEng" tabindex="20" src="/images/hindi.png" alt="Select Language" onclick="ChangeAlert();" style="border-width:0px;" /></li>
+					<li>
+    <a title="Site Search" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'" id="toggleSearch" href="#">
+        <img tabindex="16" alt="Search" src="/cga/images/ico-site-search.png" />
+    </a>
+    <div id="light" class="white_content">
+        <div class="">
+            <a href="#" tabindex="17" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'; return false; ">Close</a>
+			<div class="search_input d-flex">
+            <input name="ctl00$MainHead$txtSearch" type="text" value=" Enter Your Text" id="ctl00_MainHead_txtSearch" tabindex="18" onkeypress="return EnterEvent(event)" onblur="WaterMark(this, event);" onfocus="WaterMark(this, event);" style="color:Gray;" />
+        
+        <div class="go_btn">
+		     <input type="image" name="ctl00$MainHead$btnsearch" id="ctl00_MainHead_btnsearch" tabindex="19" title="Search" class="go-btn1" src="/cga/images/ico-site-search.png" alt="search" onclick="return Search();" style="border-width:0px;" />
+           </div>
+        </div>
+		</div>
+    </div>
+</li>
+
+							
+						</ul>
+					
+
+
+					</div>
+					<div class="right-down col-md-12 follower-search">
+						<div class="follower flag">
+						<div class="content">
+							 
+                                                         <img src="/images/g20.jpg" tabindex="22" alt="Indian National Flag" title="Indian National Flag" style="">
+							<img src="/images/azadi-ka-amrit-mahotsav.jpg" tabindex="22" alt="Indian National Flag" title="Indian National Flag" style="">
+							<img src="/images/flag.gif" tabindex="22" alt="Indian National Flag" title="Indian National Flag" style=" width: 23%;">
+                                                      
+                                         
+                           
+						</div>
+						</div>
+					</div>
+					</div>
+					
+				</div>
+
+                
+                 <!--Mobile nav start here-->
+						<div class="mobile-nav">
+						<div class="navbar ">
+ 
+    <!-- Navbar logo-->
+    <div class="nav-header">
+      <div class="nav-logo">
+        <a href="#">
+          Main Navigation
+        </a>
+      </div>
+    </div>
+ 
+    <!--responsive navbar toggle button-->
+    <input type="checkbox" id="nav-check">
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+ 
+    <!-- Navbar items -->
+    <div class="nav-links">
+      <a href="/index.aspx">Home</a>
+	  <div class="dropdown">
+		<a href="#">About Us<i class="fa fa-angle-down"></i></a>
+         
+		 <div class="drop-content">
+		 <a href="/Page/About-Us.aspx">About Us</a>
+          <a href="/Page/Our-Mandate.aspx">Our Mandate</a>
+          <a href="/Page/Vision-and-Mission.aspx">Vision and Mission</a>
+          <a href="/Page/Organization-Chart.aspx">Organization Chart</a>
+		   <a href="/Page/Whos-who.aspx">Who's Who</a>
+		    <a href="/Page/History-of-Indian-Civil-Accounts-Organisation.aspx">History of Indian Civil Account Organization</a>
+			<a href="/Page/Public-Finance-Management-System-PFMS.aspx">Public Finance Management System</a>
+			<a href="/Page/Central-Pension-Accounting-Office-CPAO.aspx">Central Pension Accounting Office</a>
+			<a href="/Page/Institute-of-Government-Accounts-and-Finance-INGAF.aspx">Institute of Government Accounts and Finance-INGAF</a>
+			<a href="/Page/Upahar-Sangrahalaya.aspx">Upahar Sangrahalaya</a>
+			
+			
+		  </div>
+	  </div>
+		<a href="/index.aspx#account-section">Accounts</a>
+      <!-- Dropdown menu -->
+      <div class="dropdown">
+        <a class="dropBtn" href="#">PFMS
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <div class="drop-content">
+          <a href="/Page/About-PFMS.aspx">About PFMS</a>
+          <a href="/Page/Technology-Reporting-Banking-and-Risk-Management-TRBR.aspx">Technology Reporting Banking and Risk Management-TRBR</a>
+          <a href="/Page/Roll-out-.aspx">Roll out</a>
+		  <a href="/Page/Direct-Beneficiary-Transfer-DBT.aspx">Direct Beneficiary Transfer DBT</a>
+		  <a href="/Page/Admin-and-Training.aspx">Admin and Training</a>
+		  <a href="/Page/Helpdesk.aspx">Helpdesk</a>
+		  <a href="/Page/Government-Integrated-Financial-Management-System-GIFMIS.aspx">Government Integrated Financial Management System-GIFMIS</a>
+		  <a href="/Page/Bharatkosh.aspx">Bharatkosh</a>
+		 <a href="/Page/Treasury-Single-Account-TSA-.aspx"> Treasury Single Account TSA</a>
+		  <a href="/Page/eBill.aspx">eBill</a>
+ 
+        </div>
+      </div>
+		 <div class="dropdown">
+      <a href="/Page/Human-Resources.aspx">Human Resource<i class="fa fa-angle-down"></i></a>
+	  <div class="drop-content">
+		 <a href="/Page/HR-I-Section.aspx">HR I Section</a>
+		 <a href="/Page/HR-II-and-HR-III-Sections.aspx">HR II and HR III Sections</a>
+		 <a href="/Page/HR-IV-Section.aspx">HR IV Section</a>
+		 <a href="/Page/ICAS-Directory.aspx">ICAS Directory</a>
+		  <a href="/Page/Directory-of-Civil-Accounts-Organisation.aspx">Directory of Civil Accounts Organisation</a>
+		   <a href="/Page/Field-Accounting-Units.aspx">Field Accounting Units</a>
+		  
+	  </div>
+	  </div>
+	  <div class="dropdown">
+      <a href="/Page/Field-Accounting-Units.aspx">Audit<i class="fa fa-angle-down"></i></a>
+	   <div class="drop-content">
+		 <a href="/Page/Internal-Audit-Division.aspx">Internal Audit Division</a>
+		 <a href="/Page/Manuals.aspx">Manuals</a>
+		 <a href="/Page/Centre-of-Excellence-.aspx">Centre of Excellence</a>
+		 <a href="/Page/Audit-Para-Monitoring-System-APMS.aspx">Audit Para Monitoring System APMS</a>
+		 
+		  
+	  </div>
+	  </div>
+	   <div class="dropdown">
+       <a href="/Page/Exam.aspx">Exam<i class="fa fa-angle-down"></i></a>
+	   <div class="drop-content">
+		 <a href="/Page/Latest-Announcement-and-Circulars.aspx">Latest Announcement and Circulars</a>
+		 <a href="/Page/Syllabus-Question-Papers-and-Study-Material.aspx">Syllabus Question Papers and Study Material</a>
+		 </div>
+	   </div>
+	   <div class="dropdown">
+	    <a href="#">Publication<i class="fa fa-angle-down"></i></a>
+		<div class="drop-content">
+		
+		 <a href="/Book/Published/list.aspx">Books</a>
+		  <a href="/Forms/Published/GOIForms.aspx">Forms</a>
+		   <a href="/Page/Other-Books-Manuals-and-Forms.aspx">Other Books Manuals and Forms</a>
+		 </div>
+		</div>
+		<div class="dropdown">
+		 <a href="#">Grievance and RTI<i class="fa fa-angle-down"></i></a>
+		 <div class="drop-content">
+		 <a href="/Page/CPGRAMS.aspx">CPGRAMS</a>
+		 <a href="/Page/Right-To-Information-Act.aspx">Right To Information Act</a>
+		  <a href="/Page/CPIO-Appellate-Authority-List.aspx">CPIO Appellate Authority List</a>
+		   <a href="/Page/Proactive-Disclosure.aspx">Proactive Disclosure</a>
+		 </div>
+		 </div>
+		  <a href="/Tender/Published/list.aspx">Tender</a>
+		   <a href="/Circular/Published/list.aspx">Order & Circulars</a>
+		   <div class="dropdown">
+		    <a href="#">Event and News <i class="fa fa-angle-down"></i></a>
+			 <div class="drop-content">
+				<a href="/Event/Azadi-Ka-Amrit-Mahotsav.aspx">Azadi Ka Amrit Mahotsav</a>
+                                <a href="/Event/Senior-Officers-Meeting-on-Training-Needs-Assessment.aspx">Senior Officers' Meeting on Training Needs Assessment</a>
+                                <a href="/Event/WorkShop-at-INGAF-on-Fraud-Detection-and-Prevention.aspx">WorkShop at INGAF on Fraud Detection and Prevention</a>
+				<a href="/Event/Latest-Launches-and-inauguration.aspx">Latest Launches and inauguration</a>
+				<a href="/Event/Civil-Accounts-Day.aspx">Civil Accounts Day</a>
+				<a href="/Event/Workshop-and-Training.aspx">Workshop and Training</a>
+		     </div>
+			</div>
+			 <div class="dropdown">
+			 <a href="#">Related Links<i class="fa fa-angle-down"></i></a>
+				<div class="drop-content">
+				<a href="/Page/SPARROW.aspx">SPARROW</a>
+				<a href="/Page/TSA-Guidelines.aspx">TSA Guidelines</a>
+				<a href="/Page/GST-Related-Orders-and-Circulars.aspx">GST Related Orders and Circulars</a>
+				<a href="/Page/eOffice.aspx">eOffice</a>
+		     </div>
+			 </div>
+    </div>
+ 
+  </div>
+  </div>
+  
+  <!--  Mobile nav End here-->
+				
+  
+
+				<div class="col-md-12">
+					<nav class="menu" id="">
+					<div class="nav row">
+					<div id="ctl00_MainHead_divTopMenu" class="container"><ul id='menu'><li class='MenuLi'><a href='/index.aspx' title="Home">Home</a><ul class='menuSubUl'></ul></li><li class='MenuLi'><a href ='/#'>About Us</a><ul class='menuSubUl'><li><a  href='/Page/About-Us.aspx' title="About Us">About Us</a><ul class='menuSubUl'><li><a  href='/Page/Our-Mandate.aspx' title="Our Mandate">Our Mandate</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Vision-and-Mission.aspx' title="Vision and Mission">Vision and Mission</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Organization-Chart.aspx' title="Organization Chart">Organization Chart</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Whos-who.aspx' title="Whos who">Whos who</a><ul class='menuSubUl'></ul></li></ul></li><li> <a id='msubabouthistory' target = 'blank'  title ="abouthistory" href='#' onclick='return OnAnchClick(); return disp_confirm()'>abouthistory</a><ul class='menuSubUl'></ul></li><li> <a id='msubAboutOthers' target = 'blank'  title ="AboutOthers" href='#' onclick='return OnAnchClick(); return disp_confirm()'>AboutOthers</a><ul class='menuSubUl'><li><a  href='/Page/Upahar-Sangrahalaya.aspx' title="Upahar Sangrahalaya">Upahar Sangrahalaya</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a  title="Accounts" href='/index.aspx#account-section'>Accounts</a><ul class='menuSubUl'></ul></li><li class='MenuLi'><a  href='/#'>PFMS</a><ul class='menuSubUl'><li><a  href='/Page/Government-Integrated-Financial-Management-System-GIFMIS.aspx' title="Government Integrated Financial Management System-GIFMIS">Government Integrated Financial Management System-GIFMIS</a><ul class='menuSubUl'><li><a  href='/Page/Bharatkosh.aspx' title="Bharatkosh">Bharatkosh</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Treasury-Single-Account-TSA-.aspx' title="Treasury Single Account TSA ">Treasury Single Account TSA </a><ul class='menuSubUl'></ul></li><li><a  href='/Page/eBill.aspx' title="eBill">eBill</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a  href='/#'>Human Resource</a><ul class='menuSubUl'><li><a  href='/Page/Human-Resources.aspx' title="Human Resources">Human Resources</a><ul class='menuSubUl'><li><a  href='/Page/HR-I-Section.aspx' title="HR I Section">HR I Section</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/HR-II-and-HR-III-Sections.aspx' title="HR II and HR III Sections">HR II and HR III Sections</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/HR-IV-Section.aspx' title="HR IV Section">HR IV Section</a><ul class='menuSubUl'></ul></li></ul></li><li> <a id='msubDirectories' target = 'blank'  title ="Directories" href='#' onclick='return OnAnchClick(); return disp_confirm()'>Directories</a><ul class='menuSubUl'><li><a  href='/Page/ICAS-Directory.aspx' title="ICAS Directory">ICAS Directory</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Directory-of-Civil-Accounts-Organisation.aspx' title="Directory of Civil Accounts Organisation">Directory of Civil Accounts Organisation</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Field-Accounting-Units.aspx' title="Field Accounting Units">Field Accounting Units</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a  href='/#'>Audit</a><ul class='menuSubUl'><li> <a id='msubAudit' target = 'blank'  title ="Audit" href='#' onclick='return OnAnchClick(); return disp_confirm()'>Audit</a><ul class='menuSubUl'><li><a  href='/Page/Internal-Audit-Division.aspx' title="Internal Audit Division">Internal Audit Division</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Manuals.aspx' title="Manuals">Manuals</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Centre-of-Excellence-.aspx' title="Centre of Excellence ">Centre of Excellence </a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Audit-Para-Monitoring-System-APMS.aspx' title="Audit Para Monitoring System APMS">Audit Para Monitoring System APMS</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a href='/Page/Exam.aspx' title="Exam">Exam</a><ul class='menuSubUl'><li><a  href='/Page/Exams.aspx' title="Exams">Exams</a><ul class='menuSubUl'><li><a  href='/Page/Latest-Announcement-and-Circulars.aspx' title="Latest Announcement and Circulars">Latest Announcement and Circulars</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a href='/Page/Publications.aspx' title="Publications">Publications</a><ul class='menuSubUl'><li><a  href='/Page/Publication.aspx' title="Publication">Publication</a><ul class='menuSubUl'></ul></li><li><a title="Books"  href='/Book/Published/list.aspx'>Books</a><ul class='menuSubUl'></ul></li><li><a title="Forms"  href='/Forms/Published/GOIForms.aspx'>Forms</a><ul class='menuSubUl'></ul></li></ul></li><li class='MenuLi'><a  href='/#'>Grievance and RTI</a><ul class='menuSubUl'><li> <a id='msubGrievence and RTI' target = 'blank'  title ="Grievence and RTI" href='#' onclick='return OnAnchClick(); return disp_confirm()'>Grievence and RTI</a><ul class='menuSubUl'><li><a  href='/Page/CPGRAMS.aspx' title="CPGRAMS">CPGRAMS</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Right-To-Information-Act.aspx' title="Right To Information Act">Right To Information Act</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/CPIO-Appellate-Authority-List.aspx' title="CPIO Appellate Authority List">CPIO Appellate Authority List</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/Proactive-Disclosure.aspx' title="Proactive Disclosure">Proactive Disclosure</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a title="Tender"  href='/Tender/Published/list.aspx'>Tender</a><ul class='menuSubUl'></ul></li><li class='MenuLi'><a  href='/Circular/Published/list.aspx'>Orders &amp; Circulars</a><ul class='menuSubUl'></ul></li><li class='MenuLi'><a title="Events &amp; News"  href='/all-events.aspx'>Events &amp; News</a><ul class='menuSubUl'><li> <a id='msubEvents' target = 'blank'  title ="Events" href='#' onclick='return OnAnchClick(); return disp_confirm()'>Events</a><ul class='menuSubUl'><li><a  href='/Event/Latest-Launches-and-inauguration.aspx' title="Latest Launches and inauguration">Latest Launches and inauguration</a><ul class='menuSubUl'></ul></li><li><a  href='/Event/Civil-Accounts-Day.aspx' title="Civil Accounts Day">Civil Accounts Day</a><ul class='menuSubUl'></ul></li><li><a  href='/Event/Workshop-and-Training.aspx' title="Workshop and Training">Workshop and Training</a><ul class='menuSubUl'></ul></li><li><a  href='/Event/Vigilance-Awareness-Week.aspx' title="Vigilance Awareness Week">Vigilance Awareness Week</a><ul class='menuSubUl'></ul></li></ul></li><li><a  href='/News/News.aspx' title="News">News</a><ul class='menuSubUl'><li> <a id='msubLatest News' target = 'blank'  title ="Latest News" href='#' onclick='return OnAnchClick(); return disp_confirm()'>Latest News</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a href='/Page/Related-Links-.aspx' title="Related Links ">Related Links </a><ul class='menuSubUl'><li> <a id='msubRelated Link' target = 'blank'  title ="Related Link" href='#' onclick='return OnAnchClick(); return disp_confirm()'>Related Link</a><ul class='menuSubUl'><li><a  href='/Page/SPARROW.aspx' title="SPARROW">SPARROW</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/TSA-Guidelines.aspx' title="TSA Guidelines">TSA Guidelines</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/GST-Related-Orders-and-Circulars.aspx' title="GST Related Orders and Circulars">GST Related Orders and Circulars</a><ul class='menuSubUl'></ul></li><li><a  href='/Page/eOffice.aspx' title="eOffice">eOffice</a><ul class='menuSubUl'></ul></li></ul></li></ul></li><li class='MenuLi'><a href='/Page/Contact-Us-.aspx' title="Contact Us ">Contact Us </a><ul class='menuSubUl'></ul></li></ul></div>
+				</div>
+						</nav>
+				</div>
+
+			</section>
+			
+		</div>
+	</header>
+	
+<!-- End of Logo and nav -->
+
+
+<div class="cl"></div>
+<div class="row" style="display:none!important;">
+    <div class="header-box">
+    <div class="logo">
+        <img class="emblem" src="/cga/images/logo-cga.png" tabindex="21" alt="National Emblem dfsdfddsf" title="National Emblem">
+        <div class="logo-text" style="display:none;">
+            <h1>
+                <span id="ctl00_MainHead_lblTitle1" style="font-size:28px;">CONTROLLER GENERAL OF ACCOUNTS</span></h1>
+            <span>
+                <span id="ctl00_MainHead_lbtTitle2">MINISTRY OF FINANCE , GOVERNMENT OF  INDIA</span></span>
+
+        </div>
+        <!--end of logo-text-->
+    </div>
+    <!--end of header-box-->
+    <div class="header-right">
+
+        <div class="search">
+            <p>
+                <span id="ctl00_MainHead_Timer2" style="visibility:hidden;display:none;"></span>
+                <div id="ctl00_MainHead_UpdatePanel1">
+	
+                        
+                    
+</div>
+            </p>
+            
+            
+        </div>
+        <div class="flag" style="float:right; padding-top:30px;">
+           
+            <img src="/cga/images/flag.gif" tabindex="22" alt="Indian National Flag" title="Indian National Flag">
+               
+        </div>
+
+        <!--end of search-->
+    </div>
+    <!--end of header-right-->
+    <div class="cl"></div>
+</div>
+</div>
+
+<!--end of container-->
+<div class="cl"></div>
+<!--end of header-->
+
+
+
+            <div id="Skip" class="mid">
+                
+                <div class="container inside-page">
+                    
+
+<div class="left-panel">
+    <div id="ctl00_InnerLeft_divAboutUs" class="whats-new-inner"><h3>Finance Accounts</h3><ul><li><a  href='/FinanceReport/Published/2024-2025.aspx' title="2024-2025">2024-2025</a></li><li><a  href='/FinanceReport/Published/2023-2024.aspx' title="2023-2024">2023-2024</a></li><li><a  href='/FinanceReport/Published/2022-2023.aspx' title="2022-2023">2022-2023</a></li><li><a  href='/FinanceReport/Published/2021-2022.aspx' title="2021-2022">2021-2022</a></li><li><a  href='/FinanceReport/Published/2020-2021.aspx' title="2020-2021">2020-2021</a></li><li><a  href='/FinanceReport/Published/2019-2020.aspx' title="2019-2020">2019-2020</a></li><li><a  href='/FinanceReport/Published/2018-2019.aspx' title="2018-2019">2018-2019</a></li><li><a  href='/FinanceReport/Published/2017-2018.aspx' title="2017-2018">2017-2018</a></li><li><a  href='/FinanceReport/Published/2016-2017.aspx' title="2016-2017">2016-2017</a></li><li><a  href='/FinanceReport/Published/2015-2016.aspx' title="2015-2016">2015-2016</a></li><li><a  href='/FinanceReport/Published/2014-2015.aspx' title="2014-2015">2014-2015</a></li><li><a  href='/FinanceReport/Published/2013-2014.aspx' title="2013-2014">2013-2014</a></li><li><a  href='/FinanceReport/Published/2012-2013.aspx' title="2012-2013">2012-2013</a></li><li><a  href='/FinanceReport/Published/2011-2012.aspx' title="2011-2012">2011-2012</a></li><li><a  href='/FinanceReport/Published/2010-2011.aspx' title="2010-2011">2010-2011</a></li><li><a  href='/FinanceReport/Published/2009-2010.aspx' title="2009-2010">2009-2010</a></li><li><a  href='/FinanceReport/Published/2008-2009.aspx' title="2008-2009">2008-2009</a></li><li><a  href='/FinanceReport/Published/2007-2008.aspx' title="2007-2008">2007-2008</a></li><li><a  href='/FinanceReport/Published/2006-2007.aspx' title="2006-2007">2006-2007</a></li><li><a  href='/FinanceReport/Published/2005-2006.aspx' title="2005-2006">2005-2006</a></li><li><a  href='/FinanceReport/Published/2004-2005.aspx' title="2004-2005">2004-2005</a></li><li><a  href='/FinanceReport/Published/2003-2004.aspx' title="2003-2004">2003-2004</a></li><li><a  href='/FinanceReport/Published/2002-2003.aspx' title="2002-2003">2002-2003</a></li><li><a  href='/FinanceReport/Published/2001-2002.aspx' title="2001-2002">2001-2002</a></li><li><a  href='/FinanceReport/Published/2000-2001.aspx' title="2000-2001">2000-2001</a></li><li><a  href='/FinanceReport/Published/1999-2000.aspx' title="1999-2000">1999-2000</a></li><li><a  href='/FinanceReport/Published/1998-1999.aspx' title="1998-1999">1998-1999</a></li><li><a  href='/FinanceReport/Published/1997-1998.aspx' title="1997-1998">1997-1998</a></li><li><a  href='/FinanceReport/Published/1996-1997.aspx' title="1996-1997">1996-1997</a></li><li><a  href='/FinanceReport/Published/1995-1996.aspx' title="1995-1996">1995-1996</a></li><li><a  href='/FinanceReport/Published/1994-1995.aspx' title="1994-1995">1994-1995</a></li><li><a  href='/FinanceReport/Published/1993-1994.aspx' title="1993-1994">1993-1994</a></li><li><a  href='/FinanceReport/Published/1992-1993.aspx' title="1992-1993">1992-1993</a></li><li><a  href='/FinanceReport/Published/1991-1992.aspx' title="1991-1992">1991-1992</a></li><li><a  href='/FinanceReport/Published/1990-1991.aspx' title="1990-1991">1990-1991</a></li><li><a  href='/FinanceReport/Published/1989-1990.aspx' title="1989-1990">1989-1990</a></li><li><a  href='/FinanceReport/Published/1988-1989.aspx' title="1988-1989">1988-1989</a></li><li><a  href='/FinanceReport/Published/1986-1987.aspx' title="1986-1987">1986-1987</a></li><li><a  href='/FinanceReport/Published/1985-1986.aspx' title="1985-1986">1985-1986</a></li><li><a  href='/FinanceReport/Published/1983-1984.aspx' title="1983-1984">1983-1984</a></li><li><a  href='/FinanceReport/Published/1981-1982.aspx' title="1981-1982">1981-1982</a></li><li><a  href='/FinanceReport/Published/1980-1981.aspx' title="1980-1981">1980-1981</a></li><li><a  href='/FinanceReport/Published/1979-1980.aspx' title="1979-1980">1979-1980</a></li><li><a  href='/FinanceReport/Published/1978-1979.aspx' title="1978-1979">1978-1979</a></li><li><a  href='/FinanceReport/Published/1977-1978.aspx' title="1977-1978">1977-1978</a></li><li><a  href='/FinanceReport/Published/1976-1977.aspx' title="1976-1977">1976-1977</a></li></ul></div>
+    
+    
+    <div class="cl"></div>
+   
+    <div id="ctl00_InnerLeft_divManagement" class="left-link"><a style='text-decoration:none;' href='/Page/IT-Development-And-System.aspx' title='IT Development & System'><h2><img src='/images/it-icon.png' alt='' title='IT Development & System'>IT Development & System</h2></a><div class='cl'></div><ul><li class='green'><img src='/images/financial-icon.png' alt='' title='financial  reports' /><a title='Financial  Reports' href='/Accountproc.aspx'>Financial  Reports</a></li><li class='red'><img src='/images/internal-icon.png' alt='' title='internal audit' /><a title="Internal Audit" href='/Page/Internal-Audit.aspx'>Internal Audit</a></li><li class='blue'><img src='/images/orders-icon.png' alt='' title='orders or circulars' /><a title="Orders or Circulars"  href='/Circular/Published/list.aspx'>Orders or Circulars</a></li><li class='green'><img src='/images/human.png' alt='' title='human resource' /><a title="Human Resource" href='/Page/Human-Resource.aspx'>Human Resource</a></li><li class='red'><img src='/images/tender-icon.png' alt='' title='tenders' /><a  title="Tenders"  href='/Tender/Published/list.aspx'><span>Tenders</span></a></li><li class='blue'><img src='/images/examin-icon.png' alt='' title='examination ' /><a title="Examination " href='/Page/Examination-.aspx'>Examination </a></li></ul></div>
+<div id="ctl00_InnerLeft_divDirectories" class="right-panel-link"><h3><img src='/images/directories.png' alt='Directories' title='Directories'>Directories</h3><ul class='directories'><li><a title="Civil Accounts Organization" href='/Page/Civil-Accounts-Organization.aspx'>Civil Accounts Organization</a></li><li><a title="ICAS Directory" href='/Page/ICAS-Directory.aspx'>ICAS Directory</a></li><li><a title="Field Accounting Units" href='//Field-Accounting-Units.aspx'>Field Accounting Units</a></li></ul><div class='cl'></div></div>
+    <!--end of left-link-->
+    <div class="media">
+        <a href="http://india.gov.in/" id="ctl00_InnerLeft_anchLogo" target="_blank" style="text-decoration:none" title="External website that opens in new window.">
+            <img src="/images/mygov.png" id="ctl00_InnerLeft_imgLogo" alt="india_gov.png" /></a>
+        
+<a title='Azadi Ka Amrit Mahotsav'  onclick="javascript:return confirm( 'External website that opens in new window. Click OK to continue.Click Cancel to stop');" target='_blank' href='https://rashtragaan.in/'>
+    <img height="95"  style="width:100%;cursor:pointer;margin-top:0px" alt="Azadi Ka Amrit Mahotsav" src="/writereaddata/BannerImg/azadi ka mahotsav anthem-01.jpg">
+    
+    </a>
+    </div>
+    <!--end of media-->
+</div>
+
+                    
+                    
+    <div class="inner-page-right">
+        <div class="breadcrumb flat">
+            <a href='/index.aspx' style='float:left' class='active' title='Home'>Home</a>  <a> Finance Accounts</a><span>2025-2026</span>
+        </div>
+        <div id="ctl00_ContentPlaceHolder1_divData" style="width:100%; height:auto;" class="table"></div>
+    </div>
+
+                </div>
+                <!--end of container-->
+            </div>
+            <!--end of mid-->
+
+            
+            <!--end of footer-->
+            
+            
+
+
+
+
+
+         <!--end of container-->
+
+<div class="footer dnone">
+    <div class="container">
+        <div id="ctl00_Footer_divFooter" class="foot-nav"><ul> <li><a href='/Page/Privacy-Policy.aspx' title='Privacy-Policy'>Privacy Policy</a></li> | <li><a href='/Page/GST-Corner.aspx' title='GST-Corner'>GST Corner</a></li> | <li><a href='/Page/Terms-of-Use.aspx' title='Terms-of-Use'>Terms of Use</a></li> | <li><a href='/Page/Former-CGAs.aspx' title='Former-CGAs'>Former CGAs</a></li> | <li><a href='/Page/COMMON-YOGA-PROTOCOL-CYP.aspx' title='COMMON-YOGA-PROTOCOL-CYP'>COMMON YOGA PROTOCOL CYP</a></li> | <li><a href='/Page/IT-Web-Manager.aspx' title='IT-Web-Manager'>IT Web Manager</a></li> | <li><a target='blank' onclick='return OnAnchClick(); return disp_confirm();' title='Feedback' href='https://cga.nic.in/feedback.aspx'>Feedback</a></li> | <li><a href='/Sitemap.aspx'  title='Sitemap'>Sitemap</a></li> </ul><div class='cl'></div>This website belongs to Controller General of Accounts, Ministry of Finance, Government of India. © 2016, All rights reserved, National Informatics Centre Services Inc.</div>
+    </div>
+</div>
+
+
+<footer>
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-6 contact-us">
+				<h2>Contact Us</h2>
+				<div class="row">
+				    <div class="col-md-12"><h4>Office Of Controller General Of Accounts of India</h4></div>
+					<div class="col-md-12">
+						<i class="fa fa-location-arrow"></i> 
+						<p>Mahalekha Niyantrak Bhawan,
+						Ministry of Finance ,
+						GPO Complex, Block E, Aviation Colony,
+						INA Colony, New Delhi,
+						Delhi 110023</p>
+					</div>
+					<div class="col-md-12">
+					<div class="row">
+					
+						<div class="col-md-6 email"><p><i class="fa fa-phone"></i> 011- 24665415 </p></div>
+						<div class="col-md-6 email"></div>
+						</div>
+					
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+			<h2>Other Link</h2>
+			<div class="row">
+			<div class="col-md-6 other-link">
+			 
+			 <ul>
+				 <li><a href="https://cpao.nic.in/" target="_blank">Central Pension Accounting Office - CPAO</a></li>
+				 <li><a href="http://www.ingaf.gov.in/#/Index" target="_blank">Institute of Government Accounts and Finance - INGAF</a></li>
+				 <li><a href="https://pfms.nic.in/NewDefaultHome.aspx" target="_blank">Public Finance Management System - PFMS</a></li>
+				 <li><a href="https://doe.gov.in/" target="_blank">Department of Expenditure</a></li>
+				<li><a href="https://finmin.nic.in/" target="_blank">Ministry of Finance</a></li>
+				<li><a href="https://www.mygov.in/" target="_blank">My Gov</a></li>
+						
+						
+					</ul>
+			</div>
+			
+			<div class="col-md-6">
+			 
+			 <ul>
+						<li><a href="https://elekha.nic.in/" target="_blank">e-Lekha</a></li>
+						<li><a href="https://bharatkosh.gov.in/" target="_blank">NTRP</a></li>
+						<li><a href="https://apms.nic.in/" target="_blank">Audit Para Monitoring System - APMS</a></li>
+						<li><a href="https://www.iaos.cga.gov.in/login" target="_blank">Internal Audit Division - IAD</a></li>
+						<li><a href="https://prakalp.cga.gov.in/" target="_blank">Prakalp</a></li>
+                                                <li><a href="/Page/Privacy.aspx">Privacy Policy</a></li>
+                                                 <li><a href="/Page/IT-Web-Manager.aspx">Web Information Manager</a></li>
+						
+					</ul>
+			</div>
+			</div>
+			</div>
+			
+			
+		
+		</div>
+	</div>
+	
+	<div class="row">
+	<div class="footer-bottom">
+		<p>This website belongs to Controller General of Accounts of India, Ministry of Finance, Government of India, All rights reserved, National Informatics Centre Services Inc.</p>
+                <p>Hosted by <a href="https://www.nic.in/" target="_blank">National Informatics Centre( NIC )</a></p>
+	</div>
+	</div>
+
+</footer>
+
+
+
+
+<div class="cont-box">
+    <p><span id="ctl00_Footer_Spanfirst" class="cont">Visitor Count:<span id="ctl00_Footer_lblVisitorNo">46789425</span></span>
+        
+        <samp id="ctl00_Footer_SpanSecond" class="date">Last Updated Date:<span id="ctl00_Footer_lblDate">30 Sep 2026</span></samp>
+        
+    </p>
+</div>
+        </div>
+
+        <script>
+            $('#datetimepicker').datetimepicker({
+                dayOfWeekStart: 1,
+                lang: 'en',
+                disabledDates: ['1986/01/08', '1986/01/09', '1986/01/10'],
+                startDate: '1986/01/05'
+            });
+        </script>
+
+        <script type="text/javascript">
+            var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+        </script>
+        
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(Sys.UI._Timer, {"enabled":true,"interval":5000,"uniqueID":"ctl00$MainHead$Timer2"}, null, null, $get("ctl00_MainHead_Timer2"));
+});
+//]]>
+</script>
+</form>
+</body>
+</html>

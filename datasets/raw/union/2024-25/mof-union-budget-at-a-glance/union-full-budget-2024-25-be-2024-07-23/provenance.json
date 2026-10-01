@@ -1,0 +1,18 @@
+{
+  "source_id": "mof-union-budget-at-a-glance",
+  "release_id": "union-full-budget-2024-25-be-2024-07-23",
+  "financial_year": "2024-25",
+  "source_organization": "Ministry of Finance, Government of India",
+  "document_name": "Budget at a Glance, Union Budget 2024-2025 (full/post-election)",
+  "original_url": "https://www.indiabudget.gov.in/budget2024-25/doc/Budget_at_Glance/bag1.pdf",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/budget2024-25/doc/Budget_at_Glance/bag1.pdf",
+  "content_type": "application/pdf",
+  "publication_date": "2024-07-23",
+  "retrieval_date": "2026-10-01",
+  "source_format": "pdf",
+  "estimate_type": "BE",
+  "artifact_role": "observation_source",
+  "source_hash": "356fb4c90cc919ff578373c6dfc56e3115be2e6f49cc22a42f62094aae0b772d",
+  "file_size_bytes": 1147809,
+  "artifact_path": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-full-budget-2024-25-be-2024-07-23/356fb4c90cc919ff578373c6dfc56e3115be2e6f49cc22a42f62094aae0b772d.pdf"
+}

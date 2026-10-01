@@ -1,9 +1,12 @@
-"""
-Tests for parsers
-"""
+"""Tests for parsers."""
+
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from pipeline.parsers.budget_parser import parse_budget_be_2026_27
 from pipeline.parsers.cga_parser import parse_cga_actuals
+from pipeline.parsers.json_parser import parse_json_source
 
 
 def test_budget_parser():
@@ -54,6 +57,52 @@ def test_parser_validates_metric_ids():
         assert False, "Should have raised ValueError"
     except ValueError as e:
         assert "Unknown metric ID" in str(e)
+
+
+def test_json_parser_preserves_release_identity_hash_and_definition_contract():
+    raw = {
+        "identityVersion": 2,
+        "financial_year": "2025-26",
+        "period_type": "annual",
+        "estimate_type": "BE",
+        "data_status": "final",
+        "source": {
+            "organization": "Ministry of Finance",
+            "document": "Budget at a Glance",
+            "source_id": "mof-budget-at-a-glance",
+            "release_id": "budget-2025-02",
+            "source_hash": "c" * 64,
+            "retrieval_date": "2026-10-01",
+        },
+        "data": {"fiscal_deficit": 100},
+        "metric_metadata": {
+            "fiscal_deficit": {
+                "definition": "The source's original wording",
+                "canonical_definition": "Total expenditure less non-borrowed receipts",
+                "definition_version": "1",
+                "comparison_eligibility": {
+                    "status": "comparable_with_note",
+                    "rationale": "Source row mapping reviewed.",
+                },
+            }
+        },
+    }
+    with TemporaryDirectory() as directory:
+        raw_path = Path(directory) / "source.json"
+        raw_path.write_text(json.dumps(raw), encoding="utf-8")
+        observation = parse_json_source(str(raw_path))[0]
+
+    assert observation.identity_version == 2
+    assert observation.source.source_id == "mof-budget-at-a-glance"
+    assert observation.source.release_id == "budget-2025-02"
+    assert observation.source.source_hash == "c" * 64
+    assert observation.source.definition == "The source's original wording"
+    assert observation.canonical_definition == "Total expenditure less non-borrowed receipts"
+    assert observation.definition_version == "1"
+    assert observation.comparison_eligibility == {
+        "status": "comparable_with_note",
+        "rationale": "Source row mapping reviewed.",
+    }
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 export type FinancialDomain = 'receipts' | 'expenditure' | 'deficit' | 'debt' | 'federal' | 'accounts';
 export type ClassificationType = 'aggregate' | 'component' | 'deduction' | 'financing-source' | 'transfer' | 'denominator';
+export const CANONICAL_METRIC_DEFINITION_VERSION = '1';
 
 export interface ProgressiveExplanation {
   short: string;
@@ -10,6 +11,7 @@ export interface ProgressiveExplanation {
 
 export interface MetricDefinition {
   id: string;
+  definitionVersion: string;
   displayName: string;
   shortName?: string | undefined;
   domain: FinancialDomain;
@@ -54,6 +56,7 @@ function metric<TId extends string>(
   const isNavigableMetric = options.isNavigableMetric ?? (domain !== 'accounts' && classificationType !== 'denominator');
   return {
     id,
+    definitionVersion: CANONICAL_METRIC_DEFINITION_VERSION,
     displayName,
     shortName: options.shortName,
     domain,
@@ -176,4 +179,3 @@ export function getMetricButtonLabel(
   }
   return metricId.trim();
 }
-

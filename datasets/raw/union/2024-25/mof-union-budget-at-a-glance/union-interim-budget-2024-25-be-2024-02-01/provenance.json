@@ -1,0 +1,18 @@
+{
+  "source_id": "mof-union-budget-at-a-glance",
+  "release_id": "union-interim-budget-2024-25-be-2024-02-01",
+  "financial_year": "2024-25",
+  "source_organization": "Ministry of Finance, Government of India",
+  "document_name": "Budget at a Glance, Union Interim Budget 2024-2025",
+  "original_url": "https://www.indiabudget.gov.in/budget2024-25%28I%29/doc/Budget_at_Glance/bag1.pdf",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/budget2024-25%28I%29/doc/Budget_at_Glance/bag1.pdf",
+  "content_type": "application/pdf",
+  "publication_date": "2024-02-01",
+  "retrieval_date": "2026-10-01",
+  "source_format": "pdf",
+  "estimate_type": "BE",
+  "artifact_role": "observation_source",
+  "source_hash": "d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e",
+  "file_size_bytes": 1109120,
+  "artifact_path": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-interim-budget-2024-25-be-2024-02-01/d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e.pdf"
+}

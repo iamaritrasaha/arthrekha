@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "financialYear": "2025-26",
+  "estimateType": "RE",
+  "sourceId": "mof-union-budget-at-a-glance",
+  "releaseId": "union-budget-2026-27-re-2025-26-2026-02",
+  "sourceHash": "c64dde0951fa592b3b3948a4686a610bf902b77f7ada1a8eb3c9a9b2c53b5789",
+  "observations": [
+    {
+      "metric": "revenue_receipts",
+      "amount": 3342323,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Revenue Receipts",
+      "sourceWording": "Revenue Receipts",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "1",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "tax_revenue_net",
+      "amount": 2674661,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Tax Revenue (Net to Centre)",
+      "sourceWording": "Tax Revenue (Net to Centre)",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "2",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "non_tax_revenue",
+      "amount": 667662,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Non-Tax Revenue",
+      "sourceWording": "Non-Tax Revenue",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "3",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "recovery_of_loans",
+      "amount": 30190,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Recovery of Loans",
+      "sourceWording": "Recovery of Loans",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "5",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "other_capital_receipts",
+      "amount": 33837,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Other Receipts",
+      "sourceWording": "Other Receipts",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "6",
+        "printedPage": 4
+      },
+      "comparability": "comparable_with_note",
+      "rationale": "The official row is titled “Other Receipts”; it is mapped to other non-debt capital receipts and included in the common non-debt capital receipts derivation."
+    },
+    {
+      "metric": "revenue_expenditure",
+      "amount": 3869087,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "On Revenue Account",
+      "sourceWording": "On Revenue Account",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "10",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "capital_expenditure",
+      "amount": 1095755,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "On Capital Account",
+      "sourceWording": "On Capital Account",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "13",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "total_expenditure",
+      "amount": 4964842,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Total Expenditure",
+      "sourceWording": "Total Expenditure",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "9",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "interest_payments",
+      "amount": 1274338,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Interest Payments",
+      "sourceWording": "Interest Payments",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "11",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "fiscal_deficit",
+      "amount": 1558492,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Fiscal Deficit",
+      "sourceWording": "Fiscal Deficit",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "17",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "revenue_deficit",
+      "amount": 526764,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Revenue Deficit",
+      "sourceWording": "Revenue Deficit",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "15",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    },
+    {
+      "metric": "primary_deficit",
+      "amount": 284154,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2025-26",
+      "estimateType": "RE",
+      "sourceLabel": "Primary Deficit",
+      "sourceWording": "Primary Deficit",
+      "locator": {
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "page": 5,
+        "row": "18",
+        "printedPage": 4
+      },
+      "comparability": "comparable",
+      "rationale": null
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "financialYear": "2024-25",
+  "jurisdiction": "india",
+  "jurisdictionType": "union",
+  "sources": [
+    {
+      "sourceId": "mof-union-budget-at-a-glance",
+      "releaseId": "union-interim-budget-2024-25-be-2024-02-01",
+      "financialYear": "2024-25",
+      "artifactFinancialYear": "2024-25",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Interim Budget 2024-2025, Budget at a Glance",
+      "url": "https://www.indiabudget.gov.in/budget2024-25%28I%29/doc/Budget_at_Glance/bag1.pdf",
+      "publishedAt": "2024-02-01",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "BE",
+      "sourceHash": "d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e",
+      "artifactPath": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-interim-budget-2024-25-be-2024-02-01/d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-interim-budget-2024-25-be-2024-02-01/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-interim-budget-2024-25-be-2024-02-01/transcription.json"
+    },
+    {
+      "sourceId": "mof-union-budget-at-a-glance",
+      "releaseId": "union-full-budget-2024-25-be-2024-07-23",
+      "financialYear": "2024-25",
+      "artifactFinancialYear": "2024-25",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Union Budget 2024-2025, Budget at a Glance",
+      "url": "https://www.indiabudget.gov.in/budget2024-25/doc/Budget_at_Glance/bag1.pdf",
+      "publishedAt": "2024-07-23",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "BE",
+      "sourceHash": "356fb4c90cc919ff578373c6dfc56e3115be2e6f49cc22a42f62094aae0b772d",
+      "artifactPath": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-full-budget-2024-25-be-2024-07-23/356fb4c90cc919ff578373c6dfc56e3115be2e6f49cc22a42f62094aae0b772d.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-full-budget-2024-25-be-2024-07-23/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-full-budget-2024-25-be-2024-07-23/transcription.json"
+    },
+    {
+      "sourceId": "mof-union-budget-at-a-glance",
+      "releaseId": "union-budget-2025-26-original-be-2025-02-01",
+      "financialYear": "2024-25",
+      "artifactFinancialYear": "2025-26",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Budget at a Glance, Union Budget 2025-2026",
+      "url": "https://www.indiabudget.gov.in/budget2025-26/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+      "publishedAt": "2025-02-01",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "RE",
+      "sourceHash": "6a87eba82f17be65a32dc9d538a0026144db272d46a5f1338ed96b631ab290dc",
+      "artifactPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2025-26-original-be-2025-02-01/6a87eba82f17be65a32dc9d538a0026144db272d46a5f1338ed96b631ab290dc.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2025-26-original-be-2025-02-01/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2024-25/mof-union-budget-at-a-glance/union-budget-2025-26-original-be-2025-02-01/transcription.json"
+    },
+    {
+      "sourceId": "cga-union-finance-accounts",
+      "releaseId": "union-finance-accounts-2024-25-final",
+      "financialYear": "2024-25",
+      "artifactFinancialYear": "2024-25",
+      "organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+      "document": "Finance Accounts, Union Government, No. 1—Summary of Transactions",
+      "url": "https://cga.gov.in//writereaddata/file/Fin20242025Statement1.pdf",
+      "publishedAt": null,
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "final_actual",
+      "sourceHash": "956fe3121e4e057036e7fa781f28ebbab07a0fc468d520bddcbc63085a34b3b1",
+      "artifactPath": "datasets/raw/union/2024-25/cga-union-finance-accounts/union-finance-accounts-2024-25-final/956fe3121e4e057036e7fa781f28ebbab07a0fc468d520bddcbc63085a34b3b1.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2024-25/cga-union-finance-accounts/union-finance-accounts-2024-25-final/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2024-25/cga-union-finance-accounts/union-finance-accounts-2024-25-final/transcription.json"
+    },
+    {
+      "sourceId": "mof-union-budget-speech",
+      "releaseId": "union-interim-budget-speech-2024-02-01",
+      "financialYear": "2024-25",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Speech on Interim Budget 2024-2025",
+      "url": "https://www.indiabudget.gov.in/doc/Budget2024_25%28I%29/Budget_Speech.pdf",
+      "publishedAt": "2024-02-01",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "BE",
+      "sourceHash": "7eac22566244da39dd171d8655616247c15f9fe6424067e0ef9bec5304d23f62",
+      "artifactPath": "datasets/raw/union/2024-25/mof-union-budget-speech/union-interim-budget-speech-2024-02-01/7eac22566244da39dd171d8655616247c15f9fe6424067e0ef9bec5304d23f62.pdf",
+      "role": "release_date_evidence",
+      "sidecarPath": "datasets/raw/union/2024-25/mof-union-budget-speech/union-interim-budget-speech-2024-02-01/provenance.json"
+    },
+    {
+      "sourceId": "mof-union-budget-speech",
+      "releaseId": "union-full-budget-speech-2024-07-23",
+      "financialYear": "2024-25",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Speech on Union Budget 2024-2025",
+      "url": "https://www.indiabudget.gov.in/budget2024-25/doc/Budget_Speech.pdf",
+      "publishedAt": "2024-07-23",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "BE",
+      "sourceHash": "c50ea76c25d361c6854c26c013f0c96051c92d496bc0bcafdc19547271e85e0a",
+      "artifactPath": "datasets/raw/union/2024-25/mof-union-budget-speech/union-full-budget-speech-2024-07-23/c50ea76c25d361c6854c26c013f0c96051c92d496bc0bcafdc19547271e85e0a.pdf",
+      "role": "release_date_evidence",
+      "sidecarPath": "datasets/raw/union/2024-25/mof-union-budget-speech/union-full-budget-speech-2024-07-23/provenance.json"
+    },
+    {
+      "sourceId": "cga-finance-accounts-archive",
+      "releaseId": "finance-accounts-fy-2024-25-listing-2026-10-01",
+      "financialYear": "2024-25",
+      "organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+      "document": "CGA Finance Accounts 2024-2025 publication listing",
+      "url": "https://cga.nic.in/FinanceReport/Published/2024-2025.aspx",
+      "publishedAt": null,
+      "retrievedAt": "2026-10-01",
+      "format": "html",
+      "estimateType": null,
+      "sourceHash": "260c1dad7634c8366ff5c8811a4a3a5b0c72662fb2bf301331095c0caff56ed3",
+      "artifactPath": "datasets/raw/union/2024-25/cga-finance-accounts-archive/finance-accounts-fy-2024-25-listing-2026-10-01/260c1dad7634c8366ff5c8811a4a3a5b0c72662fb2bf301331095c0caff56ed3.html",
+      "role": "release_listing_evidence",
+      "sidecarPath": "datasets/raw/union/2024-25/cga-finance-accounts-archive/finance-accounts-fy-2024-25-listing-2026-10-01/provenance.json"
+    }
+  ],
+  "requiredSourceReleases": [
+    [
+      "mof-union-budget-at-a-glance",
+      "union-interim-budget-2024-25-be-2024-02-01"
+    ],
+    [
+      "mof-union-budget-at-a-glance",
+      "union-full-budget-2024-25-be-2024-07-23"
+    ],
+    [
+      "mof-union-budget-at-a-glance",
+      "union-budget-2025-26-original-be-2025-02-01"
+    ],
+    [
+      "cga-union-finance-accounts",
+      "union-finance-accounts-2024-25-final"
+    ],
+    [
+      "mof-union-budget-speech",
+      "union-interim-budget-speech-2024-02-01"
+    ],
+    [
+      "mof-union-budget-speech",
+      "union-full-budget-speech-2024-07-23"
+    ],
+    [
+      "cga-finance-accounts-archive",
+      "finance-accounts-fy-2024-25-listing-2026-10-01"
+    ]
+  ],
+  "commonCoreMetricIds": [
+    "revenue_receipts",
+    "tax_revenue_net",
+    "non_tax_revenue",
+    "recovery_of_loans",
+    "other_capital_receipts",
+    "revenue_expenditure",
+    "capital_expenditure",
+    "total_expenditure",
+    "interest_payments",
+    "fiscal_deficit",
+    "revenue_deficit",
+    "primary_deficit"
+  ],
+  "defaultComparisonReleaseByState": {
+    "BE": "union-full-budget-2024-25-be-2024-07-23"
+  },
+  "releaseOrder": [
+    "union-interim-budget-2024-25-be-2024-02-01",
+    "union-full-budget-2024-25-be-2024-07-23",
+    "union-budget-2025-26-original-be-2025-02-01",
+    "union-finance-accounts-2024-25-final"
+  ],
+  "expectedObservationCountsByRelease": {
+    "union-interim-budget-2024-25-be-2024-02-01": 12,
+    "union-full-budget-2024-25-be-2024-07-23": 12,
+    "union-budget-2025-26-original-be-2025-02-01": 12,
+    "union-finance-accounts-2024-25-final": 9
+  },
+  "derivedMetrics": [
+    {
+      "metric": "non_debt_capital_receipts",
+      "formula": "recovery_of_loans + other_capital_receipts"
+    },
+    {
+      "metric": "non_borrowed_receipts",
+      "formula": "revenue_receipts + recovery_of_loans + other_capital_receipts"
+    }
+  ],
+  "finalActualExcludedMetricIds": {
+    "fiscal_deficit": "Final CGA Finance Accounts Statement No. 1 does not report an exact Budget-basis fiscal-deficit row; deriving it from Consolidated Fund totals would not reconcile to the Union fiscal-deficit definition.",
+    "primary_deficit": "Not published as an exact final actual row in the captured Finance Accounts statement; no proxy derivation is used."
+  },
+  "reconciliationToleranceCrore": 1,
+  "expectedObservationCounts": {
+    "BE": 24,
+    "RE": 12,
+    "final_actual": 9
+  },
+  "expectedDerivedMetricCounts": {
+    "BE": 4,
+    "RE": 2,
+    "final_actual": 3
+  },
+  "reconciliationAdjustments": [
+    {
+      "metric": "grants_in_aid_receipts",
+      "estimateType": "final_actual",
+      "sourceId": "cga-union-finance-accounts",
+      "releaseId": "union-finance-accounts-2024-25-final",
+      "sourceHash": "956fe3121e4e057036e7fa781f28ebbab07a0fc468d520bddcbc63085a34b3b1",
+      "amount": 686.66,
+      "unit": "crore",
+      "sourceLabel": "TOTAL-C-GRANTS-IN-AID AND CONTRIBUTIONS",
+      "sourceWording": "Total C — Grants-in-Aid and Contributions",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "TOTAL-C-GRANTS-IN-AID AND CONTRIBUTIONS"
+      },
+      "rationale": "Explicitly reported grant receipts are included in CGA final-account revenue receipts but are not a Budget at a Glance revenue-receipt component."
+    }
+  ]
+}

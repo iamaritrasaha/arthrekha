@@ -51,11 +51,16 @@ def parse_json_source(file_path: str) -> list[FinancialObservation]:
             document=source_meta['document'],
             url=source_meta.get('url'),
             table=metric_meta.get('table', source_meta.get('table')),
+            page=metric_meta.get('page', source_meta.get('page')),
+            row=metric_meta.get('row', source_meta.get('row')),
             published_at=source_meta.get('publication_date'),
             retrieved_at=source_meta['retrieval_date'],
             data_status=data_status,
             notes=source_meta.get('notes'),
-            definition=metric_meta.get('definition'),
+            definition=metric_meta.get('source_definition', metric_meta.get('definition')),
+            source_id=source_meta.get('source_id', source_meta.get('sourceId')),
+            release_id=source_meta.get('release_id', source_meta.get('releaseId')),
+            source_hash=source_meta.get('source_hash', source_meta.get('sourceHash')),
         )
 
         # Handle period for actuals vs budget estimates
@@ -80,6 +85,10 @@ def parse_json_source(file_path: str) -> list[FinancialObservation]:
             parent_metric=(registry_definition or {}).get("parent_metric"),
             debt_category=metric_meta.get('debt_category'),
             ratio_denominator=metric_meta.get('ratio_denominator'),
+            canonical_definition=metric_meta.get('canonical_definition', metric_meta.get('canonicalDefinition')),
+            definition_version=metric_meta.get('definition_version', metric_meta.get('definitionVersion')),
+            comparison_eligibility=metric_meta.get('comparison_eligibility', metric_meta.get('comparisonEligibility')),
+            identity_version=raw.get('identity_version', raw.get('identityVersion', 1)),
         )
 
         observations.append(obs)

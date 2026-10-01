@@ -5,7 +5,7 @@ Defines the structure for documenting official data sources.
 """
 
 from datetime import date
-from typing import Literal, TypedDict
+from typing import Literal, NotRequired, TypedDict
 
 
 SourceFormat = Literal["pdf", "csv", "xlsx", "html", "json"]
@@ -19,6 +19,8 @@ class SourceManifest(TypedDict):
     """
     # Identification
     source_id: str
+    release_id: NotRequired[str]
+    source_hash: NotRequired[str]
     source_organization: str
     document_name: str
     canonical_url: str
@@ -46,6 +48,7 @@ class SourceManifest(TypedDict):
 
     # Metrics available
     metrics_available: list[str]  # List of metric IDs from registry
+    definition_version: NotRequired[str]
 
 
 def create_source_manifest(
@@ -62,11 +65,14 @@ def create_source_manifest(
     publication_date: str | None = None,
     raw_file_path: str | None = None,
     notes: str | None = None,
+    release_id: str | None = None,
+    source_hash: str | None = None,
+    definition_version: str | None = None,
 ) -> SourceManifest:
     """
     Create a source manifest entry
     """
-    return {
+    manifest: SourceManifest = {
         "source_id": source_id,
         "source_organization": organization,
         "document_name": document_name,
@@ -84,3 +90,10 @@ def create_source_manifest(
         "notes": notes,
         "metrics_available": metrics,
     }
+    if release_id:
+        manifest["release_id"] = release_id
+    if source_hash:
+        manifest["source_hash"] = source_hash
+    if definition_version:
+        manifest["definition_version"] = definition_version
+    return manifest

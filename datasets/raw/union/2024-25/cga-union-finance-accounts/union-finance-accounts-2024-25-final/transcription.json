@@ -1,0 +1,188 @@
+{
+  "financialYear": "2024-25",
+  "sourceId": "cga-union-finance-accounts",
+  "releaseId": "union-finance-accounts-2024-25-final",
+  "sourceHash": "956fe3121e4e057036e7fa781f28ebbab07a0fc468d520bddcbc63085a34b3b1",
+  "observations": [
+    {
+      "metric": "revenue_receipts",
+      "sourceLabel": "TOTAL-RECEIPT HEADS (REVENUE ACCOUNT)",
+      "amount": 3422438.19,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "TOTAL-RECEIPT HEADS (REVENUE ACCOUNT)"
+      },
+      "canonicalDefinition": "Revenue-account receipts",
+      "sourceWording": "TOTAL-RECEIPT HEADS (REVENUE ACCOUNT)",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts use booked annual account classifications; compare to Budget or CGA provisional aggregates with this accounting-basis note."
+    },
+    {
+      "metric": "tax_revenue_net",
+      "sourceLabel": "TOTAL—A-TAX REVENUE",
+      "amount": 2509496.28,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 4,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "TOTAL—A-TAX REVENUE"
+      },
+      "canonicalDefinition": "Tax revenue retained by the Union",
+      "sourceWording": "TOTAL—A-TAX REVENUE",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts use booked annual account classifications; compare to Budget or CGA provisional aggregates with this accounting-basis note."
+    },
+    {
+      "metric": "non_tax_revenue",
+      "sourceLabel": "TOTAL B - NON-TAX REVENUE",
+      "amount": 912255.25,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 10,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "TOTAL B - NON-TAX REVENUE"
+      },
+      "canonicalDefinition": "Revenue receipts other than tax",
+      "sourceWording": "TOTAL B - NON-TAX REVENUE",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts use booked annual account classifications; compare to Budget or CGA provisional aggregates with this accounting-basis note."
+    },
+    {
+      "metric": "recovery_of_loans",
+      "sourceLabel": "F-LOANS AND ADVANCES",
+      "amount": 172778.25,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "F-LOANS AND ADVANCES"
+      },
+      "canonicalDefinition": "Non-debt capital receipt",
+      "sourceWording": "F-LOANS AND ADVANCES",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts use booked annual account classifications; compare to Budget or CGA provisional aggregates with this accounting-basis note."
+    },
+    {
+      "metric": "other_capital_receipts",
+      "sourceLabel": "Miscellaneous Capital Receipts",
+      "amount": 20214.02,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "Miscellaneous Capital Receipts"
+      },
+      "canonicalDefinition": "Other non-debt capital receipts",
+      "sourceWording": "Miscellaneous Capital Receipts",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts use booked annual account classifications; compare to Budget or CGA provisional aggregates with this accounting-basis note."
+    },
+    {
+      "metric": "revenue_expenditure",
+      "sourceLabel": "TOTAL- EXPENDITURE HEADS (REVENUE ACCOUNT)",
+      "amount": 3987373.71,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 17,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "TOTAL- EXPENDITURE HEADS (REVENUE ACCOUNT)"
+      },
+      "canonicalDefinition": "Expenditure on revenue account",
+      "sourceWording": "TOTAL- EXPENDITURE HEADS (REVENUE ACCOUNT)",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts annual actual; source amount is reported in crore to two decimal places. This is a final account rather than an estimate vintage."
+    },
+    {
+      "metric": "capital_expenditure",
+      "sourceLabel": "EXPENDITURE HEADS(CAPITAL ACCOUNT)",
+      "amount": 858256.01,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 17,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "EXPENDITURE HEADS(CAPITAL ACCOUNT)"
+      },
+      "canonicalDefinition": "Expenditure on capital account",
+      "sourceWording": "EXPENDITURE HEADS(CAPITAL ACCOUNT)",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts annual actual; source amount is reported in crore to two decimal places. This is a final account rather than an estimate vintage."
+    },
+    {
+      "metric": "interest_payments",
+      "sourceLabel": "Interest Payments",
+      "amount": 1161521.23,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 5,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "Interest Payments"
+      },
+      "canonicalDefinition": "Debt-service cost",
+      "sourceWording": "Interest Payments",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts annual actual; source amount is reported in crore to two decimal places. This is a final account rather than an estimate vintage."
+    },
+    {
+      "metric": "revenue_deficit",
+      "sourceLabel": "Expenditure exceeded Revenue during 2023-2024 and 2024-2025",
+      "amount": 564935.52,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "final_actual",
+      "locator": {
+        "kind": "finance_accounts_statement1",
+        "page": 12,
+        "table": "No. 1 — Summary of Transactions",
+        "row": "Expenditure exceeded Revenue during 2023-2024 and 2024-2025"
+      },
+      "canonicalDefinition": "Revenue expenditure minus revenue receipts",
+      "sourceWording": "Expenditure exceeded Revenue during 2023-2024 and 2024-2025",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "Final CGA Finance Accounts annual actual; source amount is reported in crore to two decimal places. This is a final account rather than an estimate vintage."
+    }
+  ]
+}

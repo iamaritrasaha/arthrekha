@@ -12,25 +12,36 @@ export type JurisdictionType = "union" | "state" | "ut";
 export type PeriodType = "annual" | "quarterly" | "monthly" | "cumulative" | "ytd";
 
 // Estimate types - critical for budget analysis
-export type EstimateType = "BE" | "RE" | "actual" | "provisional" | "audited_actual";
+export type EstimateType = "BE" | "RE" | "actual" | "provisional" | "audited_actual" | "final_actual";
 
 // Data quality status
 export type DataStatus = "final" | "provisional" | "estimated" | "derived" | "audited";
+export type ComparisonStatus = "comparable" | "comparable_with_note" | "not_comparable";
+
+export interface ComparisonEligibility {
+  status: ComparisonStatus;
+  rationale?: string;
+}
 
 /**
  * DataSource - Provenance information for every observation
  * This is a first-class feature: every number must be traceable
  */
 export interface DataSource {
+  sourceId?: string;             // Stable source identity, independent of FY
+  releaseId?: string;            // Specific publication/release vintage
+  sourceHash?: string;           // SHA-256 of the preserved source bytes
   organization: string;        // "Ministry of Finance"
   document: string;            // "Union Budget 2025-26 — Expenditure Budget"
   url?: string | null;         // Direct link to source document
   table?: string | null;       // "Statement 1" or page reference
+  page?: string | null;
+  row?: string | null;
   publishedAt?: string | null; // ISO date when source published
   retrievedAt: string;         // ISO date when we retrieved/transcribed
   dataStatus: DataStatus;      // Quality indicator
   notes?: string | null;       // Any clarifications
-  definition?: string | null;  // What this metric means per the source
+  definition?: string | null;  // Source wording/definition; not the canonical Arthrekha definition
 }
 
 /**
@@ -73,6 +84,13 @@ export interface FinancialObservation {
   debtCategory?: string;
   ratioDenominator?: string;
 
+  // Versioned meaning and pairwise comparison guardrails. Optional for the
+  // frozen FY 2026-27 baseline; required as historical definitions are mapped.
+  canonicalDefinition?: string;
+  definitionVersion?: string;
+  comparisonEligibility?: ComparisonEligibility;
+  identityVersion?: 1 | 2;
+
   // Provenance
   source: DataSource;
 }
@@ -88,6 +106,43 @@ export interface DerivedMetric {
   value: number;
   unit: string;
   description?: string;
+  financialYear?: string;
+  estimateType?: EstimateType;
+}
+
+/**
+ * A comparison preserves both source observations and makes eligibility
+ * explicit. `percentageChange` is omitted for not-comparable pairs.
+ */
+export interface ObservationComparison {
+  left: FinancialObservation | null;
+  right: FinancialObservation | null;
+  metric: string;
+  leftFinancialYear: string | null;
+  rightFinancialYear: string | null;
+  leftEstimateType: EstimateType | null;
+  rightEstimateType: EstimateType | null;
+  leftSourceId: string | null;
+  rightSourceId: string | null;
+  leftReleaseId: string | null;
+  rightReleaseId: string | null;
+  status: ComparisonStatus;
+  rationale: string;
+  percentageChangePermitted: boolean;
+  percentageChange?: number;
+}
+
+/**
+ * Structural index contract for future year-partitioned processed data.
+ * No index or historical-year entries are created in this phase.
+ */
+export interface HistoricalDatasetIndex {
+  schemaVersion: 1;
+  datasets: Array<{
+    financialYear: string;
+    path: string;
+    sourceManifestPath: string;
+  }>;
 }
 
 /**

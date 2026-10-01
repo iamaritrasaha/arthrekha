@@ -1,0 +1,248 @@
+{
+  "financialYear": "2024-25",
+  "sourceId": "mof-union-budget-at-a-glance",
+  "releaseId": "union-full-budget-2024-25-be-2024-07-23",
+  "sourceHash": "356fb4c90cc919ff578373c6dfc56e3115be2e6f49cc22a42f62094aae0b772d",
+  "observations": [
+    {
+      "metric": "revenue_receipts",
+      "sourceLabel": "Revenue Receipts",
+      "amount": 3129200,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "1",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Revenue-account receipts",
+      "sourceWording": "Revenue Receipts",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "tax_revenue_net",
+      "sourceLabel": "Tax Revenue (Net to Centre)",
+      "amount": 2583499,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "2",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Tax revenue retained by the Union",
+      "sourceWording": "Tax Revenue (Net to Centre)",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "non_tax_revenue",
+      "sourceLabel": "Non Tax Revenue",
+      "amount": 545701,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "3",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Revenue receipts other than tax",
+      "sourceWording": "Non Tax Revenue",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "recovery_of_loans",
+      "sourceLabel": "Recovery of Loans",
+      "amount": 28000,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "5",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Non-debt capital receipt",
+      "sourceWording": "Recovery of Loans",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "other_capital_receipts",
+      "sourceLabel": "Other Receipts",
+      "amount": 50000,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "6",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Other non-debt capital receipts",
+      "sourceWording": "Other Receipts",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "revenue_expenditure",
+      "sourceLabel": "On Revenue Account",
+      "amount": 3709401,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "10",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Expenditure on revenue account",
+      "sourceWording": "On Revenue Account",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "capital_expenditure",
+      "sourceLabel": "On Capital Account",
+      "amount": 1111111,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "13",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Expenditure on capital account",
+      "sourceWording": "On Capital Account",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "total_expenditure",
+      "sourceLabel": "Total Expenditure",
+      "amount": 4820512,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "9",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Total revenue and capital expenditure",
+      "sourceWording": "Total Expenditure",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "interest_payments",
+      "sourceLabel": "Interest Payments",
+      "amount": 1162940,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "11",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Debt-service cost",
+      "sourceWording": "Interest Payments",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "fiscal_deficit",
+      "sourceLabel": "Fiscal Deficit",
+      "amount": 1613312,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "17",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Net borrowing requirement",
+      "sourceWording": "Fiscal Deficit",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "revenue_deficit",
+      "sourceLabel": "Revenue Deficit",
+      "amount": 580201,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "15",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Revenue expenditure minus revenue receipts",
+      "sourceWording": "Revenue Deficit",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    },
+    {
+      "metric": "primary_deficit",
+      "sourceLabel": "Primary Deficit",
+      "amount": 450372,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "18",
+        "columnIndex": 4
+      },
+      "canonicalDefinition": "Fiscal deficit minus interest payments",
+      "sourceWording": "Primary Deficit",
+      "definitionVersion": "1",
+      "comparability": "comparable"
+    }
+  ]
+}

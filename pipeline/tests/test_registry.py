@@ -1,4 +1,4 @@
-from pipeline.metrics import METRICS, get_metric, get_metrics_by_category
+from pipeline.metrics import CANONICAL_METRIC_DEFINITION_VERSION, METRICS, get_metric, get_metrics_by_category
 from pipeline.parsers.json_parser import load_budget_be
 from pipeline.validators import validate_reconciliation
 
@@ -11,6 +11,7 @@ def test_expanded_registry_covers_first_deep_finance_batch():
     assert get_metric("primary_deficit")["parent_metric"] == "fiscal_deficit"
     assert get_metric("market_borrowings_net")["domain"] == "debt"
     assert len(get_metrics_by_category("federal")) >= 4
+    assert all(metric["definition_version"] == CANONICAL_METRIC_DEFINITION_VERSION for metric in METRICS.values())
 
 
 def test_official_budget_source_values_and_provenance():

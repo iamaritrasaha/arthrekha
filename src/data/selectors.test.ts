@@ -2,8 +2,10 @@
  * Data Access Layer Tests
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { loadBudgetDataset, getDatasetMetadata } from '@/data/budgetData';
+import historical2024_25 from '@/../datasets/processed/union/history/2024-25.json';
+import historical2025_26 from '@/../datasets/processed/union/history/2025-26.json';
 import {
   getBudgetEstimate,
   getMetric,
@@ -15,6 +17,14 @@ import {
   getDerivedMetric,
   getMetricRatio,
   getMetricsForDomain,
+  getObservation,
+  getObservationAsync,
+  getAvailableYears,
+  getAvailableYearsAsync,
+  getAvailableEstimateStates,
+  getAvailableEstimateStatesAsync,
+  selectUniqueObservation,
+  createObservationComparison,
 } from '@/data/selectors';
 
 describe('Budget Data Loader', () => {
@@ -35,6 +45,150 @@ describe('Budget Data Loader', () => {
 });
 
 describe('Data Selectors', () => {
+  const baseline = () => getObservation('fiscal_deficit', '2026-27', 'BE')!;
+
+  it('keeps two BE releases in one FY distinct and refuses an ambiguous release-less lookup', () => {
+    const first = baseline();
+    const releaseA = { ...first, source: { ...first.source, sourceId: 'union-budget', releaseId: 'be-interim' } };
+    const releaseB = { ...first, source: { ...first.source, sourceId: 'union-budget', releaseId: 'be-full' } };
+
+    expect(selectUniqueObservation([releaseA, releaseB], first.metric, first.financialYear, 'BE')).toBeNull();
+    expect(selectUniqueObservation([releaseA, releaseB], first.metric, first.financialYear, 'BE', 'be-interim')).toBe(releaseA);
+    expect(releaseA.source.releaseId).not.toBe(releaseB.source.releaseId);
+  });
+
+  it('selects BE and RE separately and keeps provisional and final actual states distinct', () => {
+    const be = baseline();
+    const observations = [
+      be,
+      { ...be, id: 're-id', estimateType: 'RE' as const, source: { ...be.source, releaseId: 're-release' } },
+      { ...be, id: 'provisional-id', estimateType: 'provisional' as const, source: { ...be.source, releaseId: 'provisional-close' } },
+      { ...be, id: 'final-id', estimateType: 'final_actual' as const, source: { ...be.source, releaseId: 'finance-accounts' } },
+    ];
+
+    expect(selectUniqueObservation(observations, be.metric, be.financialYear, 'BE')).toBe(be);
+    expect(selectUniqueObservation(observations, be.metric, be.financialYear, 'RE')?.id).toBe('re-id');
+    expect(selectUniqueObservation(observations, be.metric, be.financialYear, 'provisional')?.id).toBe('provisional-id');
+    expect(selectUniqueObservation(observations, be.metric, be.financialYear, 'final_actual')?.id).toBe('final-id');
+  });
+
+  it('preserves comparison inputs and never exposes percentage change for not-comparable pairs', () => {
+    const left = baseline();
+    const right = { ...left, financialYear: '2025-26', estimateType: 'RE' as const, source: { ...left.source, sourceId: 'budget', releaseId: 're-2026' } };
+    const comparison = createObservationComparison(left, right);
+
+    expect(comparison.left).toBe(left);
+    expect(comparison.right).toBe(right);
+    expect(comparison.leftFinancialYear).toBe('2026-27');
+    expect(comparison.rightFinancialYear).toBe('2025-26');
+    expect(comparison.leftEstimateType).toBe('BE');
+    expect(comparison.rightEstimateType).toBe('RE');
+    expect(comparison.rightSourceId).toBe('budget');
+    expect(comparison.rightReleaseId).toBe('re-2026');
+    expect(comparison.status).toBe('not_comparable');
+    expect(comparison.percentageChangePermitted).toBe(false);
+    expect(Object.prototype.hasOwnProperty.call(comparison, 'percentageChange')).toBe(false);
+  });
+
+  it('preserves the rationale for comparable_with_note pairs and permits their percentage change', () => {
+    const left = { ...baseline(), definitionVersion: '1', canonicalDefinition: 'Fiscal deficit as defined by Arthrekha' };
+    const rationale = 'Historical source labels were reconciled to the same canonical definition.';
+    const right = {
+      ...left,
+      financialYear: '2025-26',
+      amount: left.amount * 1.1,
+      source: { ...left.source, sourceId: 'union-budget', releaseId: 're-2026' },
+      comparisonEligibility: { status: 'comparable_with_note' as const, rationale },
+    };
+    const comparison = createObservationComparison(left, right);
+
+    expect(comparison.status).toBe('comparable_with_note');
+    expect(comparison.rationale).toContain(rationale);
+    expect(comparison.percentageChangePermitted).toBe(true);
+    expect(comparison.percentageChange).toBeCloseTo(10);
+  });
+
+  it('keeps missing observations missing instead of treating them as zero', () => {
+    const comparison = createObservationComparison(null, baseline());
+
+    expect(getObservation('not_a_metric', '2026-27', 'BE')).toBeNull();
+    expect(comparison.left).toBeNull();
+    expect(comparison.status).toBe('not_comparable');
+    expect(comparison.percentageChangePermitted).toBe(false);
+    expect(Object.prototype.hasOwnProperty.call(comparison, 'percentageChange')).toBe(false);
+    expect(comparison.rationale).toContain('missing data is not zero');
+  });
+
+  it('exposes only loaded years/states and keeps legacy selectors on the dataset FY', () => {
+    const dataset = loadBudgetDataset();
+    const expectedBE = dataset.observations.find(obs => obs.metric === 'fiscal_deficit' && obs.financialYear === '2026-27' && obs.estimateType === 'BE');
+    const expectedLatestActual = dataset.observations
+      .find(obs => obs.metric === 'fiscal_deficit' && obs.financialYear === '2026-27' && obs.period === dataset.metadata.latestPeriod && (obs.estimateType === 'actual' || obs.estimateType === 'provisional'));
+
+    expect(getAvailableYears()).toEqual(['2026-27']);
+    expect(getAvailableYears('fiscal_deficit', 'BE')).toEqual(['2026-27']);
+    expect(getAvailableEstimateStates('fiscal_deficit', '2026-27')).toEqual(['BE', 'provisional']);
+    expect(getBudgetEstimate('fiscal_deficit')).toEqual(expectedBE);
+    expect(getLatestActual('fiscal_deficit')).toEqual(expectedLatestActual);
+  });
+
+  it('keeps current-year selectors immediate and network-free', () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    try {
+      expect(getBudgetEstimate('fiscal_deficit')).toEqual(baseline());
+      expect(getObservation('fiscal_deficit', '2026-27', 'BE')).toEqual(baseline());
+      expect(fetchMock).not.toHaveBeenCalled();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('loads requested historical years independently and preserves exact release comparison semantics', async () => {
+    const urls: string[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      urls.push(url);
+      if (url.endsWith('/index.json')) return { ok: true, status: 200, json: async () => ({ schemaVersion: 1, datasets: [
+        { financialYear: '2024-25', path: '2024-25.json', sourceManifestPath: 'manifests/2024-25.json' },
+        { financialYear: '2025-26', path: '2025-26.json', sourceManifestPath: 'manifests/2025-26.json' },
+      ] }) } as Response;
+      if (url.endsWith('/2024-25.json')) return { ok: true, status: 200, json: async () => historical2024_25 } as Response;
+      if (url.endsWith('/2025-26.json')) return { ok: true, status: 200, json: async () => historical2025_26 } as Response;
+      return { ok: false, status: 404, json: async () => ({}) } as Response;
+    }));
+
+    try {
+      const interim = await getObservationAsync('fiscal_deficit', '2024-25', 'BE', 'union-interim-budget-2024-25-be-2024-02-01');
+      const full = await getObservationAsync('fiscal_deficit', '2024-25', 'BE', 'union-full-budget-2024-25-be-2024-07-23');
+      expect(interim?.amount).toBe(1685494);
+      expect(full?.amount).toBe(1613312);
+      expect(interim?.id).not.toBe(full?.id);
+      expect(await getObservationAsync('fiscal_deficit', '2024-25', 'BE')).toBeNull();
+      expect((await getObservationAsync('fiscal_deficit', '2024-25', 'RE'))?.amount).toBe(1569527);
+      expect((await getObservationAsync('revenue_receipts', '2024-25', 'final_actual'))?.amount).toBe(3422438.19);
+      expect(await getObservationAsync('fiscal_deficit', '2024-25', 'final_actual')).toBeNull();
+      expect(await getAvailableEstimateStatesAsync('fiscal_deficit', '2024-25')).toEqual(['BE', 'RE']);
+      const fullBudgetBe = await getObservationAsync('fiscal_deficit', '2024-25', 'BE', 'union-full-budget-2024-25-be-2024-07-23');
+      const fy25Be = await getObservationAsync('fiscal_deficit', '2025-26', 'BE', 'union-budget-2025-26-original-be-2025-02-01');
+      const estimateComparison = createObservationComparison(fullBudgetBe, fy25Be);
+      expect(estimateComparison.status).toBe('comparable');
+      expect(estimateComparison.percentageChangePermitted).toBe(true);
+      const final = await getObservationAsync('revenue_receipts', '2024-25', 'final_actual');
+      const provisional = await getObservationAsync('revenue_receipts', '2025-26', 'provisional');
+      const actualComparison = createObservationComparison(final, provisional);
+      expect(actualComparison.status).toBe('not_comparable');
+      expect(actualComparison.rationale).toContain('Estimate states differ');
+      expect(actualComparison.percentageChangePermitted).toBe(false);
+      expect(await getAvailableYearsAsync()).toEqual(['2026-27', '2025-26', '2024-25']);
+      expect(urls).toEqual(['/data/history/index.json', '/data/history/2024-25.json', '/data/history/2025-26.json']);
+      await expect(getObservationAsync('fiscal_deficit', '2023-24', 'BE')).rejects.toThrow('No historical dataset is published for FY 2023-24.');
+      expect(urls).not.toContain('/data/history/2023-24.json');
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it('looks up a metric without exposing source-format details', () => {
     expect(getMetric('capital_expenditure')?.amount).toBe(1221821);
     expect(getMetric('not_a_metric')).toBeNull();
@@ -124,4 +278,3 @@ describe('Data Selectors', () => {
     }
   });
 });
-

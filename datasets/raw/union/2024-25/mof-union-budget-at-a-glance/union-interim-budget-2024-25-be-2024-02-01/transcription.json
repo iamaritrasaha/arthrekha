@@ -1,0 +1,260 @@
+{
+  "financialYear": "2024-25",
+  "sourceId": "mof-union-budget-at-a-glance",
+  "releaseId": "union-interim-budget-2024-25-be-2024-02-01",
+  "sourceHash": "d9d7886b7f2fbdc9a6fafbd4562a7906047c8bd1ab846889b135391fe335762e",
+  "observations": [
+    {
+      "metric": "revenue_receipts",
+      "sourceLabel": "Revenue Receipts",
+      "amount": 3001275,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "1",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Revenue-account receipts",
+      "sourceWording": "Revenue Receipts",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "tax_revenue_net",
+      "sourceLabel": "Tax Revenue (Net to Centre)",
+      "amount": 2601574,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "2",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Tax revenue retained by the Union",
+      "sourceWording": "Tax Revenue (Net to Centre)",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "non_tax_revenue",
+      "sourceLabel": "Non Tax Revenue",
+      "amount": 399701,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "3",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Revenue receipts other than tax",
+      "sourceWording": "Non Tax Revenue",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "recovery_of_loans",
+      "sourceLabel": "Recovery of Loans",
+      "amount": 29000,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "5",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Non-debt capital receipt",
+      "sourceWording": "Recovery of Loans",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "other_capital_receipts",
+      "sourceLabel": "Other Receipts",
+      "amount": 50000,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "6",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Other non-debt capital receipts",
+      "sourceWording": "Other Receipts",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "revenue_expenditure",
+      "sourceLabel": "On Revenue Account",
+      "amount": 3654657,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "10",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Expenditure on revenue account",
+      "sourceWording": "On Revenue Account",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "capital_expenditure",
+      "sourceLabel": "On Capital Account",
+      "amount": 1111111,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "13",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Expenditure on capital account",
+      "sourceWording": "On Capital Account",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "total_expenditure",
+      "sourceLabel": "Total Expenditure",
+      "amount": 4765768,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "9",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Total revenue and capital expenditure",
+      "sourceWording": "Total Expenditure",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "interest_payments",
+      "sourceLabel": "Interest Payments",
+      "amount": 1190440,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "11",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Debt-service cost",
+      "sourceWording": "Interest Payments",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "fiscal_deficit",
+      "sourceLabel": "Fiscal Deficit",
+      "amount": 1685494,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "17",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Net borrowing requirement",
+      "sourceWording": "Fiscal Deficit",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "revenue_deficit",
+      "sourceLabel": "Revenue Deficit",
+      "amount": 653383,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "15",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Revenue expenditure minus revenue receipts",
+      "sourceWording": "Revenue Deficit",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    },
+    {
+      "metric": "primary_deficit",
+      "sourceLabel": "Primary Deficit",
+      "amount": 495054,
+      "unit": "crore",
+      "currency": "INR",
+      "financialYear": "2024-25",
+      "estimateType": "BE",
+      "locator": {
+        "kind": "budget_at_a_glance",
+        "page": 3,
+        "table": "Budget at a Glance — Receipts and Expenditure (₹ crore)",
+        "row": "18",
+        "columnIndex": 3
+      },
+      "canonicalDefinition": "Fiscal deficit minus interest payments",
+      "sourceWording": "Primary Deficit",
+      "definitionVersion": "1",
+      "comparability": "comparable_with_note",
+      "rationale": "This is the Interim Budget vintage. Its table notes that totals may vary because individual components are rounded; it is retained separately from the post-election full Budget vintage."
+    }
+  ]
+}

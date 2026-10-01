@@ -1,0 +1,18 @@
+{
+  "source_id": "mof-union-budget-speech",
+  "release_id": "union-interim-budget-speech-2024-02-01",
+  "financial_year": "2024-25",
+  "source_organization": "Ministry of Finance, Government of India",
+  "document_name": "Speech on Interim Budget 2024-2025",
+  "original_url": "https://www.indiabudget.gov.in/doc/Budget2024_25%28I%29/Budget_Speech.pdf",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/doc/Budget2024_25%28I%29/Budget_Speech.pdf",
+  "content_type": "application/pdf",
+  "publication_date": "2024-02-01",
+  "retrieval_date": "2026-10-01",
+  "source_format": "pdf",
+  "estimate_type": "BE",
+  "artifact_role": "release_date_evidence",
+  "source_hash": "7eac22566244da39dd171d8655616247c15f9fe6424067e0ef9bec5304d23f62",
+  "file_size_bytes": 1485022,
+  "artifact_path": "datasets/raw/union/2024-25/mof-union-budget-speech/union-interim-budget-speech-2024-02-01/7eac22566244da39dd171d8655616247c15f9fe6424067e0ef9bec5304d23f62.pdf"
+}

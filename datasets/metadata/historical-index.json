@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "datasets": [
+    {
+      "financialYear": "2024-25",
+      "path": "2024-25.json",
+      "sourceManifestPath": "manifests/2024-25.json"
+    },
+    {
+      "financialYear": "2025-26",
+      "path": "2025-26.json",
+      "sourceManifestPath": "manifests/2025-26.json"
+    }
+  ]
+}

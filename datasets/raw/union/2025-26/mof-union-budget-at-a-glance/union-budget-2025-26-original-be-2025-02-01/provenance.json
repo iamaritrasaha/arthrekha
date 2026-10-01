@@ -1,0 +1,19 @@
+{
+  "source_id": "mof-union-budget-at-a-glance",
+  "release_id": "union-budget-2025-26-original-be-2025-02-01",
+  "url": "https://www.indiabudget.gov.in/budget2025-26/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+  "ext": "pdf",
+  "document": "Budget at a Glance, Union Budget 2025-2026",
+  "organization": "Ministry of Finance, Government of India",
+  "published_at": "2025-02-01",
+  "estimate_type": "BE",
+  "role": "observation_source",
+  "original_url": "https://www.indiabudget.gov.in/budget2025-26/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+  "retrieval_date": "2026-10-01",
+  "retrieved_final_url": "https://www.indiabudget.gov.in/budget2025-26/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+  "content_type": "application/pdf",
+  "source_hash": "6a87eba82f17be65a32dc9d538a0026144db272d46a5f1338ed96b631ab290dc",
+  "file_size_bytes": 1307686,
+  "artifact_path": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2025-26-original-be-2025-02-01/6a87eba82f17be65a32dc9d538a0026144db272d46a5f1338ed96b631ab290dc.pdf",
+  "artifact_role": "observation_source"
+}

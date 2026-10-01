@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "financialYear": "2025-26",
+  "jurisdiction": "india",
+  "jurisdictionType": "union",
+  "sources": [
+    {
+      "sourceId": "mof-union-budget-at-a-glance",
+      "releaseId": "union-budget-2025-26-original-be-2025-02-01",
+      "financialYear": "2025-26",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Budget at a Glance, Union Budget 2025-2026",
+      "url": "https://www.indiabudget.gov.in/budget2025-26/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+      "publishedAt": "2025-02-01",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "BE",
+      "sourceHash": "6a87eba82f17be65a32dc9d538a0026144db272d46a5f1338ed96b631ab290dc",
+      "artifactPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2025-26-original-be-2025-02-01/6a87eba82f17be65a32dc9d538a0026144db272d46a5f1338ed96b631ab290dc.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2025-26-original-be-2025-02-01/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2025-26-original-be-2025-02-01/transcription.json"
+    },
+    {
+      "sourceId": "mof-union-budget-at-a-glance",
+      "releaseId": "union-budget-2026-27-re-2025-26-2026-02",
+      "financialYear": "2025-26",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Budget at a Glance, Union Budget 2026-2027",
+      "url": "https://www.indiabudget.gov.in/doc/Budget_at_Glance/budget_at_a_glance.pdf",
+      "publishedAt": "2026-02",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "RE",
+      "sourceHash": "c64dde0951fa592b3b3948a4686a610bf902b77f7ada1a8eb3c9a9b2c53b5789",
+      "artifactPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2026-27-re-2025-26-2026-02/c64dde0951fa592b3b3948a4686a610bf902b77f7ada1a8eb3c9a9b2c53b5789.pdf",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2026-27-re-2025-26-2026-02/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2025-26/mof-union-budget-at-a-glance/union-budget-2026-27-re-2025-26-2026-02/transcription.json"
+    },
+    {
+      "sourceId": "cga-union-accounts-at-a-glance",
+      "releaseId": "union-provisional-accounts-2025-26-2026-03-31",
+      "financialYear": "2025-26",
+      "organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+      "document": "Union Government Accounts at a Glance, Provisional Accounts 2025-2026",
+      "url": "https://cga.nic.in/writereaddata/MonthAccount/32026/DATA2526.htm",
+      "publishedAt": "2026-03-31",
+      "retrievedAt": "2026-10-01",
+      "format": "html",
+      "estimateType": "provisional",
+      "sourceHash": "c322781d2d4cbf65105941e846c1339c3ba044d4986620436f3bfce5364ea83c",
+      "artifactPath": "datasets/raw/union/2025-26/cga-union-accounts-at-a-glance/union-provisional-accounts-2025-26-2026-03-31/c322781d2d4cbf65105941e846c1339c3ba044d4986620436f3bfce5364ea83c.html",
+      "role": "observation_source",
+      "sidecarPath": "datasets/raw/union/2025-26/cga-union-accounts-at-a-glance/union-provisional-accounts-2025-26-2026-03-31/provenance.json",
+      "transcriptionPath": "datasets/raw/union/2025-26/cga-union-accounts-at-a-glance/union-provisional-accounts-2025-26-2026-03-31/transcription.json",
+      "publicationDateEvidence": {
+        "url": "https://cga.nic.in/Circular/Published/7115.aspx",
+        "label": "Provisional Accounts for the Financial Year 2025-26-reg Order No 482 Dated 31st March 2026"
+      }
+    },
+    {
+      "sourceId": "mof-union-budget-speech",
+      "releaseId": "union-budget-2025-26-speech-2025-02-01",
+      "financialYear": "2025-26",
+      "organization": "Ministry of Finance, Government of India",
+      "document": "Budget Speech 2025-2026",
+      "url": "https://www.indiabudget.gov.in/doc/bspeech/bs2025_26.pdf",
+      "publishedAt": "2025-02-01",
+      "retrievedAt": "2026-10-01",
+      "format": "pdf",
+      "estimateType": "BE",
+      "sourceHash": "6448cfdea5152338a1134cae3cc98ca8941e8ebc1bfa8479e091e5a803a356b0",
+      "artifactPath": "datasets/raw/union/2025-26/mof-union-budget-speech/union-budget-2025-26-speech-2025-02-01/6448cfdea5152338a1134cae3cc98ca8941e8ebc1bfa8479e091e5a803a356b0.pdf",
+      "role": "release_date_evidence",
+      "sidecarPath": "datasets/raw/union/2025-26/mof-union-budget-speech/union-budget-2025-26-speech-2025-02-01/provenance.json"
+    },
+    {
+      "sourceId": "cga-finance-accounts-archive-check",
+      "releaseId": "finance-accounts-fy-2025-26-availability-check-2026-10-01",
+      "financialYear": "2025-26",
+      "organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+      "document": "CGA Finance Accounts FY 2025-2026 archive page availability check",
+      "url": "https://cga.nic.in/FinanceReport/Published/2025-2026.aspx",
+      "publishedAt": null,
+      "retrievedAt": "2026-10-01",
+      "format": "html",
+      "estimateType": null,
+      "sourceHash": "f519864cd9b452c916c023f48c1b5219c7d9e6fdce3741de3876f1ecad6d3e37",
+      "artifactPath": "datasets/raw/union/2025-26/cga-finance-accounts-archive-check/finance-accounts-fy-2025-26-availability-check-2026-10-01/f519864cd9b452c916c023f48c1b5219c7d9e6fdce3741de3876f1ecad6d3e37.html",
+      "role": "final_actual_availability_check",
+      "sidecarPath": "datasets/raw/union/2025-26/cga-finance-accounts-archive-check/finance-accounts-fy-2025-26-availability-check-2026-10-01/provenance.json"
+    }
+  ],
+  "expectedObservationCounts": {
+    "BE": 12,
+    "RE": 12,
+    "provisional": 12
+  },
+  "expectedDerivedMetricCounts": {
+    "BE": 2,
+    "RE": 2,
+    "provisional": 2
+  },
+  "finalActualAbsence": {
+    "status": "absent",
+    "reason": "As of the 2026-10-01 retrieval, the official CGA FY 2025-26 Finance Accounts publication is not available as a verified final/audited annual source. The captured CGA Finance Accounts archive page does not expose the FY2025-26 publication. CGA provisional accounts remain provisional; no final value is inferred or set to zero.",
+    "evidenceSourceId": "cga-finance-accounts-archive-check",
+    "evidenceReleaseId": "finance-accounts-fy-2025-26-availability-check-2026-10-01",
+    "sourceHash": "f519864cd9b452c916c023f48c1b5219c7d9e6fdce3741de3876f1ecad6d3e37"
+  },
+  "commonCoreMetricIds": [
+    "revenue_receipts",
+    "tax_revenue_net",
+    "non_tax_revenue",
+    "recovery_of_loans",
+    "other_capital_receipts",
+    "revenue_expenditure",
+    "capital_expenditure",
+    "total_expenditure",
+    "interest_payments",
+    "fiscal_deficit",
+    "revenue_deficit",
+    "primary_deficit"
+  ],
+  "derivedMetrics": [
+    {
+      "metric": "non_debt_capital_receipts",
+      "formula": "recovery_of_loans + other_capital_receipts"
+    },
+    {
+      "metric": "non_borrowed_receipts",
+      "formula": "revenue_receipts + recovery_of_loans + other_capital_receipts"
+    }
+  ],
+  "requiredSourceReleases": [
+    [
+      "mof-union-budget-at-a-glance",
+      "union-budget-2025-26-original-be-2025-02-01"
+    ],
+    [
+      "mof-union-budget-at-a-glance",
+      "union-budget-2026-27-re-2025-26-2026-02"
+    ],
+    [
+      "cga-union-accounts-at-a-glance",
+      "union-provisional-accounts-2025-26-2026-03-31"
+    ],
+    [
+      "mof-union-budget-speech",
+      "union-budget-2025-26-speech-2025-02-01"
+    ],
+    [
+      "cga-finance-accounts-archive-check",
+      "finance-accounts-fy-2025-26-availability-check-2026-10-01"
+    ]
+  ]
+}

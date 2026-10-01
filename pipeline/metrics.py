@@ -4,6 +4,7 @@ from typing import Literal, TypedDict
 
 UnitType = Literal["crore", "percentage", "ratio"]
 DomainType = Literal["receipts", "expenditure", "deficit", "debt", "federal", "accounts"]
+CANONICAL_METRIC_DEFINITION_VERSION = "1"
 
 
 class MetricDefinition(TypedDict):
@@ -15,6 +16,7 @@ class MetricDefinition(TypedDict):
     accounting_interpretation: str
     compatible_comparisons: list[str]
     is_navigable: bool
+    definition_version: str
 
 
 def _metric(
@@ -35,6 +37,7 @@ def _metric(
         "accounting_interpretation": interpretation,
         "compatible_comparisons": comparisons or [],
         "is_navigable": is_navigable if is_navigable is not None else (domain != "accounts"),
+        "definition_version": CANONICAL_METRIC_DEFINITION_VERSION,
     }
 
 

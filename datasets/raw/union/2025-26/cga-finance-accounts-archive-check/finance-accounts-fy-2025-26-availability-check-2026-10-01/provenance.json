@@ -1,0 +1,18 @@
+{
+  "source_id": "cga-finance-accounts-archive-check",
+  "release_id": "finance-accounts-fy-2025-26-availability-check-2026-10-01",
+  "financial_year": "2025-26",
+  "source_organization": "Controller General of Accounts, Ministry of Finance, Government of India",
+  "document_name": "CGA Finance Accounts FY 2025-2026 archive page availability check",
+  "original_url": "https://cga.nic.in/FinanceReport/Published/2025-2026.aspx",
+  "retrieved_final_url": "https://cga.nic.in/FinanceReport/Published/2025-2026.aspx",
+  "content_type": "text/html; charset=utf-8",
+  "publication_date": null,
+  "retrieval_date": "2026-10-01",
+  "source_format": "html",
+  "estimate_type": null,
+  "artifact_role": "final_actual_availability_check",
+  "source_hash": "f519864cd9b452c916c023f48c1b5219c7d9e6fdce3741de3876f1ecad6d3e37",
+  "file_size_bytes": 78675,
+  "artifact_path": "datasets/raw/union/2025-26/cga-finance-accounts-archive-check/finance-accounts-fy-2025-26-availability-check-2026-10-01/f519864cd9b452c916c023f48c1b5219c7d9e6fdce3741de3876f1ecad6d3e37.html"
+}
