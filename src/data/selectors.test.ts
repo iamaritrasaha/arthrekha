@@ -149,6 +149,7 @@ describe('Data Selectors', () => {
 
   it('loads requested historical years independently and preserves exact release comparison semantics', async () => {
     const urls: string[] = [];
+    const historyAssetRoot = `${import.meta.env.BASE_URL.replace(/\/+$/, '')}/data/history/`;
     vi.stubGlobal('fetch', vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input);
       urls.push(url);
@@ -227,11 +228,11 @@ describe('Data Selectors', () => {
       expect(Object.prototype.hasOwnProperty.call(notComparable, 'percentageChange')).toBe(false);
       expect(await getAvailableYearsAsync()).toEqual(['2026-27', '2025-26', '2024-25', '2023-24', '2022-23', '2021-22']);
       expect(urls).toEqual([
-        '/data/history/index.json', '/data/history/2024-25.json', '/data/history/2025-26.json',
-        '/data/history/2023-24.json', '/data/history/2022-23.json', '/data/history/2021-22.json',
+        `${historyAssetRoot}index.json`, `${historyAssetRoot}2024-25.json`, `${historyAssetRoot}2025-26.json`,
+        `${historyAssetRoot}2023-24.json`, `${historyAssetRoot}2022-23.json`, `${historyAssetRoot}2021-22.json`,
       ]);
       await expect(getObservationAsync('fiscal_deficit', '2020-21', 'BE')).rejects.toThrow('No historical dataset is published for FY 2020-21.');
-      expect(urls).not.toContain('/data/history/2020-21.json');
+      expect(urls).not.toContain(`${historyAssetRoot}2020-21.json`);
     } finally {
       vi.unstubAllGlobals();
     }
