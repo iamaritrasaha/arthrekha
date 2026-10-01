@@ -33,9 +33,10 @@ function historicalDataAssets(): Plugin {
     if (urlPath === '/data/history/index.json') {
       return { content: JSON.stringify(index), contentType: 'application/json; charset=utf-8' }
     }
-    const entry = index.datasets.find(item => `/${item.path}` === urlPath || `/${item.sourceManifestPath}` === urlPath)
+    const entry = index.datasets.find(item =>
+      `/data/history/${item.path}` === urlPath || `/data/history/${item.sourceManifestPath}` === urlPath)
     if (!entry) return undefined
-    const isManifest = urlPath === `/${entry.sourceManifestPath}`
+    const isManifest = urlPath === `/data/history/${entry.sourceManifestPath}`
     const sourcePath = isManifest
       ? path.resolve(repositoryRoot, 'datasets/metadata/source-manifests', `${entry.financialYear}.json`)
       : path.resolve(repositoryRoot, 'datasets/processed/union/history', `${entry.financialYear}.json`)
@@ -67,8 +68,8 @@ function historicalDataAssets(): Plugin {
     generateBundle() {
       const index = readIndex()
       for (const entry of index.datasets) {
-        const processed = getAsset(`/${entry.path}`)
-        const manifest = getAsset(`/${entry.sourceManifestPath}`)
+        const processed = getAsset(`/data/history/${entry.path}`)
+        const manifest = getAsset(`/data/history/${entry.sourceManifestPath}`)
         if (!processed || !manifest) throw new Error(`Missing published historical assets for FY ${entry.financialYear}.`)
         this.emitFile({ type: 'asset', fileName: `data/history/${entry.path}`, source: processed.content })
         this.emitFile({ type: 'asset', fileName: `data/history/${entry.sourceManifestPath}`, source: manifest.content })

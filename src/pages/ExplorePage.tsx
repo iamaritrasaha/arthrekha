@@ -5,11 +5,12 @@ import MetricTable from '@/components/finance/MetricTable';
 import ModeSwitch, { type ExplorationMode } from '@/components/finance/ModeSwitch';
 import { FISCAL_DOMAINS, getFiscalDomain } from '@/data/domains';
 import { getMetricButtonLabel, getMetricDefinition, getRelatedMetrics, isNavigableFiscalMetric, type FinancialDomain, type MetricId } from '@/data/metricDefinitions';
-import { getBudgetEstimate, getExecutionRate, getLatestActual, getMetricRatio, getMetricsForDomain } from '@/data/selectors';
+import { getBudgetEstimate, getExecutionRate, getLatestActual, getMetricRatio, getMetricsForDomain, getDatasetMetadata } from '@/data/selectors';
 import { formatCurrency, formatPercentage } from '@/lib/formatting';
 import styles from './ExplorePage.module.css';
 import { useTranslation } from '@/i18n';
 import { currentPeriodText } from '@/lib/fiscalPeriods';
+import HistoricalFiscalPanel from '@/components/finance/HistoricalFiscalPanel';
 
 const DEFAULT_METRIC: MetricId = 'revenue_receipts';
 
@@ -19,6 +20,8 @@ export default function ExplorePage() {
   const queryMetric = searchParams.get('metric');
   const initialMetric = queryMetric && getMetricDefinition(queryMetric) ? queryMetric as MetricId : DEFAULT_METRIC;
   const [mode, setMode] = useState<ExplorationMode>('understand');
+  const currentYear = getDatasetMetadata().financialYear;
+  const [financialYear, setFinancialYear] = useState(currentYear);
   const [selectedMetric, setSelectedMetric] = useState<MetricId>(initialMetric);
   const rawDefinition = getMetricDefinition(selectedMetric)!;
   const definition = localizeMetric(rawDefinition);
@@ -82,19 +85,21 @@ export default function ExplorePage() {
       </div>
 
       <article className={styles.metricDetail} aria-live="polite">
-        <div className={styles.metricLead}>
+        {financialYear === currentYear && <div className={styles.metricLead}>
           <div><span className={styles.metricDomain}>{t(definition.domain)} · {t(definition.classificationType)}</span><h3>{definition.displayName}</h3><p>{definition.explanation.short}</p></div>
           <div className={styles.primaryValue}><small>{t('BUDGET ESTIMATE')}</small><strong>{be ? localizeFormattedValue(formatCurrency(be.amount)) : t('Data unavailable')}</strong><span>{t('FY 2026–27 · ₹ crore source unit')}</span></div>
-        </div>
+        </div>}
 
-        <div className={styles.valueStrip}>
+        {financialYear === currentYear && <div className={styles.valueStrip}>
           <div><small>{t('EXACT BE')}</small><strong>{be ? localizeFormattedValue(formatCurrency(be.amount, { forceUnit: 'crore' })) : t('Data unavailable')}</strong></div>
           <div><small>{t('PROVISIONAL ACTUAL')}</small><strong>{actual ? localizeFormattedValue(formatCurrency(actual.amount, { forceUnit: 'crore' })) : t('Data unavailable')}</strong><span>{actual ? currentPeriodText('Through {period} {year}', actual.period, actual.financialYear, t) : t('No compatible CGA observation')}</span></div>
           <div><small>{t('EXECUTION')}</small><strong>{execution ? localizeFormattedValue(formatPercentage(execution.value)) : t('Not available')}</strong><span>{t(execution ? 'Actual YTD ÷ annual BE' : 'Requires compatible periods')}</span></div>
           {ratios.map(ratio => <div key={ratio.metric}><small>{t(ratio.metric.replace(/_/g, ' '))}</small><strong>{localizeFormattedValue(formatPercentage(ratio.value))}</strong><span>{t('Calculated by Arthrekha')}</span></div>)}
-        </div>
+        </div>}
 
-        <div className={styles.explanationGrid}>
+        <HistoricalFiscalPanel metric={selectedMetric} financialYear={financialYear} onFinancialYearChange={setFinancialYear} enableCompare />
+
+      <div className={styles.explanationGrid}>
           <section><span>{t('EXPLAIN SIMPLY')}</span><p>{definition.explanation.simple}</p></section>
           <section><span>{t('WHY IT MATTERS')}</span><p>{definition.explanation.whyItMatters}</p></section>
           <section className={styles.technical}><span>{t('GO DEEPER')}</span><p>{definition.explanation.technical}</p>{definition.formula && <code>{definition.formula}</code>}{definition.caveats.map(caveat => <small key={caveat}>{caveat}</small>)}</section>
@@ -102,7 +107,7 @@ export default function ExplorePage() {
 
         <div className={styles.related}><span>{t('RELATED')}</span>{getRelatedMetrics(selectedMetric).map(item => <button key={item.id} onClick={() => { setDomain(item.domain === 'accounts' ? domain : item.domain); selectMetric(item.id as MetricId); }}>{localizeMetric(item).displayName}</button>)}</div>
 
-        {mode === 'analyse' && be && <div className={styles.evidence}><span>{t('OFFICIAL SOURCE')}</span><strong>{be.source.organization}</strong><p>{be.source.document}</p><small>{be.source.table ?? t('Table reference unavailable')} · {t(be.source.dataStatus === 'derived' ? 'Arthrekha-derived observation' : 'Source value')}</small>{be.source.url && <a href={be.source.url} target="_blank" rel="noreferrer">{t('Open official source ↗')}</a>}</div>}
+        {mode === 'analyse' && financialYear === currentYear && be && <div className={styles.evidence}><span>{t('OFFICIAL SOURCE')}</span><strong>{be.source.organization}</strong><p>{be.source.document}</p><small>{be.source.table ?? t('Table reference unavailable')} · {t(be.source.dataStatus === 'derived' ? 'Arthrekha-derived observation' : 'Source value')}</small>{be.source.url && <a href={be.source.url} target="_blank" rel="noreferrer">{t('Open official source ↗')}</a>}</div>}
       </article>
 
       {mode === 'analyse' && <section className={styles.tableSection} aria-labelledby="table-title"><div className={styles.sectionHeading}><span>03 / {t('ANALYTICAL VIEW')}</span><h2 id="table-title">{t('The same domain, without the simplification.')}</h2></div><MetricTable metrics={domainMetrics} /></section>}
